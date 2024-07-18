@@ -1,0 +1,24 @@
+.container {
+
+    margin: 400px 20px;
+    padding: 10px 20px;
+    background-color:  rgb(5, 155, 255);
+}
+.formContainer {
+    background-color:  rgb(5, 122, 255);
+    margin: 10px 20px;
+    padding: 10px 20px;
+}
+.formContainer button {
+    background-color:  rgb(5, 155, 255);
+}
+
+.listContainer {
+    background-color: rgb(255, 255, 255);
+    margin: 10px 20px;
+    padding: 10px 20px;
+}
+
+.listContainer button {
+    background-color: rgb(226, 60, 60);
+}
