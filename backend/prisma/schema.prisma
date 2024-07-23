@@ -19,4 +19,5 @@ model Product {
   nome String
   peso Int
   volume Int
+
 }

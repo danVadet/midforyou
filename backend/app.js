@@ -20,7 +20,7 @@ app.use(cors({
 }))
 
 app.get('/produtos', async (request, response) =>{
-    const products = await prisma.product.findMany();
+    const  products  = await prisma.product.findMany();
    
    return response.json(products);
 });
@@ -29,15 +29,16 @@ app.get('/produtos', async (request, response) =>{
 app.post('/produto', async (request, response) =>{
 
     const newProduct = request.body;
-
-    const product = await prisma.product.create({
+   
+    const container  = await prisma.product.create({
         data: {
-            nome: newProduct.nome,
-            peso: newProduct.peso,
-            volume: newProduct.volume
-
-        }
+           
+                        nome: newProduct.nome,
+                        peso:  newProduct.peso,
+                        volume: newProduct.volume,
+                    },
     })
+
    
    return response.send("Produto criado com sucesso")
 });
