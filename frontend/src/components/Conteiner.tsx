@@ -8,6 +8,9 @@ import Dialog from './Dialog';
 const Conteiner = () => {
 
     const [conteiners, setConteiners] = useState([]);
+    const [totalPeso, setTotalPeso] = useState(0);
+    const [totalVolume, setTotalVolume] = useState(0);
+
     const [dialog, setDialog]  = useState({
         message: '',
         openDialog: false
@@ -21,16 +24,41 @@ const Conteiner = () => {
     const getConteiners = async () => {
 
         try {
-            const response = await axios.get(`http://localhost:8080/produtos`);
+            const response = await axios.get(`http://localhost:5077/products`);
             setConteiners(response.data);
             console.log(response.data);
         } catch (error) {
             console.log(error);
         }
     }
+    const getTotalPeso = async () => {
+
+        try {
+            const response = await axios.get(`http://localhost:5077/products/totalPeso`);
+            setTotalPeso(response.data);
+            console.log(response.data);
+        } catch (error) {
+            console.log(error);
+        }
+        getConteiners();
+    }
+    const getTotalVolume = async () => {
+
+        try {
+            const response = await axios.get(`http://localhost:5077/products/totalVolume`);
+            setTotalVolume(response.data);
+            console.log(response.data);
+        } catch (error) {
+            console.log(error);
+        }
+        getConteiners();
+    }
+
 
     useEffect(() => {
         getConteiners();
+        getTotalPeso();
+        getTotalVolume();
     }, []);
 
     const handleChange = (e: React.FormEvent) => {
@@ -42,38 +70,21 @@ const Conteiner = () => {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
 
-        const response = await axios.post(`http://localhost:8080/produto`, {
+        const response = await axios.post(`http://localhost:5077/createProduct`, {
             nome: formData.nome,
-            peso: parseInt(formData.peso),
-            volume: parseInt(formData.volume)
+            peso: parseFloat(formData.peso),
+            volume: parseFloat(formData.volume)
         });
         console.log(response.data);
         getConteiners();
     }
 
     const handleDelete = async (id: number) => {
-            setDialog({
-                message: "Deseja excluir esse produto ?",
-                openDialog: true
-            })
-           
-    
+        const response = await axios.delete(`http://localhost:5077/products/${id}`);
+        console.log(response.data);
+        getConteiners();   
     }
-    const confirmDialog = async  (confirm: boolean) => {
-        if(confirm) {
-            const response = await axios.delete(`http://localhost:8080/produtos/${id}`);
-            console.log(response.data);
-            getConteiners();   
-
-            } else {
-                setDialog({
-                    message: "",
-                    openDialog: false
-                })
-            }
-        
-
-    }
+  
 
     return (
         <>
@@ -100,9 +111,12 @@ const Conteiner = () => {
                             )))}
                     </tbody>
                 </table>
+                <div className={`${styles.totalContainer}`}>
+                    <h3>Peso Total: {totalPeso}</h3>
+                    <h3>Volume Total: {totalVolume}</h3>
+                </div>
 
             </div>
-          {dialog.openDialog && <Dialog message={dialog.message} confirmDialog={confirmDialog} />}
             
             </>
 
