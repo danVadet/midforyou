@@ -26,20 +26,37 @@ public class ProductController : ControllerBase
         var product = await _applicationDbContext.Products.FindAsync(id);
         return Ok(product);
     }
-    [HttpPost("createProduct")]
-    public async Task<ActionResult> createProduct([FromBody] Product product)
+    [HttpPost("addProduct")]
+    public async Task<ActionResult> addProduct([FromBody] Product product)
     {
         var pesoTotal = product.peso * product.quantidade;
         var volumeTotal = product.volume * product.quantidade;
 
-        product.pesoTotal = pesoTotal;
-        product.volumeTotal = volumeTotal;
+    
 
         _applicationDbContext.Products.Add(product);
 
+        var containers  = new Container {
+
+        
+            products = new List<Product>(){
+                new Product(){
+                    id = product.id,
+                    nome =  product.nome,
+                    peso = product.peso,
+                    quantidade = product.quantidade,
+                    volume  =  product.volume,
+                    pesoTotal =  pesoTotal,
+                    volumeTotal =  volumeTotal
+
+            }
+        }
+        };
+        _applicationDbContext.Containers.Add(containers);
+
         await _applicationDbContext.SaveChangesAsync();
 
-        return Created("Product object", product);
+        return Ok(containers);
     }
 
     [HttpDelete("products/{id}")]

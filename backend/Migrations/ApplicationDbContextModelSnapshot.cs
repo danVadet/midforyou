@@ -29,17 +29,8 @@ namespace backend.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("id"));
 
-                    b.Property<float>("pesoTotal")
-                        .HasColumnType("real");
-
-                    b.Property<int>("productId")
+                    b.Property<int?>("productId")
                         .HasColumnType("integer");
-
-                    b.Property<int>("quantity")
-                        .HasColumnType("integer");
-
-                    b.Property<float>("volumeTOTAL")
-                        .HasColumnType("real");
 
                     b.HasKey("id");
 
@@ -88,9 +79,7 @@ namespace backend.Migrations
                 {
                     b.HasOne("backend.Models.Product", "product")
                         .WithMany()
-                        .HasForeignKey("productId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("productId");
 
                     b.Navigation("product");
                 });

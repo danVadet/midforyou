@@ -1,3 +1,9 @@
+.contato  {
+    margin: 30px;
+    padding: 20px 20px;
+    background:  rgb(5, 155, 255);
+}
+
 .formContainer {
     background:  rgb(5, 122, 255);
     margin: 10px 20px;

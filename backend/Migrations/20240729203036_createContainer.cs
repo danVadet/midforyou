@@ -6,7 +6,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace backend.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate : Migration
+    public partial class createContainer : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -17,10 +17,7 @@ namespace backend.Migrations
                 {
                     id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    quantity = table.Column<int>(type: "integer", nullable: false),
-                    productId = table.Column<int>(type: "integer", nullable: false),
-                    pesoTotal = table.Column<float>(type: "real", nullable: false),
-                    volumeTOTAL = table.Column<float>(type: "real", nullable: false)
+                    productId = table.Column<int>(type: "integer", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -66,8 +63,7 @@ namespace backend.Migrations
                 table: "Containers",
                 column: "productId",
                 principalTable: "Products",
-                principalColumn: "id",
-                onDelete: ReferentialAction.Cascade);
+                principalColumn: "id");
         }
 
         /// <inheritdoc />

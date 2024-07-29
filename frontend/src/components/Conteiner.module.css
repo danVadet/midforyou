@@ -46,3 +46,11 @@ th, td {
     gap: 10px;
     background: rgb(255, 255, 255);
 }
+.pesoAllProdutos {
+    background: blue;
+}
+.pesoAllVolume {
+
+    background: red;
+
+}
