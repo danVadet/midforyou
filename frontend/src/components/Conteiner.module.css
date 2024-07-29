@@ -1,7 +1,6 @@
 .container {
-
-    margin: 400px 20px;
-    padding: 10px 20px;
+    margin: 30px;
+    padding: 20px 20px;
     background:  rgb(5, 155, 255);
 }
 .formContainer {
@@ -9,8 +8,25 @@
     margin: 10px 20px;
     padding: 10px 20px;
 }
+.formContainer input {
+    margin: 8px 0;
+    padding: 10px;
+    border-radius: 5px;
+    border: 0;
+    outline: none;
+
+}
 .formContainer button {
     background:  rgb(5, 155, 255);
+}
+table {
+    border-collapse: collapse;
+}
+
+th, td {
+     border: 1px solid rgb(5, 155, 255);
+     padding: 10px;
+
 }
 
 .listContainer {

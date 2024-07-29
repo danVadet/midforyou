@@ -11,7 +11,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace backend.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240726194802_InitialCreate")]
+    [Migration("20240729083421_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -32,11 +32,17 @@ namespace backend.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("id"));
 
+                    b.Property<float>("pesoTotal")
+                        .HasColumnType("real");
+
                     b.Property<int>("productId")
                         .HasColumnType("integer");
 
                     b.Property<int>("quantity")
                         .HasColumnType("integer");
+
+                    b.Property<float>("volumeTOTAL")
+                        .HasColumnType("real");
 
                     b.HasKey("id");
 
@@ -62,7 +68,16 @@ namespace backend.Migrations
                     b.Property<float>("peso")
                         .HasColumnType("real");
 
+                    b.Property<float>("pesoTotal")
+                        .HasColumnType("real");
+
+                    b.Property<int>("quantidade")
+                        .HasColumnType("integer");
+
                     b.Property<float>("volume")
+                        .HasColumnType("real");
+
+                    b.Property<float>("volumeTotal")
                         .HasColumnType("real");
 
                     b.HasKey("id");

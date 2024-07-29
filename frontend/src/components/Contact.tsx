@@ -1,5 +1,6 @@
 import React from 'react';
 import logo from './logo.svg';
+import styles from './Contact.module.css'
 
 function Contact() {
   return (
@@ -9,13 +10,18 @@ function Contact() {
 
 
       <div>
-
-      <form>
-                    <input type="text" name="nome" placeholder='Digite o nome'/>
+      <form className={`${styles.formContainer}`}>
+                    <label>Produto</label>
+                    <input type="text" name="nome" placeholder='Digite o nome' />
+                    <label>Quantidade</label>
+                    <input type="number" name="quantidade"  />
+                    <label>Peso</label>
                     <input type="number" name="peso" placeholder='Digite o peso' />
-                    <input type="number" name="volume" placeholder='Digite o volume' />
-                    <button>Enviar</button>
+                    <label>Volume</label>
+                    <input type="number" name="volume" placeholder='Digite o volume'  />
+                    <button>Adicionar o produto</button>
                 </form>
+
 
 
       </div>

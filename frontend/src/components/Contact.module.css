@@ -1,0 +1,16 @@
+.formContainer {
+    background:  rgb(5, 122, 255);
+    margin: 10px 20px;
+    padding: 10px 20px;
+}
+.formContainer input {
+    margin: 8px 0;
+    padding: 10px;
+    border-radius: 5px;
+    border: 0;
+    outline: none;
+
+}
+.formContainer button {
+    background:  rgb(5, 155, 255);
+}

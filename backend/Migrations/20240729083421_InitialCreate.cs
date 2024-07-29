@@ -18,7 +18,9 @@ namespace backend.Migrations
                     id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     quantity = table.Column<int>(type: "integer", nullable: false),
-                    productId = table.Column<int>(type: "integer", nullable: false)
+                    productId = table.Column<int>(type: "integer", nullable: false),
+                    pesoTotal = table.Column<float>(type: "real", nullable: false),
+                    volumeTOTAL = table.Column<float>(type: "real", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -32,8 +34,11 @@ namespace backend.Migrations
                     id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     nome = table.Column<string>(type: "text", nullable: true),
+                    quantidade = table.Column<int>(type: "integer", nullable: false),
                     peso = table.Column<float>(type: "real", nullable: false),
                     volume = table.Column<float>(type: "real", nullable: false),
+                    volumeTotal = table.Column<float>(type: "real", nullable: false),
+                    pesoTotal = table.Column<float>(type: "real", nullable: false),
                     Containerid = table.Column<int>(type: "integer", nullable: true)
                 },
                 constraints: table =>
