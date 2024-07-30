@@ -32,31 +32,14 @@ public class ProductController : ControllerBase
         var pesoTotal = product.peso * product.quantidade;
         var volumeTotal = product.volume * product.quantidade;
 
-    
+         product.pesoTotal = pesoTotal;
+         product.volumeTotal =  volumeTotal;
 
         _applicationDbContext.Products.Add(product);
 
-        var containers  = new Container {
-
-        
-            products = new List<Product>(){
-                new Product(){
-                    id = product.id,
-                    nome =  product.nome,
-                    peso = product.peso,
-                    quantidade = product.quantidade,
-                    volume  =  product.volume,
-                    pesoTotal =  pesoTotal,
-                    volumeTotal =  volumeTotal
-
-            }
-        }
-        };
-        _applicationDbContext.Containers.Add(containers);
-
         await _applicationDbContext.SaveChangesAsync();
 
-        return Ok(containers);
+        return Created("Product created successfully", product);
     }
 
     [HttpDelete("products/{id}")]
@@ -67,12 +50,12 @@ public class ProductController : ControllerBase
 
         if (product == null)
         {
-            return NotFound();
+            return NotFound("Product not found");
 
         }
         _applicationDbContext.Products.Remove(product);
         await _applicationDbContext.SaveChangesAsync();
-        return Ok();
+        return Ok("Product removed successfully");
     }
 
     [HttpPut("products/{id}")]
