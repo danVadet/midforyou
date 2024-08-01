@@ -35,6 +35,10 @@ public class ProductController : ControllerBase
          product.pesoTotal = pesoTotal;
          product.volumeTotal =  volumeTotal;
 
+        if (product == null){
+            return BadRequest();
+        }
+
         _applicationDbContext.Products.Add(product);
 
         await _applicationDbContext.SaveChangesAsync();
@@ -59,23 +63,30 @@ public class ProductController : ControllerBase
     }
 
     [HttpPut("products/{id}")]
-    public async Task<ActionResult> updateProduct(int id, [FromBody] Product updateProduct)
+    public async Task<ActionResult> updateProduct(int id, [FromBody] Product product)
     {
-        var product = await _applicationDbContext.Products.FindAsync(id);
+        var productCurrent = await _applicationDbContext.Products.FindAsync(id);
 
-        if (product == null)
+        if (productCurrent == null)
         {
             return NotFound();
 
         }
-        var pesoTotal = updateProduct.peso * updateProduct.quantidade;
-        var volumeTotal = updateProduct.volume * updateProduct.quantidade;
+        var pesoTotal = product.peso * product.quantidade;
+        var volumeTotal = product.volume * product.quantidade;
 
-        updateProduct.pesoTotal = pesoTotal;
-        updateProduct.volumeTotal = volumeTotal;
+        product.pesoTotal = pesoTotal;
+        product.volumeTotal = volumeTotal;
 
-        _applicationDbContext.Products.Update(updateProduct);
+        productCurrent.nome = product.nome;
+        productCurrent.quantidade = product.quantidade;
+        productCurrent.peso = product.peso;
+        productCurrent.volume =  product.volume;
+        productCurrent.pesoTotal =  product.pesoTotal;
+        productCurrent.volumeTotal = product.volumeTotal;
+
+       _applicationDbContext.Products.Update(productCurrent);
         await _applicationDbContext.SaveChangesAsync();
-        return Ok();
+        return Ok("Product updated successfully");
     }
 }
