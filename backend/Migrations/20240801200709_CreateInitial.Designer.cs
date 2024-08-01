@@ -11,8 +11,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace backend.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240731115407_createProduct")]
-    partial class createProduct
+    [Migration("20240801200709_CreateInitial")]
+    partial class CreateInitial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -32,8 +32,17 @@ namespace backend.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("id"));
 
+                    b.Property<float>("capacidadePeso")
+                        .HasColumnType("real");
+
+                    b.Property<float>("capacidadeVolume")
+                        .HasColumnType("real");
+
                     b.Property<int?>("productId")
                         .HasColumnType("integer");
+
+                    b.Property<string>("typeContainer")
+                        .HasColumnType("text");
 
                     b.HasKey("id");
 

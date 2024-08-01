@@ -29,8 +29,17 @@ namespace backend.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("id"));
 
+                    b.Property<float>("capacidadePeso")
+                        .HasColumnType("real");
+
+                    b.Property<float>("capacidadeVolume")
+                        .HasColumnType("real");
+
                     b.Property<int?>("productId")
                         .HasColumnType("integer");
+
+                    b.Property<string>("typeContainer")
+                        .HasColumnType("text");
 
                     b.HasKey("id");
 

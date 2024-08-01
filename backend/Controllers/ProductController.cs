@@ -20,13 +20,28 @@ public class ProductController : ControllerBase
         var products = await _applicationDbContext.Products.ToListAsync();
         return Ok(products);
     }
+
     [HttpGet("products/{id}")]
     public async Task<ActionResult> getProduct(int id)
     {
         var product = await _applicationDbContext.Products.FindAsync(id);
         return Ok(product);
     }
-    [HttpPost("addProduct")]
+    [HttpGet("sumPesoTotal")]
+    public async Task<ActionResult> getSumPesoTotal()
+    {
+        var products = await _applicationDbContext.Products.ToListAsync();
+        var sumPesoTotal = products.Sum(product => product.pesoTotal);
+        return Ok(sumPesoTotal);
+    }
+    [HttpGet("sumVolumeTotal")]
+    public async Task<ActionResult> getSumVolumeTotal()
+    {
+        var products = await _applicationDbContext.Products.ToListAsync();
+        var sumVolumeTotal = products.Sum(product => product.volumeTotal);
+        return Ok(sumVolumeTotal);
+    }
+    [HttpPost("products/addProduct")]
     public async Task<ActionResult> addProduct([FromBody] Product product)
     {
         var pesoTotal = product.peso * product.quantidade;

@@ -19,24 +19,49 @@ public class ContainerController : ControllerBase
     }
 
     [HttpGet("containers")]
-    public async Task<ActionResult> getAllContainer()
+    public async Task<ActionResult<List <Container>>> getAllContainer()
     {
-        var containers = await _applicationDbContext.Containers.Include(c => c.products).ToListAsync();
+        var containers = await _applicationDbContext.Containers.ToListAsync();
         return Ok(containers);
     }   
+    [HttpPost("containers/createContainer")]
+    public async Task <ActionResult> createContainer ([FromBody] Container  container) 
+    {
+    
+        _applicationDbContext.Containers.Add(container);
 
-    [HttpGet("containers/pesoTotal")]
-    public async Task<ActionResult> getSumOfAllProductsByTotalPeso()
+        await _applicationDbContext.SaveChangesAsync();
+
+        return Created("Container created successfully", container);
+    } 
+
+    [HttpGet("containers/capacity")]
+    public async Task<ActionResult> verfiqueCapacityProduct()
     {
-        var containers = await _applicationDbContext.Containers.Include(c => c.products).ToListAsync();
-        return Ok(containers);
-    }   
-     [HttpGet("containers/volumeTotal")]
-    public async Task<ActionResult> getSumOfAllProductsByTotalVolume()
-    {
-        var containers = await _applicationDbContext.Containers.Include(c => c.products).ToListAsync();
-        return Ok(containers);
-    }   
+        var containers = await _applicationDbContext.Containers.ToListAsync();
+         var products = await _applicationDbContext.Products.ToListAsync();
+
+        var sumVolumeTotal = products.Sum(product => product.volumeTotal);
+        var sumPesoTotal = products.Sum(product => product.pesoTotal);
+
+
+        foreach (var container in containers) {
+           container.capacidadePeso = 29;
+            if(sumPesoTotal <= container.capacidadePeso){
+                return Ok("Cabe peso de produtos no container dry 40");
+
+            }
+             if(sumVolumeTotal <= container.capacidadeVolume){
+                container.capacidadePeso = 68;
+                return Ok("Cabe volume de produtos no container dry 40");
+
+            }
+        }
+           
+
+        return Ok();
+    }  
     
-    
+
+         
 }

@@ -62,7 +62,7 @@ const ModalFormProduct = ({ closeModal, getConteiners, productData }: ModalFormP
 
 
     const addProduct = async () => {
-        const response = await axios.post(`http://localhost:5077/addProduct`, {
+        const response = await axios.post(`http://localhost:5077/products/addProduct`, {
             nome: product.nome,
             quantidade: product.quantidade,
             peso: product.peso,

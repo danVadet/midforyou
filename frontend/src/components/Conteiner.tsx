@@ -10,6 +10,8 @@ import { Product } from '../models/Product';
 const Conteiner = () => {
 
     const [conteiners, setConteiners] = useState<Product[]>([]);
+    const [sumPesoTotal, setSumPesoTotal] = useState(0);
+    const [sumVolumeTotal, setSumVolumeTotal] = useState(0);
     const [openModalFormProduct, setOpenModalFormProduct] = useState(false);
     const [openDeleteModal, setOpenDeleteModal] = useState(false);
     const [product, setProduct] = useState<Product>();
@@ -45,8 +47,30 @@ const Conteiner = () => {
             console.log(error);
         }
     }
+    const getSumPesoTotal = async () => {
+
+        try {
+            const response = await axios.get(`http://localhost:5077/sumPesoTotal`);
+            setSumPesoTotal(response.data);
+            console.log(response.data);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+    const getSumVolumeTotal = async () => {
+
+        try {
+            const response = await axios.get(`http://localhost:5077/sumVolumeTotal`);
+            setSumVolumeTotal(response.data);
+            console.log(response.data);
+        } catch (error) {
+            console.log(error);
+        }
+    }
     useEffect(() => {
         getConteiners();
+        getSumPesoTotal();
+        getSumVolumeTotal();
     }, []);
 
     return (
@@ -60,7 +84,6 @@ const Conteiner = () => {
 
             <table className={`${styles.listContainer}`}>
                 <thead>
-                    <th>ID</th>
                     <th>Nome</th>
                     <th>Peso</th>
                     <th>Volume</th>
@@ -73,7 +96,6 @@ const Conteiner = () => {
                     {conteiners.length === 0 ? (<td>Carregando...</td>) : (
                         conteiners.map((conteiner, index) => (
                             <tr key={index}>
-                                <td>{conteiner.id}</td>
                                 <td>{conteiner.nome}</td>
                                 <td>{conteiner.peso}</td>
                                 <td>{conteiner.volume}</td>
@@ -95,12 +117,12 @@ const Conteiner = () => {
                 </tbody>
             </table>
 
-            <div className={`${styles.pesoAllProdutos}`}>
-                Peso total de todos os produtos 300
+            <div>
+            <h3>{`Peso total de  todos os produtos ${sumPesoTotal}`}</h3>
             </div>
 
-            <div className={`${styles.pesoAllVolume}`}>
-                Volume total de todos os produtos
+            <div>
+                <h3>{`Volume total de  todos os produtos ${sumVolumeTotal}`}</h3>
             </div>
         </>
     );
