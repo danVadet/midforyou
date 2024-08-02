@@ -80,18 +80,7 @@ const ModalFormProduct = ({ closeModal, getConteiners, productData }: ModalFormP
 
         <div className="modal-overflow">
             <div className="modal-body">
-                <form onSubmit={(e) => handleSubmit(e)}>
-                    <label>Nome</label>
-                    <input type="text" name="nome" value={product.nome} onChange={(e) => handleChange(e)} />
-                    <label>Quantidade</label>
-                    <input type="number" name="quantidade" value={product.quantidade} onChange={(e) => handleChange(e)} />
-                    <label>Peso</label>
-                    <input type="number" name="peso" value={product.peso} onChange={(e) => handleChange(e)} />
-                    <label>Volume</label>
-                    <input type="number" name="volume" value={product.volume} onChange={(e) => handleChange(e)} />
-                    <button>Adicionar</button>
-                    <button onClick={closeModal}>Cancelar</button>
-                </form>
+                
             </div>
         </div>
     )

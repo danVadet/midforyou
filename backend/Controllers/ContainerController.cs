@@ -27,7 +27,7 @@ public class ContainerController : ControllerBase
     [HttpPost("containers/createContainer")]
     public async Task <ActionResult> createContainer ([FromBody] Container  container) 
     {
-        var capacidadePesoKg = container.capacidadePeso * 10000;
+        var capacidadePesoKg = container.capacidadePeso * 1000;
         container.capacidadePeso = capacidadePesoKg;
         _applicationDbContext.Containers.Add(container);
 
@@ -55,6 +55,21 @@ public class ContainerController : ControllerBase
            
 
         return NotFound();
+    }
+    [HttpDelete("containers/{id}")]
+    public async Task<ActionResult> deleteContainer(int id)
+    {
+        var container = await _applicationDbContext.Containers.FindAsync(id);
+
+
+        if (container == null)
+        {
+            return NotFound("Container not found");
+
+        }
+        _applicationDbContext.Containers.Remove(container);
+        await _applicationDbContext.SaveChangesAsync();
+        return Ok("Container removed successfully");
     }  
     
 
