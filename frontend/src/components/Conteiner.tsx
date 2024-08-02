@@ -5,22 +5,24 @@ import axios from 'axios';
 import ModalFormProduct from './ModalFormProduct';
 import DeleteProductModal from './DeleteProductModal';
 import { Product } from '../models/Product';
+import { Container } from '../models/Container';
 
 
 const Conteiner = () => {
 
-    const [conteiners, setConteiners] = useState<Product[]>([]);
+    const [products, setProducts] = useState<Product[]>([]);
     const [sumPesoTotal, setSumPesoTotal] = useState(0);
     const [sumVolumeTotal, setSumVolumeTotal] = useState(0);
     const [openModalFormProduct, setOpenModalFormProduct] = useState(false);
     const [openDeleteModal, setOpenDeleteModal] = useState(false);
     const [product, setProduct] = useState<Product>();
     
+    const [container, setContainer] = useState<Container>();
 
-    const handleDeleteProduct = async (id: number) => {
+    async function handleDeleteProduct(id: number) {
         const response = await axios.get(`http://localhost:5077/products/${id}`);
-        console.log(response.data);  
-        setProduct(response.data);   
+        console.log(response.data);
+        setProduct(response.data);
 
         setOpenDeleteModal(true);
     }
@@ -36,12 +38,18 @@ const Conteiner = () => {
 
         setOpenModalFormProduct(true);
     }
+    const getConteiner = async () => {
+        const response = await axios.get(`http://localhost:5077/containers/capacity`);
+        console.log(response.data);
+        setContainer(response.data);
 
-    const getConteiners = async () => {
+    }
+
+    const getProducts = async () => {
 
         try {
             const response = await axios.get(`http://localhost:5077/products`);
-            setConteiners(response.data);
+            setProducts(response.data);
             console.log(response.data);
         } catch (error) {
             console.log(error);
@@ -68,9 +76,10 @@ const Conteiner = () => {
         }
     }
     useEffect(() => {
-        getConteiners();
+        getProducts();
         getSumPesoTotal();
         getSumVolumeTotal();
+        getConteiner();
     }, []);
 
     return (
@@ -78,8 +87,14 @@ const Conteiner = () => {
             <h1>Conteiner</h1>
 
             <div className={`${styles.container}`}>
-                {openModalFormProduct && <ModalFormProduct closeModal={() => setOpenModalFormProduct(false)} getConteiners={getConteiners} />}
+                {openModalFormProduct && <ModalFormProduct closeModal={() => setOpenModalFormProduct(false)} getConteiners={getProducts} />}
                 <button onClick={() => handleAddNewProduct()}>Adicionar novo produto</button>
+            </div>
+            <div className={`${styles.info_container}`}>
+                <h2>{`Equipamento: ${container?.typeContainer}`}</h2>
+                <h2>{`Carga máxima: ${container?.capacidadePeso}`}</h2>
+                <h2>{`Capacidade cública: ${container?.capacidadeVolume}`}</h2>
+          
             </div>
 
             <table className={`${styles.listContainer}`}>
@@ -93,24 +108,24 @@ const Conteiner = () => {
                     <th>Ações</th>
                 </thead>
                 <tbody>
-                    {conteiners.length === 0 ? (<td>Carregando...</td>) : (
-                        conteiners.map((conteiner, index) => (
+                    {products.length === 0 ? (<td>Carregando...</td>) : (
+                        products.map((product, index) => (
                             <tr key={index}>
-                                <td>{conteiner.nome}</td>
-                                <td>{conteiner.peso}</td>
-                                <td>{conteiner.volume}</td>
-                                <td>{conteiner.quantidade}</td>
-                                <td>{conteiner.pesoTotal}</td>
-                                <td>{conteiner.volumeTotal}</td>
+                                <td>{product.nome}</td>
+                                <td>{product.peso}</td>
+                                <td>{product.volume}</td>
+                                <td>{product.quantidade}</td>
+                                <td>{product.pesoTotal}</td>
+                                <td>{product.volumeTotal}</td>
                             <td>
                             
                             {openModalFormProduct && <ModalFormProduct
-                                        closeModal={() => setOpenModalFormProduct(false)}   getConteiners={getConteiners} productData={product} />}
-                                        <button onClick={() => handleEditProduct(conteiner.id)}>Editar</button>
+                                        closeModal={() => setOpenModalFormProduct(false)}   getConteiners={getProducts} productData={product} />}
+                                        <button onClick={() => handleEditProduct(product.id)}>Editar</button>
 
                                 {openDeleteModal && <DeleteProductModal 
-                                        closeModal={() => setOpenDeleteModal(false)} message='Deseja excluir esse produto' getConteiners={getConteiners} productCurrent={product}  />}
-                                        <button onClick={() => handleDeleteProduct(conteiner.id)}>Excluir</button>
+                                        closeModal={() => setOpenDeleteModal(false)} message='Deseja excluir esse produto' getConteiners={getProducts} productCurrent={product}  />}
+                                        <button onClick={() => handleDeleteProduct(product.id)}>Excluir</button>
                                 </td>
                             </tr>
                         )))}
@@ -118,11 +133,11 @@ const Conteiner = () => {
             </table>
 
             <div>
-            <h3>{`Peso total de  todos os produtos ${sumPesoTotal}`}</h3>
+            <h3>{`Peso total de  todos os produtos: ${sumPesoTotal}`}</h3>
             </div>
 
             <div>
-                <h3>{`Volume total de  todos os produtos ${sumVolumeTotal}`}</h3>
+                <h3>{`Volume total de  todos os produtos: ${sumVolumeTotal}`}</h3>
             </div>
         </>
     );

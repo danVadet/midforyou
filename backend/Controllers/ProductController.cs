@@ -61,20 +61,20 @@ public class ProductController : ControllerBase
         return Created("Product created successfully", product);
     }
 
-    [HttpDelete("products/{id}")]
-    public async Task<ActionResult> deleteProduct(int id)
+    [HttpDelete("containers/{id}")]
+    public async Task<ActionResult> deleteContainer(int id)
     {
-        var product = await _applicationDbContext.Products.FindAsync(id);
+        var container = await _applicationDbContext.Containers.FindAsync(id);
 
 
-        if (product == null)
+        if (container == null)
         {
-            return NotFound("Product not found");
+            return NotFound("Container not found");
 
         }
-        _applicationDbContext.Products.Remove(product);
+        _applicationDbContext.Containers.Remove(container);
         await _applicationDbContext.SaveChangesAsync();
-        return Ok("Product removed successfully");
+        return Ok("Container removed successfully");
     }
 
     [HttpPut("products/{id}")]

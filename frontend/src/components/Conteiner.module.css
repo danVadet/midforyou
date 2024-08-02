@@ -19,6 +19,11 @@
 .formContainer button {
     background:  rgb(5, 155, 255);
 }
+.info_container {
+    margin: 30px;
+    background:  rgb(0, 175, 239);
+    color: rgb(255, 255, 255);
+}
 table {
     border-collapse: collapse;
 }

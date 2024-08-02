@@ -27,7 +27,8 @@ public class ContainerController : ControllerBase
     [HttpPost("containers/createContainer")]
     public async Task <ActionResult> createContainer ([FromBody] Container  container) 
     {
-    
+        var capacidadePesoKg = container.capacidadePeso * 10000;
+        container.capacidadePeso = capacidadePesoKg;
         _applicationDbContext.Containers.Add(container);
 
         await _applicationDbContext.SaveChangesAsync();
@@ -46,20 +47,14 @@ public class ContainerController : ControllerBase
 
 
         foreach (var container in containers) {
-           container.capacidadePeso = 29;
-            if(sumPesoTotal <= container.capacidadePeso){
-                return Ok("Cabe peso de produtos no container dry 40");
-
-            }
-             if(sumVolumeTotal <= container.capacidadeVolume){
-                container.capacidadePeso = 68;
-                return Ok("Cabe volume de produtos no container dry 40");
+            if(sumPesoTotal <= container.capacidadePeso && sumVolumeTotal <= container.capacidadeVolume){
+                return Ok(container);
 
             }
         }
            
 
-        return Ok();
+        return NotFound();
     }  
     
 
