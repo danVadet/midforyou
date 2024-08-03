@@ -18,13 +18,13 @@
 
 }
 .formContainer button {
-    margin: 0 8px;
+    margin: 8px;
+    width: 40%;
     padding: 10px;
     border-radius: 5px;
     background:  rgb(0, 175, 239);
     color: rgb(255, 255, 255);
-
-    border: 1px solid rgb(204, 204, 204)
+    border: 0;
 }
 .info_container {
     margin: 30px;
@@ -48,21 +48,21 @@ th, td {
 }
 
 .listContainer .buttonEdit {
-    margin: 0 5px;
-    padding: 5px;
+    margin: 5px;
+    padding: 10px;
     border-radius: 5px;
     background:  rgb(0, 175, 239);
     color: rgb(255, 255, 255);
-    border: 1px solid rgb(204, 204, 204)
+    border: 0;
 }
 
 .listContainer .buttonDelete {
-    margin: 0 5px;
-    padding: 5px;
+    margin: 5px;
+    padding: 10px;
     border-radius: 5px;
     background: rgb(217, 83, 79);
     color: rgb(255, 255, 255);
-    border: 1px solid rgb(204, 204, 204)
+    border: 0;
 
 }
 .totalContainer {

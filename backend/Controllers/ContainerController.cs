@@ -36,7 +36,7 @@ public class ContainerController : ControllerBase
         return Created("Container created successfully", container);
     } 
 
-    [HttpGet("containers/capacity")]
+    [HttpGet("containers/capacity/{id}")]
     public async Task<ActionResult> verfiqueCapacityProduct()
     {
         var containers = await _applicationDbContext.Containers.ToListAsync();
@@ -50,6 +50,8 @@ public class ContainerController : ControllerBase
             if(sumPesoTotal <= container.capacidadePeso && sumVolumeTotal <= container.capacidadeVolume){
                 return Ok(container);
 
+            } else {
+                return Ok("Não cabe");
             }
         }
            

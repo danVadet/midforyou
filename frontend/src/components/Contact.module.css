@@ -4,17 +4,15 @@
     background:  rgb(5, 155, 255);
 }
 
-.formContainer {
-    background:  rgb(5, 122, 255);
-    margin: 10px 20px;
-    padding: 10px 20px;
-}
-.formContainer input {
-    margin: 8px 0;
+
+.formContainer input, .formContainer textarea {
+    margin-top: 15px;
+    margin-top: 5px;
+    width: 100%;
     padding: 10px;
     border-radius: 5px;
     border: 0;
-    outline: none;
+    outline: 0;
 
 }
 .formContainer button {

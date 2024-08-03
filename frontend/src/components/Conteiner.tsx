@@ -11,6 +11,8 @@ import { Container } from '../models/Container';
 const Conteiner = () => {
 
     const [products, setProducts] = useState<Product[]>([]);
+    const [containers, setContainers] = useState<Container[]>([]);
+
     const [sumPesoTotal, setSumPesoTotal] = useState(0);
     const [sumVolumeTotal, setSumVolumeTotal] = useState(0);
     const [openModalFormProduct, setOpenModalFormProduct] = useState(false);
@@ -23,8 +25,7 @@ const Conteiner = () => {
         volume: 0,
         pesoTotal: 0,
         volumeTotal: 0,
-    })
-
+    });
     const [container, setContainer] = useState<Container>();
 
     async function handleDeleteProduct(id: number) {
@@ -38,6 +39,14 @@ const Conteiner = () => {
     const handleChange = (e: React.FormEvent) => {
         const target = e.target as HTMLInputElement;
         setProduct({ ...product, [target.name]: target.value })
+    }
+    const handleChangeSelectContainer = async  (e: React.ChangeEvent) => {
+        const response = await axios.get(`http://localhost:5077/containers/capacity/${e.target}`);
+        console.log(response.data);
+        setContainer(response.data);
+
+        console.log(e.target);
+
     }
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -59,12 +68,6 @@ const Conteiner = () => {
 
         setOpenModalFormProduct(true);
     }
-    const getConteiner = async () => {
-        const response = await axios.get(`http://localhost:5077/containers/capacity`);
-        console.log(response.data);
-        setContainer(response.data);
-
-    }
 
     const getProducts = async () => {
 
@@ -80,12 +83,23 @@ const Conteiner = () => {
 
         try {
             const response = await axios.get(`http://localhost:5077/sumPesoTotal`);
-            setSumPesoTotal(response.data);
             console.log(response.data);
+            setSumPesoTotal(response.data);
         } catch (error) {
             console.log(error);
         }
     }
+    const getContainers = async () => {
+        try {
+            const response = await axios.get(`http://localhost:5077/containers`);
+            console.log(response.data);
+            setContainers(response.data);
+        } catch (error) {
+            console.log(error);
+        }
+
+     }
+
     const getSumVolumeTotal = async () => {
 
         try {
@@ -100,14 +114,14 @@ const Conteiner = () => {
         getProducts();
         getSumPesoTotal();
         getSumVolumeTotal();
-        getConteiner();
+        getContainers();
     }, []);
 
     return (
         <>
         <div className={`${styles.container}`}>
 
-            <h1>Calculadora CBM</h1>
+            <h1>Calculadora de Carga</h1>
 
                 <form onSubmit={(e) => handleSubmit(e)} className={`${styles.formContainer}`}>
                     <label>Nome</label>
@@ -120,12 +134,19 @@ const Conteiner = () => {
                     <input type="number" placeholder="Volume" name="volume" value={product.volume} onChange={(e) => handleChange(e)} />
                     <button>Adicionar novo produto</button>
                 </form>
+
+                <select onChange={(e) => handleChangeSelectContainer(e)}>
+                <option>Selecionar o  contêiner...</option>
+                {containers.map((container, index) => (
+                   <option value={container.id} key={index}>{container.typeContainer}</option>
+                ))}
+            </select>
             <div className={`${styles.info_container}`}>
                 <h2>{`Equipamento: ${container?.typeContainer}`}</h2>
                 <h2>{`Carga máxima: ${container?.capacidadePeso} kg`}</h2>
                 <h2>{`Capacidade cública: ${container?.capacidadeVolume} m³`}</h2>
-
             </div>
+
 
             <table className={`${styles.listContainer}`}>
                 <thead>
@@ -158,11 +179,11 @@ const Conteiner = () => {
                         )))}
                 </tbody>
                 <div>
-                <h3>{`Peso total de  todos os produtos: ${sumPesoTotal}`}</h3>
+                <h3>{`Peso total de  todos os produtos: ${sumPesoTotal} kg`}</h3>
             </div>
 
             <div>
-                <h3>{`Volume total de  todos os produtos: ${sumVolumeTotal}`}</h3>
+                <h3>{`Volume total de  todos os produtos: ${sumVolumeTotal} m³`}</h3>
             </div>
             </table>
 
