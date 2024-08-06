@@ -64,7 +64,7 @@ const Footer = () => {
                 </div>
                <div>
                <h3>
-                        Horário de atendimento:
+                        Horário de atendimento
                       
                     </h3>
                     <h3>  Segunda a sexta-feira das 8h às 18h |

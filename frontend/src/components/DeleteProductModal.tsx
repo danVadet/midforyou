@@ -7,11 +7,11 @@ interface DeletePeoductModalProps {
     message: string
     productCurrent?: Product
     closeModal(): void
-    getConteiners(): void
+    getProducts(): void
 
 }
 
-const DeleteProductModal = ({ message, closeModal, getConteiners, productCurrent}: DeletePeoductModalProps) => {
+const DeleteProductModal = ({ message, closeModal, getProducts, productCurrent}: DeletePeoductModalProps) => {
     
     const confirmDelete = async () => { 
 
@@ -19,7 +19,7 @@ const DeleteProductModal = ({ message, closeModal, getConteiners, productCurrent
         console.log(response.data);  
 
         closeModal();
-        getConteiners();
+        getProducts();
     }
     return (
         <>

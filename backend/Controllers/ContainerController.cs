@@ -19,13 +19,13 @@ public class ContainerController : ControllerBase
     }
 
     [HttpGet("containers")]
-    public async Task<ActionResult<List <Container>>> getAllContainer()
+    public async Task<ActionResult<List<Container>>> getAllContainer()
     {
         var containers = await _applicationDbContext.Containers.ToListAsync();
         return Ok(containers);
-    }   
+    }
     [HttpPost("containers/createContainer")]
-    public async Task <ActionResult> createContainer ([FromBody] Container  container) 
+    public async Task<ActionResult> createContainer([FromBody] Container container)
     {
         var capacidadePesoKg = container.capacidadePeso * 1000;
         container.capacidadePeso = capacidadePesoKg;
@@ -34,30 +34,35 @@ public class ContainerController : ControllerBase
         await _applicationDbContext.SaveChangesAsync();
 
         return Created("Container created successfully", container);
-    } 
+    }
 
     [HttpGet("containers/capacity/{id}")]
-    public async Task<ActionResult> verfiqueCapacityProduct()
+    public async Task<ActionResult> verfiqueCapacityProduct(int id)
     {
-        var containers = await _applicationDbContext.Containers.ToListAsync();
-         var products = await _applicationDbContext.Products.ToListAsync();
+
+        var container = await _applicationDbContext.Containers.FindAsync(id);
+        var products = await _applicationDbContext.Products.ToListAsync();
 
         var sumVolumeTotal = products.Sum(product => product.volumeTotal);
         var sumPesoTotal = products.Sum(product => product.pesoTotal);
 
 
-        foreach (var container in containers) {
-            if(sumPesoTotal <= container.capacidadePeso && sumVolumeTotal <= container.capacidadeVolume){
-                return Ok(container);
+        if (sumPesoTotal <= container.capacidadePeso && sumVolumeTotal <= container.capacidadeVolume)
+        {
+            return Ok(container);
 
-            } else {
-                return Ok("Não cabe");
-            }
         }
-           
-
-        return NotFound();
+        else
+        {
+            return Ok("Esse tipo de contêiner não cabe");
+        }
     }
+
+    private ActionResult Ok(string v, object value)
+    {
+        throw new NotImplementedException();
+    }
+
     [HttpDelete("containers/{id}")]
     public async Task<ActionResult> deleteContainer(int id)
     {
@@ -72,8 +77,5 @@ public class ContainerController : ControllerBase
         _applicationDbContext.Containers.Remove(container);
         await _applicationDbContext.SaveChangesAsync();
         return Ok("Container removed successfully");
-    }  
-    
-
-         
+    }
 }

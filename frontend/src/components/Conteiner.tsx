@@ -25,14 +25,23 @@ const Conteiner = () => {
         pesoTotal: 0,
         volumeTotal: 0,
     });
-    const [selectedContainer, setSelectedConatiner] = useState<Container>();
+    const [productCurrent, setProductCurrent] = useState<Product>();
+    const [selectedContainer, setSelectedConatiner] = useState<Container>({
+        id: 0,
+        typeContainer: "",
+        capacidadePeso: 0,
+        capacidadeVolume: 0,
+    });
 
     async function handleDeleteProduct(id: number) {
+
+           setOpenDeleteModal(true);
+
         const response = await axios.get(`http://localhost:5077/products/${id}`);
         console.log(response.data);
-        setProduct(response.data);
+        setProductCurrent(response.data);
 
-        setOpenDeleteModal(true);
+       
     }
 
     const handleChange = (e: React.FormEvent) => {
@@ -133,20 +142,23 @@ const Conteiner = () => {
                     <button>Adicionar novo produto</button>
                 </form>
 
-                <select value={selectedContainer?.typeContainer}  onChange={(e) => handleChangeSelectContainer(e)}>
+                <select onChange={(e) => handleChangeSelectContainer(e)}>
                 <option>Selecionar o  contêiner...</option>
                 {containers.map((container, index) => (
-                   <option value={container.typeContainer} key={index}>{container.typeContainer}</option>
+                   <option value={container.id} key={index}>{container.typeContainer}</option>
                 ))}
             </select>
-            <div className={`${styles.info_container}`}>
-                {selectedContainer == null ? <></> : <>
-                    <h2>{`Equipamento: ${selectedContainer?.typeContainer}`}</h2>
-                <h2>{`Capacidade de carga: ${selectedContainer?.capacidadePeso} kg`}</h2>
-                <h2>{`Carga de volume: ${selectedContainer?.capacidadeVolume} m³`}</h2>
+            {
                 
-                </>
-                }
+            }
+            <div className={`${styles.info_container}`}>
+               { product.pesoTotal <=  selectedContainer.capacidadePeso && product.volumeTotal <= selectedContainer.capacidadeVolume ? 
+               <> 
+               
+                <h2>{`Equipamento: ${selectedContainer.typeContainer}`}</h2>
+                <h2>{`Capacidade de carga: ${selectedContainer.capacidadePeso} kg`}</h2>
+                <h2>{`Carga de volume: ${selectedContainer.capacidadeVolume} m³`}</h2></> : <><h2>Esse tipo de contêiner não cabe</h2></> }
+
 
             </div>
 
@@ -184,7 +196,7 @@ const Conteiner = () => {
 </svg>
                                     </button>
                                     {openDeleteModal && <DeleteProductModal
-                                        closeModal={() => setOpenDeleteModal(false)} message='Deseja excluir esse produto' getConteiners={getProducts} productCurrent={product} />}
+                                        closeModal={() => setOpenDeleteModal(false)} message='Deseja excluir esse produto' getProducts={getProducts} productCurrent={productCurrent} />}
                                     <button className={`${styles.buttonDelete}`}  onClick={() => handleDeleteProduct(product.id)}>
                                     <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="30" height="30" viewBox="0,0,256,256">
                                         <g fill="rgb(255, 255, 255)" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none">

@@ -18,22 +18,19 @@ public class UserController : ControllerBase
     {
 
         MailMessage mailMessage = new MailMessage();
+               
+        SmtpClient smtpClient = new SmtpClient("smtp.gmail.com", 587);
         try
         {
-            var smtpClient = new SmtpClient("smtp.gmail.com", 587);
-            smtpClient.EnableSsl = true;
-            smtpClient.Timeout = 60 * 60;
-            smtpClient.UseDefaultCredentials = false;
-            smtpClient.Credentials = new NetworkCredential("danielvieiramelolima@gmail.com", "");
-
-            mailMessage.From = new MailAddress("danielvieiramelolima@gmail.com", "Daniel Vieira");
-            mailMessage.Body = "Testando o contato";
+            mailMessage.From = new MailAddress("danielvieiramelolima@gmail.com");
+            mailMessage.To.Add("danielvieiramelolima@gmail.com");
             mailMessage.Subject = "Teste contato";
+            mailMessage.Body = "<h1> Testando o contato </h1>";
             mailMessage.IsBodyHtml = true;
-            mailMessage.Priority = MailPriority.Normal;
-            mailMessage.To.Add("Testando o contato do cliente");
-
-
+        
+ 
+            smtpClient.Credentials = new NetworkCredential("danielvieiramelolima@gmail.com", "Rain123");
+            smtpClient.EnableSsl = true;
 
             smtpClient.Send(mailMessage);
             return Ok("Envio com sucesso");
@@ -41,7 +38,7 @@ public class UserController : ControllerBase
         }
         catch (Exception ex)
         {
-            return Ok(ex);
+            return BadRequest(ex);
 
         }
 
