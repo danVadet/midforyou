@@ -12,7 +12,6 @@ const Conteiner = () => {
 
     const [products, setProducts] = useState<Product[]>([]);
     const [containers, setContainers] = useState<Container[]>([]);
-
     const [sumPesoTotal, setSumPesoTotal] = useState(0);
     const [sumVolumeTotal, setSumVolumeTotal] = useState(0);
     const [openModalFormProduct, setOpenModalFormProduct] = useState(false);
@@ -26,7 +25,7 @@ const Conteiner = () => {
         pesoTotal: 0,
         volumeTotal: 0,
     });
-    const [container, setContainer] = useState<Container>();
+    const [selectedContainer, setSelectedConatiner] = useState<Container>();
 
     async function handleDeleteProduct(id: number) {
         const response = await axios.get(`http://localhost:5077/products/${id}`);
@@ -40,12 +39,11 @@ const Conteiner = () => {
         const target = e.target as HTMLInputElement;
         setProduct({ ...product, [target.name]: target.value })
     }
-    const handleChangeSelectContainer = async  (e: React.ChangeEvent) => {
-        const response = await axios.get(`http://localhost:5077/containers/capacity/${e.target}`);
+    const handleChangeSelectContainer = async  (e: React.ChangeEvent<HTMLSelectElement>) => {
+        const value =  e.target.value;
+        const response = await axios.get(`http://localhost:5077/containers/capacity/${value}`);
         console.log(response.data);
-        setContainer(response.data);
-
-        console.log(e.target);
+        setSelectedConatiner(response.data);
 
     }
     const handleSubmit = async (e: React.FormEvent) => {
@@ -115,6 +113,7 @@ const Conteiner = () => {
         getSumPesoTotal();
         getSumVolumeTotal();
         getContainers();
+
     }, []);
 
     return (
@@ -134,16 +133,21 @@ const Conteiner = () => {
                     <button>Adicionar novo produto</button>
                 </form>
 
-                <select onChange={(e) => handleChangeSelectContainer(e)}>
+                <select value={selectedContainer?.typeContainer}  onChange={(e) => handleChangeSelectContainer(e)}>
                 <option>Selecionar o  contêiner...</option>
                 {containers.map((container, index) => (
-                   <option value={container.id} key={index}>{container.typeContainer}</option>
+                   <option value={container.typeContainer} key={index}>{container.typeContainer}</option>
                 ))}
             </select>
             <div className={`${styles.info_container}`}>
-                <h2>{`Equipamento: ${container?.typeContainer}`}</h2>
-                <h2>{`Carga máxima: ${container?.capacidadePeso} kg`}</h2>
-                <h2>{`Capacidade cública: ${container?.capacidadeVolume} m³`}</h2>
+                {selectedContainer == null ? <></> : <>
+                    <h2>{`Equipamento: ${selectedContainer?.typeContainer}`}</h2>
+                <h2>{`Capacidade de carga: ${selectedContainer?.capacidadePeso} kg`}</h2>
+                <h2>{`Carga de volume: ${selectedContainer?.capacidadeVolume} m³`}</h2>
+                
+                </>
+                }
+
             </div>
 
 

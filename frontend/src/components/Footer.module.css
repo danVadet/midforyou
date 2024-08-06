@@ -7,13 +7,17 @@ footer {
 
 footer .content {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     padding: 3rem 3.5rem;
 }
+
+
 
 footer .mediaSocial {
     display: flex;
     gap: 1rem;
+    align-items: center;
+    justify-content: center;
 }
 
 footer .facebookIcon {
