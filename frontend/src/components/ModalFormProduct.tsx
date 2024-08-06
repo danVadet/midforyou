@@ -8,7 +8,7 @@ interface ModalFormProductProps {
     closeModal(): void
     getConteiners(): void
     productData?: Product
-}
+} 
 
 const ModalFormProduct = ({ closeModal, getConteiners, productData }: ModalFormProductProps) => {
 

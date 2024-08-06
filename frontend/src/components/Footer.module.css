@@ -1,15 +1,47 @@
 
 footer {
+    width: 100%;
     background:  rgb(0, 175, 239);
     color: rgb(255, 255, 255);
-    padding: 20px 10px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
 }
 
-.mediaSocial a {
-    display: block;
-    align-items: center;
+footer .content {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    padding: 3rem 3.5rem;
+}
+
+footer .mediaSocial {
+    display: flex;
+    gap: 1rem;
+}
+
+footer .facebookIcon {
+    background: rgb(255, 255, 255);
+    width: 40px;
+    height: 40px;
+    padding: 5px;
+    border-radius: 20px;
+}
+
+footer .instagramIcon {
+    background: rgb(255, 255, 255);
+    width: 40px;
+    height: 40px;
+    padding: 5px;
+    border-radius: 20px;
+}
+
+
+footer .linkedinIcon {
+    background: rgb(255, 255, 255);
+    width: 40px;
+    height: 40px;
+    padding: 5px;
+    border-radius: 20px;
+}
+
+@media screen and (max-width: 840px) {
+
+    
 }
