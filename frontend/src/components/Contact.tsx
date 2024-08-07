@@ -1,31 +1,73 @@
-import React from 'react';
+import React, { useState } from 'react';
 import logo from './logo.svg';
 import styles from './Contact.module.css'
+import { Visitor } from '../models/Visitor';
+import axios from 'axios';
+import Message from './Message';
 
 function Contact() {
+
+  const [visitor, setVisitor] = useState<Visitor>({
+    id: 0,
+    nome: "",
+    telefone: "",
+    email: "",
+    nomeEmpresa: "",
+    ramoAtividade: "",
+    local: "",
+    mensagem: ""
+
+});
+const [message,  setMessage] = useState(false);
+
+
+const handleChange = (e: React.FormEvent) => {
+  const target = e.target as HTMLInputElement;
+  setVisitor({ ...visitor, [target.name]: target.value })
+}
+const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+  const response = await axios.post(`http://localhost:5077/visitor/sendEmail`, {
+      nome: visitor.nome,
+      telefone: visitor.telefone,
+      email: visitor.email,
+      nomeEmpresa: visitor.nomeEmpresa,
+      ramoAtividade: visitor.ramoAtividade,
+      local: visitor.local,
+      mensagem: visitor.mensagem
+     
+  });
+  console.log(response.data);
+
+ setMessage(true);
+
+}
   return (
     <div className={`${styles.contato}`} >
 
       <h1>Entre em contato</h1>
 
 
-      <div>   <form className={`${styles.formContainer}`}>
+      <div>   <form onSubmit={(e) => handleSubmit(e)}  className={`${styles.formContainer}`}>
                     <label>Nome completo</label>
-                    <input type="text" name="nome"  />
+                    <input type="text" name="nome"  value={visitor.nome} onChange={(e) => handleChange(e)} />
                     <label>Telefone</label>
-                    <input type="number" name="telefone"  />
+                    <input type="text" name="telefone" value={visitor.telefone} onChange={(e) => handleChange(e)} />
                     <label>Email</label>
-                    <input type="email" name="email" />
+                    <input type="email" name="email" value={visitor.email} onChange={(e) => handleChange(e)} />
                     <label>Nome da empresa</label>
-                    <input type="nome_empresa" name="nome_empresa"   />
+                    <input type="text" name="nomeEmpresa" value={visitor.nomeEmpresa} onChange={(e) => handleChange(e)} />
                     <label>Ramo da atividade</label>
-                    <input type="ramo_atividade" name="ramo_atividade"   />
+                    <input type="text" name="ramoAtividade" value={visitor.ramoAtividade} onChange={(e) => handleChange(e)}/>
                     <label>Local</label>
-                    <input type="local" name="local"   />
+                    <input type="text" name="local" value={visitor.local} onChange={(e) => handleChange(e)}   />
                     <label>Mensagem</label>
-                    <textarea  name="mensagem">
+                    <textarea  name="mensagem" value={visitor.mensagem} onChange={(e) => handleChange(e)}>
                     </textarea>
                     <button>Enviar</button>
+                    
+                {message && <Message   message='Envio com sucesso' type='sucess'  />}
+
                 </form>
 
 

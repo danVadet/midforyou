@@ -138,7 +138,7 @@ const Conteiner = () => {
                     <label>Peso</label>
                     <input type="number" name="peso" value={product.peso} onChange={(e) => handleChange(e)} />
                     <label>Volume</label>
-                    <input type="number" placeholder="Volume" name="volume" value={product.volume} onChange={(e) => handleChange(e)} />
+                    <input type="number" name="volume" value={product.volume} onChange={(e) => handleChange(e)} />
                     <button>Adicionar novo produto</button>
                 </form>
 
