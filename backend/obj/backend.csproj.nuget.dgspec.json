@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\MIDFORYOU\\midforyou\\backend\\backend.csproj": {}
+    "D:\\PROJETOS\\MIDFORYOU\\midforyou\\backend\\backend.csproj": {}
   },
   "projects": {
-    "D:\\MIDFORYOU\\midforyou\\backend\\backend.csproj": {
+    "D:\\PROJETOS\\MIDFORYOU\\midforyou\\backend\\backend.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\MIDFORYOU\\midforyou\\backend\\backend.csproj",
+        "projectUniqueName": "D:\\PROJETOS\\MIDFORYOU\\midforyou\\backend\\backend.csproj",
         "projectName": "backend",
-        "projectPath": "D:\\MIDFORYOU\\midforyou\\backend\\backend.csproj",
-        "packagesPath": "C:\\Users\\danie_o\\.nuget\\packages\\",
-        "outputPath": "D:\\MIDFORYOU\\midforyou\\backend\\obj\\",
+        "projectPath": "D:\\PROJETOS\\MIDFORYOU\\midforyou\\backend\\backend.csproj",
+        "packagesPath": "C:\\Users\\CLIENTE\\.nuget\\packages\\",
+        "outputPath": "D:\\PROJETOS\\MIDFORYOU\\midforyou\\backend\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\danie_o\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\CLIENTE\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"

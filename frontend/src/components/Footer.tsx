@@ -6,19 +6,6 @@ const Footer = () => {
     return (
         <footer>
             <div className={`${styles.content}`}>
-                <div className={`${styles.info}`}>
-
-                    <h3>
-                        CNPJ: 10.501.613/0001-66 | CEP: 58.900-000 |
-                        Rua João Alves da Silva, 200, Jardim Oásis, Cajazeiras, Paraíba
-                        | Brasil
-                    </h3>
-
-                </div>
-
-
-
-
                 <div className={`${styles.mediaSocial}`}>
 
                     <a href="https://www.facebook.com/mid4ubrasil/">
@@ -62,14 +49,15 @@ const Footer = () => {
                     </a>
 
                 </div>
-               <div>
-               <h3>
-                        Horário de atendimento
-                      
-                    </h3>
-                    <h3>  Segunda a sexta-feira das 8h às 18h |
-                    Sábado das 8h às 12h.</h3>
-               </div>
+                <div className={`${styles.info}`}>
+
+<h3>
+    CNPJ: 10.501.613/0001-66 | CEP: 58.900-000 |
+    Rua João Alves da Silva, 200, Jardim Oásis, Cajazeiras, Paraíba
+    | Brasil
+</h3>
+
+</div>
 
             </div>
         </footer>

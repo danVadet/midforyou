@@ -6,8 +6,6 @@ footer {
 }
 
 footer .content {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
     padding: 3rem 3.5rem;
 }
 

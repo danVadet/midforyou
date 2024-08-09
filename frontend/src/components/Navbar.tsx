@@ -1,34 +1,27 @@
 import { Link } from 'react-router-dom'
 import logo from '../assets/logo.png'
 import styles from './Navbar.module.css'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import  multiLang  from '../multiLang'
+
 
 const Navbar = () => {
 
     const [mobileMenu, setMobileMenu] = useState(false);
+    const [langMenu, setLangMenu] = useState(false);
+
+
+    const selectLanguage = (lang: string) => {
+        if(window.location.hash=`${lang}`) {
+            setLangMenu(true);
+        }
+              
+
+    }
+
 
     return (
         <nav>
-            <div className={`${styles.navLogoContainer}`}>
-                <img src={logo} alt="" height={40} />
-            </div>
-            <ul className={mobileMenu ? '' : `${styles.hideMobileMenu}`}>
-                <li>
-                    <Link to="/"> Início </Link>
-                </li>
-                <li>
-                    <Link to="/servicos"> Serviços </Link>
-                </li>
-                <li>
-                    <Link to="/incoterms"> Incoterms </Link>
-                </li>
-                <li>
-                    <Link to="/conteiner"> Conteiners </Link>
-                </li>
-                <li>
-                    <Link to="/contact"> Contato </Link>
-                </li>
-            </ul>
 
             {mobileMenu ? // icon close
                 <i onClick={() => setMobileMenu(false)}>
@@ -50,6 +43,32 @@ const Navbar = () => {
                     </svg>
                 </i>
             }
+            <div className={`${styles.navLogoContainer}`}>
+                <img src={logo} alt="" height={40} />
+            </div>
+            <ul className={mobileMenu ? '' : `${styles.hideMobileMenu}`}>
+                <li>
+                    <Link to="/"> {langMenu ? `${multiLang.en.inicio}` : 'Início'} </Link>
+                </li>
+                <li>
+                    <Link to="/servicos"> {langMenu ? `${multiLang.en.servicos}` : 'Serviços'} </Link>
+                </li>
+                <li>
+                    <Link to="/incoterms"> Incoterms </Link>
+                </li>
+                <li>
+                    <Link to="/conteiner"> Conteiners </Link>
+                </li>
+                <li>
+                    <Link to="/contact"> {langMenu ? `${multiLang.en.contato} || ` : 'Contato'} </Link>
+                </li>
+                
+            <li><a href="http://localhost:3000">Português</a></li>
+            <li><button onClick={() => selectLanguage("en")}>Inglês</button></li>
+            </ul>
+
+
+
         </nav>
     );
 }
