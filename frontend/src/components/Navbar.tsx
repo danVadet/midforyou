@@ -48,7 +48,7 @@ const Navbar = () => {
             </div>
             <ul className={mobileMenu ? '' : `${styles.hideMobileMenu}`}>
                 <li>
-                    <Link to="/"> {langMenu ? `${multiLang.en.inicio}` : 'Início'} </Link>
+                    <Link to="/"> {langMenu ? `${multiLang.en.inicio}` || `${multiLang.es.inicio}`  : 'Início'} </Link>
                 </li>
                 <li>
                     <Link to="/servicos"> {langMenu ? `${multiLang.en.servicos}` : 'Serviços'} </Link>
@@ -65,6 +65,7 @@ const Navbar = () => {
                 
             <li><a href="http://localhost:3000">Português</a></li>
             <li><button onClick={() => selectLanguage("en")}>Inglês</button></li>
+            <li><button onClick={() => selectLanguage("es")}>Espanhol</button></li>
             </ul>
 
 

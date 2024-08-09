@@ -1,3 +1,4 @@
+import { escape } from "querystring";
 
 
 const multiLang = {
@@ -8,6 +9,9 @@ const multiLang = {
 
 
     },
+    es: {
+        inicio: "i"
+    }
 }
 
 export default multiLang;
