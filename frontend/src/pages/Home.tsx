@@ -4,6 +4,7 @@ import Contact from '../components/Contact';
 import Tax from '../components/Tax';
 import styles from './Home.module.css'
 import About from '../components/About';
+import AboutServices from '../components/AboutServices';
 
 const  Home = () => {
   return (
@@ -21,7 +22,11 @@ const  Home = () => {
       
          
        </div>
-       <About></About>
+       <section className={`${styles.about}`} id="about">
+                    <About />
+                    <AboutServices />
+                </section>
+
        <Conteiner></Conteiner>
        <Contact></Contact>
     </div>

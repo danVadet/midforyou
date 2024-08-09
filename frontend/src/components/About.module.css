@@ -29,7 +29,28 @@
 }
 
 @media (max-width: 720px) {
+
+    .aboutComponentContainer {
+        padding: 0.5rem;
+    }
        
     
+.aboutTextContainer h1 {
+
+    font-size: 36px;
+    padding: 0;
+
+
+
+}
+.aboutTextContainer p {
+    color: #5E5E5E;
+    font-family: "Roboto", "Lexend", "Sora";
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
 }
 

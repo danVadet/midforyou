@@ -1,0 +1,5 @@
+.about_services_component {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }

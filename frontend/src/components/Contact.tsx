@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import logo from './logo.svg';
 import styles from './Contact.module.css'
 import { Visitor } from '../models/Visitor';
 import axios from 'axios';

@@ -3,32 +3,31 @@ import axios from 'axios'
 import styles from './DeleteProductModal.module.css'
 import { Product } from '../models/Product'
 
-interface DeletePeoductModalProps {
+interface IProps {
     message: string
     productCurrent?: Product
     closeModal(): void
     getProducts(): void
 
 }
-
-const DeleteProductModal = ({ message, closeModal, getProducts, productCurrent}: DeletePeoductModalProps) => {
+const DeleteProductModal:  React.FC<IProps> = (props) => {
     
     const confirmDelete = async () => { 
 
-        const response = await axios.delete(`http://localhost:5077/products/${productCurrent?.id}`);
+        const response = await axios.delete(`http://localhost:5077/products/${props.productCurrent?.id}`);
         console.log(response.data);  
 
-        closeModal();
-        getProducts();
+        props.closeModal();
+        props.getProducts();
     }
     return (
         <>
             <div className={`${styles.dialog}`}>
                 <div className={`${styles.dialogContainer}`}>
-                    <h2>{message}</h2>
+                    <h2>{props.message}</h2>
                     <div className={`${styles.dialogButtonContainer}`}>
                         <button onClick={() => confirmDelete()}>Sim</button>
-                        <button onClick={closeModal}>Não</button>
+                        <button onClick={props.closeModal}>Não</button>
                     </div>
 
                 </div>

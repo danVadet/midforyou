@@ -28,7 +28,7 @@ nav .menuIcon {
     display: none;
 }
 
-@media screen and (max-width: 840px) {
+@media (max-width: 840px) {
 
     nav {
         padding: 15px 10px;

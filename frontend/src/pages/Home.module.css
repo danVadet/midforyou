@@ -28,6 +28,12 @@
 .brandImageComponent_text {
     color: rgb(255, 255, 255);
 }
+
+.about {
+  background: rgb(255, 255, 255);
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
 @media (max-width: 720px) {
 
     .brandImageComponent_text {
