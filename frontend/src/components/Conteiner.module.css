@@ -4,6 +4,7 @@
     box-shadow: rgba(0, 0, 0, 0.12) 0px 2px 32px 0px;
 }
 .formContainer {
+    border: 1px solid rgb(204, 204, 204);
     box-shadow: rgba(0, 0, 0, 0.12) 0px 2px 32px 0px;
     margin: 10px 20px;
     padding: 10px 20px;
@@ -19,35 +20,59 @@
 }
 .formContainer button {
     margin: 8px;
-    width: 40%;
     padding: 10px;
     border-radius: 5px;
     background:  rgb(0, 175, 239);
     color: rgb(255, 255, 255);
     border: 0;
 }
+.calculadoraContent {
+    margin: 8px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+   
+}
 .info_container {
-    margin: 30px;
-    background:  rgb(0, 175, 239);
+    margin: 10px;
+    padding: 10px;
+    background-color:  rgb(0, 175, 239);
     color: rgb(255, 255, 255);
 }
-table {
-    border-collapse: collapse;
-}
 
-th, td {
-     border: 1px solid rgb(5, 155, 255);
-     padding: 10px;
+.listProducts {
+    max-width: 800px;
+    margin: 40px;
 
 }
 
-.listContainer {
-    background: rgb(255, 255, 255);
-    margin: 10px 20px;
-    padding: 10px 20px;
+.listProducts .content {
+    border: 1px solid rgb(204, 204, 204);
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 2px 32px 0px;
+    margin: 8px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    border-radius: 5px;
+
+}
+.listProducts .infoProduct {
+    display: flex;
+    flex-direction: column;
+    margin: 5px;
+}
+.listProducts .infoTotalProduct {
+    display: flex;
+    flex-direction: column;
+    margin: 5px;
 }
 
-.listContainer .buttonEdit {
+
+
+.listProducts .buttonEdit {
     margin: 5px;
     padding: 10px;
     border-radius: 5px;
@@ -56,7 +81,7 @@ th, td {
     border: 0;
 }
 
-.listContainer .buttonDelete {
+.listProducts .buttonDelete {
     margin: 5px;
     padding: 10px;
     border-radius: 5px;

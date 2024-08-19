@@ -2,7 +2,7 @@
 import styles from './Conteiner.module.css'
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
-import ModalFormProduct from './ModalFormProduct';
+import EditProductModal from './EditProductModal';
 import DeleteProductModal from './DeleteProductModal';
 import { Product } from '../models/Product';
 import { Container } from '../models/Container';
@@ -14,7 +14,7 @@ const Conteiner = () => {
     const [containers, setContainers] = useState<Container[]>([]);
     const [sumPesoTotal, setSumPesoTotal] = useState(0);
     const [sumVolumeTotal, setSumVolumeTotal] = useState(0);
-    const [openModalFormProduct, setOpenModalFormProduct] = useState(false);
+    const [openEditModal, setOpenEditModal] = useState(false);
     const [openDeleteModal, setOpenDeleteModal] = useState(false);
     const [product, setProduct] = useState<Product>({
         id: 0,
@@ -33,13 +33,16 @@ const Conteiner = () => {
         capacidadeVolume: 0,
     });
 
-    async function handleDeleteProduct(id: number) {
+    const [currentPage, setCurrentPage] = useState(1);
 
-           setOpenDeleteModal(true);
+
+    async function handleDeleteProduct(id: number) {
 
         const response = await axios.get(`http://localhost:5077/products/${id}`);
         console.log(response.data);
         setProductCurrent(response.data);
+                
+        setOpenDeleteModal(true);
 
        
     }
@@ -69,11 +72,13 @@ const Conteiner = () => {
 
     }
     const handleEditProduct = async (id: number) => {
+
         const response = await axios.get(`http://localhost:5077/products/${id}`);
         console.log(response.data);
-        setProduct(response.data);
+        setProductCurrent(response.data);
 
-        setOpenModalFormProduct(true);
+        setOpenEditModal(true);
+
     }
 
     const getProducts = async () => {
@@ -142,48 +147,35 @@ const Conteiner = () => {
                     <button>Adicionar novo produto</button>
                 </form>
 
-                <select onChange={(e) => handleChangeSelectContainer(e)}>
-                <option>Selecionar o  contêiner...</option>
-                {containers.map((container, index) => (
-                   <option value={container.id} key={index}>{container.typeContainer}</option>
-                ))}
-            </select>
-            {
-                
-            }
-            <div className={`${styles.info_container}`}>
-               { product.pesoTotal <=  selectedContainer.capacidadePeso && product.volumeTotal <= selectedContainer.capacidadeVolume ? 
-               <> 
-               
-                <h2>{`Equipamento: ${selectedContainer.typeContainer}`}</h2>
-                <h2>{`Capacidade de carga: ${selectedContainer.capacidadePeso} kg`}</h2>
-                <h2>{`Carga de volume: ${selectedContainer.capacidadeVolume} m³`}</h2></> : <><h2>Esse tipo de contêiner não cabe</h2></> }
+                <div className={`${styles.calculadoraContent}`}>
+                    
+                <div className={`${styles.left}`}>
 
-
-            </div>
-
-
-            <table className={`${styles.listContainer}`}>
-                <thead>
-                    <th>Nome</th>
-                    <th>Peso</th>
-                    <th>Volume</th>
-                    <th>Quantidade</th>
-                    <th>Peso Total</th>
-                    <th>Volume Total</th>
-                    <th>Ações</th>
-                </thead>
-                <tbody>
+                <div className={`${styles.listProducts}`}>
                     {products.length === 0 ? (<td>Carregando...</td>) : (
                         products.map((product, index) => (
-                            <tr key={index}>
-                                <td>{product.nome}</td>
-                                <td>{product.peso}</td>
-                                <td>{product.volume}</td>
-                                <td>{product.quantidade}</td>
-                                <td>{product.pesoTotal}</td>
-                                <td>{product.volumeTotal}</td>
+
+                            <div className={`${styles.content}`} key={index}>
+
+                              <td>{product.nome}</td>
+
+
+
+                               <div className={`${styles.infoProduct}`}>
+                               <td>{`Quantidade: ${product.quantidade}`}</td>
+                                <td>{`Peso unidade: ${product.peso} kg`}</td>
+                                <td>{`Volume unidade: ${product.peso} m³`}</td>
+                                </div>
+                                <div className={`${styles.infoTotalProduct}`}>
+                                <td>{`Peso total: ${product.pesoTotal} kg`}</td>
+                                <td>{`Volume total: ${product.volumeTotal} m³`}</td>
+                                </div>
+                           
+
+        
                                 <td>
+
+                                    {openEditModal && <EditProductModal closeModal={() => setOpenEditModal(false)} getProducts={getProducts} productData={productCurrent}/>}
 
                                     <button className={`${styles.buttonEdit}`} onClick={() => handleEditProduct(product.id)}>
 
@@ -205,17 +197,60 @@ const Conteiner = () => {
 </svg>
                                     </button>
                                 </td>
-                            </tr>
+                   
+
+                                
+                            </div>
+                            
+                            
+                            
                         )))}
-                </tbody>
-                <div>
+                          
+
+
+
+                        
+            </div>
+            <div>
                 <h3>{`Peso total de  todos os produtos: ${sumPesoTotal} kg`}</h3>
             </div>
 
             <div>
                 <h3>{`Volume total de  todos os produtos: ${sumVolumeTotal} m³`}</h3>
             </div>
-            </table>
+
+                </div>
+                <div className={`${styles.right}`}>
+                <select onChange={(e) => handleChangeSelectContainer(e)}>
+                <option>Selecionar o  contêiner...</option>
+                {containers.map((container, index) => (
+                   <option value={container.id} key={index}>{container.typeContainer}</option>
+                ))}
+            </select>
+            {
+                
+            }
+            <div className={`${styles.info_container}`}>
+               { product.pesoTotal <=  selectedContainer.capacidadePeso && product.volumeTotal <= selectedContainer.capacidadeVolume ? 
+               <> 
+               
+                <h2>{`Equipamento: ${selectedContainer.typeContainer}`}</h2>
+                <h2>{`Capacidade de carga: ${selectedContainer.capacidadePeso} kg`}</h2>
+                <h2>{`Carga de volume: ${selectedContainer.capacidadeVolume} m³`}</h2></> : <><h2>Esse tipo de contêiner não cabe</h2></> }
+
+
+            </div>
+
+
+                </div>
+
+
+                </div>
+
+
+
+
+           
 
             </div>
         </>
