@@ -21,6 +21,58 @@ namespace backend.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
+            modelBuilder.Entity("Marker", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("id"));
+
+                    b.Property<string>("label")
+                        .HasColumnType("text");
+
+                    b.Property<float>("lat")
+                        .HasColumnType("real");
+
+                    b.Property<float>("lng")
+                        .HasColumnType("real");
+
+                    b.Property<int>("markerType")
+                        .HasColumnType("integer");
+
+                    b.HasKey("id");
+
+                    b.ToTable("Markers");
+                });
+
+            modelBuilder.Entity("PortMarker", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("id"));
+
+                    b.Property<string>("label")
+                        .HasColumnType("text");
+
+                    b.Property<float>("lat")
+                        .HasColumnType("real");
+
+                    b.Property<float>("lng")
+                        .HasColumnType("real");
+
+                    b.Property<int?>("markerId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("id");
+
+                    b.HasIndex("markerId");
+
+                    b.ToTable("PortMarkers");
+                });
+
             modelBuilder.Entity("backend.Models.Container", b =>
                 {
                     b.Property<int>("id")
@@ -82,6 +134,49 @@ namespace backend.Migrations
                     b.HasIndex("Containerid");
 
                     b.ToTable("Products");
+                });
+
+            modelBuilder.Entity("backend.Models.Visitor", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("id"));
+
+                    b.Property<string>("email")
+                        .HasColumnType("text");
+
+                    b.Property<string>("local")
+                        .HasColumnType("text");
+
+                    b.Property<string>("mensagem")
+                        .HasColumnType("text");
+
+                    b.Property<string>("nome")
+                        .HasColumnType("text");
+
+                    b.Property<string>("nomeEmpresa")
+                        .HasColumnType("text");
+
+                    b.Property<string>("ramoAtividade")
+                        .HasColumnType("text");
+
+                    b.Property<string>("telefone")
+                        .HasColumnType("text");
+
+                    b.HasKey("id");
+
+                    b.ToTable("Vistors");
+                });
+
+            modelBuilder.Entity("PortMarker", b =>
+                {
+                    b.HasOne("Marker", "marker")
+                        .WithMany()
+                        .HasForeignKey("markerId");
+
+                    b.Navigation("marker");
                 });
 
             modelBuilder.Entity("backend.Models.Container", b =>

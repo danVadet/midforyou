@@ -57,12 +57,7 @@ public class ContainerController : ControllerBase
             return Ok("Esse tipo de contêiner não cabe");
         }
     }
-
-    private ActionResult Ok(string v, object value)
-    {
-        throw new NotImplementedException();
-    }
-
+    
     [HttpDelete("containers/{id}")]
     public async Task<ActionResult> deleteContainer(int id)
     {

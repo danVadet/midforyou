@@ -14,6 +14,11 @@ public class ApplicationDbContext :DbContext {
 
     public DbSet<Visitor> Vistors { get; set; }
 
+     public DbSet<Marker> Markers { get; set; }
+
+     
+     public DbSet<PortMarker> PortMarkers { get; set; }
+
       
 }
 

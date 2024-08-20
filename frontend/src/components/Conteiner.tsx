@@ -2,6 +2,7 @@
 import styles from './Conteiner.module.css'
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
+import InfiniteScroll from 'react-infinite-scroll-component';
 import EditProductModal from './EditProductModal';
 import DeleteProductModal from './DeleteProductModal';
 import { Product } from '../models/Product';
@@ -33,18 +34,13 @@ const Conteiner = () => {
         capacidadeVolume: 0,
     });
 
-    const [currentPage, setCurrentPage] = useState(1);
-
-
-    async function handleDeleteProduct(id: number) {
+    const handleDeleteProduct = async (id: number) => {
 
         const response = await axios.get(`http://localhost:5077/products/${id}`);
         console.log(response.data);
         setProductCurrent(response.data);
                 
         setOpenDeleteModal(true);
-
-       
     }
 
     const handleChange = (e: React.FormEvent) => {
@@ -159,8 +155,6 @@ const Conteiner = () => {
 
                               <td>{product.nome}</td>
 
-
-
                                <div className={`${styles.infoProduct}`}>
                                <td>{`Quantidade: ${product.quantidade}`}</td>
                                 <td>{`Peso unidade: ${product.peso} kg`}</td>
@@ -169,10 +163,7 @@ const Conteiner = () => {
                                 <div className={`${styles.infoTotalProduct}`}>
                                 <td>{`Peso total: ${product.pesoTotal} kg`}</td>
                                 <td>{`Volume total: ${product.volumeTotal} m³`}</td>
-                                </div>
-                           
-
-        
+                                </div>        
                                 <td>
 
                                     {openEditModal && <EditProductModal closeModal={() => setOpenEditModal(false)} getProducts={getProducts} productData={productCurrent}/>}

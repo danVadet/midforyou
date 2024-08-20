@@ -12,6 +12,62 @@ namespace backend.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+                name: "Markers",
+                columns: table => new
+                {
+                    id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    label = table.Column<string>(type: "text", nullable: true),
+                    lat = table.Column<float>(type: "real", nullable: false),
+                    lng = table.Column<float>(type: "real", nullable: false),
+                    markerType = table.Column<int>(type: "integer", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Markers", x => x.id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Vistors",
+                columns: table => new
+                {
+                    id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    nome = table.Column<string>(type: "text", nullable: true),
+                    telefone = table.Column<string>(type: "text", nullable: true),
+                    email = table.Column<string>(type: "text", nullable: true),
+                    nomeEmpresa = table.Column<string>(type: "text", nullable: true),
+                    ramoAtividade = table.Column<string>(type: "text", nullable: true),
+                    local = table.Column<string>(type: "text", nullable: true),
+                    mensagem = table.Column<string>(type: "text", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Vistors", x => x.id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "PortMarkers",
+                columns: table => new
+                {
+                    id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    label = table.Column<string>(type: "text", nullable: true),
+                    lat = table.Column<float>(type: "real", nullable: false),
+                    lng = table.Column<float>(type: "real", nullable: false),
+                    markerId = table.Column<int>(type: "integer", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PortMarkers", x => x.id);
+                    table.ForeignKey(
+                        name: "FK_PortMarkers_Markers_markerId",
+                        column: x => x.markerId,
+                        principalTable: "Markers",
+                        principalColumn: "id");
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Containers",
                 columns: table => new
                 {
@@ -57,6 +113,11 @@ namespace backend.Migrations
                 column: "productId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_PortMarkers_markerId",
+                table: "PortMarkers",
+                column: "markerId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Products_Containerid",
                 table: "Products",
                 column: "Containerid");
@@ -75,6 +136,15 @@ namespace backend.Migrations
             migrationBuilder.DropForeignKey(
                 name: "FK_Containers_Products_productId",
                 table: "Containers");
+
+            migrationBuilder.DropTable(
+                name: "PortMarkers");
+
+            migrationBuilder.DropTable(
+                name: "Vistors");
+
+            migrationBuilder.DropTable(
+                name: "Markers");
 
             migrationBuilder.DropTable(
                 name: "Products");

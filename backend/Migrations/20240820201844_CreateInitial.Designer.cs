@@ -11,7 +11,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace backend.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240802172626_CreateInitial")]
+    [Migration("20240820201844_CreateInitial")]
     partial class CreateInitial
     {
         /// <inheritdoc />
@@ -23,6 +23,58 @@ namespace backend.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
+
+            modelBuilder.Entity("Marker", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("id"));
+
+                    b.Property<string>("label")
+                        .HasColumnType("text");
+
+                    b.Property<float>("lat")
+                        .HasColumnType("real");
+
+                    b.Property<float>("lng")
+                        .HasColumnType("real");
+
+                    b.Property<int>("markerType")
+                        .HasColumnType("integer");
+
+                    b.HasKey("id");
+
+                    b.ToTable("Markers");
+                });
+
+            modelBuilder.Entity("PortMarker", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("id"));
+
+                    b.Property<string>("label")
+                        .HasColumnType("text");
+
+                    b.Property<float>("lat")
+                        .HasColumnType("real");
+
+                    b.Property<float>("lng")
+                        .HasColumnType("real");
+
+                    b.Property<int?>("markerId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("id");
+
+                    b.HasIndex("markerId");
+
+                    b.ToTable("PortMarkers");
+                });
 
             modelBuilder.Entity("backend.Models.Container", b =>
                 {
@@ -85,6 +137,49 @@ namespace backend.Migrations
                     b.HasIndex("Containerid");
 
                     b.ToTable("Products");
+                });
+
+            modelBuilder.Entity("backend.Models.Visitor", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("id"));
+
+                    b.Property<string>("email")
+                        .HasColumnType("text");
+
+                    b.Property<string>("local")
+                        .HasColumnType("text");
+
+                    b.Property<string>("mensagem")
+                        .HasColumnType("text");
+
+                    b.Property<string>("nome")
+                        .HasColumnType("text");
+
+                    b.Property<string>("nomeEmpresa")
+                        .HasColumnType("text");
+
+                    b.Property<string>("ramoAtividade")
+                        .HasColumnType("text");
+
+                    b.Property<string>("telefone")
+                        .HasColumnType("text");
+
+                    b.HasKey("id");
+
+                    b.ToTable("Vistors");
+                });
+
+            modelBuilder.Entity("PortMarker", b =>
+                {
+                    b.HasOne("Marker", "marker")
+                        .WithMany()
+                        .HasForeignKey("markerId");
+
+                    b.Navigation("marker");
                 });
 
             modelBuilder.Entity("backend.Models.Container", b =>
