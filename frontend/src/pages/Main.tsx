@@ -7,6 +7,7 @@ import About from '../components/About';
 import AboutServices from '../components/AboutServices';
 import Map from '../components/Map';
 import Brand from '../components/Brand';
+import Incoterms from '../components/Incoterms';
 
 const  Main = () => {
   return (
@@ -18,7 +19,7 @@ const  Main = () => {
                     <AboutServices />
                 </section>
 
-
+        <Incoterms></Incoterms>
         <Conteiner></Conteiner>
         <Map></Map>
        <Contact></Contact>

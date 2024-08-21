@@ -1,0 +1,37 @@
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+
+[Controller]
+public class IncotermController : ControllerBase
+{
+    private readonly ApplicationDbContext _applicationDbContext;
+    public IncotermController(ApplicationDbContext applicationDbContext)
+    {
+        _applicationDbContext = applicationDbContext;
+
+    }
+
+    [HttpGet("incoterms")]
+    public async Task<ActionResult> getAllIncoterms()
+    {
+        var incoterms = await _applicationDbContext.Incoterms.ToListAsync();
+        return Ok(incoterms);
+    }
+
+    [HttpGet("incoterms/{id}")]
+    public async Task<ActionResult> getProduct(int id)
+    {
+        var product = await _applicationDbContext.Products.FindAsync(id);
+        return Ok(product);
+    }
+    [HttpPost("incoterms/addIncoterm")]
+    public async Task<ActionResult> addProduct([FromBody] Incoterm incoterm)
+    {
+     
+        _applicationDbContext.Incoterms.Add(incoterm);
+
+        await _applicationDbContext.SaveChangesAsync();
+
+        return Created("Incoterm created successfully", incoterm);
+    }
+}

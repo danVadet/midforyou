@@ -3,6 +3,7 @@ import mapWrapper from './Map.module.css';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { MarkerModel } from '../models/MarkerModel';
+import { PortMarker } from '../models/PortMarker';
 
 
 
@@ -22,6 +23,8 @@ const Map =() => {
     lat: 0,
     lng: 0
   });
+  
+ const [portsMarker, setPortsMarker] = useState<PortMarker[]>([]);
   
 
   const getMarkers = async () => {
@@ -74,20 +77,41 @@ const center = {
 
 {isLoaded ? (
       <GoogleMap
-        mapContainerStyle={{width: '500px',
-          height: '400px', borderRadius: '10p'}}
+        mapContainerStyle={{width: '90vw',
+          height: '90vh', borderRadius: '10px', margin: '10px 50px'}}
         center={{lat: marker?.lat,
           lng: marker.lng}}
         zoom={10}
        
       >
-        { /* Child components, such as markers, info windows, etc. */ 
-          <MarkerF position={{lat: marker.lat, lng: marker.lng}} options={{
+       { /* Child components, such as markers, info windows, etc. */ 
+
+
+<MarkerF position={{lat: marker.lat, lng: marker.lng}} options={{
+  label: {
+    text: marker.label,
+    color: 'black',
+    fontSize: '15px',
+    fontWeight: '600'
+  }        
+ }}/>
+         
+         /*
+         
+         portsMarker.map((portMarker, index) => (
+
+          <MarkerF key={index}  position={{lat: portMarker.lat, lng: portMarker.lng}} options={{
             label: {
-              text: marker.label
+              text: portMarker.label
             },
             
           }}/>
+          /
+
+         ))
+          */
+
+        
        
         
         

@@ -29,7 +29,7 @@
     gap: 4px;
 }
 .dialogButtonContainer button {
-    background:  rgb(5, 155, 255);
+    background-color: rgb(0, 175, 239);
     color: rgb(255, 255, 255);
     border: 0;
     padding: 10px;

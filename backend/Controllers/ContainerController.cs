@@ -35,6 +35,16 @@ public class ContainerController : ControllerBase
 
         return Created("Container created successfully", container);
     }
+     [HttpGet("containers/{id}")]
+    public async Task<ActionResult> getContainerById (int id)
+    {
+
+        var container = await _applicationDbContext.Containers.FindAsync(id);
+       
+            return Ok(container);
+
+    }
+   
 
     [HttpGet("containers/capacity/{id}")]
     public async Task<ActionResult> verfiqueCapacityProduct(int id)

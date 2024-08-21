@@ -27,6 +27,14 @@ const Conteiner = () => {
         volumeTotal: 0,
     });
     const [productCurrent, setProductCurrent] = useState<Product>();
+    const [container, setContainer] = useState<Container>({
+        id: 0,
+        typeContainer: "",
+        capacidadePeso: 0,
+        capacidadeVolume: 0,
+
+    });
+
     const [selectedContainer, setSelectedConatiner] = useState<Container>({
         id: 0,
         typeContainer: "",
@@ -49,9 +57,16 @@ const Conteiner = () => {
     }
     const handleChangeSelectContainer = async  (e: React.ChangeEvent<HTMLSelectElement>) => {
         const value =  e.target.value;
-        const response = await axios.get(`http://localhost:5077/containers/capacity/${value}`);
+        const response = await axios.get(`http://localhost:5077/containers/${value}`);
         console.log(response.data);
         setSelectedConatiner(response.data);
+
+        if(value != null){
+            const response = await axios.get(`http://localhost:5077/containers/capacity/${value}`);
+            console.log(response.data);
+            setContainer(response.data);
+
+        }
 
     }
     const handleSubmit = async (e: React.FormEvent) => {
@@ -222,16 +237,14 @@ const Conteiner = () => {
                 
             }
             <div className={`${styles.info_container}`}>
-               { product.pesoTotal <=  selectedContainer.capacidadePeso && product.volumeTotal <= selectedContainer.capacidadeVolume ? 
-               <> 
-               
-                <h2>{`Equipamento: ${selectedContainer.typeContainer}`}</h2>
-                <h2>{`Capacidade de carga: ${selectedContainer.capacidadePeso} kg`}</h2>
-                <h2>{`Carga de volume: ${selectedContainer.capacidadeVolume} m³`}</h2></> : <><h2>Esse tipo de contêiner não cabe</h2></> }
 
+            <h2>{`Equipamento: ${selectedContainer.typeContainer}`}</h2>
+                <h2>{`Capacidade de carga: ${selectedContainer.capacidadePeso} kg`}</h2>
+                <h2>{`Carga de volume: ${selectedContainer.capacidadeVolume} m³`}</h2>
 
             </div>
-
+            {product.pesoTotal <= container.capacidadePeso && product.volumeTotal <= container.capacidadeVolume ? 
+               <> </> : <><h2>Esse tipo de contêiner não cabe</h2></> }
 
                 </div>
 

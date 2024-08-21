@@ -19,6 +19,17 @@ public class MarkerController : ControllerBase
         var markers = await _applicationDbContext.Markers.ToListAsync();
         return Ok(markers);
     }
+      [HttpGet("markers/state/{id}")]
+    public async Task<ActionResult> getMarker(int id)
+    {
+
+        var marker = await _applicationDbContext.Markers.FindAsync(id);
+
+        return Ok(marker);
+      
+
+    
+    }
     [HttpPost("markers/state")]
     public async Task<ActionResult> createMarkerByState([FromBody] Marker marker)
     {
@@ -60,11 +71,13 @@ public class MarkerController : ControllerBase
         return Ok("Container removed successfully");
     }
     [HttpGet("markers/ports/{stateId}")]
-    public async Task<ActionResult> getMarker(int stateId)
+    public async Task<ActionResult> getAllPortsByState(int stateId)
     {
 
         var marker = await _applicationDbContext.Markers.FindAsync(stateId);
-        var markers = await _applicationDbContext.PortMarkers.Include(p => p.marker).ToListAsync();
+        
+        
+        var markers = await _applicationDbContext.PortMarkers.Where(p => p.markerId == marker.id).ToListAsync();
 
         return Ok(markers);
       

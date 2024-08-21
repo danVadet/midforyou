@@ -1,0 +1,11 @@
+
+.container{
+
+    margin: 20px;
+    padding: 10px;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 2px 32px 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
