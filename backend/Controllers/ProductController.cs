@@ -75,6 +75,17 @@ public class ProductController : ControllerBase
         await _applicationDbContext.SaveChangesAsync();
         return Ok("Container removed successfully");
     }
+    [HttpDelete("products")]
+    public async Task<ActionResult> deleteAllProducts()
+    {
+       foreach(var product in _applicationDbContext.Products) {
+
+        _applicationDbContext.Remove(product);
+
+       }
+        await _applicationDbContext.SaveChangesAsync();
+        return Ok("All products removed successfully");
+    }
 
     [HttpPut("products/{id}")]
     public async Task<ActionResult> updateProduct(int id, [FromBody] Product product)

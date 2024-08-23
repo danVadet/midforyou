@@ -6,15 +6,9 @@ public class Container {
 
     public int id  { get; set; }
 
-    public string? typeContainer {get; set; }
+    public string? name {get; set; }
+    public string? image  {get; set; }
 
-
-    public List <Product> products { get; set; }
-
-    [JsonIgnore]
-    public Product product { get; set; }
-
-    public int? productId { get; set; }
 
     public float  capacidadePeso { get; set; }
 

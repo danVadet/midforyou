@@ -29,7 +29,8 @@ const Conteiner = () => {
     const [productCurrent, setProductCurrent] = useState<Product>();
     const [container, setContainer] = useState<Container>({
         id: 0,
-        typeContainer: "",
+        name: "",
+        image: "",
         capacidadePeso: 0,
         capacidadeVolume: 0,
 
@@ -37,10 +38,13 @@ const Conteiner = () => {
 
     const [selectedContainer, setSelectedConatiner] = useState<Container>({
         id: 0,
-        typeContainer: "",
+        name: "",
+        image: "",
         capacidadePeso: 0,
         capacidadeVolume: 0,
     });
+
+    const [reloadPage, setReloadPage] = useState(false);
 
     const handleDeleteProduct = async (id: number) => {
 
@@ -81,6 +85,8 @@ const Conteiner = () => {
 
         getProducts();
 
+        window.location.reload();
+
     }
     const handleEditProduct = async (id: number) => {
 
@@ -95,9 +101,11 @@ const Conteiner = () => {
     const getProducts = async () => {
 
         try {
-            const response = await axios.get(`http://localhost:5077/products`);
-            setProducts(response.data);
-            console.log(response.data);
+
+
+                const response = await axios.get(`http://localhost:5077/products`);
+                setProducts(response.data);
+                console.log(response.data);
         } catch (error) {
             console.log(error);
         }
@@ -112,17 +120,6 @@ const Conteiner = () => {
             console.log(error);
         }
     }
-    const getContainers = async () => {
-        try {
-            const response = await axios.get(`http://localhost:5077/containers`);
-            console.log(response.data);
-            setContainers(response.data);
-        } catch (error) {
-            console.log(error);
-        }
-
-     }
-
     const getSumVolumeTotal = async () => {
 
         try {
@@ -133,13 +130,47 @@ const Conteiner = () => {
             console.log(error);
         }
     }
-    useEffect(() => {
-        getProducts();
-        getSumPesoTotal();
-        getSumVolumeTotal();
-        getContainers();
+    const getContainers = async () => {
+        try {
+            const response = await axios.get(`http://localhost:5077/containers`);
+            console.log(response.data);
+            setContainers(response.data);
+            getSumPesoTotal();
+            getSumVolumeTotal();
+        } catch (error) {
+            console.log(error);
+        }
 
-    }, []);
+     }
+
+    useEffect(()  => {
+        if(!reloadPage){ 
+                window.location.reload();
+                const deleteAllProdutos = async () => {
+                    const response = await axios.delete(`http://localhost:5077/products`);
+                    setProducts(response.data);
+                    console.log(response.data);
+                  }
+    
+                  deleteAllProdutos();
+                  setReloadPage(true);
+    
+           
+
+        } 
+            getProducts();
+            getContainers();
+            setReloadPage(false);
+
+        
+           
+
+        
+    
+
+        
+       
+    }, [reloadPage]);
 
     return (
         <>
@@ -227,25 +258,32 @@ const Conteiner = () => {
 
                 </div>
                 <div className={`${styles.right}`}>
-                <select onChange={(e) => handleChangeSelectContainer(e)}>
-                <option>Selecionar o  contêiner...</option>
-                {containers.map((container, index) => (
-                   <option value={container.id} key={index}>{container.typeContainer}</option>
-                ))}
-            </select>
-            {
-                
-            }
+            
             <div className={`${styles.info_container}`}>
 
-            <h2>{`Equipamento: ${selectedContainer.typeContainer}`}</h2>
-                <h2>{`Capacidade de carga: ${selectedContainer.capacidadePeso} kg`}</h2>
-                <h2>{`Carga de volume: ${selectedContainer.capacidadeVolume} m³`}</h2>
+                    <select onChange={(e) => handleChangeSelectContainer(e)}>
+                <option>Selecionar o  contêiner...</option>
+                {containers.map((container, index) => (
+                   <option value={container.id} key={index}>{container.name}</option>
+                ))}
+            </select>
 
+            <h2>{`${selectedContainer.name}`}</h2>
+            <h2>{`Capacidade de carga: ${selectedContainer.capacidadePeso} kg`}</h2>
+                <h2>{`Capacidade cúbica: ${selectedContainer.capacidadeVolume} m³`}</h2>
+
+
+                <img src={`${selectedContainer.image}`} alt="" />
+                {product.pesoTotal <= container.capacidadePeso && product.volumeTotal <= container.capacidadeVolume ? 
+               <> </> : <><div className={`${styles.message}`}><h2>Esse tipo de contêiner não cabe</h2></div></> }
+
+
+        
+    
+          
             </div>
-            {product.pesoTotal <= container.capacidadePeso && product.volumeTotal <= container.capacidadeVolume ? 
-               <> </> : <><h2>Esse tipo de contêiner não cabe</h2></> }
 
+       
                 </div>
 
 

@@ -1,7 +1,8 @@
 export interface Container  {
     
     id: number;
-    typeContainer: string;
+    name: string;
+    image: string;
     capacidadePeso: number;
     capacidadeVolume: number;
     

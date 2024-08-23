@@ -11,8 +11,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace backend.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240821203110_createTableIncoterm")]
-    partial class createTableIncoterm
+    [Migration("20240823104515_CreateInitial")]
+    partial class CreateInitial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -124,15 +124,10 @@ namespace backend.Migrations
                     b.Property<float>("capacidadeVolume")
                         .HasColumnType("real");
 
-                    b.Property<int?>("productId")
-                        .HasColumnType("integer");
-
                     b.Property<string>("typeContainer")
                         .HasColumnType("text");
 
                     b.HasKey("id");
-
-                    b.HasIndex("productId");
 
                     b.ToTable("Containers");
                 });
@@ -144,9 +139,6 @@ namespace backend.Migrations
                         .HasColumnType("integer");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("id"));
-
-                    b.Property<int?>("Containerid")
-                        .HasColumnType("integer");
 
                     b.Property<string>("nome")
                         .HasColumnType("text");
@@ -167,8 +159,6 @@ namespace backend.Migrations
                         .HasColumnType("real");
 
                     b.HasKey("id");
-
-                    b.HasIndex("Containerid");
 
                     b.ToTable("Products");
                 });
@@ -214,27 +204,6 @@ namespace backend.Migrations
                         .HasForeignKey("markerId");
 
                     b.Navigation("marker");
-                });
-
-            modelBuilder.Entity("backend.Models.Container", b =>
-                {
-                    b.HasOne("backend.Models.Product", "product")
-                        .WithMany()
-                        .HasForeignKey("productId");
-
-                    b.Navigation("product");
-                });
-
-            modelBuilder.Entity("backend.Models.Product", b =>
-                {
-                    b.HasOne("backend.Models.Container", null)
-                        .WithMany("products")
-                        .HasForeignKey("Containerid");
-                });
-
-            modelBuilder.Entity("backend.Models.Container", b =>
-                {
-                    b.Navigation("products");
                 });
 #pragma warning restore 612, 618
         }
