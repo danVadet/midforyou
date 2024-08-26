@@ -38,7 +38,8 @@ const EditProductModal = ({ closeModal, getProducts, productData }: EditProductM
                 nome: product.nome,
                 quantidade: product.quantidade,
                 peso: product.peso,
-                volume: product.volume,
+                volume: product.volume
+
             });
             console.log(response.data);
             closeModal();

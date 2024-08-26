@@ -13,8 +13,10 @@
     border-color: #C3E6CB;
 }
 .error {
-    color: #155724;
-    background: #D4EDDA;
-    border-color: #C3E6CB;
+    color: rgb(114, 28, 36);
+    background-color: rgb(248, 215, 218);
+    border-color: rgb(245, 198, 203);
 
+    
+    
 }

@@ -50,16 +50,6 @@
        background-repeat: no-repeat;
     background-size: cover;
 }
-.info_container .message {
-    
-    padding: 10px;
-    color: rgb(114, 28, 36);
-    background-color: rgb(248, 215, 218);
-    border-color: rgb(245, 198, 203);
-    border-radius: 5px;
-    
-    
-}
 .info_container select {
     margin: 8px;
     padding: 15px;
@@ -75,6 +65,24 @@
     margin: 8px;
     padding: 10px;
     background:  rgb(255, 255, 255);
+
+}
+
+.searchContent {
+    border: 1px solid rgb(204, 204, 204);
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 2px 32px 0px;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    
+
+}
+.searchContent input {
+    margin: 8px;
+    padding: 10px;
+    border-radius: 5px;
+    outline: none;
+    border: 1px solid rgb(204, 204, 204)
 
 }
 .listProducts {
@@ -114,9 +122,6 @@
     flex-direction: column;
     margin: 5px;
 }
-
-
-
 .listProducts .buttonEdit {
     margin: 5px;
     padding: 10px;

@@ -19,13 +19,13 @@ public class IncotermController : ControllerBase
     }
 
     [HttpGet("incoterms/{id}")]
-    public async Task<ActionResult> getProduct(int id)
+    public async Task<ActionResult> getIncoterm(int id)
     {
-        var product = await _applicationDbContext.Products.FindAsync(id);
-        return Ok(product);
+        var incoterm = await _applicationDbContext.Incoterms.FindAsync(id);
+        return Ok(incoterm);
     }
     [HttpPost("incoterms/addIncoterm")]
-    public async Task<ActionResult> addProduct([FromBody] Incoterm incoterm)
+    public async Task<ActionResult> addIncoterm([FromBody] Incoterm incoterm)
     {
      
         _applicationDbContext.Incoterms.Add(incoterm);

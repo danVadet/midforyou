@@ -22,10 +22,18 @@ public class ProductController : ControllerBase
     }
 
     [HttpGet("products/{id}")]
-    public async Task<ActionResult> getProduct(int id)
+    public async Task<ActionResult> getProductById(int id)
     {
         var product = await _applicationDbContext.Products.FindAsync(id);
         return Ok(product);
+    }
+
+     [HttpGet("products/nome/{nome}")]
+    public async Task<ActionResult> getProductByNome(string nome)
+    {
+        var currentProduct = await _applicationDbContext.Products.SingleOrDefaultAsync(p => p.nome == nome);
+
+        return Ok(currentProduct);
     }
     [HttpGet("sumPesoTotal")]
     public async Task<ActionResult> getSumPesoTotal()

@@ -7,6 +7,7 @@ import EditProductModal from './EditProductModal';
 import DeleteProductModal from './DeleteProductModal';
 import { Product } from '../models/Product';
 import { Container } from '../models/Container';
+import Message from './Message';
 
 
 const Conteiner = () => {
@@ -26,6 +27,7 @@ const Conteiner = () => {
         pesoTotal: 0,
         volumeTotal: 0,
     });
+    const [search, setSearch] = useState('');
     const [productCurrent, setProductCurrent] = useState<Product>();
     const [container, setContainer] = useState<Container>({
         id: 0,
@@ -43,8 +45,7 @@ const Conteiner = () => {
         capacidadePeso: 0,
         capacidadeVolume: 0,
     });
-
-    const [reloadPage, setReloadPage] = useState(false);
+    const [message,  setMessage] = useState(false);
 
     const handleDeleteProduct = async (id: number) => {
 
@@ -69,9 +70,21 @@ const Conteiner = () => {
             const response = await axios.get(`http://localhost:5077/containers/capacity/${value}`);
             console.log(response.data);
             setContainer(response.data);
+            
+            setMessage(true);
 
         }
 
+    }
+    const handleSearch = async (e: React.ChangeEvent<HTMLInputElement>) => {
+        const value =  e.target.value;
+        try {
+            const response = await axios.get(`http://localhost:5077/products/nome/${value}`);
+            setSearch(value)
+            console.log(response.data);
+    } catch (error) {
+        console.log(error);
+    }
     }
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -82,9 +95,6 @@ const Conteiner = () => {
             volume: product.volume,
         });
         console.log(response.data);
-
-        getProducts();
-
         window.location.reload();
 
     }
@@ -93,16 +103,12 @@ const Conteiner = () => {
         const response = await axios.get(`http://localhost:5077/products/${id}`);
         console.log(response.data);
         setProductCurrent(response.data);
-
         setOpenEditModal(true);
-
     }
 
     const getProducts = async () => {
 
         try {
-
-
                 const response = await axios.get(`http://localhost:5077/products`);
                 setProducts(response.data);
                 console.log(response.data);
@@ -135,42 +141,33 @@ const Conteiner = () => {
             const response = await axios.get(`http://localhost:5077/containers`);
             console.log(response.data);
             setContainers(response.data);
-            getSumPesoTotal();
-            getSumVolumeTotal();
         } catch (error) {
             console.log(error);
         }
 
      }
+     const deleteAllProdutos = async () => {
+        const response = await axios.delete(`http://localhost:5077/products`);
+        console.log(response.data);
+      }
+
 
     useEffect(()  => {
-        if(!reloadPage){ 
-                window.location.reload();
-                const deleteAllProdutos = async () => {
-                    const response = await axios.delete(`http://localhost:5077/products`);
-                    setProducts(response.data);
-                    console.log(response.data);
-                  }
-    
-                  deleteAllProdutos();
-                  setReloadPage(true);
+
     
            
+            
+               
+                getProducts();
+                getSumPesoTotal();
+                getSumVolumeTotal();
+                getContainers();
 
-        } 
-            getProducts();
-            getContainers();
-            setReloadPage(false);
+              
+               
+              
 
-        
-           
-
-        
-    
-
-        
-       
-    }, [reloadPage]);
+    }, []);
 
     return (
         <>
@@ -193,9 +190,14 @@ const Conteiner = () => {
                     
                 <div className={`${styles.left}`}>
 
+                    <div className={`${styles.searchContent}`}>
+                        <input type="text" onChange={(e) => handleSearch(e)} />
+                    </div>
+
                 <div className={`${styles.listProducts}`}>
                     {products.length === 0 ? (<td>Carregando...</td>) : (
-                        products.map((product, index) => (
+
+                        products.filter((product) => product.nome.toLowerCase().includes(search.toLowerCase())).map((product, index) => (
 
                             <div className={`${styles.content}`} key={index}>
 
@@ -204,7 +206,7 @@ const Conteiner = () => {
                                <div className={`${styles.infoProduct}`}>
                                <td>{`Quantidade: ${product.quantidade}`}</td>
                                 <td>{`Peso unidade: ${product.peso} kg`}</td>
-                                <td>{`Volume unidade: ${product.peso} m³`}</td>
+                                <td>{`Volume unidade: ${product.volume} m³`}</td>
                                 </div>
                                 <div className={`${styles.infoTotalProduct}`}>
                                 <td>{`Peso total: ${product.pesoTotal} kg`}</td>
@@ -275,7 +277,7 @@ const Conteiner = () => {
 
                 <img src={`${selectedContainer.image}`} alt="" />
                 {product.pesoTotal <= container.capacidadePeso && product.volumeTotal <= container.capacidadeVolume ? 
-               <> </> : <><div className={`${styles.message}`}><h2>Esse tipo de contêiner não cabe</h2></div></> }
+               <> </> : <>  {message && <Message   message='Esse container não cabe' type='error'  />}</> }
 
 
         
