@@ -6,7 +6,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace backend.Migrations
 {
     /// <inheritdoc />
-    public partial class CreateInitial : Migration
+    public partial class InitialCreate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -17,7 +17,8 @@ namespace backend.Migrations
                 {
                     id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    typeContainer = table.Column<string>(type: "text", nullable: true),
+                    name = table.Column<string>(type: "text", nullable: true),
+                    image = table.Column<string>(type: "text", nullable: true),
                     capacidadePeso = table.Column<float>(type: "real", nullable: false),
                     capacidadeVolume = table.Column<float>(type: "real", nullable: false)
                 },
@@ -46,22 +47,6 @@ namespace backend.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Markers",
-                columns: table => new
-                {
-                    id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    label = table.Column<string>(type: "text", nullable: true),
-                    lat = table.Column<float>(type: "real", nullable: false),
-                    lng = table.Column<float>(type: "real", nullable: false),
-                    markerType = table.Column<int>(type: "integer", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Markers", x => x.id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Products",
                 columns: table => new
                 {
@@ -77,6 +62,21 @@ namespace backend.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Products", x => x.id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "StateMarkers",
+                columns: table => new
+                {
+                    id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    label = table.Column<string>(type: "text", nullable: true),
+                    lat = table.Column<float>(type: "real", nullable: false),
+                    lng = table.Column<float>(type: "real", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_StateMarkers", x => x.id);
                 });
 
             migrationBuilder.CreateTable(
@@ -107,15 +107,16 @@ namespace backend.Migrations
                     label = table.Column<string>(type: "text", nullable: true),
                     lat = table.Column<float>(type: "real", nullable: false),
                     lng = table.Column<float>(type: "real", nullable: false),
+                    portType = table.Column<int>(type: "integer", nullable: false),
                     markerId = table.Column<int>(type: "integer", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_PortMarkers", x => x.id);
                     table.ForeignKey(
-                        name: "FK_PortMarkers_Markers_markerId",
+                        name: "FK_PortMarkers_StateMarkers_markerId",
                         column: x => x.markerId,
-                        principalTable: "Markers",
+                        principalTable: "StateMarkers",
                         principalColumn: "id");
                 });
 
@@ -144,7 +145,7 @@ namespace backend.Migrations
                 name: "Vistors");
 
             migrationBuilder.DropTable(
-                name: "Markers");
+                name: "StateMarkers");
         }
     }
 }

@@ -1,4 +1,4 @@
-public class Marker {
+public class StateMarker {
 
     public int id  { get; set; }
 
@@ -8,8 +8,6 @@ public class Marker {
 
     
     public float lng { get; set; }
-
-    public MarkerType markerType { get; set; }
 
 
 

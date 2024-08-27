@@ -14,9 +14,9 @@ const Navbar = () => {
     const selectLanguage = (lang: string) => {
         if(window.location.hash=`${lang}`) {
             setLangMenu(true);
-        }
-              
-
+           
+        } 
+            
     }
 
 
@@ -48,7 +48,7 @@ const Navbar = () => {
             </div>
             <ul className={mobileMenu ? '' : `${styles.hideMobileMenu}`}>
                 <li>
-                    <Link to="/"> {langMenu ? `${multiLang.en.inicio}` || `${multiLang.es.inicio}`  : 'Início'} </Link>
+                    <Link to="/"> {langMenu ? `${multiLang.en.inicio}` && `${multiLang.es.inicio}`  : 'Início'} </Link>
                 </li>
                 <li>
                     <Link to="/servicos"> {langMenu ? `${multiLang.en.servicos}` : 'Serviços'} </Link>
@@ -60,7 +60,7 @@ const Navbar = () => {
                     <Link to="/conteiner"> Conteiners </Link>
                 </li>
                 <li>
-                    <Link to="/contact"> {langMenu ? `${multiLang.en.contato} || ` : 'Contato'} </Link>
+                    <Link to="/contact"> {langMenu ? `${multiLang.en.contato}  ` : 'Contato'} </Link>
                 </li>
                 
             <li><a href="http://localhost:3000">Português</a></li>

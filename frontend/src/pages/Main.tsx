@@ -21,6 +21,7 @@ const  Main = () => {
 
         <Incoterms></Incoterms>
         <Conteiner></Conteiner>
+        <Map></Map>
        <Contact></Contact>
     </div>
   );

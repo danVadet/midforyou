@@ -9,7 +9,10 @@ public class PortMarker {
     
     public float lng { get; set; }
 
-    public Marker marker { get; set; }
+    public StateMarker marker { get; set; }
+
+    
+    public PortType portType { get; set; }
 
     
     public int? markerId { get; set; }

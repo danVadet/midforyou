@@ -14,16 +14,16 @@ public class MarkerController : ControllerBase
     }
 
     [HttpGet("markers/state")]
-    public async Task<ActionResult<List<Marker>>> getAllMarkerByState()
+    public async Task<ActionResult<List<StateMarker>>> getAllMarkerByState()
     {
-        var markers = await _applicationDbContext.Markers.ToListAsync();
+        var markers = await _applicationDbContext.StateMarkers.ToListAsync();
         return Ok(markers);
     }
       [HttpGet("markers/state/{id}")]
     public async Task<ActionResult> getMarker(int id)
     {
 
-        var marker = await _applicationDbContext.Markers.FindAsync(id);
+        var marker = await _applicationDbContext.StateMarkers.FindAsync(id);
 
         return Ok(marker);
       
@@ -31,11 +31,10 @@ public class MarkerController : ControllerBase
     
     }
     [HttpPost("markers/state")]
-    public async Task<ActionResult> createMarkerByState([FromBody] Marker marker)
+    public async Task<ActionResult> createMarkerByState([FromBody] StateMarker marker)
     {
-      
-        marker.markerType = MarkerType.STATE;
-        _applicationDbContext.Markers.Add(marker);
+    
+        _applicationDbContext.StateMarkers.Add(marker);
 
         await _applicationDbContext.SaveChangesAsync();
 
@@ -60,6 +59,17 @@ public class MarkerController : ControllerBase
 
         return Created("Marker by port created successfully", portMarker);
     }
+    [HttpDelete("markersPorts")]
+    public async Task<ActionResult> deleteAllProducts()
+    {
+       foreach(var product in _applicationDbContext.PortMarkers) {
+
+        _applicationDbContext.Remove(product);
+
+       }
+        await _applicationDbContext.SaveChangesAsync();
+        return Ok("All products removed successfully");
+    }
 
     [HttpDelete("markers/port/{id}")]
     public async Task<ActionResult> deleteMarkerByPort(int id)
@@ -74,7 +84,7 @@ public class MarkerController : ControllerBase
     public async Task<ActionResult> getAllPortsByState(int stateId)
     {
 
-        var marker = await _applicationDbContext.Markers.FindAsync(stateId);
+        var marker = await _applicationDbContext.StateMarkers.FindAsync(stateId);
         
         
         var markers = await _applicationDbContext.PortMarkers.Where(p => p.markerId == marker.id).ToListAsync();
