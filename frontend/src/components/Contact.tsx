@@ -51,7 +51,7 @@ const handleSubmit = async (e: React.FormEvent) => {
                     <label>Nome completo</label>
                     <input type="text" name="nome"  value={visitor.nome} onChange={(e) => handleChange(e)} />
                     <label>Telefone</label>
-                    <input type="text" name="telefone" value={visitor.telefone} onChange={(e) => handleChange(e)} />
+                    <input type="text" name="telefone"  value={visitor.telefone} onChange={(e) => handleChange(e)} />
                     <label>Email</label>
                     <input type="email" name="email" value={visitor.email} onChange={(e) => handleChange(e)} />
                     <label>Nome da empresa</label>

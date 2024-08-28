@@ -80,16 +80,12 @@ public class MarkerController : ControllerBase
         await _applicationDbContext.SaveChangesAsync();
         return Ok("Container removed successfully");
     }
-    [HttpGet("markers/ports/{stateId}")]
-    public async Task<ActionResult> getAllPortsByState(int stateId)
+    [HttpGet("markers/ports/{id}")]
+    public async Task<ActionResult> getPortById(int id)
     {
 
-        var marker = await _applicationDbContext.StateMarkers.FindAsync(stateId);
-        
-        
-        var markers = await _applicationDbContext.PortMarkers.Where(p => p.markerId == marker.id).ToListAsync();
-
-        return Ok(markers);
+        var marker = await _applicationDbContext.PortMarkers.FindAsync(id);
+        return Ok(marker);
       
 
     

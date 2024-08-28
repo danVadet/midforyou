@@ -192,6 +192,10 @@ const Conteiner = () => {
 
                     <div className={`${styles.searchContent}`}>
                         <input type="text" onChange={(e) => handleSearch(e)} />
+                        <button onClick={() => {
+                            deleteAllProdutos();
+                            window.location.reload();
+                        }}>Recarregar a página</button>
                     </div>
 
                 <div className={`${styles.listProducts}`}>

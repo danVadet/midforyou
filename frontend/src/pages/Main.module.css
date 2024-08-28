@@ -1,7 +1,16 @@
 
 
 .about {
-  background: rgb(255, 255, 255);
-  padding-top: 3rem;
-  padding-bottom: 3rem;
+  background-color: rgb(255, 255, 255);
+  padding: 3rem 0;
+}
+.incoterms {
+  padding: 3rem 0;
+}
+.conteiners {
+  padding: 3rem 0;
+
+}
+.contact {
+    padding: 3rem 0;
 }

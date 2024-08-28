@@ -51,16 +51,16 @@ const Navbar = () => {
                     <Link to="/"> {langMenu ? `${multiLang.en.inicio}` && `${multiLang.es.inicio}`  : 'Início'} </Link>
                 </li>
                 <li>
-                    <Link to="/servicos"> {langMenu ? `${multiLang.en.servicos}` : 'Serviços'} </Link>
+                    <a href="/#about"> {langMenu ? `${multiLang.en.servicos}` : 'Serviços'} </a>
                 </li>
                 <li>
-                    <Link to="/incoterms"> Incoterms </Link>
+                    <a href="/#incoterms"> Incoterms </a>
                 </li>
                 <li>
-                    <Link to="/conteiner"> Conteiners </Link>
+                    <a href="/#conteiners"> Conteiners </a>
                 </li>
                 <li>
-                    <Link to="/contact"> {langMenu ? `${multiLang.en.contato}  ` : 'Contato'} </Link>
+                    <a href="/#contact"> {langMenu ? `${multiLang.en.contato}  ` : 'Contato'} </a>
                 </li>
                 
             <li><a href="http://localhost:3000">Português</a></li>

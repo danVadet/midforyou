@@ -8,21 +8,33 @@ import AboutServices from '../components/AboutServices';
 import Map from '../components/Map';
 import Brand from '../components/Brand';
 import Incoterms from '../components/Incoterms';
+import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
 
 const  Main = () => {
   return (
     <div>
+      <Navbar></Navbar>
        <Tax></Tax>
        <Brand></Brand>
        <section className={`${styles.about}`} id="about">
-                    <About />
+                    <About  />
                     <AboutServices />
                 </section>
 
-        <Incoterms></Incoterms>
-        <Conteiner></Conteiner>
-        <Map></Map>
-       <Contact></Contact>
+
+                <section className={`${styles.incoterms}`} id="incoterms">
+                <Incoterms/>
+                </section>
+                <section className={`${styles.conteiners}`} id="conteiners">
+                <Conteiner/>
+                </section>
+             <Map/>
+       <section className={`${styles.contact}`} id="contact">
+               <Contact/>
+                </section>
+
+       <Footer></Footer>
     </div>
   );
 }
