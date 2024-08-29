@@ -28,12 +28,14 @@ public class ProductController : ControllerBase
         return Ok(product);
     }
 
-     [HttpGet("products/nome/{nome}")]
-    public async Task<ActionResult> getProductByNome(string nome)
+     [HttpGet("products/nome/{search}")]
+    public async Task<ActionResult> getProductsByNome(string search)
     {
-        var currentProduct = await _applicationDbContext.Products.SingleOrDefaultAsync(p => p.nome == nome);
-
-        return Ok(currentProduct);
+        var products = await _applicationDbContext.Products.ToListAsync();
+        if(!string.IsNullOrEmpty(search)) {
+            products = products.Where(p => p.nome.Contains(search)).ToList();
+        }
+        return Ok(products);
     }
     [HttpGet("sumPesoTotal")]
     public async Task<ActionResult> getSumPesoTotal()

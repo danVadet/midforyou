@@ -2,7 +2,7 @@
 import styles from './Conteiner.module.css'
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
-import InfiniteScroll from 'react-infinite-scroll-component';
+import imgURL from '../assets/containerPlaceholder.png'
 import EditProductModal from './EditProductModal';
 import DeleteProductModal from './DeleteProductModal';
 import { Product } from '../models/Product';
@@ -61,26 +61,33 @@ const Conteiner = () => {
         setProduct({ ...product, [target.name]: target.value })
     }
     const handleChangeSelectContainer = async  (e: React.ChangeEvent<HTMLSelectElement>) => {
-        const value =  e.target.value;
-        const response = await axios.get(`http://localhost:5077/containers/${value}`);
-        console.log(response.data);
-        setSelectedConatiner(response.data);
 
-        if(value != null){
-            const response = await axios.get(`http://localhost:5077/containers/capacity/${value}`);
+        try {
+            const value =  e.target.value;
+            const response = await axios.get(`http://localhost:5077/containers/${value}`);
             console.log(response.data);
-            setContainer(response.data);
-            
-            setMessage(true);
+            setSelectedConatiner(response.data);
+    
+            if(value != null){
+                const response = await axios.get(`http://localhost:5077/containers/capacity/${value}`);
+                console.log(response.data);
+                setContainer(response.data);
+                
+                setMessage(true);
+    
+            }
 
+        } catch (error) {
+            console.log(error);
         }
+      
 
     }
     const handleSearch = async (e: React.ChangeEvent<HTMLInputElement>) => {
         const value =  e.target.value;
         try {
             const response = await axios.get(`http://localhost:5077/products/nome/${value}`);
-            setSearch(value)
+            setProducts(response.data);
             console.log(response.data);
     } catch (error) {
         console.log(error);
@@ -279,7 +286,7 @@ const Conteiner = () => {
                 <h2>{`Capacidade cúbica: ${selectedContainer.capacidadeVolume} m³`}</h2>
 
 
-                <img src={`${selectedContainer.image}`} alt="" />
+                <img src={ selectedContainer.image ? `${selectedContainer.image}` : imgURL} alt="" />
                 {product.pesoTotal <= container.capacidadePeso && product.volumeTotal <= container.capacidadeVolume ? 
                <> </> : <>  {message && <Message   message='Esse container não cabe' type='error'  />}</> }
 

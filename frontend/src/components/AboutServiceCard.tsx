@@ -23,7 +23,7 @@ const AboutServiceCard: React.FC<IProps> = (props) => {
                         <div className={`${styles.informations_container}`}>
                             <h1 className={`${styles.title}`}>{props.title}</h1>
                             <div className={`${styles.description_container}`}>
-                                <span className={`${styles.description}`} >{props.description}</span>
+                                <p className={`${styles.description}`} >{props.description}</p>
                             </div>
                         </div>
                     </div>
@@ -35,7 +35,7 @@ const AboutServiceCard: React.FC<IProps> = (props) => {
                         <div className={`${styles.informations_container}`}>
                             <h1 className={`${styles.title}`}>{props.title}</h1>
                             <div className={`${styles.description_container}`}>
-                                <span className={`${styles.description}`} >{props.description}</span>
+                            <p className={`${styles.description}`} >{props.description}</p>
                             </div>
                         </div>
                         <div className={`${styles.image}`} >

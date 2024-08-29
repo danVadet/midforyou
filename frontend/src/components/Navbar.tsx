@@ -2,20 +2,32 @@ import { Link } from 'react-router-dom'
 import logo from '../assets/logo.png'
 import styles from './Navbar.module.css'
 import { useEffect, useState } from 'react'
-import  multiLang  from '../multiLang'
+import  multiLang  from '../multiLang.json'
 
 
 const Navbar = () => {
 
     const [mobileMenu, setMobileMenu] = useState(false);
-    const [langMenu, setLangMenu] = useState(false);
+    const [content, setContent] = useState({
+      home: "Início",
+      about: "Serviços",
+      container: "Contêineres",
+      contact: "Contato",
+
+
+    });
+    
 
 
     const selectLanguage = (lang: string) => {
-        if(window.location.hash=`${lang}`) {
-            setLangMenu(true);
-           
-        } 
+            if(lang ===  "en") {
+                setContent(multiLang.en);
+
+            } else if(lang === "es") {
+                setContent(multiLang.es);
+
+
+            }
             
     }
 
@@ -48,19 +60,23 @@ const Navbar = () => {
             </div>
             <ul className={mobileMenu ? '' : `${styles.hideMobileMenu}`}>
                 <li>
-                    <Link to="/"> {langMenu ? `${multiLang.en.inicio}` && `${multiLang.es.inicio}`  : 'Início'} </Link>
+                    <Link to="/"> {content.home} </Link>
                 </li>
                 <li>
-                    <a href="/#about"> {langMenu ? `${multiLang.en.servicos}` : 'Serviços'} </a>
+                <a href="/#about">{content.about}</a>
+                
                 </li>
                 <li>
                     <a href="/#incoterms"> Incoterms </a>
                 </li>
                 <li>
-                    <a href="/#conteiners"> Conteiners </a>
+                    <a href="/#conteiners"> {content.container} </a>
                 </li>
                 <li>
-                    <a href="/#contact"> {langMenu ? `${multiLang.en.contato}  ` : 'Contato'} </a>
+                    <a href="/#contact"> {content.contact} </a>
+                </li>
+                <li>
+
                 </li>
                 
             <li><a href="http://localhost:3000">Português</a></li>

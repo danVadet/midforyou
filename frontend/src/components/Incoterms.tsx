@@ -19,7 +19,6 @@ const Incoterms = () => {
    
 });
 
-    const [dropdownOpen, setDropdownOpen] = useState(false);
 
     const getOptions = async () => {
 
@@ -32,11 +31,11 @@ const Incoterms = () => {
         }
     }
 
-    const handleChangeSelectIncoterm = async  (id: number) => {
-        const response = await axios.get(`http://localhost:5077/incoterms/${id}`);
+    const handleChangeSelectIncoterm = async  (e: React.ChangeEvent<HTMLSelectElement>) => {
+        const value =  e.target.value;
+        const response = await axios.get(`http://localhost:5077/incoterms/${value}`);
         console.log(response.data);
         setSelectedIncoterm(response.data);
-        setDropdownOpen(false);
 
     }
     useEffect(()  => {
@@ -55,10 +54,10 @@ const Incoterms = () => {
         <h1>Incoterms</h1>
         <div className={`${styles.container}`}>
 
-        <select  onClick={() => setDropdownOpen(!dropdownOpen)}>
-                <option>{selectedIncoterm.acronym || "Selecionar"}</option>
-                {dropdownOpen && options.map((option, index) => (
-                   <option value={option.id} key={index} onChange={() => handleChangeSelectIncoterm(option.id)}>{option.acronym}</option>
+        <select onChange={(e) => handleChangeSelectIncoterm(e)}>
+                <option>Selecionar...</option>
+                {options.map((option, index) => (
+                   <option value={option.id} key={index}>{option.acronym}</option>
                 ))}
             </select>
             <div>

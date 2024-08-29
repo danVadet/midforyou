@@ -1,0 +1,22 @@
+
+{
+
+    "en": {
+
+        "home": "Home",
+        "about" : "Services",
+        "container": "Containers",
+        "contact" : "Contact"
+
+    },
+
+    "es": {
+        "home": "Inicio ",
+        "about" : "Servicios",
+        "container" :"Contenedores",
+        "contact" : "Contacto"
+
+    }
+
+}
+
