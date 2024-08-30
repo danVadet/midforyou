@@ -1,11 +1,15 @@
 
-.container{
-
-    margin: 20px;
-    padding: 10px;
-    box-shadow: rgba(0, 0, 0, 0.12) 0px 2px 32px 0px;
+.incotermsComponent {
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 2px 32px 0px;
 
+}
+.incotermsInformations {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    width: 100%;
 }

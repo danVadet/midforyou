@@ -52,8 +52,11 @@ const Incoterms = () => {
         <>
 
         <h1>Incoterms</h1>
-        <div className={`${styles.container}`}>
+        <div className={`${styles.incotermsComponent}`}>
+        <div className={`${styles.incotermsInformations}`}>
 
+        
+            
         <select onChange={(e) => handleChangeSelectIncoterm(e)}>
                 <option>Selecionar...</option>
                 {options.map((option, index) => (
@@ -67,6 +70,9 @@ const Incoterms = () => {
             <p>{`${selectedIncoterm.moreDetails}`}</p>
 
             </div>
+
+        </div>
+
           
 
             </div>

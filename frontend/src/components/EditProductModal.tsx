@@ -44,6 +44,7 @@ const EditProductModal = ({ closeModal, getProducts, productData }: EditProductM
             console.log(response.data);
             closeModal();
             getProducts();
+            window.location.reload();
 
         }
 

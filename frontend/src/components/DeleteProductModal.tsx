@@ -19,6 +19,7 @@ const DeleteProductModal:  React.FC<IProps> = (props) => {
 
         props.closeModal();
         props.getProducts();
+        window.location.reload();
     }
     return (
         <>

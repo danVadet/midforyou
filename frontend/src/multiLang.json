@@ -1,12 +1,12 @@
 
 {
-
     "en": {
 
         "home": "Home",
         "about" : "Services",
         "container": "Containers",
-        "contact" : "Contact"
+        "contact" : "Contact",
+        "aboutCompanhy": "From prospecting suppliers to nationalizing merchandise."
 
     },
 
@@ -14,7 +14,8 @@
         "home": "Inicio ",
         "about" : "Servicios",
         "container" :"Contenedores",
-        "contact" : "Contacto"
+        "contact" : "Contacto",
+        "aboutCompanhy": "Desde la prospección de proveedores hasta la nacionalización de mercancías."
 
     }
 

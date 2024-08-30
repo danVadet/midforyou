@@ -72,26 +72,17 @@ const Conteiner = () => {
                 const response = await axios.get(`http://localhost:5077/containers/capacity/${value}`);
                 console.log(response.data);
                 setContainer(response.data);
-                
+
                 setMessage(true);
-    
             }
 
         } catch (error) {
             console.log(error);
         }
-      
-
     }
-    const handleSearch = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleChangeSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
         const value =  e.target.value;
-        try {
-            const response = await axios.get(`http://localhost:5077/products/nome/${value}`);
-            setProducts(response.data);
-            console.log(response.data);
-    } catch (error) {
-        console.log(error);
-    }
+        setSearch(value);
     }
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -116,9 +107,16 @@ const Conteiner = () => {
     const getProducts = async () => {
 
         try {
+          if(search) {
+            const response = await axios.get(`http://localhost:5077/products?search=${search}`);
+            setProducts(response.data);
+            console.log(response.data);
+
+        } else {
                 const response = await axios.get(`http://localhost:5077/products`);
                 setProducts(response.data);
                 console.log(response.data);
+        }
         } catch (error) {
             console.log(error);
         }
@@ -160,21 +158,11 @@ const Conteiner = () => {
 
 
     useEffect(()  => {
-
-    
-           
-            
-               
                 getProducts();
                 getSumPesoTotal();
                 getSumVolumeTotal();
                 getContainers();
-
-              
-               
-              
-
-    }, []);
+    }, [search]);
 
     return (
         <>
@@ -198,7 +186,9 @@ const Conteiner = () => {
                 <div className={`${styles.left}`}>
 
                     <div className={`${styles.searchContent}`}>
-                        <input type="text" onChange={(e) => handleSearch(e)} />
+                    
+                            <input type="text" value={search} onChange={(e) => handleChangeSearch(e)} placeholder='Pesquisar o produto...' />
+                    
                         <button onClick={() => {
                             deleteAllProdutos();
                             window.location.reload();
@@ -206,9 +196,9 @@ const Conteiner = () => {
                     </div>
 
                 <div className={`${styles.listProducts}`}>
-                    {products.length === 0 ? (<td>Carregando...</td>) : (
+                    {products.length === 0 ? (<td>Produto não adicionado</td>) : (
 
-                        products.filter((product) => product.nome.toLowerCase().includes(search.toLowerCase())).map((product, index) => (
+                        products.map((product, index) => (
 
                             <div className={`${styles.content}`} key={index}>
 
@@ -275,7 +265,7 @@ const Conteiner = () => {
             <div className={`${styles.info_container}`}>
 
                     <select onChange={(e) => handleChangeSelectContainer(e)}>
-                <option>Selecionar o  contêiner...</option>
+                <option value="">Selecionar o  contêiner...</option>
                 {containers.map((container, index) => (
                    <option value={container.id} key={index}>{container.name}</option>
                 ))}

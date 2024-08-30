@@ -15,10 +15,17 @@ public class ProductController : ControllerBase
     }
 
     [HttpGet("products")]
-    public async Task<ActionResult> getAllProducts()
+    public async Task<ActionResult> getAllProducts( [FromQuery] string search)
     {
         var products = await _applicationDbContext.Products.ToListAsync();
-        return Ok(products);
+          if(!string.IsNullOrEmpty(search)) {
+            products = products.Where(p => p.nome.Contains(search)).ToList();
+            return Ok(products);
+        } else {
+              return Ok(products);
+
+        }
+      
     }
 
     [HttpGet("products/{id}")]
@@ -26,16 +33,6 @@ public class ProductController : ControllerBase
     {
         var product = await _applicationDbContext.Products.FindAsync(id);
         return Ok(product);
-    }
-
-     [HttpGet("products/nome/{search}")]
-    public async Task<ActionResult> getProductsByNome(string search)
-    {
-        var products = await _applicationDbContext.Products.ToListAsync();
-        if(!string.IsNullOrEmpty(search)) {
-            products = products.Where(p => p.nome.Contains(search)).ToList();
-        }
-        return Ok(products);
     }
     [HttpGet("sumPesoTotal")]
     public async Task<ActionResult> getSumPesoTotal()
