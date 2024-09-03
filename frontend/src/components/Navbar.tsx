@@ -1,24 +1,21 @@
 import { Link } from 'react-router-dom'
 import logo from '../assets/logo.png'
 import styles from './Navbar.module.css'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import  multiLang  from '../multiLang.json'
 
 
-const Navbar = () => {
+interface INavbarProps {
+    home: string;
+    about: string;
+    container: string;
+    contact: string;
+    setContent(multiLang: object): void
+
+}
+const Navbar = ({ home, about, container, contact, setContent }: INavbarProps) => {
 
     const [mobileMenu, setMobileMenu] = useState(false);
-    const [content, setContent] = useState({
-      home: "Início",
-      about: "Serviços",
-      container: "Contêineres",
-      contact: "Contato",
-
-
-    });
-
-    
-
 
     const selectLanguage = (lang: string) => {
             if(lang ===  "en") {
@@ -61,20 +58,20 @@ const Navbar = () => {
             </div>
             <ul className={mobileMenu ? '' : `${styles.hideMobileMenu}`}>
                 <li>
-                    <Link to="/"> {content.home} </Link>
+                    <Link to="/"> {home} </Link>
                 </li>
                 <li>
-                <a href="/#about">{content.about}</a>
+                <a href="/#about">{about}</a>
                 
                 </li>
                 <li>
                     <a href="/#incoterms"> Incoterms </a>
                 </li>
                 <li>
-                    <a href="/#conteiners"> {content.container} </a>
+                    <a href="/#conteiners">{container}</a>
                 </li>
                 <li>
-                    <a href="/#contact"> {content.contact} </a>
+                    <a href="/#contact">{contact}</a>
                 </li>
                 <li>
 

@@ -11,8 +11,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace backend.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240827195100_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20240903105042_AddColumn")]
+    partial class AddColumn
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -58,6 +58,28 @@ namespace backend.Migrations
                     b.ToTable("Incoterms");
                 });
 
+            modelBuilder.Entity("Marker", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("id"));
+
+                    b.Property<string>("label")
+                        .HasColumnType("text");
+
+                    b.Property<float>("lat")
+                        .HasColumnType("real");
+
+                    b.Property<float>("lng")
+                        .HasColumnType("real");
+
+                    b.HasKey("id");
+
+                    b.ToTable("Markers");
+                });
+
             modelBuilder.Entity("PortMarker", b =>
                 {
                     b.Property<int>("id")
@@ -81,33 +103,14 @@ namespace backend.Migrations
                     b.Property<int>("portType")
                         .HasColumnType("integer");
 
+                    b.Property<string>("urlImage")
+                        .HasColumnType("text");
+
                     b.HasKey("id");
 
                     b.HasIndex("markerId");
 
                     b.ToTable("PortMarkers");
-                });
-
-            modelBuilder.Entity("StateMarker", b =>
-                {
-                    b.Property<int>("id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("id"));
-
-                    b.Property<string>("label")
-                        .HasColumnType("text");
-
-                    b.Property<float>("lat")
-                        .HasColumnType("real");
-
-                    b.Property<float>("lng")
-                        .HasColumnType("real");
-
-                    b.HasKey("id");
-
-                    b.ToTable("StateMarkers");
                 });
 
             modelBuilder.Entity("backend.Models.Container", b =>
@@ -202,7 +205,7 @@ namespace backend.Migrations
 
             modelBuilder.Entity("PortMarker", b =>
                 {
-                    b.HasOne("StateMarker", "marker")
+                    b.HasOne("Marker", "marker")
                         .WithMany()
                         .HasForeignKey("markerId");
 

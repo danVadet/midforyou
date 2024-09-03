@@ -32,6 +32,10 @@ nav .menuIcon {
 
 @media (max-width: 840px) {
 
+    .navLogoContainer {
+        margin: 20px;
+    }
+
     nav {
         padding: 15px 10px;
     }

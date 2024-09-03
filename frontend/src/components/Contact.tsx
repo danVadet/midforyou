@@ -18,6 +18,7 @@ function Contact() {
 
 });
 const [message,  setMessage] = useState(false);
+const [formErros,  setFormErrors] = useState("");
 
 
 const handleChange = (e: React.FormEvent) => {
@@ -26,7 +27,11 @@ const handleChange = (e: React.FormEvent) => {
 }
 const handleSubmit = async (e: React.FormEvent) => {
   e.preventDefault();
-  const response = await axios.post(`http://localhost:5077/visitor/sendEmail`, {
+  
+  if(!visitor.nome) {
+    setFormErrors(`Nome obrigatório`)
+  } else {
+    const response = await axios.post(`http://localhost:5077/visitor/sendEmail`, {
       nome: visitor.nome,
       telefone: visitor.telefone,
       email: visitor.email,
@@ -40,6 +45,11 @@ const handleSubmit = async (e: React.FormEvent) => {
 
  setMessage(true);
 
+
+  }
+
+  
+
 }
   return (
     <div className={`${styles.contato}`} >
@@ -50,6 +60,7 @@ const handleSubmit = async (e: React.FormEvent) => {
       <div>   <form onSubmit={(e) => handleSubmit(e)}  className={`${styles.formContainer}`}>
                     <label>Nome completo</label>
                     <input type="text" name="nome"  value={visitor.nome} onChange={(e) => handleChange(e)} />
+                    {formErros && <p>{formErros}</p>}
                     <label>Telefone</label>
                     <input type="text" name="telefone"  value={visitor.telefone} onChange={(e) => handleChange(e)} />
                     <label>Email</label>

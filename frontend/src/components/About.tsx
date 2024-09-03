@@ -1,10 +1,32 @@
 import { useEffect, useState } from 'react';
 import styles from './About.module.css'
+import  multiLang  from '../multiLang.json';
 
 
 
 
-const About = () => {
+interface IAboutProps {
+    
+    aboutCompanhy: string;
+    setContent(multiLang: object): void
+
+}
+const About = ({ aboutCompanhy, setContent }: IAboutProps) => {
+
+   
+    const [lang, setLang] = useState("");
+    useEffect(()  => {
+
+        if (lang == "en") {
+            setContent(multiLang.en)
+
+        } else if(lang === "es") {
+           setContent(multiLang.es);
+        }
+        
+        
+}, [lang]);
+  
 
 
   
@@ -14,7 +36,7 @@ const About = () => {
 
            <div className={`${styles.aboutComponentContainer}`}>
             <div className={`${styles.aboutTextContainer}`}>
-                <h1>Desde a prospecção de fornecedores até a nacionalização da mercadoria.</h1>
+                <h1>{aboutCompanhy}</h1>
                 <p>
                     As Trading Companies são empresas especializadas em Comércio Exterior que facilitam processos de importação e exportação entre diferentes países, intermediando a negociação entre fornecedor e cliente de forma segura e contribuindo para a comercialização internacional de produtos de mercados variados.
                     <br />

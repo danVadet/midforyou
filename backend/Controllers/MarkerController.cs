@@ -13,17 +13,17 @@ public class MarkerController : ControllerBase
 
     }
 
-    [HttpGet("markers/state")]
-    public async Task<ActionResult<List<StateMarker>>> getAllMarkerByState()
+    [HttpGet("markers/states")]
+    public async Task<ActionResult<List<Marker>>> getAllMarkerByState()
     {
-        var markers = await _applicationDbContext.StateMarkers.ToListAsync();
+        var markers = await _applicationDbContext.Markers.ToListAsync();
         return Ok(markers);
     }
-      [HttpGet("markers/state/{id}")]
+      [HttpGet("markers/states/{id}")]
     public async Task<ActionResult> getMarker(int id)
     {
 
-        var marker = await _applicationDbContext.StateMarkers.FindAsync(id);
+        var marker = await _applicationDbContext.Markers.FindAsync(id);
 
         return Ok(marker);
       
@@ -31,10 +31,10 @@ public class MarkerController : ControllerBase
     
     }
     [HttpPost("markers/state")]
-    public async Task<ActionResult> createMarkerByState([FromBody] StateMarker marker)
+    public async Task<ActionResult> createMarkerByState([FromBody] Marker marker)
     {
     
-        _applicationDbContext.StateMarkers.Add(marker);
+        _applicationDbContext.Markers.Add(marker);
 
         await _applicationDbContext.SaveChangesAsync();
 
@@ -42,11 +42,18 @@ public class MarkerController : ControllerBase
     }
 
     
-    [HttpGet("markers/port")]
-    public async Task<ActionResult<List<PortMarker>>> getAllMarkerByPort()
+    [HttpGet("markers/ports")]
+    public async Task<ActionResult<List<PortMarker>>> getAllMarkerByPort([FromQuery] string search)
     {
         var markers = await _applicationDbContext.PortMarkers.Include(p => p.marker).ToListAsync();
+
+        if(!string.IsNullOrEmpty(search)) {
+            markers = markers.Where(m => m.label.Contains(search)).ToList();
+            return Ok(markers);
+
+        } else {
         return Ok(markers);
+        }
     }
 
     [HttpPost("markers/port")]
@@ -71,7 +78,7 @@ public class MarkerController : ControllerBase
         return Ok("All products removed successfully");
     }
 
-    [HttpDelete("markers/port/{id}")]
+    [HttpDelete("markers/ports/{id}")]
     public async Task<ActionResult> deleteMarkerByPort(int id)
     {
         var marker = await _applicationDbContext.PortMarkers.FindAsync(id);

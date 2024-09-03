@@ -9,7 +9,6 @@ import { Product } from '../models/Product';
 import { Container } from '../models/Container';
 import Message from './Message';
 
-
 const Conteiner = () => {
 
     const [products, setProducts] = useState<Product[]>([]);
@@ -27,6 +26,7 @@ const Conteiner = () => {
         pesoTotal: 0,
         volumeTotal: 0,
     });
+    const [formErrors, setFormErrors] = useState('');
     const [search, setSearch] = useState('');
     const [productCurrent, setProductCurrent] = useState<Product>();
     const [container, setContainer] = useState<Container>({
@@ -37,6 +37,8 @@ const Conteiner = () => {
         capacidadeVolume: 0,
 
     });
+    const [isSubmit, setIsSubmit] = useState(false);
+    const [isClosedWindow, setIsClosedWindow] = useState(false);
 
     const [selectedContainer, setSelectedConatiner] = useState<Container>({
         id: 0,
@@ -86,14 +88,25 @@ const Conteiner = () => {
     }
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        const response = await axios.post(`http://localhost:5077/products/addProduct`, {
-            nome: product.nome,
-            quantidade: product.quantidade,
-            peso: product.peso,
-            volume: product.volume,
-        });
-        console.log(response.data);
-        window.location.reload();
+
+        if(!product.nome) {
+            setFormErrors(`Nome obrigatório`)
+        } else {
+        
+            const response = await axios.post(`http://localhost:5077/products/addProduct`, {
+                nome: product.nome,
+                quantidade: product.quantidade,
+                peso: product.peso,
+                volume: product.volume,
+            });
+            console.log(response.data);
+            setIsSubmit(true);
+            setMessage(true);
+            window.location.reload();
+
+        }
+
+
 
     }
     const handleEditProduct = async (id: number) => {
@@ -113,9 +126,29 @@ const Conteiner = () => {
             console.log(response.data);
 
         } else {
-                const response = await axios.get(`http://localhost:5077/products`);
-                setProducts(response.data);
-                console.log(response.data);
+
+                if(!isClosedWindow) {
+                    const response = await axios.get(`http://localhost:5077/products`);
+                    setProducts(response.data);
+                    console.log(response.data);
+
+                } else {
+
+                    setIsClosedWindow(true);
+                    deleteAllProdutos();
+                    window.close();
+        
+    
+                }
+             
+
+    
+                    
+                 
+                   
+                         
+    
+             
         }
         } catch (error) {
             console.log(error);
@@ -158,20 +191,31 @@ const Conteiner = () => {
 
 
     useEffect(()  => {
-                getProducts();
-                getSumPesoTotal();
-                getSumVolumeTotal();
-                getContainers();
-    }, [search]);
+
+                
+        getProducts();
+        getSumPesoTotal();
+        getSumVolumeTotal();
+        getContainers(); 
+
+        
+
+     
+
+    }, [search, isClosedWindow]);
 
     return (
         <>
         <div className={`${styles.container}`}>
             <h1>Calculadora de Carga</h1>
+            {isSubmit ? (
+            <>{message && <Message   message='Produto adicionado com sucesso' type='sucess'  />}</>
+           ) : null}
 
                 <form onSubmit={(e) => handleSubmit(e)} className={`${styles.formContainer}`}>
                     <label>Nome</label>
-                    <input type="text" name="nome" value={product.nome} onChange={(e) => handleChange(e)} />
+                    <input type="text" name="nome"  value={product.nome} onChange={(e) => handleChange(e)} />
+                    {formErrors && <p>{formErrors}</p>}
                     <label>Quantidade</label>
                     <input type="number" name="quantidade" value={product.quantidade} onChange={(e) => handleChange(e)} />
                     <label>Peso</label>
@@ -242,14 +286,7 @@ const Conteiner = () => {
                                 
                             </div>
                             
-                            
-                            
                         )))}
-                          
-
-
-
-                        
             </div>
             <div>
                 <h3>{`Peso total de  todos os produtos: ${sumPesoTotal} kg`}</h3>
@@ -265,7 +302,7 @@ const Conteiner = () => {
             <div className={`${styles.info_container}`}>
 
                     <select onChange={(e) => handleChangeSelectContainer(e)}>
-                <option value="">Selecionar o  contêiner...</option>
+                <option selected disabled hidden>Selecionar o  contêiner...</option>
                 {containers.map((container, index) => (
                    <option value={container.id} key={index}>{container.name}</option>
                 ))}
@@ -279,24 +316,12 @@ const Conteiner = () => {
                 <img src={ selectedContainer.image ? `${selectedContainer.image}` : imgURL} alt="" />
                 {product.pesoTotal <= container.capacidadePeso && product.volumeTotal <= container.capacidadeVolume ? 
                <> </> : <>  {message && <Message   message='Esse container não cabe' type='error'  />}</> }
-
-
-        
-    
           
             </div>
 
-       
                 </div>
 
-
                 </div>
-
-
-
-
-           
-
             </div>
         </>
     );

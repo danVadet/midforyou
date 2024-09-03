@@ -16,6 +16,7 @@ footer .mediaSocial {
     gap: 1rem;
     align-items: center;
     justify-content: center;
+    margin: 8px;
 }
 
 footer .facebookIcon {

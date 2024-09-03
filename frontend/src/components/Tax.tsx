@@ -1,71 +1,67 @@
+import { useEffect, useState } from 'react';
 import'./Tax.css'
+import axios from 'axios';
+import { TaxModel } from '../models/TaxModel';
+import ITaxKeys from '../models/ITaxKeys';
+
 
 
 const  Tax = () => {
+
+    const [taxs, setTaxs] = useState<TaxModel[]>([]);
+
+    const getTaxs = async () => {
+        try {
+            const response =  await axios.get(`https://economia.awesomeapi.com.br/last/USD-BRL,EUR-BRL,CNY-BRL,GBP-BRL,ARS-BRL`);
+
+                const quotes = response.data;
+          
+          
+                Object.keys(quotes).forEach( (key) => {
+                  taxs.push({ name: key as ITaxKeys, value: quotes[key].bid, variation: quotes[key].pctChange });
+                });
+
+                setTaxs(taxs)
+                console.log(taxs);
+    ;
+        } catch (error) {
+            console.log(error);
+        }
+
+     }
+
+    
+    useEffect(()  => {
+
+        getTaxs();
+        
+     
+        
+   })
+
     return (
         <>
         <div className="tax-collection-component">
             <div className="tax-wrapper">
-                <div className="tax-unit-component">
-                    <div className="currency-container">
-                        <p className="currency">$</p>
-                        </div>
-                    <div className="text">
-                        <p className="name">Dólar </p>
-                        <div className="value-container">
-                            <p className="value">5.7518</p>
-                            <p className="variation success">0.07%</p>
-                     </div>
-                </div>
-                </div>
-                <div className="tax-unit-component">
-                    <div className="currency-container">
-                        <p className="currency">€</p>
+                {taxs.map((tax: TaxModel) => (
+                     <div className="tax-unit-component">
+                     <div className="currency-container">
+                         <p className="currency">$</p>
                          </div>
-                         <div className="text">
-                            <p className="name">Euro</p>
-                            <div className="value-container">
-                                <p className="value">6.0768</p>
-                                <p className="variation danger">-1.4%</p>
-                            </div>
-                            </div>
-                        </div>
-            </div>
-            <div className="tax-unit-component">
-                <div className="currency-container">
-                    <p className="currency">¥</p>
-                </div>
-                <div className="text">
-                    <p className="name">Yuan</p>
-                    <div className="value-container">
-                        <p className="value">0.7953</p>
-                        <p className="variation success">1.64%</p>
-                </div>
-                </div>
-            </div>
-            <div className="tax-unit-component">
-                <div className="currency-container">
-                    <p className="currency">£</p>
-                </div>
-                <div className="text">
-                    <p className="name">Libra</p>
-                    <div className="value-container">
-                        <p className="value">7.3046</p>
-                        <p className="variation danger">-0.07%</p>
-                    </div>
-                </div>
-            </div>
-            <div className="tax-unit-component">
-                <div className="currency-container">
-                    <p className="currency">$</p>
-                </div>
-                <div className="text">
-                    <p className="name">Peso</p>
-                <div className="value-container">
-                    <p className="value">0.0061</p>
-                    <p className="variation success">-1.62%</p>
-                </div>
-            </div>
+                     <div className="text">
+                         <p className="name">{tax.name} </p>
+                         <div className="value-container">
+                             <p className="value">{tax.value}</p>
+                             <p className={`variation ${tax.variation >= 0 ? 'sucess' : 'danger'}`}>{tax.variation}</p>
+                      </div>
+                 </div>
+                 </div>
+                )
+
+                
+                )}
+               
+               
                 </div>
         </div>
        

@@ -8,13 +8,56 @@ select {
 
 }
 
+.searchContent {
+    border: 1px solid rgb(204, 204, 204);
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 2px 32px 0px;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;    
+
+}
+.searchContent input {
+    margin: 8px;
+    padding: 10px;
+    border-radius: 5px;
+    outline: none;
+    border: 1px solid rgb(204, 204, 204)
+
+}
+
+.listPorts{
+    justify-content: center;
+    overflow-y: scroll;
+    margin: 20px;
+}
+.listPorts::-webkit-scrollbar {
+    width: 12px;
+    border: 1px solid rgb(204, 204, 204);
+    border-radius: 20px;
+}
+.listPorts::-webkit-scrollbar-thumb {
+    background-color:  rgb(0, 175, 239);
+    border: 1px solid  rgb(0, 146, 199);
+    border-radius: 20px;
+}
+.listPorts .content {
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 2px 32px 0px;
+    display: flex;
+    padding: 5px;
+    align-items: center;
+    justify-content: space-around;
+    border-radius: 5px;
+
+}
+
+
 .infoPorts {
     display: flex;
     align-items: center;
-    justify-content: space-around
+    
+    margin: 10px;
 }
 
-.portMarker {
-
-    color: red;
-}

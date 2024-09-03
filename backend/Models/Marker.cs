@@ -1,4 +1,4 @@
-public class StateMarker {
+public class Marker {
 
     public int id  { get; set; }
 

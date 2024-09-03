@@ -4,12 +4,15 @@ public class PortMarker {
 
     public string? label { get; set; }
 
+    
+    public string? urlImage { get; set; }
+
     public float lat { get; set; }
 
     
     public float lng { get; set; }
 
-    public StateMarker marker { get; set; }
+    public Marker marker { get; set; }
 
     
     public PortType portType { get; set; }

@@ -6,7 +6,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace backend.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate : Migration
+    public partial class sa : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -47,6 +47,21 @@ namespace backend.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Markers",
+                columns: table => new
+                {
+                    id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    label = table.Column<string>(type: "text", nullable: true),
+                    lat = table.Column<float>(type: "real", nullable: false),
+                    lng = table.Column<float>(type: "real", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Markers", x => x.id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Products",
                 columns: table => new
                 {
@@ -62,21 +77,6 @@ namespace backend.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Products", x => x.id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "StateMarkers",
-                columns: table => new
-                {
-                    id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    label = table.Column<string>(type: "text", nullable: true),
-                    lat = table.Column<float>(type: "real", nullable: false),
-                    lng = table.Column<float>(type: "real", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_StateMarkers", x => x.id);
                 });
 
             migrationBuilder.CreateTable(
@@ -114,9 +114,9 @@ namespace backend.Migrations
                 {
                     table.PrimaryKey("PK_PortMarkers", x => x.id);
                     table.ForeignKey(
-                        name: "FK_PortMarkers_StateMarkers_markerId",
+                        name: "FK_PortMarkers_Markers_markerId",
                         column: x => x.markerId,
-                        principalTable: "StateMarkers",
+                        principalTable: "Markers",
                         principalColumn: "id");
                 });
 
@@ -145,7 +145,7 @@ namespace backend.Migrations
                 name: "Vistors");
 
             migrationBuilder.DropTable(
-                name: "StateMarkers");
+                name: "Markers");
         }
     }
 }
