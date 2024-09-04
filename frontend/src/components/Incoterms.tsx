@@ -1,4 +1,3 @@
-
 import axios from 'axios';
 import styles from './Incoterms.module.css'
 import { Incoterm } from '../models/Incoterm';
@@ -40,11 +39,6 @@ const Incoterms = () => {
     }
     useEffect(()  => {
       getOptions();
-
-      
-       
-      
-
 }, []);
 
 
@@ -65,17 +59,80 @@ const Incoterms = () => {
             </select>
             <div>
             <h2>{`${selectedIncoterm.acronym} - ${selectedIncoterm.nome}`}</h2>
-            <p>{`${selectedIncoterm.freightDetails}`}</p>
-            <p>{`${selectedIncoterm.riskDetails}`}</p>
-            <p>{`${selectedIncoterm.moreDetails}`}</p>
-
             </div>
 
         </div>
-
-          
-
+        <div className={`${styles.incotermStages}`}>
+            <div className={`${styles.barCaptions_mobile}`}>
+              <p>Fábrica</p>
+              <p>Cliente</p>
             </div>
+            <div className={`${styles.incotermStage}`}>
+            <div className={`${styles.incotermStage__cost}`}>
+              <div className={`factory__bar size__${selectedIncoterm.costStage}`}>
+                <p>Fábrica</p>
+              </div>
+              <div className="customer__bar">
+                <p>Cliente</p>
+              </div>
+            </div>
+            </div>
+            <div className={`${styles.incotermStage}`}>
+            <div className={`${styles.incotermStage__risk}`}>
+              <div className={`factory__bar size__${selectedIncoterm.riskStage}`}>
+                <p>Fábrica</p>
+              </div>
+              <div className="customer__bar">
+                <p>Cliente</p>
+              </div>
+            </div>
+            </div>
+            <div className={`${styles.incotermStage}`}>
+            <div className={`${styles.incotermStage__safety}`}>
+              <div className={`factory__bar size__${selectedIncoterm.safetyStage}`}>
+                <p>Fábrica</p>
+              </div>
+              <div className="customer__bar">
+                <p>Cliente</p>
+              </div>
+            </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="detailLine">
+          <div className="captions">
+            <div className="captionsCost">
+              <div className="square"></div>
+              Custos
+            </div>
+            <div className="captionsRisk">
+              <div className="square"></div>
+              Riscos
+            </div>
+            <div className="captionsSafety">
+              <div className="square"></div>
+              Seguro
+            </div>
+          </div>
+
+          <div className="first__column">
+            <p className="detail__freight__details">
+              <strong>Frete:</strong>
+              <p>{selectedIncoterm.freightDetails}</p>
+            </p>
+            <p className="detail__risk__details">
+              <strong>Modal:</strong>
+              <p>{selectedIncoterm.riskDetails}</p>
+            </p>
+          </div>
+          <div className="second-column">
+            <p className="detail more-details">
+              <strong>Mais detalhes:</strong>
+              <p>{selectedIncoterm.moreDetails}</p>
+            </p>
+          </div>
+        </div>
         </>
     )
 }

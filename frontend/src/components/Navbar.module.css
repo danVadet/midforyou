@@ -26,14 +26,28 @@ nav ul li a {
     color:  rgb(0, 175, 239);
 
 }
+nav ul .selectLanguage {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    justify-content: center;
+   
+}
+nav ul .selectLanguage img {
+   border-radius: 50%;
+   
+}
 nav .menuIcon {
     display: none;
 }
 
-@media (max-width: 840px) {
+@media (max-width: 720px) {
 
     .navLogoContainer {
-        margin: 20px;
+        margin: 20px 5px;
+    }
+    .navLogoContainer img {
+        height: 30px;
     }
 
     nav {

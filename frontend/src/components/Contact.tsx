@@ -1,10 +1,19 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './Contact.module.css'
 import { Visitor } from '../models/Visitor';
 import axios from 'axios';
 import Message from './Message';
+import  multiLang  from '../multiLang.json';
+interface IContactProps {
+    
+  contactTitle: string;
+  buttonSend: string;
+  setContent(multiLang: object): void
 
-function Contact() {
+}
+
+
+const Contact = ({contactTitle, buttonSend, setContent }: IContactProps) => {
 
   const [visitor, setVisitor] = useState<Visitor>({
     id: 0,
@@ -19,6 +28,20 @@ function Contact() {
 });
 const [message,  setMessage] = useState(false);
 const [formErros,  setFormErrors] = useState("");
+
+const [lang, setLang] = useState("");
+    useEffect(()  => {
+
+        if (lang === "en") {
+            setContent(multiLang.en)
+
+        } else if(lang === "es") {
+           setContent(multiLang.es);
+        }
+        
+        
+}, [lang, setLang]);
+
 
 
 const handleChange = (e: React.FormEvent) => {
@@ -47,14 +70,14 @@ const handleSubmit = async (e: React.FormEvent) => {
 
 
   }
-
+  
   
 
 }
   return (
     <div className={`${styles.contato}`} >
 
-      <h1>Entre em contato</h1>
+      <h1>{contactTitle}</h1>
 
 
       <div>   <form onSubmit={(e) => handleSubmit(e)}  className={`${styles.formContainer}`}>
@@ -74,7 +97,7 @@ const handleSubmit = async (e: React.FormEvent) => {
                     <label>Mensagem</label>
                     <textarea  name="mensagem" value={visitor.mensagem} onChange={(e) => handleChange(e)}>
                     </textarea>
-                    <button>Enviar</button>
+                    <button>{buttonSend}</button>
                     
                 {message && <Message   message='Envio com sucesso' type='sucess'  />}
 

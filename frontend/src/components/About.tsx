@@ -2,22 +2,22 @@ import { useEffect, useState } from 'react';
 import styles from './About.module.css'
 import  multiLang  from '../multiLang.json';
 
-
-
-
 interface IAboutProps {
     
-    aboutCompanhy: string;
+    aboutInfo1: string;
+    aboutInfo2: string;
+    aboutInfo3: string;
+    aboutInfo4: string;
     setContent(multiLang: object): void
 
 }
-const About = ({ aboutCompanhy, setContent }: IAboutProps) => {
+const About = ({ aboutInfo1, aboutInfo2, aboutInfo3, aboutInfo4, setContent }: IAboutProps) => {
 
    
     const [lang, setLang] = useState("");
     useEffect(()  => {
 
-        if (lang == "en") {
+        if (lang ==="en") {
             setContent(multiLang.en)
 
         } else if(lang === "es") {
@@ -25,7 +25,7 @@ const About = ({ aboutCompanhy, setContent }: IAboutProps) => {
         }
         
         
-}, [lang]);
+}, [lang, setLang]);
   
 
 
@@ -36,16 +36,16 @@ const About = ({ aboutCompanhy, setContent }: IAboutProps) => {
 
            <div className={`${styles.aboutComponentContainer}`}>
             <div className={`${styles.aboutTextContainer}`}>
-                <h1>{aboutCompanhy}</h1>
+                <h1>{aboutInfo1}</h1>
                 <p>
-                    As Trading Companies são empresas especializadas em Comércio Exterior que facilitam processos de importação e exportação entre diferentes países, intermediando a negociação entre fornecedor e cliente de forma segura e contribuindo para a comercialização internacional de produtos de mercados variados.
+                    {aboutInfo2}
                     <br />
                     <br />
-                    A Mid4u é uma Trading Company com sede em Cajazeiras, no Sertão do Estado da Paraíba, atuando no Comércio Exterior desde o ano de 2017, com especialidade em importação, exportação e intermediação comercial internacional.
+                     {aboutInfo3}
                     <br />
                     <br />
-                    Possuímos Benefício Fiscal de ICMS, concedido através de Termo de Acordo de Regime Especial (TARE), pela Secretaria da Fazenda do Estado da Paraíba. Da prospecção de fornecedores até a nacionalização da mercadoria, a Mid4u cuida do seu processo de importação e exportação com transparência e segurança.
-                </p>
+                    {aboutInfo4}
+                   </p>
             </div>
            </div>
          

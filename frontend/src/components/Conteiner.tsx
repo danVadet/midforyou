@@ -17,7 +17,7 @@ const Conteiner = () => {
     const [sumVolumeTotal, setSumVolumeTotal] = useState(0);
     const [openEditModal, setOpenEditModal] = useState(false);
     const [openDeleteModal, setOpenDeleteModal] = useState(false);
-    const [product, setProduct] = useState<Product>({
+    const [product, setProduct] = useState({
         id: 0,
         nome: "",
         quantidade: 0,
@@ -133,21 +133,13 @@ const Conteiner = () => {
                     console.log(response.data);
 
                 } else {
+                    deleteAllProdutos();
 
                     setIsClosedWindow(true);
-                    deleteAllProdutos();
                     window.close();
         
     
                 }
-             
-
-    
-                    
-                 
-                   
-                         
-    
              
         }
         } catch (error) {
@@ -213,15 +205,11 @@ const Conteiner = () => {
            ) : null}
 
                 <form onSubmit={(e) => handleSubmit(e)} className={`${styles.formContainer}`}>
-                    <label>Nome</label>
-                    <input type="text" name="nome"  value={product.nome} onChange={(e) => handleChange(e)} />
+                    <input type="text" name="nome" placeholder="Digite o nome...."  onChange={(e) => handleChange(e)} />
                     {formErrors && <p>{formErrors}</p>}
-                    <label>Quantidade</label>
-                    <input type="number" name="quantidade" value={product.quantidade} onChange={(e) => handleChange(e)} />
-                    <label>Peso</label>
-                    <input type="number" name="peso" value={product.peso} onChange={(e) => handleChange(e)} />
-                    <label>Volume</label>
-                    <input type="number" name="volume" value={product.volume} onChange={(e) => handleChange(e)} />
+                    <input type="number" name="quantidade" placeholder="Digite a quantidade..."  onChange={(e) => handleChange(e)} />
+                    <input type="number" name="peso"   placeholder="Digite o peso..."  onChange={(e) => handleChange(e)} />
+                    <input type="number" name="volume" placeholder="Digite o volume..." onChange={(e) => handleChange(e)} />
                     <button>Adicionar novo produto</button>
                 </form>
 
@@ -231,7 +219,7 @@ const Conteiner = () => {
 
                     <div className={`${styles.searchContent}`}>
                     
-                            <input type="text" value={search} onChange={(e) => handleChangeSearch(e)} placeholder='Pesquisar o produto...' />
+                            <input type="text" value={search} onChange={(e) => handleChangeSearch(e)} placeholder='Pesquisa o produto...' />
                     
                         <button onClick={() => {
                             deleteAllProdutos();

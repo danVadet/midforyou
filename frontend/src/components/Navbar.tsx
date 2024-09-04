@@ -1,7 +1,10 @@
 import { Link } from 'react-router-dom'
 import logo from '../assets/logo.png'
+import ptFlag from '../assets/brazil-flag.png'
+import enFlag from '../assets/english-flag.png'
+import esFlag from '../assets/spaish-flag.png'
 import styles from './Navbar.module.css'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import  multiLang  from '../multiLang.json'
 
 
@@ -17,17 +20,22 @@ const Navbar = ({ home, about, container, contact, setContent }: INavbarProps) =
 
     const [mobileMenu, setMobileMenu] = useState(false);
 
-    const selectLanguage = (lang: string) => {
-            if(lang ===  "en") {
+    useEffect(()  => {
+
+        if(window.location.hash) {
+            if (window.location.hash === "#en") {
                 setContent(multiLang.en);
-
-            } else if(lang === "es") {
-                setContent(multiLang.es);
-
-
+    
+            } else if(window.location.hash === "#es") {
+               setContent(multiLang.es);
             }
-            
-    }
+
+        }
+       
+
+    }, [])
+
+
 
 
     return (
@@ -73,13 +81,13 @@ const Navbar = ({ home, about, container, contact, setContent }: INavbarProps) =
                 <li>
                     <a href="/#contact">{contact}</a>
                 </li>
-                <li>
-
-                </li>
                 
-            <li><a href="http://localhost:3000">Português</a></li>
-            <li><button onClick={() => selectLanguage("en")}>Inglês</button></li>
-            <li><button onClick={() => selectLanguage("es")}>Espanhol</button></li>
+               <div className={`${styles.selectLanguage}`}>
+                <a href="http://localhost:3000"><img src={ptFlag} width={30} height={30}/></a> 
+                <a href="#en"><img src={enFlag} width={30} height={30}/></a>
+                <a href="#es"><img src={esFlag} width={30} height={30}/></a>
+              </div>
+
             </ul>
 
 

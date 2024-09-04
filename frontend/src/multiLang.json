@@ -6,8 +6,22 @@
         "about" : "Services",
         "container": "Containers",
         "contact" : "Contact",
-        "aboutCompanhy": "From prospecting suppliers to nationalizing merchandise."
-
+        "brandInfo1" : "Make your experience with foreign trade more efficient and safe.",
+        "brandInfo2" : "We are the mid for you to import and export safely!",
+        "aboutInfo1": "From prospecting suppliers to nationalizing merchandise.",
+        "aboutInfo2" : "Trading Companies are companies specialized in Foreign Trade that facilitate import and export processes between different countries, intermediating negotiations between suppliers and customers in a secure manner and contributing to the international commercialization of products from varied markets.",
+        "aboutInfo3" : "Mid4u is a Trading Company based in Cajazeiras, in the Sertão of the State of Paraíba, operating in Foreign Trade since 2017, with a specialty in import, export and international commercial intermediation.",
+        "aboutInfo4" : "We have ICMS Tax Benefit, granted through a Special Regime Agreement Term (TARE), by the Finance Department of the State of Paraíba. From prospecting suppliers to nationalizing goods, Mid4u takes care of your import and export process with transparency and security.",
+        "card_1_title" : "International commercial advice",
+        "card_1_description" : "Prospecting for suppliers, sending and receiving samples for quality verification, international negotiation, inspection of the production of goods and monitoring the loading of products in the container. All of this is done to ensure customer satisfaction and the quality of products sold internationally.",
+        "card_2_title" : "Customs analysis",
+        "card_2_description" : "Market analysis and feasibility of the operation, assessment of administrative and tax treatment in accordance with NCM/SH, and provision of support for certification with consenting bodies, such as INMETRO, ANVISA, MAPA, among others. These processes are essential to ensure that the operation is carried out in an appropriate and legal manner, minimizing risks and maximizing financial results.",
+        "card_3_title" : "Import and Export",
+        "card_3_description" : "Document analysis, management of nationalization of foreign markets, development of own brand (OEM) and packaging, forecast of costs for import/export, exchange date and international insurance, accompaniment of customs clearance and national and international logistics management. All these services are intended to guarantee that import and export operations are carried out in an efficient and lucrative manner, with a minimum of risks and costs.",
+        "card_4_title" : "Quality Laboratory",
+        "card_4_description" : "Sample analysis, metrological checking of products, 2D and 3D drawings, reverse engineering and quality control. These services are essential to assess product characteristics, identify possible faults, make improvements and ensure that quality standards comply with current standards and regulations.",
+        "contactTitle": "Contact",
+        "buttonSend": "Send"
     },
 
     "es": {
@@ -15,8 +29,22 @@
         "about" : "Servicios",
         "container" :"Contenedores",
         "contact" : "Contacto",
-        "aboutCompanhy": "Desde la prospección de proveedores hasta la nacionalización de mercancías."
-
+        "brandInfo1" : "Haz que tu experiencia en comercio exterior sea más eficiente y segura.",
+        "brandInfo2" : "¡Somos la forma para que usted importe y exporte de forma segura!",
+        "aboutInfo1": "Desde la prospección de proveedores hasta la nacionalización de mercancías.",
+        "aboutInfo2" : "Las Sociedades Comerciales son empresas especializadas en Comercio Exterior que facilitan los procesos de importación y exportación entre diferentes países, intermediando las negociaciones entre proveedores y clientes de forma segura y contribuyendo a la comercialización internacional de productos de diferentes mercados.",
+        "aboutInfo3" : "Mid4u es una Empresa Comercial con sede en Cajazeiras, en el Sertão del Estado de Paraíba, que actúa en Comercio Exterior desde 2017, especializándose en importación, exportación e intermediación comercial internacional.",
+        "aboutInfo4" : "Contamos con el Beneficio Fiscal ICMS, otorgado mediante Convenio de Régimen Especial (TARE), por la Secretaría de Hacienda del Estado de Paraíba. Desde la prospección de proveedores hasta la nacionalización de la mercancía, Mid4u cuida tu proceso de importación y exportación con transparencia y seguridad.",
+        "card_1_title" : "Asesoría comercial internacional",
+        "card_1_description" : "Prospección de proveedores, envío y recepción de muestras para controles de calidad, negociación internacional, seguimiento de la producción de mercancías y seguimiento de la carga de productos en el contenedor. Todo ello con el objetivo de garantizar la satisfacción del cliente y la calidad de los productos vendidos a nivel internacional.",
+        "card_2_title" : "Análisis aduanero",
+        "card_2_description" :"Análisis de mercado y factibilidad de la operación, evaluación del tratamiento administrativo y tributario según NCM/SH, y prestación de apoyo para la certificación con organismos anuentes, como INMETRO, ANVISA, MAPA, entre otros. Estos procesos son fundamentales para garantizar que la operación se realiza de forma adecuada y legal, minimizando los riesgos y maximizando los resultados financieros.",
+        "card_3_title" : "Importación y exportación",
+        "card_3_description" : "Análisis documental, gestión de nacionalización de mercados extranjeros, desarrollo de marca propia (OEM) y embalaje, previsión de custodios para importación/exportación, fecha de cambio y seguro internacional, acompañamiento del desembaraço aduaneiro y gestión logística e internacional nacional. Todos estos servicios garantizan que las operaciones de importación y exportación se realicen de forma eficiente y lucrativa, con un mínimo de riesgos y costos posibles.",
+        "card_4_title" : "Laboratorio de Calidad",
+        "card_4_description" : "Análisis de muestras, verificación metrológica de productos, planos 2D y 3D, ingeniería inversa y control de calidad. Estos servicios son esenciales para evaluar las características del producto, identificar posibles fallas, realizar mejoras y garantizar que los estándares de calidad cumplan con las normas y regulaciones vigentes.",
+        "contactTitle": "Contacto",
+        "buttonSend": "Enviar"
     }
 
 }

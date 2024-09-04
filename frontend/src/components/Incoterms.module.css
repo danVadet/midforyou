@@ -13,3 +13,100 @@
     gap: 32px;
     width: 100%;
 }
+.incotermStages {
+    display: flex;
+    flex-direction: column;
+    background-color: red;
+    gap: 1rem;
+}
+.barCaptions_mobile {
+    display: none;
+}
+.incotermStage {
+    display: flex;
+    width: 100%;
+    background-color: blue;
+    border-radius: 0.25rem;
+    overflow: hidden;
+}
+.factory__bar, .customer__bar {
+    display: flex;
+    padding: 0.5rem 1rem;
+}
+.customer__bar {
+    justify-content: flex-start;
+}
+.incotermStage__cost .factory__bar {
+    color: inherit;
+}
+
+.incotermStage__cost .factory__bar {
+  background-color: #edc13b;
+}
+.incotermStage__risk .factory__bar {
+  background-color: #6b7799;
+}
+.incotermStage__safety .factory__bar {
+  background-color: #30bb50;
+}
+.detail__line {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+.captions {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-direction: row;
+    gap: 0;
+
+}
+.captions__cost,
+.captions__risk,
+.captions__safety {
+  display: flex;
+  gap: 0.25rem;
+  align-items: center;
+}
+.square {
+    width: 1rem;
+    height: 1rem;
+    max-width: 1rem;
+    max-height: 1rem;
+    border-radius: 3px;
+  }
+  .captionsCost .square {
+    background-color: #edc13b;
+  }
+  .captionsRisk .square {
+    background-color: #6b7799;
+  }
+  .captionsSafety .square {
+    background-color: #30bb50;
+  }
+
+@media (max-width: 720px) {
+
+    .barCaptions_mobile {
+        display: flex;
+        justify-content: space-between;
+    }
+    .factory__bar, .customer__bar {
+        padding: 0;
+        height: 20px;
+    }
+    .detail__line {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .first__column {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+    
+    
+
+}
+
