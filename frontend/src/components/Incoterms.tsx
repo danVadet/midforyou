@@ -78,7 +78,6 @@ const Incoterms = () => {
         </div>
 
         <div className={`${styles.incotermsRight}`}>
-
           <div className={`${styles.inco}`}>
             {incotermsIcons.map((incotermsIcon, index) => (
               <div key={index}>
@@ -94,6 +93,7 @@ const Incoterms = () => {
                 <div className={`${styles.factory__bar}`}>
                   <div className={`${styles.factory__bar__size__+ `${selectedIncoterm.costStage}`}`}>
                     <span>Fábrica</span>
+                    <span>{selectedIncoterm.costStage}</span>
                   </div>
                 </div>
                 <div className={`${styles.customer__bar}`}>
@@ -106,6 +106,7 @@ const Incoterms = () => {
                 <div className={`${styles.factory__bar}`}>
                   <div className={`${styles.factory__bar__size__ + `${selectedIncoterm.riskStage}`}`}>
                     <span>Fábrica</span>
+                    <span>{selectedIncoterm.riskStage}</span>
                   </div>
 
                 </div>
@@ -124,6 +125,7 @@ const Incoterms = () => {
 
                 <div className={`${styles.customer__bar}`}>
                   <span>Cliente</span>
+                  <span>{selectedIncoterm.safetyStage}</span>
                 </div>
               </div>
             </div>

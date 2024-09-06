@@ -201,8 +201,8 @@ const Conteiner = () => {
            ) : null}
 
                 <form onSubmit={(e) => handleSubmit(e)} className={`${styles.formContainer}`}>
-                    <input type="text" name="nome" placeholder="Digite o nome...."  onChange={(e) => handleChange(e)} />
-                    {formErrors && <p>{formErrors}</p>}
+                    <input type="text" name="nome" placeholder="Digite o nome...." onChange={(e) => handleChange(e)} />
+                    {formErrors && <p className={styles.formErros}>{formErrors}</p>}
                     <input type="number" name="quantidade" placeholder="Digite a quantidade..."  onChange={(e) => handleChange(e)} />
                     <input type="number" name="peso"   placeholder="Digite o peso..."  onChange={(e) => handleChange(e)} />
                     <input type="number" name="volume" placeholder="Digite o volume..." onChange={(e) => handleChange(e)} />

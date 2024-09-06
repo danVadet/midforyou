@@ -60,7 +60,6 @@ const  Main = () => {
 
 
       <Navbar home={content.home} about={content.about} container={content.container} contact={content.contact} setContent={setContent}></Navbar>
-       <Tax></Tax>
        <Brand brandInfo1={content.brandInfo1} brandInfo2={content.brandInfo2} setContent={setContent}></Brand>
        <section className={`${styles.about}`} id="about">
                     <About aboutInfo1={content.aboutInfo1} aboutInfo2={content.aboutInfo2} aboutInfo3={content.aboutInfo3} aboutInfo4={content.aboutInfo4} setContent={setContent}  />

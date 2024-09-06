@@ -22,7 +22,6 @@ const Navbar = ({ home, about, container, contact, setContent }: INavbarProps) =
     useEffect(()  => {
 
         if(window.location.hash) {
-            window.location.reload();
             if (window.location.hash === "#en") {
                 setContent(multiLang.en);
     
