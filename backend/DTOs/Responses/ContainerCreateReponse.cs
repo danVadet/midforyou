@@ -1,6 +1,8 @@
-namespace backend.Models;
+namespace backend.DTOs;
 
-public class Container {
+using backend.Models;
+
+public class ContainerCreateResponse {
 
     public int id  { get; set; }
 
@@ -11,8 +13,4 @@ public class Container {
     public float  capacidadePeso { get; set; }
 
     public float  capacidadeVolume { get; set; }
-
-
-    
-
 }

@@ -1,140 +1,165 @@
 import axios from 'axios';
 import styles from './Incoterms.module.css'
+import incotermsIcons from '../icotermsIcons.json'
+
 import { Incoterm } from '../models/Incoterm';
 import { useEffect, useState } from 'react';
 
 const Incoterms = () => {
-    const [options, setOptions] = useState<Incoterm[]>([]);
-    const [selectedIncoterm, setSelectedIncoterm] = useState<Incoterm>({
-        id: 0,
-        nome: "",
-        acronym: "",
-        costStage: 0,
-        riskStage: 0,
-        safetyStage: 0,
-        freightDetails: "",
-        riskDetails: "",
-        moreDetails: ""
-   
-});
+  const [options, setOptions] = useState<Incoterm[]>([]);
+  const [selectedIncoterm, setSelectedIncoterm] = useState<Incoterm>({
+    id: 0,
+    nome: "",
+    acronym: "",
+    costStage: 0,
+    riskStage: 0,
+    safetyStage: 0,
+    freightDetails: "",
+    riskDetails: "",
+    moreDetails: ""
+
+  });
 
 
-    const getOptions = async () => {
+  const getOptions = async () => {
 
-        try {
-                const response = await axios.get(`http://localhost:5077/incoterms`);
-                setOptions(response.data);
-                console.log(response.data);
-        } catch (error) {
-            console.log(error);
-        }
+    try {
+      const response = await axios.get(`http://localhost:5077/incoterms`);
+      setOptions(response.data);
+      console.log(response.data);
+    } catch (error) {
+      console.log(error);
     }
+  }
 
-    const handleChangeSelectIncoterm = async  (e: React.ChangeEvent<HTMLSelectElement>) => {
-        const value =  e.target.value;
-        const response = await axios.get(`http://localhost:5077/incoterms/${value}`);
-        console.log(response.data);
-        setSelectedIncoterm(response.data);
+  const handleChangeSelectIncoterm = async (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const value = e.target.value;
+    const response = await axios.get(`http://localhost:5077/incoterms/${value}`);
+    console.log(response.data);
+    setSelectedIncoterm(response.data);
 
-    }
-    useEffect(()  => {
-      getOptions();
-}, []);
+  }
+  useEffect(() => {
+    getOptions();
+  }, []);
 
 
-    return (
-        <>
+  return (
+    <>
 
-        <h1>Incoterms</h1>
-        <div className={`${styles.incotermsComponent}`}>
-        <div className={`${styles.incotermsInformations}`}>
+      <h1>Incoterms</h1>
+      <div className={`${styles.incotermsComponent}`}>
 
-        
-            
-        <select onChange={(e) => handleChangeSelectIncoterm(e)}>
-                <option>Selecionar...</option>
-                {options.map((option, index) => (
-                   <option value={option.id} key={index}>{option.acronym}</option>
-                ))}
-            </select>
-            <div>
-            <h2>{`${selectedIncoterm.acronym} - ${selectedIncoterm.nome}`}</h2>
-            </div>
 
-        </div>
-        <div className={`${styles.incotermStages}`}>
-            <div className={`${styles.barCaptions_mobile}`}>
-              <p>Fábrica</p>
-              <p>Cliente</p>
-            </div>
-            <div className={`${styles.incotermStage}`}>
-            <div className={`${styles.incotermStage__cost}`}>
-              <div className={`factory__bar size__${selectedIncoterm.costStage}`}>
-                <p>Fábrica</p>
+        <div className={`${styles.incotermsLeft}`}>
+          <select onChange={(e) => handleChangeSelectIncoterm(e)}>
+            <option>Selecionar...</option>
+            {options.map((option, index) => (
+              <option value={option.id} key={index}>{option.acronym}</option>
+            ))}
+          </select>
+
+          <div className={`${styles.deail__line}`}>
+            <div className={`${styles.captions}`}>
+              <div className={`${styles.captions__cost}`}>
+                <div className={`${styles.square}`}></div>
+                Custos
               </div>
-              <div className="customer__bar">
-                <p>Cliente</p>
+              <div className={`${styles.captions__risk}`}>
+                <div className={`${styles.square}`}></div>
+                Riscos
               </div>
-            </div>
-            </div>
-            <div className={`${styles.incotermStage}`}>
-            <div className={`${styles.incotermStage__risk}`}>
-              <div className={`factory__bar size__${selectedIncoterm.riskStage}`}>
-                <p>Fábrica</p>
+              <div className={`${styles.captions__safety}`}>
+                <div className={`${styles.square}`}></div>
+                Seguro
               </div>
-              <div className="customer__bar">
-                <p>Cliente</p>
-              </div>
-            </div>
-            </div>
-            <div className={`${styles.incotermStage}`}>
-            <div className={`${styles.incotermStage__safety}`}>
-              <div className={`factory__bar size__${selectedIncoterm.safetyStage}`}>
-                <p>Fábrica</p>
-              </div>
-              <div className="customer__bar">
-                <p>Cliente</p>
-              </div>
-            </div>
             </div>
           </div>
         </div>
 
-        <div className="detailLine">
-          <div className="captions">
-            <div className="captionsCost">
-              <div className="square"></div>
-              Custos
+        <div className={`${styles.incotermsRight}`}>
+
+          <div className={`${styles.inco}`}>
+            {incotermsIcons.map((incotermsIcon, index) => (
+              <div key={index}>
+                <img src={incotermsIcon.icon} />
+                <h4>{incotermsIcon.name}</h4>
+              </div>
+            ))}
+          </div>
+
+          <div className={`${styles.incotermStages}`}>
+            <div className={`${styles.incotermStage}`}>
+              <div className={`${styles.incotermStage__cost}`}>
+                <div className={`${styles.factory__bar}`}>
+                  <div className={`${styles.factory__bar__size__+ `${selectedIncoterm.costStage}`}`}>
+                    <span>Fábrica</span>
+                  </div>
+                </div>
+                <div className={`${styles.customer__bar}`}>
+                  <span>Cliente</span>
+                </div>
+              </div>
             </div>
-            <div className="captionsRisk">
-              <div className="square"></div>
-              Riscos
+            <div className={`${styles.incotermStage}`}>
+              <div className={`${styles.incotermStage__risk}`}>
+                <div className={`${styles.factory__bar}`}>
+                  <div className={`${styles.factory__bar__size__ + `${selectedIncoterm.riskStage}`}`}>
+                    <span>Fábrica</span>
+                  </div>
+
+                </div>
+                <div className={`${styles.customer__bar}`}>
+                  <span>Cliente</span>
+                </div>
+              </div>
             </div>
-            <div className="captionsSafety">
-              <div className="square"></div>
-              Seguro
+            <div className={`${styles.incotermStage}`}>
+              <div className={`${styles.incotermStage__safety}`}>
+                <div className={`${styles.factory__bar}`}>
+                  <div className={`${styles.factory__bar__size__ + `${selectedIncoterm.safetyStage}`}`}>
+                    <span>Fábrica</span>
+                  </div>
+                </div>
+
+                <div className={`${styles.customer__bar}`}>
+                  <span>Cliente</span>
+                </div>
+              </div>
             </div>
           </div>
 
-          <div className="first__column">
-            <p className="detail__freight__details">
+
+          <h2>{`${selectedIncoterm.acronym} - ${selectedIncoterm.nome}`}</h2>
+
+          <div className={`${styles.incotermsInformations}`}>
+            <span className={`${styles.detail__freight__details}`}>
               <strong>Frete:</strong>
-              <p>{selectedIncoterm.freightDetails}</p>
-            </p>
-            <p className="detail__risk__details">
+              <span>{selectedIncoterm.freightDetails}</span>
+            </span>
+            <span className={`${styles.detail__risk__details}`}>
               <strong>Modal:</strong>
-              <p>{selectedIncoterm.riskDetails}</p>
-            </p>
-          </div>
-          <div className="second-column">
-            <p className="detail more-details">
+              <span>{selectedIncoterm.riskDetails}</span>
+            </span>
+            <span className={`${styles.detail__more__details}`}>
               <strong>Mais detalhes:</strong>
-              <p>{selectedIncoterm.moreDetails}</p>
-            </p>
+              <span>{selectedIncoterm.moreDetails}</span>
+            </span>
+
+
+
           </div>
+
+
+
         </div>
-        </>
-    )
+
+
+      </div>
+
+
+    </>
+  )
 }
 
 export default Incoterms;

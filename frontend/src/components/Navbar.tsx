@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom'
-import logo from '../assets/logo.png'
 import ptFlag from '../assets/brazil-flag.png'
 import enFlag from '../assets/english-flag.png'
 import esFlag from '../assets/spaish-flag.png'
@@ -23,6 +22,7 @@ const Navbar = ({ home, about, container, contact, setContent }: INavbarProps) =
     useEffect(()  => {
 
         if(window.location.hash) {
+            window.location.reload();
             if (window.location.hash === "#en") {
                 setContent(multiLang.en);
     
@@ -41,7 +41,8 @@ const Navbar = ({ home, about, container, contact, setContent }: INavbarProps) =
     return (
         <nav>
 
-            {mobileMenu ? // icon close
+           
+{mobileMenu ? // icon close
                 <i onClick={() => setMobileMenu(false)}>
                     <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="30" height="30" viewBox="0,0,256,256">
                         <g fill="rgb(0, 175, 239)" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none">
@@ -62,7 +63,7 @@ const Navbar = ({ home, about, container, contact, setContent }: INavbarProps) =
                 </i>
             }
             <div className={`${styles.navLogoContainer}`}>
-                <img src={logo} alt="" height={40} />
+                <img src={`logo.png`} alt="" height={40} />
             </div>
             <ul className={mobileMenu ? '' : `${styles.hideMobileMenu}`}>
                 <li>

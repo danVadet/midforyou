@@ -3,13 +3,14 @@ namespace backend.DTOs;
 using backend.Models;
 
 public class CreateContainerRequest {
+    
+    public string? name {get;  set; }
+    public IFormFile? imageFile;
 
+     public float  capacidadePeso { get; set; }
 
-    public List <Product> products { get; set; }
+    public float  capacidadeVolume { get; set; }
 
-    public Product product { get; set; }
-
-    public int productId { get; set; } 
 
 
 

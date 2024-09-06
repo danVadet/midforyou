@@ -35,7 +35,7 @@ const  Main = () => {
     card_4_title: "Labatório de Qualidade",
     card_4_description: "Análise de amostras, conferência metrológica dos produtos, desenhos 2D e 3D, engenharia reversa e controle de qualidade. Esses serviços são essenciais para avaliar as características dos produtos, identificar possíveis falhas, realizar melhorias e garantir que os padrões de qualidade estejam em conformidade com as normas e regulamentações vigentes.",
     contactTitle: "Contato",
-    buttonSend: "Entrar"
+    buttonSend: "Enviar"
 
   });
 

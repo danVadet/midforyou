@@ -16,12 +16,6 @@ const Map =() => {
 
   })
 
- 
-  const [center, setCenter] = useState({
-    lat:  -3.745,
-    lng: -38.523
-  });
-
   const [zoom, setZoom] = useState(5);
 
   const [markers, setMarkers] = useState<MarkerModel[]>([]);
@@ -32,6 +26,7 @@ const Map =() => {
     lng: 0
   });
   
+  const [currentState, setCurrentState] = useState(false);
  const [portsMarker, setPortsMarker] = useState<PortMarker[]>([]);
  const [search, setSearch] = useState("")
 
@@ -83,12 +78,12 @@ const Map =() => {
   const response = await axios.get(`http://localhost:5077/markers/states/${value}`);
       console.log(response.data);
       setMarker(response.data);
+      setCurrentState(true);
       setTimeout(() => {
         const targetZoom = 10;
         const currentZoom = 5;
         const zoomStep = (targetZoom - currentZoom) / 10;
   
-        setMarker(response.data);
   
         let currentZoomLevel = currentZoom;
         const zoomInterval = setInterval(() => {
@@ -109,17 +104,17 @@ const handleChangeSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
   setSearch(value);
 }
 const onClickMarker = async  (id: number) => {
-    
-
+  
   const response = await axios.get(`http://localhost:5077/markers/ports/${id}`); 
+  console.log(response.data);
 
+  setPortMarker(response.data);
   
 
   setTimeout(() => {
     const targetZoom = 10;
     const currentZoom = 5;
     const zoomStep = (targetZoom - currentZoom) / 10;
-    setPortMarker(response.data)
     console.log(response.data)
 
     let currentZoomLevel = currentZoom;
@@ -132,12 +127,13 @@ const onClickMarker = async  (id: number) => {
       setZoom(currentZoomLevel);
     }, 50);
   }, 500);
+  
 
 }
  useEffect(() => {
   getMarkers();
   getMarkersPort();
-}, [search]);
+}, [search, portMarker]);
 
     return <div className={`${styles.map}`}>
 
@@ -192,7 +188,7 @@ const onClickMarker = async  (id: number) => {
   ) : <></> }
 
 
-<div className={`${styles.searchContent}`}>
+{ currentState &&  <> <div className={`${styles.searchContent}`}>
                     
                     <input type="text" value={search} onChange={(e) => handleChangeSearch(e)} placeholder='Pesquisar o porto...' />
   </div>
@@ -227,6 +223,8 @@ const onClickMarker = async  (id: number) => {
    ))}
 
     </div>
+ </>   }
+
 
 
 

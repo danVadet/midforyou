@@ -132,12 +132,6 @@ const Conteiner = () => {
                     setProducts(response.data);
                     console.log(response.data);
 
-                } else {
-                    deleteAllProdutos();
-
-                    setIsClosedWindow(true);
-                    window.close();
-        
     
                 }
              
@@ -179,6 +173,8 @@ const Conteiner = () => {
      const deleteAllProdutos = async () => {
         const response = await axios.delete(`http://localhost:5077/products`);
         console.log(response.data);
+        getProducts();
+        window.close();
       }
 
 
@@ -269,18 +265,13 @@ const Conteiner = () => {
 </svg>
                                     </button>
                                 </td>
-                   
-
                                 
                             </div>
                             
                         )))}
             </div>
-            <div>
+            <div className={`${styles.totalContainer}`}>
                 <h3>{`Peso total de  todos os produtos: ${sumPesoTotal} kg`}</h3>
-            </div>
-
-            <div>
                 <h3>{`Volume total de  todos os produtos: ${sumVolumeTotal} m³`}</h3>
             </div>
 
@@ -299,7 +290,6 @@ const Conteiner = () => {
             <h2>{`${selectedContainer.name}`}</h2>
             <h2>{`Capacidade de carga: ${selectedContainer.capacidadePeso} kg`}</h2>
                 <h2>{`Capacidade cúbica: ${selectedContainer.capacidadeVolume} m³`}</h2>
-
 
                 <img src={ selectedContainer.image ? `${selectedContainer.image}` : imgURL} alt="" />
                 {product.pesoTotal <= container.capacidadePeso && product.volumeTotal <= container.capacidadeVolume ? 
