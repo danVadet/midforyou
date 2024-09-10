@@ -13,8 +13,13 @@ const  Tax = () => {
     const getTaxs = async () => {
         try {
             const response =  await axios.get(`https://economia.awesomeapi.com.br/last/USD-BRL,EUR-BRL,CNY-BRL,GBP-BRL,ARS-BRL`);
-            console.log(response.data);
-            setTaxs(response.data);
+
+            const quotes = response.data;
+            
+          Object.keys(quotes).forEach((key) => {
+          taxs.push({ name: key as ITaxKeys, value: quotes[key].bid, variation: quotes[key].pctChange });
+      });
+      setTaxs(taxs);
         } catch (error) {
             console.log(error);
         }
@@ -34,17 +39,14 @@ const  Tax = () => {
         <>
         <div className="tax-collection-component">
             <div className="tax-wrapper">
-                {Object.values(taxs).map((key, tax) => (
+                {taxs.map((tax, index) => (
                           
-                     <div key={tax} className="tax-unit-component">
-                     <div className="currency-container">
-                         <p className="currency"> {tax}</p>
-                         </div>
+                     <div key={index} className="tax-unit-component">
                      <div className="text">
-                         <p className="name">{tax} </p>
+                         <p className="name">{tax.name} </p>
                          <div className="value-container">
-                             <p className="value">{tax}</p>
-                             <p className={`variation ${tax >= 0 ? 'sucess' : 'danger'}`}>{tax}</p>
+                             <p className="value">{tax.value}</p>
+                             <p className={`variation ${tax.variation >= 0 ? 'sucess' : 'danger'}`}>{tax.variation}</p>
                       </div>
                  </div>
                  </div>

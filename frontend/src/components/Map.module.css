@@ -29,9 +29,8 @@ select {
 }
 
 .listPorts{
-    justify-content: center;
     overflow-y: scroll;
-    margin: 20px;
+    margin: 0 20px;
 }
 .listPorts::-webkit-scrollbar {
     width: 12px;
@@ -44,12 +43,9 @@ select {
     border-radius: 20px;
 }
 .listPorts .content {
-    box-shadow: rgba(0, 0, 0, 0.12) 0px 2px 32px 0px;
     display: flex;
-    padding: 5px;
     align-items: center;
     justify-content: space-around;
-    border-radius: 5px;
 
 }
 

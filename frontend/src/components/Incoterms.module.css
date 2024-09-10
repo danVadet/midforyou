@@ -42,16 +42,6 @@
     background-color: #e1e8fa;;
     border-radius: 0.25rem;
 }
-.incotermStage__cost {
-  display: flex;
-}
-.incotermStage__risk {
-  display: flex;
-}
-.incotermStage__safety {
-  display: flex;
-}
-
 .factory__bar, .customer__bar {
     display: flex;
     padding: 0.5rem 1rem;
@@ -65,15 +55,15 @@
   justify-content: flex-end;
   --fracion: calc(100% / 20)
 }
-.factory__bar__size__0 {
+.factory__bar0 {
   width: calc(calc(100% / 19) * 2);
 
 }
-.factory__bar__size__1{
+.__size__1{
   width: calc(calc(100% / 19) * 4);
 
 }
-.factory__bar__size__2 {
+.__size__2 {
   width: calc(calc(100% / 19) * 6);
 
 }

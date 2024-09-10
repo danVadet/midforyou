@@ -42,7 +42,13 @@
     align-items: center;
     gap: 10px;
 }
+.tax-unit-component .value-container .value {
+    font-weight: bold;
+    font-size: 10px;
+    color: rgb(255, 255, 255);
+    font-weight: 700;
 
+}
 .variation {
     font-family: 'Roboto';
     font-size: 10px;

@@ -36,8 +36,6 @@ const DeleteProductModal:  React.FC<IProps> = (props) => {
             </div>
         </>
     );
-
 }
-
 
 export default DeleteProductModal;

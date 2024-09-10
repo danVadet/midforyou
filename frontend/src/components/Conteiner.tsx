@@ -38,7 +38,6 @@ const Conteiner = () => {
 
     });
     const [isSubmit, setIsSubmit] = useState(false);
-    const [isClosedWindow, setIsClosedWindow] = useState(false);
 
     const [selectedContainer, setSelectedConatiner] = useState<Container>({
         id: 0,
@@ -126,13 +125,19 @@ const Conteiner = () => {
             console.log(response.data);
 
         } else {
+            let isDataFetch = true;
+            const response = await axios.get(`http://localhost:5077/products`);
 
-                if(!isClosedWindow) {
-                    const response = await axios.get(`http://localhost:5077/products`);
+                if(isDataFetch) {
+                 
                     setProducts(response.data);
                     console.log(response.data);
 
     
+                }
+                return () => {
+                    deleteAllProdutos();
+
                 }
              
         }
@@ -173,7 +178,6 @@ const Conteiner = () => {
      const deleteAllProdutos = async () => {
         const response = await axios.delete(`http://localhost:5077/products`);
         console.log(response.data);
-        getProducts();
         window.close();
       }
 
@@ -190,7 +194,7 @@ const Conteiner = () => {
 
      
 
-    }, [search, isClosedWindow]);
+    }, [search]);
 
     return (
         <>
@@ -224,6 +228,7 @@ const Conteiner = () => {
                     </div>
 
                 <div className={`${styles.listProducts}`}>
+                       
                     {products.length === 0 ? (<td>Produto não adicionado</td>) : (
 
                         products.map((product, index) => (
@@ -233,10 +238,11 @@ const Conteiner = () => {
                               <td>{product.nome}</td>
 
                                <div className={`${styles.infoProduct}`}>
-                               <td>{`Quantidade: ${product.quantidade}`}</td>
-                                <td>{`Peso unidade: ${product.peso} kg`}</td>
-                                <td>{`Volume unidade: ${product.volume} m³`}</td>
+                               <td>{`Peso unidade: ${product.peso} kg`}</td>
+                               <td>{`Volume unidade: ${product.volume} m³`}</td>
                                 </div>
+                                <td>{`Quantidade: ${product.quantidade}`}</td>
+
                                 <div className={`${styles.infoTotalProduct}`}>
                                 <td>{`Peso total: ${product.pesoTotal} kg`}</td>
                                 <td>{`Volume total: ${product.volumeTotal} m³`}</td>

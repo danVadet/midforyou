@@ -4,6 +4,8 @@ import incotermsIcons from '../icotermsIcons.json'
 
 import { Incoterm } from '../models/Incoterm';
 import { useEffect, useState } from 'react';
+import TooltipIncoterms from './TooltipIncoterm';
+import TooltipIncoterm from './TooltipIncoterm';
 
 const Incoterms = () => {
   const [options, setOptions] = useState<Incoterm[]>([]);
@@ -79,55 +81,49 @@ const Incoterms = () => {
 
         <div className={`${styles.incotermsRight}`}>
           <div className={`${styles.inco}`}>
-            {incotermsIcons.map((incotermsIcon, index) => (
-              <div key={index}>
-                <img src={incotermsIcon.icon} />
-                <h4>{incotermsIcon.name}</h4>
-              </div>
+            {incotermsIcons.map((incotermIcon, index) => (
+              <TooltipIncoterm disabled={false} text={`${incotermIcon.name}`} key={index}>
+                  
+               <>
+               <img src={incotermIcon.icon} />
+               <h4>{incotermIcon.name}</h4>
+               </>
+
+                </TooltipIncoterm>
+              
             ))}
           </div>
 
           <div className={`${styles.incotermStages}`}>
-            <div className={`${styles.incotermStage}`}>
-              <div className={`${styles.incotermStage__cost}`}>
-                <div className={`${styles.factory__bar}`}>
-                  <div className={`${styles.factory__bar__size__+ `${selectedIncoterm.costStage}`}`}>
+            <div className={`${styles.incotermStage} ${styles.incotermStage__cost}`}>
+                <div className={`${styles.factory__bar} ${selectedIncoterm.costStage}`}>
                     <span>Fábrica</span>
                     <span>{selectedIncoterm.costStage}</span>
-                  </div>
                 </div>
                 <div className={`${styles.customer__bar}`}>
                   <span>Cliente</span>
                 </div>
-              </div>
             </div>
-            <div className={`${styles.incotermStage}`}>
-              <div className={`${styles.incotermStage__risk}`}>
-                <div className={`${styles.factory__bar}`}>
-                  <div className={`${styles.factory__bar__size__ + `${selectedIncoterm.riskStage}`}`}>
+            <div className={`${styles.incotermStage} ${styles.incotermStage__risk}`}>
+                <div className={`${styles.factory__bar} ${styles.__size__ + `${selectedIncoterm.riskStage}`}`}>
                     <span>Fábrica</span>
                     <span>{selectedIncoterm.riskStage}</span>
-                  </div>
-
                 </div>
                 <div className={`${styles.customer__bar}`}>
                   <span>Cliente</span>
                 </div>
-              </div>
             </div>
-            <div className={`${styles.incotermStage}`}>
-              <div className={`${styles.incotermStage__safety}`}>
-                <div className={`${styles.factory__bar}`}>
-                  <div className={`${styles.factory__bar__size__ + `${selectedIncoterm.safetyStage}`}`}>
+            <div className={`${styles.incotermStage} ${styles.incotermStage__safety}`}>
+                <div className={`${styles.factory__bar} ${styles.__size__ + `${selectedIncoterm.safetyStage}`} `}>
                     <span>Fábrica</span>
-                  </div>
+                    <span>{selectedIncoterm.costStage}</span>
+
                 </div>
 
                 <div className={`${styles.customer__bar}`}>
                   <span>Cliente</span>
                   <span>{selectedIncoterm.safetyStage}</span>
                 </div>
-              </div>
             </div>
           </div>
 
