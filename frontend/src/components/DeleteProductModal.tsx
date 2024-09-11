@@ -3,14 +3,14 @@ import axios from 'axios'
 import styles from './DeleteProductModal.module.css'
 import { Product } from '../models/Product'
 
-interface IProps {
+interface IDeleteProductModalProps {
     message: string
     productCurrent?: Product
     closeModal(): void
     getProducts(): void
 
 }
-const DeleteProductModal:  React.FC<IProps> = (props) => {
+const DeleteProductModal = (props: IDeleteProductModalProps) => {
     
     const confirmDelete = async () => { 
 

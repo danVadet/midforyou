@@ -1,3 +1,5 @@
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace backend.Models;
 
 public class Container {
@@ -11,6 +13,9 @@ public class Container {
     public float  capacidadePeso { get; set; }
 
     public float  capacidadeVolume { get; set; }
+    
+    [NotMapped]
+    public IFormFile imageFile { get; set; }
 
 
     

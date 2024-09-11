@@ -1,6 +1,6 @@
 import ITaxKeys from "./ITaxKeys";
 
-export interface TaxModel {
+export interface ITaxModel {
     name: ITaxKeys;
     value: number;
     variation: number;

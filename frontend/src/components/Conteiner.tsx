@@ -249,7 +249,7 @@ const Conteiner = () => {
                                 </div>        
                                 <td>
 
-                                    {openEditModal && <EditProductModal closeModal={() => setOpenEditModal(false)} getProducts={getProducts} productData={productCurrent}/>}
+                                    {openEditModal && <EditProductModal closeModal={() => setOpenEditModal(false)} getProducts={getProducts} currentProduct={productCurrent}/>}
 
                                     <button className={`${styles.buttonEdit}`} onClick={() => handleEditProduct(product.id)}>
 

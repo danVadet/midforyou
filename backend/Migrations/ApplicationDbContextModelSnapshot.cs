@@ -38,16 +38,19 @@ namespace backend.Migrations
                     b.Property<string>("freightDetails")
                         .HasColumnType("text");
 
+                    b.Property<string>("modal")
+                        .HasColumnType("text");
+
                     b.Property<string>("moreDetails")
                         .HasColumnType("text");
 
-                    b.Property<string>("nome")
-                        .HasColumnType("text");
-
-                    b.Property<string>("riskDetails")
+                    b.Property<string>("name")
                         .HasColumnType("text");
 
                     b.Property<float>("riskStage")
+                        .HasColumnType("real");
+
+                    b.Property<float>("safetyStage")
                         .HasColumnType("real");
 
                     b.HasKey("id");

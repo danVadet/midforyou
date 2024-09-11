@@ -11,8 +11,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace backend.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240903105042_AddColumn")]
-    partial class AddColumn
+    [Migration("20240911141820_createIncoterm")]
+    partial class createIncoterm
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -41,16 +41,19 @@ namespace backend.Migrations
                     b.Property<string>("freightDetails")
                         .HasColumnType("text");
 
+                    b.Property<string>("modal")
+                        .HasColumnType("text");
+
                     b.Property<string>("moreDetails")
                         .HasColumnType("text");
 
-                    b.Property<string>("nome")
-                        .HasColumnType("text");
-
-                    b.Property<string>("riskDetails")
+                    b.Property<string>("name")
                         .HasColumnType("text");
 
                     b.Property<float>("riskStage")
+                        .HasColumnType("real");
+
+                    b.Property<float>("safetyStage")
                         .HasColumnType("real");
 
                     b.HasKey("id");

@@ -6,7 +6,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace backend.Migrations
 {
     /// <inheritdoc />
-    public partial class sa : Migration
+    public partial class createIncoterm : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -33,12 +33,13 @@ namespace backend.Migrations
                 {
                     id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    nome = table.Column<string>(type: "text", nullable: true),
+                    name = table.Column<string>(type: "text", nullable: true),
                     acronym = table.Column<string>(type: "text", nullable: true),
                     costStage = table.Column<float>(type: "real", nullable: false),
                     riskStage = table.Column<float>(type: "real", nullable: false),
+                    safetyStage = table.Column<float>(type: "real", nullable: false),
                     freightDetails = table.Column<string>(type: "text", nullable: true),
-                    riskDetails = table.Column<string>(type: "text", nullable: true),
+                    modal = table.Column<string>(type: "text", nullable: true),
                     moreDetails = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>
@@ -105,6 +106,7 @@ namespace backend.Migrations
                     id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     label = table.Column<string>(type: "text", nullable: true),
+                    urlImage = table.Column<string>(type: "text", nullable: true),
                     lat = table.Column<float>(type: "real", nullable: false),
                     lng = table.Column<float>(type: "real", nullable: false),
                     portType = table.Column<int>(type: "integer", nullable: false),

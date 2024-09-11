@@ -27,16 +27,6 @@ const Map = () => {
 
   const [currentState, setCurrentState] = useState(false);
   const [portsMarker, setPortsMarker] = useState<PortMarker[]>([]);
-  const [portMarker, setPortMarker] = useState<PortMarker>({
-    id: 0,
-    urlImage: "",
-    label: "",
-    portType: "",
-    lat: 0,
-    lng: 0,
-    markerId: 0
-  });
-
   const [search, setSearch] = useState("")
 
   const getMarkers = async () => {
