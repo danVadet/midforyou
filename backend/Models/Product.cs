@@ -1,10 +1,11 @@
+using System.Text.Json.Serialization;
+
 namespace backend.Models;
 
 public class Product {
 
     public int id  { get; set; }
 
-    
     public string? nome  { get; set; }
 
     public int quantidade {get; set; }
@@ -16,6 +17,7 @@ public class Product {
     public float volumeTotal { get; set; }
 
     public float pesoTotal { get; set; }
+
 
 
 

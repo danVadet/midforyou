@@ -11,21 +11,26 @@ const Tax = () => {
     const [taxes, setTaxes] = useState<ITaxModel[]>([]);
    
     const getTaxes = async () => {
-        const taxRequest = await axios.get("https://economia.awesomeapi.com.br/last/USD-BRL,EUR-BRL,CNY-BRL,GBP-BRL,ARS-BRL");
+        const response = await axios.get("http://economia.awesomeapi.com.br/last/USD-BRL,EUR-BRL,CNY-BRL,GBP-BRL,ARS-BRL");
 
-        const quotes = taxRequest.data;
+        const quotes = response.data;
         const taxesArray: ITaxModel[] = [];
      
-        Object.keys(quotes).forEach((key) => {
+        Object.keys(quotes).map((key) => {
             taxesArray.push({ name: key as ITaxKeys, value: quotes[key].bid, variation: quotes[key].pctChange });
         });
-
-        setTaxes(taxesArray)
+        setTaxes(taxesArray);
+    }
+    const getTax = async  () => {
+        const response = await axios.get("http://economia.awesomeapi.com.br/last/USD-BRL");
+        console.log(response.data);
     }
 
     useEffect(() => {
 
         getTaxes();
+        getTax();
+    
     })
 
     return (
@@ -38,7 +43,6 @@ const Tax = () => {
                                 <div className="currency">
                                 {FormatCurrencySymbol({key: tax.name})} 
                                 </div>
-
                             </div>
                             <div className="text">
                             <p className="name">{FormatCurrencyName({key: tax.name})} </p>

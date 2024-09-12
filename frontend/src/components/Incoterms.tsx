@@ -78,8 +78,8 @@ const Incoterms = () => {
             </div>
           </div>
         </div>
-
         <div className={`${styles.incotermsRight}`}>
+          
           <div className={`${styles.inco}`}>
             {incotermsIcons.map((incotermIcon, index) => (
               <TooltipIncoterm disabled={false} text={`${incotermIcon.name}`} key={index}>

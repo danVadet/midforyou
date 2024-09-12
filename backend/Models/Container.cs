@@ -13,11 +13,5 @@ public class Container {
     public float  capacidadePeso { get; set; }
 
     public float  capacidadeVolume { get; set; }
-    
-    [NotMapped]
-    public IFormFile imageFile { get; set; }
-
-
-    
-
+   
 }

@@ -110,6 +110,8 @@ const Conteiner = () => {
     }
     const handleEditProduct = async (id: number) => {
 
+
+    
         const response = await axios.get(`http://localhost:5077/products/${id}`);
         console.log(response.data);
         setProductCurrent(response.data);

@@ -19,24 +19,14 @@ const Navbar = ({ home, about, container, contact, setContent }: INavbarProps) =
 
     const [mobileMenu, setMobileMenu] = useState(false);
 
-    useEffect(()  => {
+   const selectLanguage = (lang: string) => {
+      if(lang == "en"){
+        setContent(multiLang.en);
+      } else if (lang == "es"){
+        setContent(multiLang.es)
+      }
 
-        if(window.location.hash) {
-            if (window.location.hash === "#en") {
-                setContent(multiLang.en);
-    
-            } else if(window.location.hash === "#es") {
-               setContent(multiLang.es);
-            }
-
-        }
-       
-
-    }, [])
-
-
-
-
+   }
     return (
         <nav>
 
@@ -84,8 +74,8 @@ const Navbar = ({ home, about, container, contact, setContent }: INavbarProps) =
                 
                <div className={`${styles.selectLanguage}`}>
                 <a href="http://localhost:3000"><img src={ptFlag} width={30} height={30}/></a> 
-                <a href="#en"><img src={enFlag} width={30} height={30}/></a>
-                <a href="#es"><img src={esFlag} width={30} height={30}/></a>
+                <button onClick={() => selectLanguage("en")}><img src={enFlag} width={30} height={30}/></button>
+                <button  onClick={() => selectLanguage("es")}><img src={esFlag} width={30} height={30}/></button>
               </div>
 
             </ul>

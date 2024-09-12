@@ -77,13 +77,15 @@ const  Main = () => {
                 </section>
 
 
-                <section className={`${styles.incoterms}`} id="incoterms">
-                <Incoterms/>
-                </section>
                 <section className={`${styles.conteiners}`} id="conteiners">
                 <Conteiner/>
                 </section>
-             <Map/>
+                 
+       <section className={`${styles.contact}`} id="incoterms">
+               <Incoterms/>
+                </section>
+                <Map></Map>
+            
        <section className={`${styles.contact}`} id="contact">
                <Contact contactTitle={content.contactTitle} buttonSend={content.buttonSend} setContent={setContent}/>
                 </section>

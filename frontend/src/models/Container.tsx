@@ -1,3 +1,5 @@
+import { Product } from "./Product";
+
 export interface Container  {
     
     id: number;
