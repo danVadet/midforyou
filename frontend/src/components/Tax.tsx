@@ -75,21 +75,7 @@ const Tax = () => {
                     )
 
                     )}
-                          <div className="chart">
-                            <Line data={{
-                                labels: [taxes[0].name, taxes[1].name, taxes[2].name, taxes[3].name, taxes[4].name],
-                                datasets: [
-                                    {
-                                        data: [taxes[0].value, taxes[1].value, taxes[2].value, taxes[3].value, taxes[4].value ],
-
-                                        showLine: true,
-                                        borderColor: 'rgb(75, 192, 192)',
-                                        fill: false,
-                                    }
-                                ]
-                            }}></Line>
-
-                        </div>
+                  
 
                 </div>
             </div>

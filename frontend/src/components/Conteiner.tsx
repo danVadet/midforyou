@@ -8,6 +8,7 @@ import DeleteProductModal from './DeleteProductModal';
 import { Product } from '../models/Product';
 import { Container } from '../models/Container';
 import Message from './Message';
+import InputField from './fields/InputField';
 
 const Conteiner = () => {
 
@@ -17,7 +18,7 @@ const Conteiner = () => {
     const [sumVolumeTotal, setSumVolumeTotal] = useState(0);
     const [openEditModal, setOpenEditModal] = useState(false);
     const [openDeleteModal, setOpenDeleteModal] = useState(false);
-    const [product, setProduct] = useState({
+    const [product, setProduct] = useState<Product>({
         id: 0,
         nome: "",
         quantidade: 0,
@@ -26,7 +27,9 @@ const Conteiner = () => {
         pesoTotal: 0,
         volumeTotal: 0,
     });
-    const [formErrors, setFormErrors] = useState('');
+    const [formErrors, setFormErrors] = useState({
+        nome: ""
+    });
     const [search, setSearch] = useState('');
     const [productCurrent, setProductCurrent] = useState<Product>();
     const [container, setContainer] = useState<Container>({
@@ -89,7 +92,7 @@ const Conteiner = () => {
         e.preventDefault();
 
         if(!product.nome) {
-            setFormErrors(`Nome obrigatório`)
+            setFormErrors({nome: "Nome obrigatório"})
         } else {
         
             const response = await axios.post(`http://localhost:5077/products/addProduct`, {
@@ -202,14 +205,23 @@ const Conteiner = () => {
         <>
         <div className={`${styles.container}`}>
             <h1>Calculadora de Carga</h1>
-            {isSubmit ? (
+          
+
+                <form onSubmit={(e) => handleSubmit(e)} className={`${styles.formContainer}`}>
+                {isSubmit ? (
             <>{message && <Message   message='Produto adicionado com sucesso' type='sucess'  />}</>
            ) : null}
 
-                <form onSubmit={(e) => handleSubmit(e)} className={`${styles.formContainer}`}>
-                    <input type="text" name="nome" placeholder="Digite o nome...." onChange={(e) => handleChange(e)} />
-                    {formErrors && <p className={styles.formErros}>{formErrors}</p>}
-                    <input type="number" name="quantidade" placeholder="Digite a quantidade..."  onChange={(e) => handleChange(e)} />
+
+
+
+             <InputField type="text" name="nome" placeholder="Digite o nome..."  onChange={(e) => handleChange(e)}></InputField>
+          
+           <input type="text" name="nome" className={`${formErrors.nome ? `${styles.invalid}` : ""}`} placeholder="Digite o nome...." onChange={(e) => handleChange(e)} />
+           {formErrors && <p className={styles.formError}>{formErrors.nome}</p>}
+
+                  
+                    <input type="number" name="quantidade" placeholder="Digite a quantidade..."   onChange={(e) => handleChange(e)} />
                     <input type="number" name="peso"   placeholder="Digite o peso..."  onChange={(e) => handleChange(e)} />
                     <input type="number" name="volume" placeholder="Digite o volume..." onChange={(e) => handleChange(e)} />
                     <button>Adicionar novo produto</button>
