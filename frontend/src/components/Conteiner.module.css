@@ -179,9 +179,11 @@
       .info_container .message {
     
        width: 350px;
-
         
-        
+    }
+    .totalContainer {
+       font-size: 12px;
+       
     }
 
 

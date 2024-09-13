@@ -11,14 +11,14 @@ const Incoterms = () => {
   const [options, setOptions] = useState<Incoterm[]>([]);
   const [selectedIncoterm, setSelectedIncoterm] = useState<Incoterm>({
     id: 0,
-    name: "",
-    acronym: "",
+    name: "" || "EXW",
+    acronym: "" || "Ex Works - Saída de fábrica",
     costStage: 0,
     riskStage: 0,
     safetyStage: 0,
-    freightDetails: "",
-    modal: "",
-    moreDetails: ""
+    freightDetails: "" || "Responsabilidade da fábrica",
+    modal: ""  || "Aquaviário",
+    moreDetails: "" ||  "Ex Works (EXW) coloca a máxima responsabilidade sobre o comprador, incluindo todos os custos de transporte, riscos e liberação de exportação e importação. O vendedor é apenas responsável por disponibilizar as mercadorias em suas instalações ou outro local nomeado (fábrica, armazém, etc.). O comprador arca com todos os custos e riscos envolvidos em levar as mercadorias até o destino desejado."
 
   });
 
@@ -54,8 +54,7 @@ const Incoterms = () => {
 
 
         <div className={`${styles.incotermsLeft}`}>
-          <select onChange={(e) => handleChangeSelectIncoterm(e)}>
-            <option>Selecionar...</option>
+          <select className={`${styles.selectedIncoterm}`} onChange={(e) => handleChangeSelectIncoterm(e)}>
             {options.map((option, index) => (
               <option value={option.id} key={index}>{option.acronym}</option>
             ))}
@@ -160,7 +159,6 @@ const Incoterms = () => {
                 </div>
             </div>
           </div>
-
           <h2>{`${selectedIncoterm.acronym} - ${selectedIncoterm.name}`}</h2>
 
           <div className={`${styles.incotermsInformations}`}>
