@@ -13,20 +13,26 @@ interface INavbarProps {
     container: string;
     contact: string;
     setContent(multiLang: object): void
+    engLang: string;
+    espLang: string;
 
 }
-const Navbar = ({ home, about, container, contact, setContent }: INavbarProps) => {
+const Navbar = (props: INavbarProps) => {
 
     const [mobileMenu, setMobileMenu] = useState(false);
 
-   const selectLanguage = (lang: string) => {
-      if(lang == "en"){
-        setContent(multiLang.en);
-      } else if (lang == "es"){
-        setContent(multiLang.es)
-      }
+    useEffect(()  => {
 
-   }
+        if (props.engLang === "en") {
+            props.setContent(multiLang.en)
+
+        } else if(props.espLang === "es") {
+           props.setContent(multiLang.es);
+        }
+        
+        
+}, []);
+
     return (
         <nav>
 
@@ -56,26 +62,26 @@ const Navbar = ({ home, about, container, contact, setContent }: INavbarProps) =
             </div>
             <ul className={mobileMenu ? '' : `${styles.hideMobileMenu}`}>
                 <li>
-                    <Link to="/"> {home} </Link>
+                    <Link to="/"> {props.home} </Link>
                 </li>
                 <li>
-                <a href="/#about">{about}</a>
+                <a href="/#about">{props.about}</a>
                 
                 </li>
                 <li>
                     <a href="/#incoterms"> Incoterms </a>
                 </li>
                 <li>
-                    <a href="/#conteiners">{container}</a>
+                    <a href="/#conteiners">{props.container}</a>
                 </li>
                 <li>
-                    <a href="/#contact">{contact}</a>
+                    <a href="/#contact">{props.contact}</a>
                 </li>
                 
                <div className={`${styles.selectLanguage}`}>
                 <a href="http://localhost:3000"><img src={ptFlag} width={30} height={30}/></a> 
-                <button onClick={() => selectLanguage("en")}><img src={enFlag} width={30} height={30}/></button>
-                <button  onClick={() => selectLanguage("es")}><img src={esFlag} width={30} height={30}/></button>
+                <a href={props.engLang}><img src={enFlag} width={30} height={30}/></a>
+                <a href={props.espLang}><img src={esFlag} width={30} height={30}/></a>
               </div>
 
             </ul>

@@ -8,6 +8,8 @@ interface IDeleteProductModalProps {
     productCurrent?: Product
     closeModal(): void
     getProducts(): void
+    getSumPesoTotal(): void
+    getSumVolumeTotal(): void
 
 }
 const DeleteProductModal = (props: IDeleteProductModalProps) => {
@@ -19,7 +21,8 @@ const DeleteProductModal = (props: IDeleteProductModalProps) => {
 
         props.closeModal();
         props.getProducts();
-        window.location.reload();
+        props.getSumPesoTotal();
+        props.getSumVolumeTotal();
     }
     return (
         <>

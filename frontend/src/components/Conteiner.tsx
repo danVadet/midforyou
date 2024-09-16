@@ -8,7 +8,6 @@ import DeleteProductModal from './DeleteProductModal';
 import { Product } from '../models/Product';
 import { Container } from '../models/Container';
 import Message from './Message';
-import InputField from './fields/InputField';
 
 const Conteiner = () => {
 
@@ -41,6 +40,7 @@ const Conteiner = () => {
 
     });
     const [isSubmit, setIsSubmit] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
 
     const [selectedContainer, setSelectedConatiner] = useState<Container>({
         id: 0,
@@ -102,9 +102,10 @@ const Conteiner = () => {
                 volume: product.volume,
             });
             console.log(response.data);
+            setIsLoading(true);
             setIsSubmit(true);
             setMessage(true);
-            window.location.reload();
+        
 
         }
 
@@ -130,21 +131,10 @@ const Conteiner = () => {
             console.log(response.data);
 
         } else {
-            let isDataFetch = true;
             const response = await axios.get(`http://localhost:5077/products`);
-
-                if(isDataFetch) {
-                 
-                    setProducts(response.data);
-                    console.log(response.data);
-
-    
-                }
-                return () => {
-                    deleteAllProdutos();
-
-                }
-             
+  
+            setProducts(response.data);
+            console.log(response.data);
         }
         } catch (error) {
             console.log(error);
@@ -180,26 +170,33 @@ const Conteiner = () => {
         }
 
      }
-     const deleteAllProdutos = async () => {
+     const deleteAllProdutos = async (e: BeforeUnloadEvent) => {
+        e.preventDefault();
         const response = await axios.delete(`http://localhost:5077/products`);
         console.log(response.data);
-        window.close();
       }
 
 
     useEffect(()  => {
 
-                
         getProducts();
         getSumPesoTotal();
         getSumVolumeTotal();
-        getContainers(); 
-
+        getContainers();
         
+        window.addEventListener("beforeunload", deleteAllProdutos);
 
-     
+        return () => {
+            
+            window.removeEventListener("beforeunload", getProducts);
+        }
 
     }, [search]);
+
+
+    if(isLoading){
+        return <Conteiner/>
+    }
 
     return (
         <>
@@ -209,16 +206,11 @@ const Conteiner = () => {
 
                 <form onSubmit={(e) => handleSubmit(e)} className={`${styles.formContainer}`}>
                 {isSubmit ? (
-            <>{message && <Message   message='Produto adicionado com sucesso' type='sucess'  />}</>
+            <> {message && <Message   message='Produto adicionado com sucesso' type='sucess'  />} </>
            ) : null}
-
-
-
-
-             <InputField type="text" name="nome" placeholder="Digite o nome..."  onChange={(e) => handleChange(e)}></InputField>
           
-           <input type="text" name="nome" className={`${formErrors.nome ? `${styles.invalid}` : ""}`} placeholder="Digite o nome...." onChange={(e) => handleChange(e)} />
-           {formErrors && <p className={styles.formError}>{formErrors.nome}</p>}
+           <input type="text" name="nome"  className={`${product.nome}` ? "" : `${formErrors.nome ? `${styles.invalid}` : ""}`} placeholder="Digite o nome...." onChange={(e) => handleChange(e)} />
+           {formErrors && product.nome ? "" : <p className={`${styles.formError}`}>{formErrors.nome}</p>}
 
                   
                     <input type="number" name="quantidade" placeholder="Digite a quantidade..."   onChange={(e) => handleChange(e)} />
@@ -235,10 +227,6 @@ const Conteiner = () => {
                     
                             <input type="text" value={search} onChange={(e) => handleChangeSearch(e)} placeholder='Pesquisa o produto...' />
                     
-                        <button onClick={() => {
-                            deleteAllProdutos();
-                            window.location.reload();
-                        }}>Recarregar a página</button>
                     </div>
 
                 <div className={`${styles.listProducts}`}>
@@ -263,7 +251,7 @@ const Conteiner = () => {
                                 </div>        
                                 <td>
 
-                                    {openEditModal && <EditProductModal closeModal={() => setOpenEditModal(false)} getProducts={getProducts} currentProduct={productCurrent}/>}
+                                    {openEditModal && <EditProductModal closeModal={() => setOpenEditModal(false)} getProducts={getProducts} getSumPesoTotal={getSumPesoTotal} getSumVolumeTotal={getSumVolumeTotal} currentProduct={productCurrent}/>}
 
                                     <button className={`${styles.buttonEdit}`} onClick={() => handleEditProduct(product.id)}>
 
@@ -276,7 +264,7 @@ const Conteiner = () => {
 </svg>
                                     </button>
                                     {openDeleteModal && <DeleteProductModal
-                                        closeModal={() => setOpenDeleteModal(false)} message='Deseja excluir esse produto' getProducts={getProducts} productCurrent={productCurrent} />}
+                                        closeModal={() => setOpenDeleteModal(false)} message='Deseja excluir esse produto' getProducts={getProducts} getSumPesoTotal={getSumPesoTotal} getSumVolumeTotal={getSumVolumeTotal} productCurrent={productCurrent} />}
                                     <button className={`${styles.buttonDelete}`}  onClick={() => handleDeleteProduct(product.id)}>
                                     <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="30" height="30" viewBox="0,0,256,256">
                                         <g fill="rgb(255, 255, 255)" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none">
@@ -296,9 +284,11 @@ const Conteiner = () => {
             </div>
 
                 </div>
-                <div className={`${styles.right}`}>
+
+                {products.length === 0  && !search ? <></> : <>    <div className={`${styles.right}`}>
             
             <div className={`${styles.info_container}`}>
+               
 
                     <select onChange={(e) => handleChangeSelectContainer(e)}>
                 <option selected disabled hidden>Selecionar o  contêiner...</option>
@@ -306,7 +296,6 @@ const Conteiner = () => {
                    <option value={container.id} key={index}>{container.name}</option>
                 ))}
             </select>
-
             <h2>{`${selectedContainer.name}`}</h2>
             <h2>{`Capacidade de carga: ${selectedContainer.capacidadePeso} kg`}</h2>
                 <h2>{`Capacidade cúbica: ${selectedContainer.capacidadeVolume} m³`}</h2>
@@ -317,7 +306,8 @@ const Conteiner = () => {
           
             </div>
 
-                </div>
+                </div></>}
+             
 
                 </div>
             </div>

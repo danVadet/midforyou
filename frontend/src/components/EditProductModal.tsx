@@ -6,8 +6,10 @@ import Message from "./Message";
 
 interface IEditProductModalProps {
 
-    closeModal(): void
-    getProducts(): void
+    closeModal(): void;
+    getProducts(): void;
+    getSumPesoTotal(): void;
+    getSumVolumeTotal(): void;
     currentProduct?: Product
 } 
 
@@ -46,7 +48,8 @@ const EditProductModal = (props : IEditProductModalProps) => {
             console.log(response.data);
             props.closeModal();
             props.getProducts();
-            window.location.reload();
+            props.getSumPesoTotal();
+            props.getSumVolumeTotal();
 
         }
 

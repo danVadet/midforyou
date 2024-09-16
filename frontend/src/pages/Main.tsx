@@ -10,11 +10,11 @@ import Brand from '../components/Brand';
 import Incoterms from '../components/Incoterms';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
-import  multiLang  from '../multiLang.json'
+
 
 const  Main = () => {
 
-    const [lang, setLang] = useState("");
+    const [lang, setLang] = useState('');
   const [content, setContent] = useState({
     home: "Início",
     about: "Serviços",
@@ -41,15 +41,10 @@ const  Main = () => {
 
   useEffect (() => {
 
-    if(lang === "en") {
-      setContent(multiLang.en);
+    if(window.location.hash) {
+         console.log(lang);
 
-   } else if(lang === "es") {
-      setContent(multiLang.es);
-
-
-  }
-
+    }
 
 
 
@@ -59,7 +54,7 @@ const  Main = () => {
     <div>
 
 
-      <Navbar home={content.home} about={content.about} container={content.container} contact={content.contact} setContent={setContent}></Navbar>
+      <Navbar engLang={lang} espLang={''} home={content.home} about={content.about} container={content.container} contact={content.contact} setContent={setContent}></Navbar>
       <Tax></Tax>
        <Brand brandInfo1={content.brandInfo1} brandInfo2={content.brandInfo2} setContent={setContent}></Brand>
        <section className={`${styles.about}`} id="about">
