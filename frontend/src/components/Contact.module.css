@@ -12,10 +12,16 @@
     box-shadow: rgba(0, 0, 0, 0.12) 0px 2px 32px 0px;
 }
 .formContainer .invalid {
-  
+    
     border: 1.5px solid rgb(240, 19, 11);
   
 }
+.formContainer .valid {
+  
+    border: 1.5px solid rgb(6, 170, 0);
+  
+}
+
 
 .formError {
     color: rgb(240, 19, 11);

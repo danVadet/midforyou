@@ -11,7 +11,7 @@ public class ContainerController : ControllerBase
 {
 
     private readonly ApplicationDbContext _applicationDbContext;
-    private readonly IWebHostEnvironment _hostEnvironment;
+
     public ContainerController(ApplicationDbContext applicationDbContext)
     {
 
@@ -26,11 +26,22 @@ public class ContainerController : ControllerBase
         return Ok(containers);
     }
     [HttpPost("containers/createContainer")]
-    public async Task<ActionResult> createContainer([FromBody] Container container)
+    public async Task<ActionResult> createContainer( Container container, IFormFile picFile)
     {
+
+        string fileName = Path.GetFileName(picFile.FileName);
+        string filePath = Path.Combine(Directory.GetCurrentDirectory(), "Images", fileName);
+        
+  
 
         var capacidadePesoKg = container.capacidadePeso * 1000;
         container.capacidadePeso = capacidadePesoKg;
+
+               using (var fs = new FileStream(filePath, FileMode.Create))
+                {
+                    await picFile.CopyToAsync(fs);
+                    container.image =  $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}/Images/{fileName}";
+                }
         _applicationDbContext.Containers.Add(container);
 
         await _applicationDbContext.SaveChangesAsync();

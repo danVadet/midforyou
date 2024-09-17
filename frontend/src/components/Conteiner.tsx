@@ -39,7 +39,7 @@ const Conteiner = () => {
         capacidadeVolume: 0,
 
     });
-    const [isSubmit, setIsSubmit] = useState(false);
+    const [submitted, setSubmitted] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
 
     const [selectedContainer, setSelectedConatiner] = useState<Container>({
@@ -103,7 +103,7 @@ const Conteiner = () => {
             });
             console.log(response.data);
             setIsLoading(true);
-            setIsSubmit(true);
+            setSubmitted(true);
             setMessage(true);
         
 
@@ -188,7 +188,7 @@ const Conteiner = () => {
 
         return () => {
             
-            window.removeEventListener("beforeunload", getProducts);
+            window.removeEventListener("beforeunload", deleteAllProdutos);
         }
 
     }, [search]);
@@ -205,17 +205,21 @@ const Conteiner = () => {
           
 
                 <form onSubmit={(e) => handleSubmit(e)} className={`${styles.formContainer}`}>
-                {isSubmit ? (
+                {submitted ? (
             <> {message && <Message   message='Produto adicionado com sucesso' type='sucess'  />} </>
            ) : null}
-          
-           <input type="text" name="nome"  className={`${product.nome}` ? "" : `${formErrors.nome ? `${styles.invalid}` : ""}`} placeholder="Digite o nome...." onChange={(e) => handleChange(e)} />
-           {formErrors && product.nome ? "" : <p className={`${styles.formError}`}>{formErrors.nome}</p>}
 
-                  
+           
+           <input type="text" name="nome"  className={`${product.nome}` ? `${styles.valid}` : `${formErrors.nome && `${styles.invalid}` }`} placeholder="Digite o nome...." onChange={(e) => handleChange(e)} />
+          
+         
+           {formErrors && product.nome ? "" :   <div  className={styles.containerError}>  <p className={styles.formError}>{formErrors.nome}</p>  </div> }
+           
+
                     <input type="number" name="quantidade" placeholder="Digite a quantidade..."   onChange={(e) => handleChange(e)} />
                     <input type="number" name="peso"   placeholder="Digite o peso..."  onChange={(e) => handleChange(e)} />
                     <input type="number" name="volume" placeholder="Digite o volume..." onChange={(e) => handleChange(e)} />
+        
                     <button>Adicionar novo produto</button>
                 </form>
 

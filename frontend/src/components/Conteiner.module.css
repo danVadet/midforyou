@@ -7,7 +7,7 @@
     border: 1px solid rgb(204, 204, 204);
     box-shadow: rgba(0, 0, 0, 0.12) 0px 2px 32px 0px;
     margin: 10px;
-    padding: 10px;
+    padding: 15px;
     border-radius: 5px;
     
 }
@@ -19,8 +19,17 @@
     border: 1.5px solid rgb(204, 204, 204)
 
 }
+.containerError {
+    position: absolute;
+    margin: -0.5rem 27rem;
+    padding: 1.5px 0;
+} 
 .formContainer .invalid {
     border: 1.5px solid rgb(240, 19, 11);
+  
+}
+.formContainer .valid {
+    border: 1.5px solid rgb(6, 170, 0);
   
 }
 
