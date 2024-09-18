@@ -205,9 +205,7 @@ const Conteiner = () => {
           
 
                 <form onSubmit={(e) => handleSubmit(e)} className={`${styles.formContainer}`}>
-                {submitted ? (
-            <> {message && <Message   message='Produto adicionado com sucesso' type='sucess'  />} </>
-           ) : null}
+           
 
            
            <input type="text" name="nome"  className={`${product.nome}` ? `${styles.valid}` : `${formErrors.nome && `${styles.invalid}` }`} placeholder="Digite o nome...." onChange={(e) => handleChange(e)} />
@@ -222,6 +220,9 @@ const Conteiner = () => {
         
                     <button>Adicionar novo produto</button>
                 </form>
+                {submitted ? (
+            <> {message && <Message   message='Produto adicionado com sucesso' type='sucess'  />} </>
+           ) : null}
 
                 <div className={`${styles.calculadoraContent}`}>
                     

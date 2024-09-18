@@ -62,20 +62,20 @@ const Navbar = (props: INavbarProps) => {
             </div>
             <ul className={mobileMenu ? '' : `${styles.hideMobileMenu}`}>
                 <li>
-                    <Link to="/"> {props.home} </Link>
+                    <a href="#"> {props.home} </a>
                 </li>
                 <li>
-                <a href="/#about">{props.about}</a>
+                <a href="#about">{props.about}</a>
                 
                 </li>
                 <li>
-                    <a href="/#incoterms"> Incoterms </a>
+                    <a href="#incoterms"> Incoterms </a>
                 </li>
                 <li>
-                    <a href="/#conteiners">{props.container}</a>
+                    <a href="#conteiners">{props.container}</a>
                 </li>
                 <li>
-                    <a href="/#contact">{props.contact}</a>
+                    <a href="#contact">{props.contact}</a>
                 </li>
                 
                <div className={`${styles.selectLanguage}`}>

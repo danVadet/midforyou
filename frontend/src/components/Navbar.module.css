@@ -41,7 +41,7 @@ nav .menuIcon {
     display: none;
 }
 
-@media (max-width: 720px) {
+@media screen and (max-width: 830px) {
 
     .navLogoContainer {
         margin: 20px 5px;

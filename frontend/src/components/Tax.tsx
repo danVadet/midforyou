@@ -13,7 +13,7 @@ import {
     LinearScale,
     PointElement
 } from 'chart.js'
-import { useNavigate } from 'react-router-dom';
+
 import TaxModal from './TaxModal';
 
 
@@ -24,7 +24,6 @@ const Tax = () => {
     const [openTaxModal, setOpenTaxModal] = useState(false);
     const [taxes, setTaxes] = useState<ITaxModel[]>([]);
     const [currentTax, setCurrentTax] = useState<ITaxModel>();
-    const navigate = useNavigate();
    
     const getTaxes = async () => {
         const response = await axios.get(`http://economia.awesomeapi.com.br/last/USD-BRL,EUR-BRL,CNY-BRL,GBP-BRL,ARS-BRL`);
@@ -37,13 +36,26 @@ const Tax = () => {
         });
         setTaxes(taxesArray);
     }
-    const getTax = async  (name: string,symbol: string) => {
+    const getTax = async  (symbol: string) => {
         const response = await axios.get(`http://economia.awesomeapi.com.br/last/${symbol}`);
-        console.log(response.data);
-        setCurrentTax(response.data);
 
-        navigate(`${name}`);
-        setOpenTaxModal(true);
+          if(symbol === "USD-BRL"){
+            console.log(response.data.USDBRL);
+            setCurrentTax(response.data.USDBRL);
+    
+            } else if(symbol ==="EUR-BRL") {
+                console.log(response.data.EURBRL);
+                setCurrentTax(response.data.EURBRL);
+
+            }
+            setOpenTaxModal(true);
+           
+
+
+        
+ 
+
+    
 
         
         
@@ -81,14 +93,14 @@ const Tax = () => {
                                         <p className="value">{tax.value}</p>
                                         <p className={`variation ${tax.variation >= 0 ? 'success' : 'danger'}`}>{tax.variation}</p>
                                     </div>
-                                    <button onClick={() => getTax(FormatCurrencyName({ key: tax.name }), tax.symbol)}>Tax</button>
-                                    {openTaxModal && <TaxModal currentTax={currentTax} />}
+                                    <button onClick={() => getTax(tax.symbol)}>Tax</button>
+                                    
                                 </div>
                             </div>
                     )
 
                     )}
-                  
+                   
 
                 </div>
             </div>

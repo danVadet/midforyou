@@ -1,11 +1,15 @@
 
-import { ITaxModel } from '../models/ITaxModel'
+import { useEffect, useState } from 'react'
 import styles from './TaxModal.module.css'
+import ITaxKeys from '../models/ITaxKeys';
+import { ITaxModel } from '../models/ITaxModel';
+
 
 
 interface ITaxModalProps {
 
-    currentTax?: ITaxModel
+    currentKeyTax?: ITaxKeys;
+
 } 
 
 
@@ -14,10 +18,19 @@ const TaxModal = (props: ITaxModalProps) => {
 
 
 
+     switch(props.currentKeyTax){
+        case "USDBRL":
+            return ""
+     }
+     
+    
+
+
+
+
     return (
         <div className={`${styles.modal}`}>
             <div className={`${styles.modalBody}`}>
-                <h1>{props.currentTax?.name}</h1>
 
                 
             </div>
