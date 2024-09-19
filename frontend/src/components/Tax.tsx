@@ -14,14 +14,12 @@ import {
     PointElement
 } from 'chart.js'
 
-import TaxModal from './TaxModal';
 
 
 ChartJS.register(LineElement, CategoryScale, LinearScale, PointElement);
 
 const Tax = () => {
 
-    const [openTaxModal, setOpenTaxModal] = useState(false);
     const [taxes, setTaxes] = useState<ITaxModel[]>([]);
     const [currentTax, setCurrentTax] = useState<ITaxModel>();
    
@@ -48,16 +46,6 @@ const Tax = () => {
                 setCurrentTax(response.data.EURBRL);
 
             }
-            setOpenTaxModal(true);
-           
-
-
-        
- 
-
-    
-
-        
         
     }
 
@@ -100,6 +88,12 @@ const Tax = () => {
                     )
 
                     )}
+
+                    <div className='tax_info'>
+
+                        {currentTax?.name}
+
+                    </div>
                    
 
                 </div>

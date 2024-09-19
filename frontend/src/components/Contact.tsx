@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styles from './Contact.module.css'
 import { Visitor } from '../models/Visitor';
+import { IMaskInput } from 'react-imask';
 import axios from 'axios';
 import Message from './Message';
 import  multiLang  from '../multiLang.json';
@@ -89,7 +90,8 @@ const handleSubmit = async (e: React.FormEvent) => {
                     <input type="text" name="nome"  className={`${visitor.nome}` ?  `${styles.valid}` : `${formErrors.nome  && `${styles.invalid}`}`} onChange={(e) => handleChange(e)} />
                     {formErrors && visitor.nome ? "" : <p className={styles.formError}>{formErrors.nome}</p>}
                     <label>Telefone</label>
-                    <input type="text" name="telefone"  value={visitor.telefone} onChange={(e) => handleChange(e)} />
+                    <IMaskInput  mask="(00) #0000-0000" definitions={{ '#': /9?/ }}  onChange={(e) => handleChange(e)} placeholder= "Digite o número do seu telefone"/>
+                    
                     <label>Email</label>
                     <input type="email" name="email" value={visitor.email} onChange={(e) => handleChange(e)} />
                     <label>Nome da empresa</label>
