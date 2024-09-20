@@ -19,19 +19,20 @@ interface INavbarProps {
 }
 const Navbar = (props: INavbarProps) => {
 
+
+
+  
     const [mobileMenu, setMobileMenu] = useState(false);
 
-    useEffect(()  => {
 
-        if (props.engLang === "en") {
+     const selectLang = (lang: string) => {
+        if (lang === "en") {
             props.setContent(multiLang.en)
 
-        } else if(props.espLang === "es") {
+        } else if(lang === "es") {
            props.setContent(multiLang.es);
         }
-        
-        
-}, []);
+     }
 
     return (
         <nav>
@@ -80,8 +81,8 @@ const Navbar = (props: INavbarProps) => {
                 
                <div className={`${styles.selectLanguage}`}>
                 <a href="http://localhost:3000"><img src={ptFlag} width={30} height={30}/></a> 
-                <a href={props.engLang}><img src={enFlag} width={30} height={30}/></a>
-                <a href={props.espLang}><img src={esFlag} width={30} height={30}/></a>
+                <button onClick={() => selectLang("en") }><img src={enFlag} width={30} height={30}/></button>
+                <button  onClick={() => selectLang("es") }><img src={esFlag} width={30} height={30}/></button>
               </div>
 
             </ul>

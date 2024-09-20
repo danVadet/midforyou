@@ -13,6 +13,7 @@ import {
     LinearScale,
     PointElement
 } from 'chart.js'
+import TaxModal from './TaxModal';
 
 
 
@@ -20,8 +21,9 @@ ChartJS.register(LineElement, CategoryScale, LinearScale, PointElement);
 
 const Tax = () => {
 
+    const [openTaxModal, setOpenTaxModal] = useState(false);
     const [taxes, setTaxes] = useState<ITaxModel[]>([]);
-    const [currentTax, setCurrentTax] = useState<ITaxModel>();
+    let  [currentTax, setCurrentTax] = useState<ITaxModel>();
    
     const getTaxes = async () => {
         const response = await axios.get(`http://economia.awesomeapi.com.br/last/USD-BRL,EUR-BRL,CNY-BRL,GBP-BRL,ARS-BRL`);
@@ -36,17 +38,19 @@ const Tax = () => {
     }
     const getTax = async  (symbol: string) => {
         const response = await axios.get(`http://economia.awesomeapi.com.br/last/${symbol}`);
-
-          if(symbol === "USD-BRL"){
-            console.log(response.data.USDBRL);
-            setCurrentTax(response.data.USDBRL);
+        const quote = response.data;
     
-            } else if(symbol ==="EUR-BRL") {
-                console.log(response.data.EURBRL);
-                setCurrentTax(response.data.EURBRL);
-
-            }
         
+     
+        Object.keys(quote).map((key) => {
+            currentTax = { name: key as ITaxKeys, symbol: `${quote[key].code}-${quote[key].codein}`, value: quote[key].bid, variation: quote[key].pctChange };
+        });
+        console.log(currentTax);
+        setCurrentTax(currentTax);
+
+        setOpenTaxModal(true);
+
+         
     }
 
     useEffect(() => {
@@ -68,6 +72,10 @@ const Tax = () => {
          
                     {taxes.map((tax, index) => (
                                <div key={index} className="tax-unit-component">
+                                <a className='clickTax' onClick={() => getTax(tax.symbol)}>
+
+
+                                </a>
                                 <div className="currency-container">
                                     <div className="currency">
                                         {FormatCurrencySymbol({ key: tax.name })}
@@ -82,6 +90,8 @@ const Tax = () => {
                                         <p className={`variation ${tax.variation >= 0 ? 'success' : 'danger'}`}>{tax.variation}</p>
                                     </div>
                                     <button onClick={() => getTax(tax.symbol)}>Tax</button>
+
+                                    {openTaxModal && <TaxModal closeModal={() => setOpenTaxModal(false)} currentTax={currentTax}  />}
                                     
                                 </div>
                             </div>
@@ -89,11 +99,6 @@ const Tax = () => {
 
                     )}
 
-                    <div className='tax_info'>
-
-                        {currentTax?.name}
-
-                    </div>
                    
 
                 </div>

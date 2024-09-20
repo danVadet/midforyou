@@ -189,6 +189,7 @@ const Conteiner = () => {
         return () => {
             
             window.removeEventListener("beforeunload", deleteAllProdutos);
+           
         }
 
     }, [search]);

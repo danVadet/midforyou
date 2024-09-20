@@ -4,7 +4,6 @@ import incotermsIcons from '../icotermsIcons.json'
 
 import { Incoterm } from '../models/Incoterm';
 import { useEffect, useState } from 'react';
-import TooltipIncoterms from './TooltipIncoterm';
 import TooltipIncoterm from './TooltipIncoterm';
 
 const Incoterms = () => {
@@ -52,7 +51,6 @@ const Incoterms = () => {
       <h1>Incoterms</h1>
       <div className={`${styles.incotermsComponent}`}>
 
-
         <div className={`${styles.incotermsLeft}`}>
           <select className={`${styles.selectedIncoterm}`} onChange={(e) => handleChangeSelectIncoterm(e)}>
             {options.map((option, index) => (
@@ -98,7 +96,10 @@ const Incoterms = () => {
 
              
                              <div className={`${styles.factory__bar}`} style={{width: selectedIncoterm.costStage === 0 ? "calc(calc(100% / 19) * 2)" : ""  
-                             ||  selectedIncoterm.costStage === 1 ? "calc(calc(100% / 19) * 4)" : ""  ||  selectedIncoterm.costStage === 2 ? "calc(calc(100% / 19) * 6)" : "" }}>
+                             ||  selectedIncoterm.costStage === 1 ? "calc(calc(100% / 19) * 4)" : ""  ||  selectedIncoterm.costStage === 2 ? "calc(calc(100% / 19) * 6)" : "" 
+                             ||  selectedIncoterm.costStage === 3 ? "calc(calc(100% / 19) * 8)" : "" ||  selectedIncoterm.costStage === 4 ? "calc(calc(100% / 19) * 10)" : ""
+                             || selectedIncoterm.costStage === 5 ? "calc(calc(100% / 19) * 12 )" : "" || selectedIncoterm.costStage === 6 ? "calc(calc(100% / 19) * 14 )" : "" 
+                             ||  selectedIncoterm.costStage === 7 ? "calc(calc(100% / 19) * 16 )" : ""  || selectedIncoterm.costStage === 8 ? "calc(calc(100% / 19) * 18 )" : "" }}>
                     <span>Fábrica</span>
                 </div>
 
@@ -109,7 +110,10 @@ const Incoterms = () => {
             <div className={`${styles.incotermStage} ${styles.incotermStage__risk}`}>
             
                              <div className={`${styles.factory__bar}`} style={{width: selectedIncoterm.riskStage === 0 ? "calc(calc(100% / 19) * 2)" : ""  
-                             || selectedIncoterm.riskStage === 1 ? "calc(calc(100% / 19) * 4)" : "" || selectedIncoterm.riskStage === 2 ? "calc(calc(100% / 19) * 6)" : ""  }}>
+                             || selectedIncoterm.riskStage === 1 ? "calc(calc(100% / 19) * 4)" : "" || selectedIncoterm.riskStage === 2 ? "calc(calc(100% / 19) * 6)" : "" 
+                             ||   selectedIncoterm.riskStage === 3 ? "calc(calc(100% / 19) * 8)" : "" ||  selectedIncoterm.riskStage === 4 ? "calc(calc(100% / 19) * 10)" : ""
+                             || selectedIncoterm.riskStage === 5 ? "calc(calc(100% / 19) * 12 )" : "" || selectedIncoterm.riskStage === 6 ? "calc(calc(100% / 19) * 14 )" : "" 
+                             ||  selectedIncoterm.riskStage === 7 ? "calc(calc(100% / 19) * 16 )" : ""  || selectedIncoterm.riskStage === 8 ? "calc(calc(100% / 19) * 18 )" : "" }}>
                     <span>Fábrica</span>
                 </div> 
                 
@@ -118,22 +122,14 @@ const Incoterms = () => {
                 </div>
             </div>
             <div className={`${styles.incotermStage} ${styles.incotermStage__safety}`}>
-            {selectedIncoterm.safetyStage === 0 ? 
-                             <div className={`${styles.factory__bar}`} style={{width: selectedIncoterm.safetyStage === 0 ? "calc(calc(100% / 19) * 2)" : "" }}>
-                    <span>Fábrica</span>
-                    <span></span>
-                </div> : <></>}
-                {selectedIncoterm.safetyStage === 1 ? 
-                             <div className={`${styles.factory__bar}`} style={{width: selectedIncoterm.safetyStage === 1 ? "calc(calc(100% / 19) * 4)" : "" }}>
-                    <span>Fábrica</span>
-                    <span></span>
-                </div> : <></>}
-                {selectedIncoterm.safetyStage === 2 ? 
-                             <div className={`${styles.factory__bar}`} style={{width: selectedIncoterm.safetyStage === 2 ? "calc(calc(100% / 19) * 6)" : "" }}>
-                    <span>Fábrica</span>
-                    <span></span>
-                </div> : <></>}
 
+                             <div className={`${styles.factory__bar}`} style={{width: selectedIncoterm.safetyStage === 0 ? "calc(calc(100% / 19) * 2)" : ""  
+                             || selectedIncoterm.safetyStage === 1 ? "calc(calc(100% / 19) * 4)" : "" ||   selectedIncoterm.safetyStage === 2 ? "calc(calc(100% / 19) * 6)" : ""  
+                             ||  selectedIncoterm.safetyStage === 3 ? "calc(calc(100% / 19) * 8)" : "" ||  selectedIncoterm.safetyStage === 4 ? "calc(calc(100% / 19) * 10)" : ""
+                             || selectedIncoterm.safetyStage === 5 ? "calc(calc(100% / 19) * 12 )" : "" || selectedIncoterm.safetyStage === 6 ? "calc(calc(100% / 19) * 14 )" : "" 
+                             ||  selectedIncoterm.safetyStage === 7 ? "calc(calc(100% / 19) * 16 )" : ""  || selectedIncoterm.safetyStage === 8 ? "calc(calc(100% / 19) * 18 )" : ""}}>
+                    <span>Fábrica</span>
+                </div> 
                 <div className={`${styles.customer__bar}`}>
                   <span>Cliente</span>
                 </div>

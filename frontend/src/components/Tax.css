@@ -66,9 +66,10 @@
     font-weight: 400;
     color: rgb(255, 255, 255);
 }
-.chart {
-    background-color: white;
+.clickTax {
+    gap: 20rem;
+
 }
-.tax_info {
-    background-color: red;
+.clickTax:hover {
+    background-color: rgba(255, 255, 255, 0.267);
 }
