@@ -1,5 +1,4 @@
 import FormatCurrencyName from "../Library/FormatCurrencyName";
-import ITaxKeys from "../models/ITaxKeys";
 import { ITaxModel } from "../models/ITaxModel"
 import styles from './TaxModal.module.css'
 import { Line } from 'react-chartjs-2';
@@ -10,6 +9,9 @@ import {
     LinearScale,
     PointElement
 } from 'chart.js'
+import { useEffect, useState } from "react";
+import axios from "axios";
+import ITaxKeys from "../models/ITaxKeys";
 
 ChartJS.register(LineElement, CategoryScale, LinearScale, PointElement);
 
@@ -20,7 +22,28 @@ interface ITaxModalProps {
 
 }
 
-const TaxModal = (props : ITaxModalProps) => {
+
+const TaxModal =  (props : ITaxModalProps) => {
+    let [taxDays, setDaysTax] = useState<number []>([]);
+
+
+    useEffect (() => {
+        getDays();
+
+    });
+
+    const getDays = async () => {
+        const response =  await axios.get(`http://economia.awesomeapi.com.br/json/${props.currentTax?.symbol}/365`);
+        const quote = response.data;
+
+        const daysArray: number [] = [];
+        
+        Object.keys(quote).map((key) => {
+            daysArray.push(quote[key].bid);
+        });
+        console.log(daysArray);
+   
+    }
 
     return (
         <div className={`${styles.modal}`}>
@@ -33,22 +56,21 @@ const TaxModal = (props : ITaxModalProps) => {
 
             
         <div className={`${styles.taxInfo}`}>
-
-        <p> {props.currentTax?.symbol} </p>
+            
+        <p> {props.currentTax?.name && FormatCurrencyName({ key: props.currentTax?.name })}  </p>
+        <p className={`${styles.variation} ${props.currentTax?.variation && props.currentTax?.variation >= 0 ?  `${styles.success}` : `${styles.danger}`}`}>{props.currentTax?.variation}</p>
+        
         <Line data={{
-            labels: [props.currentTax?.value],
+            labels: [taxDays.map((tax) => {
+                return tax;
+        })],
             datasets: [{
-                data: [props.currentTax?.variation]
+                data: [props.currentTax?.value],
+                borderColor: '#EEBC1D'
             }
                 
             ]
         }}/>
-
-    
-
-
-        
-
 </div>
 
 </div>

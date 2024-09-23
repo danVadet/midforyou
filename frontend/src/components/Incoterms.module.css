@@ -9,9 +9,12 @@
 .incotermsLeft, .incotermsRight {
   display: flex;
   flex-direction: column;
-  gap: 10px;
   margin: 10px;
 
+}
+.incotermsLeft, .selectedIncoterm{
+ margin-bottom: 200px;
+ padding: 15px;
 }
 .incotermStages {
     display: flex;
@@ -24,10 +27,6 @@
   display: flex;
   gap: 5rem;
   
-}
-.incotermsInformations {
-  display: flex;
-  flex-direction: column;
 }
 .incotermStage {
     display: flex;
@@ -47,14 +46,13 @@
   color: rgb(0, 0, 0);
   justify-content: flex-end;
 }
-
-.factory__bar__size__1{
-  width: calc(calc(100% / 19) * 4);
-
-}
-.__size__2 {
-  width: calc(calc(100% / 19) * 6);
-
+.line {
+  position: absolute;
+background-color: rgb(0, 0, 0);
+ width: 1px;
+ height: 232px;
+ right: -48px;
+ top: 0;
 }
 
 .incotermStage__cost .factory__bar {
@@ -68,12 +66,9 @@
 }
 
 .captions {
-  margin: 90px 0;
     display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    flex-direction: row;
-    gap: 0;
+    align-items: center;
+    justify-content: end;
 
 }
 .captions__cost,
@@ -99,6 +94,13 @@
   }
   .captions__safety .square {
     background-color: #30bb50;
+  }
+  .incotermTitle {
+    margin: 15px 0;
+  }
+  .incotermsInformations {
+    display: flex;
+    gap: 0.8rem;
   }
 
 @media (max-width: 720px) {

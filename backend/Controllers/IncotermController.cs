@@ -61,8 +61,10 @@ public class IncotermController : ControllerBase
             return NotFound();
 
         }
-     
-        incotermCurrent.modal = incoterm.modal;
+        
+        incotermCurrent.costStage = incoterm.costStage;
+        incotermCurrent.riskStage = incoterm.riskStage;
+        incotermCurrent.safetyStage = incoterm.safetyStage;
    
 
        _applicationDbContext.Incoterms.Update(incotermCurrent);

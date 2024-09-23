@@ -29,3 +29,14 @@ border-radius: 5px;
  .infoTax {
     background-color: white;
  }
+ .variation {
+    font-family: 'Roboto';
+    font-size: 10px;
+    font-weight: 400;
+}
+.success{
+    color: #4BB543;
+  }
+  .danger {
+    color: #DE2C2C;
+  }
