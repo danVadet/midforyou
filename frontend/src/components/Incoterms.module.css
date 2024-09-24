@@ -14,7 +14,7 @@
 }
 .incotermsLeft, .selectedIncoterm{
  margin-bottom: 200px;
- padding: 15px;
+ padding: 20px;
 }
 .incotermStages {
     display: flex;
@@ -46,23 +46,21 @@
   color: rgb(0, 0, 0);
   justify-content: flex-end;
 }
-.line {
-  position: absolute;
-background-color: rgb(0, 0, 0);
- width: 1px;
- height: 232px;
- right: -48px;
- top: 0;
-}
 
 .incotermStage__cost .factory__bar {
   background-color: #edc13b;
+  border-radius: 0.25rem;
+
 }
 .incotermStage__risk .factory__bar {
   background-color: #6b7799;
+  border-radius: 0.25rem;
+
 }
 .incotermStage__safety .factory__bar {
   background-color: #30bb50;
+  border-radius: 0.25rem;
+
 }
 
 .captions {
@@ -101,6 +99,10 @@ background-color: rgb(0, 0, 0);
   .incotermsInformations {
     display: flex;
     gap: 0.8rem;
+  }
+  .incotermsInformations span {
+    margin: 5px;
+    font-size: 16px;
   }
 
 @media (max-width: 720px) {

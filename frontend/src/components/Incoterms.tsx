@@ -101,10 +101,10 @@ const Incoterms = () => {
 
              
                              <div className={`${styles.factory__bar}`} style={{width: selectedIncoterm.costStage === 0 ? "calc(calc(100% / 18) * 2)" : ""  
-                             ||  selectedIncoterm.costStage === 1 ? "calc(calc(100% / 22) * 4)" : ""  ||  selectedIncoterm.costStage === 2 ? "calc(calc(100% / 20) * 6)" : "" 
-                             ||  selectedIncoterm.costStage === 3 ? "calc(calc(100% / 22) * 8)" : "" ||  selectedIncoterm.costStage === 4 ? "calc(calc(100% / 19) * 10)" : ""
-                             || selectedIncoterm.costStage === 5 ? "calc(calc(100% / 20) * 12 )" : "" || selectedIncoterm.costStage === 6 ? "calc(calc(100% / 16) * 14 )" : "" 
-                             ||  selectedIncoterm.costStage === 7 ? "calc(calc(100% / 17) * 16 )" : ""  || selectedIncoterm.costStage === 8 ? "calc(calc(100% / 18) * 18 )" : "" }}>
+                             ||  selectedIncoterm.costStage === 1 ? "calc(calc(100% / 22) * 4)" : ""  ||  selectedIncoterm.costStage === 2 ? "calc(calc(100% / 17) * 6)" : "" 
+                             ||  selectedIncoterm.costStage === 3 ? "calc(calc(100% / 20) * 8)" : "" ||  selectedIncoterm.costStage === 4 ? "calc(calc(100% / 19) * 10)" : ""
+                             || selectedIncoterm.costStage === 5 ? "calc(calc(100% / 20) * 12 )" : "" || selectedIncoterm.costStage === 6 ? "calc(calc(100% / 23) * 14 )" : "" 
+                             ||  selectedIncoterm.costStage === 7 ? "calc(calc(100% / 22.5) * 16 )" : ""  || selectedIncoterm.costStage === 8 ? "calc(calc(100% / 18) * 18 )" : "" }}>
                     <span>Fábrica</span>
                 </div>
 
@@ -119,9 +119,9 @@ const Incoterms = () => {
             
                              <div className={`${styles.factory__bar}`} style={{width: selectedIncoterm.riskStage === 0 ? "calc(calc(100% / 18) * 2)" : ""  
                              || selectedIncoterm.riskStage === 1 ? "calc(calc(100% / 22) * 4)" : "" || selectedIncoterm.riskStage === 2 ? "calc(calc(100% / 20 ) * 6)" : "" 
-                             ||   selectedIncoterm.riskStage === 3 ? "calc(calc(100% / 22) * 8)" : "" ||  selectedIncoterm.riskStage === 4 ? "calc(calc(100% / 19) * 10)" : ""
-                             || selectedIncoterm.riskStage === 5 ? "calc(calc(100% / 20) * 12 )" : "" || selectedIncoterm.riskStage === 6 ? "calc(calc(100% / 16) * 14 )" : "" 
-                             ||  selectedIncoterm.riskStage === 7 ? "calc(calc(100% / 17) * 16 )" : ""  || selectedIncoterm.riskStage === 8 ? "calc(calc(100% / 18) * 18 )" : "" }}>
+                             ||   selectedIncoterm.riskStage === 3 ? "calc(calc(100% / 20) * 8)" : "" ||  selectedIncoterm.riskStage === 4 ? "calc(calc(100% / 19) * 10)" : ""
+                             || selectedIncoterm.riskStage === 5 ? "calc(calc(100% / 20) * 12 )" : "" || selectedIncoterm.riskStage === 6 ? "calc(calc(100% / 23) * 14 )" : "" 
+                             ||  selectedIncoterm.riskStage === 7 ? "calc(calc(100% / 22.5) * 16 )" : ""  || selectedIncoterm.riskStage === 8 ? "calc(calc(100% / 18) * 18 )" : "" }}>
                     <span>Fábrica</span>
                 </div> 
                 <div className={`${styles.customer__bar}`}>
@@ -132,9 +132,9 @@ const Incoterms = () => {
 
                              <div className={`${styles.factory__bar}`} style={{width: selectedIncoterm.safetyStage === 0 ? "calc(calc(100% / 18) * 2)" : ""  
                              || selectedIncoterm.safetyStage === 1 ? "calc(calc(100% / 22) * 4)" : "" ||   selectedIncoterm.safetyStage === 2 ? "calc(calc(100% / 20) * 6)" : ""  
-                             ||  selectedIncoterm.safetyStage === 3 ? "calc(calc(100% / 22) * 8)" : "" ||  selectedIncoterm.safetyStage === 4 ? "calc(calc(100% / 19) * 10)" : ""
-                             || selectedIncoterm.safetyStage === 5 ? "calc(calc(100% / 20) * 12 )" : "" || selectedIncoterm.safetyStage === 6 ? "calc(calc(100% / 16) * 14 )" : "" 
-                             ||  selectedIncoterm.safetyStage === 7 ? "calc(calc(100% / 17) * 16 )" : ""  || selectedIncoterm.safetyStage === 8 ? "calc(calc(100% / 18) * 18 )" : ""}}>
+                             ||  selectedIncoterm.safetyStage === 3 ? "calc(calc(100% / 20) * 8)" : "" ||  selectedIncoterm.safetyStage === 4 ? "calc(calc(100% / 19) * 10)" : ""
+                             || selectedIncoterm.safetyStage === 5 ? "calc(calc(100% / 20) * 12 )" : "" || selectedIncoterm.safetyStage === 6 ? "calc(calc(100% / 23) * 14 )" : "" 
+                             ||  selectedIncoterm.safetyStage === 7 ? "calc(calc(100% / 22.5) * 16 )" : ""  || selectedIncoterm.safetyStage === 8 ? "calc(calc(100% / 18) * 18 )" : ""}}>
                     <span>Fábrica</span>
                 </div> 
                 <div className={`${styles.customer__bar}`}>
