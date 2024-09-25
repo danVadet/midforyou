@@ -4,5 +4,6 @@ export interface ITaxModel {
     name: ITaxKeys;
     value: number;
     variation: number;
-    symbol: string;
+    currencyCode: string;
+    day: string;
 }

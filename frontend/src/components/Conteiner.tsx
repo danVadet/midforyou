@@ -40,7 +40,6 @@ const Conteiner = () => {
 
     });
     const [submitted, setSubmitted] = useState(false);
-    const [isLoading, setIsLoading] = useState(false);
 
     const [selectedContainer, setSelectedConatiner] = useState<Container>({
         id: 0,
@@ -102,20 +101,13 @@ const Conteiner = () => {
                 volume: product.volume,
             });
             console.log(response.data);
-            setIsLoading(true);
             setSubmitted(true);
             setMessage(true);
-        
 
+            window.location.reload();
         }
-
-
-
     }
     const handleEditProduct = async (id: number) => {
-
-
-    
         const response = await axios.get(`http://localhost:5077/products/${id}`);
         console.log(response.data);
         setProductCurrent(response.data);
@@ -184,20 +176,15 @@ const Conteiner = () => {
         getSumVolumeTotal();
         getContainers();
         
-        window.addEventListener("beforeunload", deleteAllProdutos);
+       window.addEventListener("beforeunload", deleteAllProdutos);
 
         return () => {
             
-            window.removeEventListener("beforeunload", deleteAllProdutos);
-           
+            window.addEventListener("beforeunload", deleteAllProdutos);           
         }
+            
 
     }, [search]);
-
-
-    if(isLoading){
-        return <Conteiner/>
-    }
 
     return (
         <>

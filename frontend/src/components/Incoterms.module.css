@@ -46,9 +46,9 @@
   color: rgb(0, 0, 0);
   justify-content: flex-end;
 }
-
-.incotermStage__cost .factory__bar {
+.incotermStage__cost .factory__bar{
   background-color: #edc13b;
+  width: calc(calc(100% / 18) * 2);
   border-radius: 0.25rem;
 
 }

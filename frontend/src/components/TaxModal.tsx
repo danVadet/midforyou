@@ -7,13 +7,13 @@ import {
     LineElement,
     CategoryScale,
     LinearScale,
-    PointElement
+    PointElement,
+    Tooltip,
 } from 'chart.js'
 import { useEffect, useState } from "react";
 import axios from "axios";
-import ITaxKeys from "../models/ITaxKeys";
 
-ChartJS.register(LineElement, CategoryScale, LinearScale, PointElement);
+ChartJS.register(LineElement, CategoryScale, LinearScale, PointElement, Tooltip);
 
 
 interface ITaxModalProps {
@@ -24,29 +24,44 @@ interface ITaxModalProps {
 
 
 const TaxModal =  (props : ITaxModalProps) => {
-    let [taxDays, setDaysTax] = useState<number []>([]);
+    let [valueBidData, setValueBidData] = useState<number []>([]);
+
+
 
 
     useEffect (() => {
         getDays();
 
-    });
+    }, [valueBidData]);
 
     const getDays = async () => {
-        const response =  await axios.get(`http://economia.awesomeapi.com.br/json/${props.currentTax?.symbol}/365`);
+        const response =  await axios.get(`http://economia.awesomeapi.com.br/json/${props.currentTax?.currencyCode}/30`);
         const quote = response.data;
 
-        const daysArray: number [] = [];
+        const valueBidArray: number [] = [];
+        let day  = new Date (30);
         
         Object.keys(quote).map((key) => {
-            daysArray.push(quote[key].bid);
+            valueBidArray.push(quote[key].bid);
         });
-        console.log(daysArray);
+
+      console.log(valueBidArray);
+      console.log(day);
+
+     
+
+      setValueBidData(valueBidArray);
+     
    
     }
 
     return (
-        <div className={`${styles.modal}`}>
+
+    
+    
+       
+    
+         <div className={`${styles.modal}`}>
         <div className={`${styles.modalBody}`}>
         <a className={`${styles.closeButton}`} onClick={() => props.closeModal()}>
              <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="30" height="30" viewBox="0,0,256,256">
@@ -61,12 +76,10 @@ const TaxModal =  (props : ITaxModalProps) => {
         <p className={`${styles.variation} ${props.currentTax?.variation && props.currentTax?.variation >= 0 ?  `${styles.success}` : `${styles.danger}`}`}>{props.currentTax?.variation}</p>
         
         <Line data={{
-            labels: [taxDays.map((tax) => {
-                return tax;
-        })],
+            labels: ['Jan', 'Fev', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Set', 'Out', 'Nov', 'Dec'],
             datasets: [{
-                data: [props.currentTax?.value],
-                borderColor: '#EEBC1D'
+                data: valueBidData.map(tax => tax),
+                borderColor: 'rgb(0, 175, 239)',
             }
                 
             ]
@@ -77,6 +90,7 @@ const TaxModal =  (props : ITaxModalProps) => {
         
             
         </div>
+        
 
     );
 }

@@ -21,16 +21,16 @@ const Tax = () => {
         const taxesArray: ITaxModel[] = [];
 
         Object.keys(quotes).map((key) => {
-            taxesArray.push({ name: key as ITaxKeys, symbol: `${quotes[key].code}-${quotes[key].codein}`, value: quotes[key].bid, variation: quotes[key].pctChange });
+            taxesArray.push({ name: key as ITaxKeys, currencyCode: `${quotes[key].code}-BRL`, value: quotes[key].bid, variation: quotes[key].pctChange, day: quotes[key].create_date});
         });
         setTaxes(taxesArray);
     }
-    const getTax = async (symbol: string) => {
-        const response = await axios.get(`http://economia.awesomeapi.com.br/last/${symbol}`);
+    const getTax = async (currencyCode: string) => {
+        const response = await axios.get(`http://economia.awesomeapi.com.br/last/${currencyCode}`);
         const quote = response.data;
         
         Object.keys(quote).map((key) => {
-            currentTax = { name: key as ITaxKeys, symbol: `${quote[key].code}-${quote[key].codein}`, value: quote[key].bid, variation: quote[key].pctChange };
+            currentTax = { name: key as ITaxKeys, currencyCode: `${quote[key].code}-BRL`, value: quote[key].bid, variation: quote[key].pctChange, day:  quote[key].create_date  };
         });
         console.log(currentTax);
         
@@ -65,7 +65,7 @@ const Tax = () => {
                                     <p className="value">{tax.value}</p>
                                     <p className={`variation ${tax.variation >= 0 ? 'success' : 'danger'}`}>{tax.variation}</p>
                                 </div>
-                                <button onClick={() => getTax(tax.symbol)}>Tax</button>
+                                <button onClick={() => getTax(tax.currencyCode)}>Tax</button>
 
                                 {openTaxModal && <TaxModal closeModal={() => setOpenTaxModal(false)} currentTax={currentTax} />}
 

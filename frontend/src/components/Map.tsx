@@ -153,8 +153,8 @@ const Map = () => {
     <select onChange={(e) => onChangeSelectState(e)} >
       <option selected disabled hidden>Estados do Brasil</option>
       {markers.map((marker, index) => (
-        <option value={marker.id} key={index}>{marker.label}</option>
-      ))}
+                   <option value={marker.id} key={index}>{marker.label}</option>
+                ))}
 
     </select>
 
@@ -207,35 +207,19 @@ const Map = () => {
 </svg></button>
 
       </form>
-
-
       <div className={`${styles.listPorts}`}>
 
         {portsMarker.map((portMarker, index) => (
 
-          
-
           <div className={`${styles.content}`} key={index}>
-
-
-            {marker.id === portMarker.markerId && portMarker.portType === "SEA" ? <>
-              <div className={`${styles.infoPorts}`}>
+            {marker.id === portMarker.markerId && <div className={`${styles.infoPorts}`}>
                 <img src={`${portMarker.urlImage}`} width={40} height={40} alt="" />
                 <h1>{portMarker.label}</h1>
 
               </div>
 
-            </> : <> </>}
+             }
 
-            {marker.id === portMarker.markerId && portMarker.portType === "AIR" ? <>
-
-              <div className={`${styles.infoPorts}`}>
-
-                <img src={`${portMarker.urlImage}`} width={40} height={40} alt="" />
-                <h1>{portMarker.label}</h1>
-              </div>
-
-            </> : <></>}
           </div>
 
         ))}
