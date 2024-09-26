@@ -42,13 +42,45 @@
   justify-content: flex-start;
 }
 
-.factory__bar {
+.factory__bar  {
   color: rgb(0, 0, 0);
   justify-content: flex-end;
 }
+.costStage0, .riskStage0, .safetyStage0  {
+  width: calc(calc(100% / 18) * 2);
+}
+.costStage1, .riskStage1, .safetyStage1  {
+   width: calc(calc(100% / 22) * 4);
+}
+
+.costStage2 {
+  width: calc(calc(100% / 17) * 6);
+}
+
+.riskStage2, .safetyStage2 {
+  width: calc(calc(100% / 20 ) * 6);
+}
+.costStage3, .riskStage3, .safetyStage3 {
+  width: calc(calc(100% / 20) * 8);
+}
+.costStage4, .riskStage4, .safetyStage4 {
+  width: calc(calc(100% / 19) * 10);
+}
+.costStage5, .riskStage5, .safetyStage5 {
+  width: calc(calc(100% / 20) * 12 );
+}
+.costStage6, .riskStage6, .safetyStage6 {
+  width: calc(calc(100% / 23) * 14 );
+}
+.costStage7, .riskStage7, .safetyStage7 {
+  width: calc(calc(100% / 22.5) * 16 );
+}
+.costStage8, .riskStage8, .safetyStage8 {
+  width: calc(calc(100% / 18) * 18 );
+}
+
 .incotermStage__cost .factory__bar{
   background-color: #edc13b;
-  width: calc(calc(100% / 18) * 2);
   border-radius: 0.25rem;
 
 }
@@ -105,17 +137,18 @@
     font-size: 16px;
   }
 
-@media (max-width: 720px) {
+@media screen and (max-width: 830px) {
 
   .incotermsComponent {
+    width: 100%;
+    margin:  0 5px;
     flex-direction: column;
   
   }
-  .incotermsLeft {
-    flex-direction: row;
-
-  
-  }
+  .incotermsLeft, .selectedIncoterm{
+    margin: 0;
+    padding: 20px;
+   }
   .incotermStages {
     width: 90%;
     margin: 0 50px;
@@ -125,12 +158,37 @@
     
   }
   .inco {
-    background-color: red;
     gap: 5px;
   }
- 
-    
-    
+  .costStage0, .riskStage0, .safetyStage0  {
+    width: calc(calc(100% / 12) * 2);
+  }
+  .costStage1, .riskStage1, .safetyStage1  {
+    width: calc(calc(100% / 8) * 2);
+  }
+  .costStage2 {
+    width: calc(calc(100% / 13) * 6);
+  }
+  .riskStage2, .safetyStage2 {
+    width: calc(calc(100% / 15 ) * 6);
+  }
+  .costStage3, .riskStage3, .safetyStage3 {
+    width: calc(calc(100% / 16) * 8);
+  }
+  .costStage4, .riskStage4, .safetyStage4 {
+    width: calc(calc(100% / 15) * 10);
+  }
+  .costStage5, .riskStage5, .safetyStage5 {
+    width: calc(calc(100% / 16) * 12 );
+  }
+  .costStage6, .riskStage6, .safetyStage6 {
+    width: calc(calc(100% / 19) * 14 );
+  }
+  .costStage6, .riskStage6, .safetyStage6 {
+    width: calc(calc(100% / 19) * 14 );
+  }
+  .costStage7, .riskStage7, .safetyStage7 {
+    width: calc(calc(100% / 18) * 16 );
+  }
 
 }
-

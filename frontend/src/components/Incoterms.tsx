@@ -16,8 +16,8 @@ const Incoterms = () => {
     riskStage: 0,
     safetyStage: 0,
     freightDetails: "" || "Responsabilidade da fábrica",
-    modal: ""  || "Aquaviário",
-    moreDetails: "" ||  "Ex Works (EXW) coloca a máxima responsabilidade sobre o comprador, incluindo todos os custos de transporte, riscos e liberação de exportação e importação. O vendedor é apenas responsável por disponibilizar as mercadorias em suas instalações ou outro local nomeado (fábrica, armazém, etc.). O comprador arca com todos os custos e riscos envolvidos em levar as mercadorias até o destino desejado."
+    modal: "" || "Aquaviário",
+    moreDetails: "" || "Ex Works (EXW) coloca a máxima responsabilidade sobre o comprador, incluindo todos os custos de transporte, riscos e liberação de exportação e importação. O vendedor é apenas responsável por disponibilizar as mercadorias em suas instalações ou outro local nomeado (fábrica, armazém, etc.). O comprador arca com todos os custos e riscos envolvidos em levar as mercadorias até o destino desejado."
 
   });
 
@@ -58,10 +58,9 @@ const Incoterms = () => {
             ))}
           </select>
 
-         
         </div>
         <div className={`${styles.incotermsRight}`}>
-        <div className={`${styles.deail__line}`}>
+          <div className={`${styles.deail__line}`}>
             <div className={`${styles.captions}`}>
               <div className={`${styles.captions__cost}`}>
                 <div className={`${styles.square}`}></div>
@@ -77,73 +76,68 @@ const Incoterms = () => {
               </div>
             </div>
           </div>
-          
+
           <div className={`${styles.inco}`}>
             {incotermsIcons.map((incotermIcon, index) => (
               <TooltipIncoterm disabled={false} text={`${incotermIcon.name}`} key={index}>
-                  
-               <>
-               <img src={incotermIcon.icon} />
-               <h4>{incotermIcon.name}</h4>
-               </>
 
-                </TooltipIncoterm>
-              
+                <>
+                  <img src={incotermIcon.icon} />
+                  <h4>{incotermIcon.name}</h4>
+                </>
+
+              </TooltipIncoterm>
+
             ))}
-               
+
           </div>
-             
-     
 
           <div className={`${styles.incotermStages}`}>
-         
+
             <div className={`${styles.incotermStage} ${styles.incotermStage__cost}`}>
 
-             
-                             <div className={`${styles.factory__bar}`} style={{width: selectedIncoterm.costStage === 0 ? "calc(calc(100% / 18) * 2)" : ""  
-                             ||  selectedIncoterm.costStage === 1 ? "calc(calc(100% / 22) * 4)" : ""  ||  selectedIncoterm.costStage === 2 ? "calc(calc(100% / 17) * 6)" : "" 
-                             ||  selectedIncoterm.costStage === 3 ? "calc(calc(100% / 20) * 8)" : "" ||  selectedIncoterm.costStage === 4 ? "calc(calc(100% / 19) * 10)" : ""
-                             || selectedIncoterm.costStage === 5 ? "calc(calc(100% / 20) * 12 )" : "" || selectedIncoterm.costStage === 6 ? "calc(calc(100% / 23) * 14 )" : "" 
-                             ||  selectedIncoterm.costStage === 7 ? "calc(calc(100% / 22.5) * 16 )" : ""  || selectedIncoterm.costStage === 8 ? "calc(calc(100% / 18) * 18 )" : "" }}>
-                    <span>Fábrica</span>
-                </div>
+              <div className={`${styles.factory__bar} ${selectedIncoterm.costStage === 0 && styles.costStage0}
+                 ${selectedIncoterm.costStage === 1 && styles.costStage1} ${selectedIncoterm.costStage === 2 && styles.costStage2}
+                 ${selectedIncoterm.costStage === 3 && styles.costStage3} ${selectedIncoterm.costStage === 4 && styles.costStage4}
+                 ${selectedIncoterm.costStage === 5 && styles.costStage5} ${selectedIncoterm.costStage === 6 && styles.costStage6}
+                 ${selectedIncoterm.costStage === 7 && styles.costStage7} ${selectedIncoterm.costStage === 8 && styles.costStage8}`} >
+              <span>Fábrica</span>
+              </div>
 
-
-               
-
-                <div className={`${styles.customer__bar}`}>
-                  <span>Cliente</span>
-                </div>
+              <div className={`${styles.customer__bar}`}>
+                <span>Cliente</span>
+              </div>
             </div>
             <div className={`${styles.incotermStage} ${styles.incotermStage__risk}`}>
-            
-                             <div className={`${styles.factory__bar}`} style={{width: selectedIncoterm.riskStage === 0 ? "calc(calc(100% / 18) * 2)" : ""  
-                             || selectedIncoterm.riskStage === 1 ? "calc(calc(100% / 22) * 4)" : "" || selectedIncoterm.riskStage === 2 ? "calc(calc(100% / 20 ) * 6)" : "" 
-                             ||   selectedIncoterm.riskStage === 3 ? "calc(calc(100% / 20) * 8)" : "" ||  selectedIncoterm.riskStage === 4 ? "calc(calc(100% / 19) * 10)" : ""
-                             || selectedIncoterm.riskStage === 5 ? "calc(calc(100% / 20) * 12 )" : "" || selectedIncoterm.riskStage === 6 ? "calc(calc(100% / 23) * 14 )" : "" 
-                             ||  selectedIncoterm.riskStage === 7 ? "calc(calc(100% / 22.5) * 16 )" : ""  || selectedIncoterm.riskStage === 8 ? "calc(calc(100% / 18) * 18 )" : "" }}>
-                    <span>Fábrica</span>
-                </div> 
-                <div className={`${styles.customer__bar}`}>
-                  <span>Cliente</span>
-                </div>
+            <div className={`${styles.factory__bar} ${selectedIncoterm.riskStage === 0 && styles.riskStage0}
+                  ${selectedIncoterm.riskStage === 1 && styles.riskStage1} ${selectedIncoterm.riskStage === 2 && styles.riskStage2}
+                  ${selectedIncoterm.riskStage === 3 && styles.riskStage3} ${selectedIncoterm.riskStage === 4 && styles.riskStage4}
+                  ${selectedIncoterm.riskStage === 5 && styles.riskStage5} ${selectedIncoterm.riskStage === 6 && styles.riskStage6}
+                  ${selectedIncoterm.riskStage === 7 && styles.riskStage7} ${selectedIncoterm.riskStage === 8 && styles.riskStage8}`} >
+              <span>Fábrica</span>
+              </div>
+
+              <div className={`${styles.customer__bar}`}>
+                <span>Cliente</span>
+              </div>
             </div>
+
             <div className={`${styles.incotermStage} ${styles.incotermStage__safety}`}>
 
-                             <div className={`${styles.factory__bar}`} style={{width: selectedIncoterm.safetyStage === 0 ? "calc(calc(100% / 18) * 2)" : ""  
-                             || selectedIncoterm.safetyStage === 1 ? "calc(calc(100% / 22) * 4)" : "" ||   selectedIncoterm.safetyStage === 2 ? "calc(calc(100% / 20) * 6)" : ""  
-                             ||  selectedIncoterm.safetyStage === 3 ? "calc(calc(100% / 20) * 8)" : "" ||  selectedIncoterm.safetyStage === 4 ? "calc(calc(100% / 19) * 10)" : ""
-                             || selectedIncoterm.safetyStage === 5 ? "calc(calc(100% / 20) * 12 )" : "" || selectedIncoterm.safetyStage === 6 ? "calc(calc(100% / 23) * 14 )" : "" 
-                             ||  selectedIncoterm.safetyStage === 7 ? "calc(calc(100% / 22.5) * 16 )" : ""  || selectedIncoterm.safetyStage === 8 ? "calc(calc(100% / 18) * 18 )" : ""}}>
-                    <span>Fábrica</span>
-                </div> 
-                <div className={`${styles.customer__bar}`}>
-                  <span>Cliente</span>
-                </div>
+            <div className={`${styles.factory__bar} ${selectedIncoterm.safetyStage === 0 && styles.safetyStage0}
+                 ${selectedIncoterm.safetyStage === 1 && styles.safetyStage1}  ${selectedIncoterm.safetyStage === 2 && styles.safetyStage2}
+                 ${selectedIncoterm.safetyStage === 3 && styles.safetyStage3} ${selectedIncoterm.safetyStage === 4 && styles.safetyStage4}
+                 ${selectedIncoterm.safetyStage === 5 && styles.safetyStage5} ${selectedIncoterm.safetyStage === 6 && styles.safetyStage6}
+                 ${selectedIncoterm.safetyStage === 7 && styles.safetyStage7} ${selectedIncoterm.safetyStage === 8 && styles.safetyStage8}`} >
+              <span>Fábrica</span>
+              </div>
+              <div className={`${styles.customer__bar}`}>
+                <span>Cliente</span>
+              </div>
             </div>
           </div>
           <div>
-            
+
           </div>
 
           <h2 className={`${styles.incotermTitle}`}>{`${selectedIncoterm.acronym} - ${selectedIncoterm.name}`}</h2>
@@ -161,7 +155,6 @@ const Incoterms = () => {
               <strong>Mais detalhes:</strong>
               <span>{selectedIncoterm.moreDetails}</span>
             </span>
-
           </div>
 
         </div>

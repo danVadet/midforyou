@@ -104,7 +104,9 @@ const Conteiner = () => {
             setSubmitted(true);
             setMessage(true);
 
-            window.location.reload();
+            setProduct({id: 0,nome: '', quantidade: 0, volume: 0, peso: 0, pesoTotal: 0, volumeTotal: 0});
+
+            getProducts();
         }
     }
     const handleEditProduct = async (id: number) => {
@@ -176,11 +178,11 @@ const Conteiner = () => {
         getSumVolumeTotal();
         getContainers();
         
-       window.addEventListener("beforeunload", deleteAllProdutos);
+    //   window.addEventListener("beforeunload", deleteAllProdutos);
 
         return () => {
             
-            window.addEventListener("beforeunload", deleteAllProdutos);           
+          //  window.addEventListener("beforeunload", deleteAllProdutos);           
         }
             
 
@@ -196,15 +198,15 @@ const Conteiner = () => {
            
 
            
-           <input type="text" name="nome"  className={`${product.nome}` ? `${styles.valid}` : `${formErrors.nome && `${styles.invalid}` }`} placeholder="Digite o nome...." onChange={(e) => handleChange(e)} />
+           <input type="text" value={product.nome} name="nome"  className={`${product.nome}` ? `${styles.valid}` : `${formErrors.nome && `${styles.invalid}` }`} placeholder="Digite o nome...." onChange={(e) => handleChange(e)} />
           
          
            {formErrors && product.nome ? "" :   <div  className={styles.containerError}>  <p className={styles.formError}>{formErrors.nome}</p>  </div> }
            
 
-                    <input type="number" name="quantidade" placeholder="Digite a quantidade..."   onChange={(e) => handleChange(e)} />
-                    <input type="number" name="peso"   placeholder="Digite o peso..."  onChange={(e) => handleChange(e)} />
-                    <input type="number" name="volume" placeholder="Digite o volume..." onChange={(e) => handleChange(e)} />
+                    <input type="number" value={product.quantidade} name="quantidade" placeholder="Digite a quantidade..."   onChange={(e) => handleChange(e)} />
+                    <input type="number" value={product.peso} name="peso"   placeholder="Digite o peso..."  onChange={(e) => handleChange(e)} />
+                    <input type="number" value={product.volume} name="volume" placeholder="Digite o volume..." onChange={(e) => handleChange(e)} />
         
                     <button>Adicionar novo produto</button>
                 </form>
