@@ -5,7 +5,7 @@ import styles from './Footer.module.css'
 const Footer = () => {
     return (
         <footer>
-            <div className={`${styles.content}`}>
+          
                 <div className={`${styles.mediaSocial}`}>
 
                     <a href="https://www.facebook.com/mid4ubrasil/">
@@ -59,7 +59,7 @@ const Footer = () => {
 
 </div>
 
-            </div>
+        
         </footer>
 
     )

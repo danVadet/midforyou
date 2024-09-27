@@ -3,13 +3,8 @@ footer {
     width: 100%;
     background-color:  rgb(0, 175, 239);
     color: rgb(255, 255, 255);
+    padding: 58px 10%;
 }
-
-footer .content {
-    padding: 3rem 3.5rem;
-}
-
-
 
 footer .mediaSocial {
     display: flex;
@@ -42,4 +37,13 @@ footer .linkedinIcon {
     height: 40px;
     padding: 5px;
     border-radius: 20px;
+}
+
+@media screen and (max-width: 425px) {
+    footer  {
+        width: 135%;
+    }
+    
+
+
 }

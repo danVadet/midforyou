@@ -1,10 +1,6 @@
 
 import styles from './AboutServices.module.css'
 import AboutServiceCard from './AboutServiceCard';
-import ACI from '../assets/Acessoria comercial internacional.jpg'
-import AA from '../assets/Análise Aduaneira.jpg'
-import IE from '../assets/Importação e Exportação.jpg'
-import LQ from '../assets/Laboratório de Qualidade.jpg'
 import { useEffect, useState } from 'react';
 import  multiLang  from '../multiLang.json';
 
@@ -42,22 +38,22 @@ const AboutServices = ({card_1_title, card_1_description, card_2_title, card_2_d
         <>
             <div className={`${styles.about_services_component}`}>
                 <AboutServiceCard
-                    imageUrl={ACI}
+                    imageUrl={`./assets/Acessoria comercial internacional.jpg`}
                     imagePosition='left'
                     title={card_1_title}
                     description={card_1_description} />
                 <AboutServiceCard
-                    imageUrl={AA}
+                    imageUrl={`./assets/Análise Aduaneira.jpg`}
                     imagePosition='right'
                     title={card_2_title}
                     description={card_2_description} />
                 <AboutServiceCard
-                    imageUrl={IE}
+                    imageUrl={`./assets/Importação e Exportação.jpg`}
                     imagePosition='left'
                     title={card_3_title}
                     description={card_3_description} />
                 <AboutServiceCard
-                    imageUrl={LQ}
+                    imageUrl={`./assets/Laboratório de Qualidade.jpg`}
                     imagePosition='right'
                     title={card_4_title}
                     description={card_4_description} />

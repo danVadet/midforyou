@@ -65,7 +65,7 @@ const handleSubmit = async (e: React.FormEvent) => {
                    telefone: "Telefone obrigatório", 
                    email: "Email obrigatório", 
                    nomeEmpresa: "Nome da empresa obrigatório", 
-                   ramoAtividade: "Ramo da atividade obrigatória",
+                   ramoAtividade: "Ramo da atividade obrigatório",
                    local: "Local obrigatório",
                    mensagem: "Mensagem obrigatória"
                   })
@@ -106,22 +106,22 @@ const handleSubmit = async (e: React.FormEvent) => {
 
                     <label>Email</label>
                     <input type="email" name="email"   className={`${visitor.telefone}` || `${formErrors.telefone  && `${styles.invalid}`}`} value={visitor.email} onChange={(e) => handleChange(e)} />
-                    {formErrors && visitor.email ? "" : <p className={styles.formError}>{formErrors.nome}</p>}
+                    {formErrors && visitor.email ? "" : <p className={styles.formError}>{formErrors.email}</p>}
 
                     <label>Nome da empresa</label>
                     <input type="text" name="nomeEmpresa"  className={`${visitor.nomeEmpresa}` || `${formErrors.nomeEmpresa  && `${styles.invalid}`}`} onChange={(e) => handleChange(e)} />
                     {formErrors && visitor.nomeEmpresa ? "" : <p className={styles.formError}>{formErrors.nomeEmpresa}</p>}
                     <label>Ramo da atividade</label>
-                    <input type="text" name="ramoAtividade" value={visitor.ramoAtividade} onChange={(e) => handleChange(e)}/>
-                    {formErrors && visitor.ramoAtividade ? "" : <p className={styles.formError}>{formErrors.nome}</p>}
+                    <input type="text" name="ramoAtividade"   className={`${visitor.ramoAtividade}` || `${formErrors.ramoAtividade  && `${styles.invalid}`}`} value={visitor.ramoAtividade} onChange={(e) => handleChange(e)}/>
+                    {formErrors && visitor.ramoAtividade ? "" : <p className={styles.formError}>{formErrors.ramoAtividade}</p>}
 
                     <label>Local</label>
                     <input type="text" name="local"  className={`${visitor.local}` || `${formErrors.local  && `${styles.invalid}`}`} onChange={(e) => handleChange(e)} />
                     {formErrors && visitor.local ? "" : <p className={styles.formError}>{formErrors.local}</p>}
                     <label>Mensagem</label>
-                    <textarea  name="mensagem" value={visitor.mensagem} onChange={(e) => handleChange(e)}>
+                    <textarea  className={`${visitor.mensagem}` || `${formErrors.mensagem  && `${styles.invalid}`}`}  name="mensagem" value={visitor.mensagem} onChange={(e) => handleChange(e)}>
                     </textarea>
-                    {formErrors && visitor.mensagem ? "" : <p className={styles.formError}>{formErrors.nome}</p>}
+                    {formErrors && visitor.mensagem ? "" : <p className={styles.formError}>{formErrors.mensagem}</p>}
 
                     <button>{buttonSend}</button>
                     

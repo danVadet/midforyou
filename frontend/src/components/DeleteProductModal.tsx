@@ -2,6 +2,8 @@
 import axios from 'axios'
 import styles from './DeleteProductModal.module.css'
 import { Product } from '../models/Product'
+import Message from './Message'
+import { useState } from 'react'
 
 interface IDeleteProductModalProps {
     message: string
@@ -19,10 +21,13 @@ const DeleteProductModal = (props: IDeleteProductModalProps) => {
         const response = await axios.delete(`http://localhost:5077/products/${props.productCurrent?.id}`);
         console.log(response.data);  
 
+
         props.closeModal();
         props.getProducts();
         props.getSumPesoTotal();
         props.getSumVolumeTotal();
+      
+       
     }
     return (
         <>

@@ -19,6 +19,9 @@
     border: 1.5px solid rgb(204, 204, 204)
 
 }
+.formContainer input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
 .containerError {
     position: absolute;
     margin: -0.5rem 27rem;
@@ -26,10 +29,6 @@
 } 
 .formContainer .invalid {
     border: 1.5px solid rgb(240, 19, 11);
-  
-}
-.formContainer .valid {
-    border: 1.5px solid rgb(6, 170, 0);
   
 }
 

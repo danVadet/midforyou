@@ -1,10 +1,6 @@
-import { Link } from 'react-router-dom'
-import ptFlag from '../assets/brazil-flag.png'
-import enFlag from '../assets/english-flag.png'
-import esFlag from '../assets/spaish-flag.png'
 import styles from './Navbar.module.css'
 import { useEffect, useState } from 'react'
-import  multiLang  from '../multiLang.json'
+import multiLang from '../multiLang.json'
 
 
 interface INavbarProps {
@@ -19,26 +15,22 @@ interface INavbarProps {
 }
 const Navbar = (props: INavbarProps) => {
 
-
-
-  
     const [mobileMenu, setMobileMenu] = useState(false);
-
-
-     const selectLang = (lang: string) => {
+    
+    const selectLang = (lang: string) => {
         if (lang === "en") {
             props.setContent(multiLang.en)
 
-        } else if(lang === "es") {
-           props.setContent(multiLang.es);
+        } else if (lang === "es") {
+            props.setContent(multiLang.es);
         }
-     }
+    }
 
     return (
         <nav>
 
-           
-{mobileMenu ? // icon close
+
+            {mobileMenu ? // icon close
                 <i onClick={() => setMobileMenu(false)}>
                     <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="30" height="30" viewBox="0,0,256,256">
                         <g fill="rgb(0, 175, 239)" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none">
@@ -66,8 +58,8 @@ const Navbar = (props: INavbarProps) => {
                     <a href="#"> {props.home} </a>
                 </li>
                 <li>
-                <a href="#about">{props.about}</a>
-                
+                    <a href="#about">{props.about}</a>
+
                 </li>
                 <li>
                     <a href="#incoterms"> Incoterms </a>
@@ -78,17 +70,14 @@ const Navbar = (props: INavbarProps) => {
                 <li>
                     <a href="#contact">{props.contact}</a>
                 </li>
-                
-               <div className={`${styles.selectLanguage}`}>
-                <a href="http://localhost:3000"><img src={ptFlag} width={30} height={30}/></a> 
-                <button onClick={() => selectLang("en") }><img src={enFlag} width={30} height={30}/></button>
-                <button  onClick={() => selectLang("es") }><img src={esFlag} width={30} height={30}/></button>
-              </div>
+
+                <div className={`${styles.selectLanguage}`}>
+                    <a href="http://localhost:3000"><img src={`./assets/brazil-flag.png`} width={30} height={30} /></a>
+                    <button onClick={() => selectLang("en")}><img src={`./assets/english-flag.png`} width={30} height={30} /></button>
+                    <button onClick={() => selectLang("es")}><img src={`./assets/spaish-flag.png`} width={30} height={30} /></button>
+                </div>
 
             </ul>
-
-
-
         </nav>
     );
 }
