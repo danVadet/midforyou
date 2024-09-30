@@ -150,13 +150,12 @@ const Map = () => {
 
     <h1>Portos do Brasil</h1>
 
-    <select onChange={(e) => onChangeSelectState(e)} >
-      <option selected disabled hidden>Estados do Brasil</option>
-      {markers.map((marker, index) => (
-                   <option value={marker.id} key={index}>{marker.label}</option>
-                ))}
-
-    </select>
+    <select onChange={(e) => onChangeSelectState(e)}>
+                                <option selected disabled hidden>Estados do Brasil</option>
+                                {markers.map((marker, index) => (
+                                    <option value={marker.id} key={index}>{marker.label}</option>
+                                ))}
+                            </select>
 
     {isLoaded ? (
       <GoogleMap

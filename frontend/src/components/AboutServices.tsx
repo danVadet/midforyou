@@ -1,8 +1,5 @@
-
 import styles from './AboutServices.module.css'
 import AboutServiceCard from './AboutServiceCard';
-import { useEffect, useState } from 'react';
-import  multiLang  from '../multiLang.json';
 
 interface IAboutServicesProps {
     
@@ -14,26 +11,10 @@ interface IAboutServicesProps {
     card_3_description: string;
     card_4_title: string;
     card_4_description: string;
-    setContent(multiLang: object): void
-
 }
 
-const AboutServices = ({card_1_title, card_1_description, card_2_title, card_2_description,  card_3_title, card_3_description, card_4_title, card_4_description, setContent }: IAboutServicesProps) => {
+const AboutServices = ({card_1_title, card_1_description, card_2_title, card_2_description,  card_3_title, card_3_description, card_4_title, card_4_description} : IAboutServicesProps) => {
 
-
-
-    const [lang, setLang] = useState("");
-    useEffect(()  => {
-
-        if (lang === "en") {
-            setContent(multiLang.en)
-
-        } else if(lang === "es") {
-           setContent(multiLang.es);
-        }
-        
-        
-}, [lang, setLang]);
     return (
         <>
             <div className={`${styles.about_services_component}`}>

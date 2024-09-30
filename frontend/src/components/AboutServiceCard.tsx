@@ -1,14 +1,14 @@
 
 import styles from './AboutServiceCard.module.css'
 
-interface IProps {
+interface IAboutServiceProps {
     imagePosition: string;
     description: string;
     title: string;
     imageUrl: string;
 }
 
-const AboutServiceCard: React.FC<IProps> = (props) => {
+const AboutServiceCard = (props: IAboutServiceProps) => {
 
     return (
         <>

@@ -1,6 +1,4 @@
-import { useEffect, useState } from 'react';
 import styles from './About.module.css'
-import  multiLang  from '../multiLang.json';
 
 interface IAboutProps {
     
@@ -8,28 +6,10 @@ interface IAboutProps {
     aboutInfo2: string;
     aboutInfo3: string;
     aboutInfo4: string;
-    setContent(multiLang: object): void
 
 }
-const About = ({ aboutInfo1, aboutInfo2, aboutInfo3, aboutInfo4, setContent }: IAboutProps) => {
-
-   
-    const [lang, setLang] = useState("");
-    useEffect(()  => {
-
-        if (lang ==="en") {
-            setContent(multiLang.en)
-
-        } else if(lang === "es") {
-           setContent(multiLang.es);
-        }
-        
-        
-}, [lang, setLang]);
-  
-
-
-  
+const About = ({ aboutInfo1, aboutInfo2, aboutInfo3, aboutInfo4}: IAboutProps) => {
+    
     return (
 
         <>

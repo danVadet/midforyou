@@ -11,9 +11,11 @@ interface IEditProductModalProps {
     getSumPesoTotal(): void;
     getSumVolumeTotal(): void;
     currentProduct?: Product
+    message: string;
 } 
 
 const EditProductModal = (props : IEditProductModalProps) => {
+   
 
     const [product, setProduct] = useState<Product>({
         id: props.currentProduct?.id || 0,
@@ -81,6 +83,7 @@ const EditProductModal = (props : IEditProductModalProps) => {
                 
             </div>
         </div>
+        
     )
 }
 

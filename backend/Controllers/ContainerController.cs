@@ -12,6 +12,7 @@ public class ContainerController : ControllerBase
 
     private readonly ApplicationDbContext _applicationDbContext;
 
+
     public ContainerController(ApplicationDbContext applicationDbContext)
     {
 
@@ -28,6 +29,15 @@ public class ContainerController : ControllerBase
     [HttpPost("containers/createContainer")]
     public async Task<ActionResult> createContainer(Container container)
     {
+
+       /* string FileName = Path.GetFileName(pic.FileName);
+        string FilePath = Path.Combine(Directory.GetCurrentDirectory(), "Images", FileName);
+             using (var fs = new FileStream(FilePath, FileMode.Create))
+                {
+                    await pic.CopyToAsync(fs);
+                     container.image = FileName;
+                }
+                */
 
         _applicationDbContext.Containers.Add(container);
 

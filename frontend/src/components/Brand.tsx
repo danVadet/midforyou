@@ -5,25 +5,9 @@ import multiLang from '../multiLang.json'
 interface IBrandProps {
   brandInfo1: string;
   brandInfo2: string;
-  setContent(multiLang: object): void
 }
 
-const Brand = ({brandInfo1, brandInfo2, setContent }: IBrandProps) => {
-
-
-
-  const [lang, setLang] = useState("");
-  useEffect(()  => {
-
-      if (lang === "en") {
-          setContent(multiLang.en)
-
-      } else if(lang === "es") {
-         setContent(multiLang.es);
-      }
-      
-      
-}, [lang, setLang]); 
+const Brand = ({brandInfo1, brandInfo2 }: IBrandProps) => {
 
     return (
 
@@ -37,10 +21,7 @@ const Brand = ({brandInfo1, brandInfo2, setContent }: IBrandProps) => {
         </div>
       </div>
   
-      
-         
        </div>
-
       
     
     </>

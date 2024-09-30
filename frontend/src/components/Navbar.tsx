@@ -1,31 +1,18 @@
 import styles from './Navbar.module.css'
-import { useEffect, useState } from 'react'
-import multiLang from '../multiLang.json'
-
+import { useState } from 'react'
 
 interface INavbarProps {
     home: string;
     about: string;
     container: string;
     contact: string;
-    setContent(multiLang: object): void
-    engLang: string;
-    espLang: string;
+
 
 }
 const Navbar = (props: INavbarProps) => {
 
     const [mobileMenu, setMobileMenu] = useState(false);
     
-    const selectLang = (lang: string) => {
-        if (lang === "en") {
-            props.setContent(multiLang.en)
-
-        } else if (lang === "es") {
-            props.setContent(multiLang.es);
-        }
-    }
-
     return (
         <nav>
 
@@ -33,7 +20,7 @@ const Navbar = (props: INavbarProps) => {
             {mobileMenu ? // icon close
                 <i onClick={() => setMobileMenu(false)}>
                     <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="30" height="30" viewBox="0,0,256,256">
-                        <g fill="rgb(0, 175, 239)" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none">
+                        <g fill="rgb(0, 175, 239)">
                             <g transform="scale(5.12,5.12)"> <path d="M9.15625,6.3125l-2.84375,2.84375l15.84375,15.84375l-15.9375,15.96875l2.8125,2.8125l15.96875,-15.9375l15.9375,15.9375l2.84375,-2.84375l-15.9375,-15.9375l15.84375,-15.84375l-2.84375,-2.84375l-15.84375,15.84375z"></path>
                             </g>
                         </g>
@@ -43,7 +30,7 @@ const Navbar = (props: INavbarProps) => {
                 // icon menu bar
                 <i onClick={() => setMobileMenu(true)} className={`${styles.menuIcon}`}>
                     <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="30" height="30" viewBox="0,0,256,256">
-                        <g fill="rgb(0, 175, 239)" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none">
+                        <g fill="rgb(0, 175, 239)">
                             <g transform="scale(5.12,5.12)"><path d="M0,7.5v5h50v-5zM0,22.5v5h50v-5zM0,37.5v5h50v-5z"></path>
                             </g>
                         </g>
@@ -72,9 +59,9 @@ const Navbar = (props: INavbarProps) => {
                 </li>
 
                 <div className={`${styles.selectLanguage}`}>
-                    <a href="http://localhost:3000"><img src={`./assets/brazil-flag.png`} width={30} height={30} /></a>
-                    <button onClick={() => selectLang("en")}><img src={`./assets/english-flag.png`} width={30} height={30} /></button>
-                    <button onClick={() => selectLang("es")}><img src={`./assets/spaish-flag.png`} width={30} height={30} /></button>
+                    <a href="/"><img src={`./assets/brazil-flag.png`} width={30} height={30} /></a>
+                    <a href="/en"><img src={`./assets/english-flag.png`} width={30} height={30} /></a>
+                    <a href="/es"><img src={`./assets/spaish-flag.png`} width={30} height={30} /></a>
                 </div>
 
             </ul>

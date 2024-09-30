@@ -52,24 +52,31 @@ const Tax = () => {
                 <div className="tax-wrapper">
 
                     {taxes.map((tax, index) => (
+                        
                         <div key={index} className="tax-unit-component">
-                            <div className="currency-container">
-                                <div className="currency">
-                                    {FormatCurrencySymbol({ key: tax.name })}
-                                </div>
-                            </div>
-                            <div className="text">
-                                <p className="name">{FormatCurrencyName({ key: tax.name })} </p>
+                             <a className="s"onClick={() => getTax(tax.currencyCode)}>
+                             <div className="currency-container">
+                           
+                           <div className="currency">
+                               {FormatCurrencySymbol({ key: tax.name })}
+                           </div>
+                       </div>
+                       <div className="text">
+                           <p className="name">{FormatCurrencyName({ key: tax.name })} </p>
 
-                                <div className="value-container">
-                                    <p className="value">{tax.value}</p>
-                                    <p className={`variation ${tax.variation >= 0 ? 'success' : 'danger'}`}>{tax.variation}</p>
-                                </div>
-                                <button onClick={() => getTax(tax.currencyCode)}>Tax</button>
+                           <div className="value-container">
+                               <p className="value">{tax.value}</p>
+                               <p className={`variation ${tax.variation >= 0 ? 'success' : 'danger'}`}>{tax.variation}</p>
+                           </div>
+                          
 
-                                {openTaxModal && <TaxModal closeModal={() => setOpenTaxModal(false)} currentTax={currentTax} />}
 
-                            </div>
+                       </div>
+
+                                    </a>
+                                    {openTaxModal && <TaxModal closeModal={() => setOpenTaxModal(false)} currentTax={currentTax} />}
+
+                            
                         </div>
                     ))}
 

@@ -22,16 +22,16 @@
 .formContainer input::-webkit-inner-spin-button {
     -webkit-appearance: none;
 }
-.containerError {
+.containerErrorNome {
     position: absolute;
     margin: -0.5rem 27rem;
     padding: 1.5px 0;
 } 
+
 .formContainer .invalid {
     border: 1.5px solid rgb(240, 19, 11);
   
 }
-
 .formError {
     color: rgb(240, 19, 11);
 }

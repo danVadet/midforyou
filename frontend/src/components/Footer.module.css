@@ -15,7 +15,7 @@ footer .mediaSocial {
 }
 
 footer .facebookIcon {
-    background: rgb(255, 255, 255);
+    background-color: rgb(255, 255, 255);
     width: 40px;
     height: 40px;
     padding: 5px;
@@ -23,7 +23,7 @@ footer .facebookIcon {
 }
 
 footer .instagramIcon {
-    background: rgb(255, 255, 255);
+    background-color: rgb(255, 255, 255);
     width: 40px;
     height: 40px;
     padding: 5px;
@@ -32,7 +32,7 @@ footer .instagramIcon {
 
 
 footer .linkedinIcon {
-    background: rgb(255, 255, 255);
+    background-color: rgb(255, 255, 255);
     width: 40px;
     height: 40px;
     padding: 5px;

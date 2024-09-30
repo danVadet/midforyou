@@ -4,12 +4,11 @@ interface ITooltipIncotermProps {
     text: string
     children?: JSX.Element;
     disabled: boolean;
-    key: number;
-} 
+  } 
   
-  const TooltipIncoterm = ({ text, disabled, children, key}: ITooltipIncotermProps) => {
+  const TooltipIncoterm = ({ text, disabled, children}: ITooltipIncotermProps) => {
     return (
-        <div key={key}>
+        <div>
             <div className={`${styles.container}`}>
         <div className={`${styles.tooltip + `${disabled ? "disabled" : ""}`}`}>{text}</div>
         {children}
