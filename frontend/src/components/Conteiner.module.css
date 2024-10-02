@@ -32,6 +32,10 @@
     border: 1.5px solid rgb(240, 19, 11);
   
 }
+.formContainer .valid {
+    border: 1.5px solid rgb(204, 204, 204);
+  
+}
 .formError {
     color: rgb(240, 19, 11);
 }

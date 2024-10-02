@@ -6,8 +6,12 @@ import DeleteProductModal from './DeleteProductModal';
 import { Product } from '../models/Product';
 import { Container } from '../models/Container';
 import Message from './Message';
+import { useForm } from 'react-hook-form';
 
 const Conteiner = () => {
+
+
+    const { register, handleSubmit, formState: { errors }, reset} = useForm();
 
     const [products, setProducts] = useState<Product[]>([]);
     const [containers, setContainers] = useState<Container[]>([]);
@@ -24,12 +28,7 @@ const Conteiner = () => {
         pesoTotal: 0,
         volumeTotal: 0,
     });
-    const [formErrors, setFormErrors] = useState({
-        nome: "",
-        quantidade: "",
-        peso: "",
-        volume: ""
-    });
+   
     const [search, setSearch] = useState('');
     const [productCurrent, setProductCurrent] = useState<Product>();
     const [container, setContainer] = useState<Container>({
@@ -41,7 +40,7 @@ const Conteiner = () => {
 
     });
     const [submitted, setSubmitted] = useState(false);
-    let [updated, setUpdated] = useState("");
+  
 
     const [selectedContainer, setSelectedConatiner] = useState<Container>({
         id: 0,
@@ -90,13 +89,8 @@ const Conteiner = () => {
         const value = e.target.value;
         setSearch(value);
     }
-    const handleSubmit = async (e: React.FormEvent) => {
-        e.preventDefault();
-
-        if (!product.nome && !product.quantidade &&  !product.peso && !product.volume) {
-            setFormErrors({ nome: "Nome obrigatório", quantidade: "Quantidade obrigatória", peso: "Peso obrigatório", volume: "Volume obrigatório" })
-        } else {
-
+    const addProduct = async () => {
+     
             const response = await axios.post(`http://localhost:5077/products/addProduct`, {
                 nome: product.nome,
                 quantidade: product.quantidade,
@@ -104,13 +98,15 @@ const Conteiner = () => {
                 volume: product.volume,
             });
             console.log(response.data);
+            reset();
             setSubmitted(true);
             setMessage(true);
+
             getProducts();
             getSumPesoTotal();
             getSumVolumeTotal();
 
-        }
+        
     }
     const handleEditProduct = async (id: number) => {
         const response = await axios.get(`http://localhost:5077/products/${id}`);
@@ -173,7 +169,6 @@ const Conteiner = () => {
     }
     const closeModal = () => {
         setOpenEditModal(false);
-        setUpdated("Produto atualizado com sucesso");
     }
 
 
@@ -200,19 +195,24 @@ const Conteiner = () => {
                 <h1>Calculadora de Carga</h1>
 
 
-                <form onSubmit={(e) => handleSubmit(e)} className={`${styles.formContainer}`}>
+                
 
-                    <input type="text" name="nome" className={`${product.nome}` || `${formErrors.nome && `${styles.invalid}`}`} placeholder="Digite o nome...." onChange={(e) => handleChange(e)} />
-                    {formErrors && product.nome ? "" : <div className={styles.containerError}>  <p className={styles.formError}>{formErrors.nome}</p>  </div>}
 
-                    <input type="number" name="quantidade"  className={`${product.quantidade}` || `${formErrors.quantidade && `${styles.invalid}`}`} placeholder="Digite a quantidade...." onChange={(e) => handleChange(e)} />
-                    {formErrors && product.quantidade ? "" : <div className={styles.containerError}>  <p className={styles.formError}>{formErrors.quantidade}</p>  </div>}
+                <form onSubmit={handleSubmit(addProduct)} className={`${styles.formContainer}`}>
 
-                    <input type="number" name="peso" className={`${product.peso}` || `${formErrors.peso && `${styles.invalid}`}`} placeholder="Digite o peso..." onChange={(e) => handleChange(e)} />
-                    {formErrors && product.peso ? "" : <div className={styles.containerError}>  <p className={styles.formError}>{formErrors.peso}</p>  </div>}
+                    <input type="text" {... register("nome", {required: "Nome obrigatório"})} className={ product.nome ? "" : `${errors.nome && `${styles.invalid}`}`} placeholder="Digite o nome...." onChange={(e) => handleChange(e)} />
+                     {product.nome ?  "" :   errors.nome && <p className={styles.formError}>{`${errors.nome.message}`}</p> }
 
-                    <input type="number" name="volume" className={`${product.volume}` || `${formErrors.volume && `${styles.invalid}`}`} placeholder="Digite o volume..." onChange={(e) => handleChange(e)} />
-                    {formErrors && product.volume ? "" : <div className={styles.containerError}>  <p className={styles.formError}>{formErrors.volume}</p>  </div>}
+                    <input type="number" {... register("quantidade", {required: "Quantidade obrigatória"})} className={ product.quantidade ? "" : `${errors.quantidade && `${styles.invalid}`}`} placeholder="Digite a quantidade...." onChange={(e) => handleChange(e)} />
+                    {product.quantidade ?  "" :   errors.quantidade && <p className={styles.formError}>{`${errors.quantidade.message}`}</p> }
+
+
+                    <input type="number" {... register("peso", {required: "Peso obrigatório"})} className={ product.peso ? "" :  `${errors.peso && `${styles.invalid}`}`} placeholder="Digite o peso..." onChange={(e) => handleChange(e)} />
+                    {product.peso ?  "" :   errors.peso && <p className={styles.formError}>{`${errors.peso.message}`}</p> }
+
+
+                    <input type="number" {... register("volume", {required: "Volume obrigatório"})} className={ product.volume ? "" :  `${errors.volume && `${styles.invalid}`}`} placeholder="Digite o volume..." onChange={(e) => handleChange(e)} />
+                    {product.volume ?  "" :   errors.volume && <p className={styles.formError}>{`${errors.volume.message}`}</p> }
 
 
                     <button>Adicionar novo produto</button>
@@ -220,7 +220,7 @@ const Conteiner = () => {
                 {submitted ? (
                     <> {message && <Message message='Produto adicionado com sucesso' type='sucess' />} </>
                 ) : null }
-                {updated && <Message message={`${updated}`} type='sucess' />}
+      
 
                  
 
@@ -256,7 +256,7 @@ const Conteiner = () => {
                                         </div>
                                         <div>
 
-                                            {openEditModal && <EditProductModal closeModal={() => closeModal() } getProducts={getProducts} getSumPesoTotal={getSumPesoTotal} getSumVolumeTotal={getSumVolumeTotal} currentProduct={productCurrent} message={updated} />}
+                                            {openEditModal && <EditProductModal closeModal={() => closeModal() } getProducts={getProducts} getSumPesoTotal={getSumPesoTotal} getSumVolumeTotal={getSumVolumeTotal} currentProduct={productCurrent} />}
                                             
                                             <button className={`${styles.buttonEdit}`} onClick={() => handleEditProduct(product.id)}>
 
@@ -297,7 +297,7 @@ const Conteiner = () => {
                         <div className={`${styles.info_container}`}>
 
                             <select onChange={(e) => handleChangeSelectContainer(e)}>
-                                <option selected disabled hidden>Selecionar o  contêiner...</option>
+                                <option  hidden>Selecionar o  contêiner...</option>
                                 {containers.map((container, index) => (
                                     <option value={container.id} key={index}>{container.name}</option>
                                 ))}

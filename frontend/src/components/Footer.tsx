@@ -8,7 +8,7 @@ const Footer = () => {
           
                 <div className={`${styles.mediaSocial}`}>
 
-                    <a href="https://www.facebook.com/mid4ubrasil/">
+                    <a href="https://www.facebook.com/mid4ubrasil" target="_new">
 
 
                         <div className={`${styles.facebookIcon}`}>
@@ -22,7 +22,7 @@ const Footer = () => {
 
                         </div>
                     </a>
-                    <a href="https://www.instagram.com/midforyoubr/">
+                    <a href="https://www.instagram.com/midforyoubr" target="_new" >
                         <div className={`${styles.instagramIcon}`}>
                             <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="30" height="30" viewBox="0,0,256,256">
                                 <g fill="rgb(0, 175, 239)">
@@ -34,7 +34,7 @@ const Footer = () => {
                         </div>
 
                     </a>
-                    <a href="https://www.linkedin.com/company/mid4u/" >
+                    <a href="https://www.linkedin.com/company/mid4u" target="_new"  >
                         <div className={`${styles.linkedinIcon}`}>
 
                             <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="30" height="30" viewBox="0,0,256,256">

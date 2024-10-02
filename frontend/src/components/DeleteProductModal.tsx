@@ -2,8 +2,6 @@
 import axios from 'axios'
 import styles from './DeleteProductModal.module.css'
 import { Product } from '../models/Product'
-import Message from './Message'
-import { useState } from 'react'
 
 interface IDeleteProductModalProps {
     message: string

@@ -10,23 +10,19 @@
     margin: 8px 0;
     padding: 10px;
     box-shadow: rgba(0, 0, 0, 0.12) 0px 2px 32px 0px;
+    
 }
 .formContainer .invalid {
     
     border: 1.5px solid rgb(240, 19, 11);
   
 }
-.formContainer .valid {
-  
-    border: 1.5px solid rgb(6, 170, 0);
-  
-}
-
 
 .formError {
     color: rgb(240, 19, 11);
-}
+    display: block;
 
+}
 
 .formContainer input {
     margin: 8px;
@@ -47,15 +43,25 @@
     outline: 0;
 }
 
-.formContainer button {
+.formContainer .sendButton {
+    margin: 20px;
+    padding: 10px;
+    width: 50%;
+    border: 0;
+    font-weight: 500;
+    border-radius: 5px;
+    background-color: rgb(0, 175, 239);
+    color: rgb(255, 255, 255);
+}
+.formContainer .sentButton {
     margin: 20px;
     padding: 10px;
     width: 50%;
     border: 0;
     border-radius: 5px;
-    background: rgb(0, 175, 239);
+    font-weight: 500;
+    background-color: rgb(35, 161, 4);
     color: rgb(255, 255, 255);
-
 }
 
 @media (max-width: 840px) {
