@@ -1,17 +1,25 @@
 import styles from './Conteiner.module.css'
-import React, { useEffect, useState } from 'react'
+import  { useEffect, useState } from 'react'
 import axios from 'axios';
 import EditProductModal from './EditProductModal';
 import DeleteProductModal from './DeleteProductModal';
 import { Product } from '../models/Product';
 import { Container } from '../models/Container';
 import Message from './Message';
-import { useForm } from 'react-hook-form';
+
+
+interface IValues {
+    nome: string;
+    quantidade: string;
+    peso: string;
+    volume: string;
+  }
+
+interface IErrors extends Partial<IValues> {}
+
 
 const Conteiner = () => {
 
-
-    const { register, handleSubmit, formState: { errors }, reset} = useForm();
 
     const [products, setProducts] = useState<Product[]>([]);
     const [containers, setContainers] = useState<Container[]>([]);
@@ -29,6 +37,8 @@ const Conteiner = () => {
         volumeTotal: 0,
     });
    
+    
+    const [errors, setErrors] = useState<IErrors>({});
     const [search, setSearch] = useState('');
     const [productCurrent, setProductCurrent] = useState<Product>();
     const [container, setContainer] = useState<Container>({
@@ -89,7 +99,20 @@ const Conteiner = () => {
         const value = e.target.value;
         setSearch(value);
     }
-    const addProduct = async () => {
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+
+
+        if(!product.nome || !product.quantidade ||  !product.peso || !product.volume) {
+
+            setErrors({
+                          nome: "Nome obrigatório",
+                           quantidade: "Quantidade obrigatória",
+                           peso: "Peso obrigatório",
+                           volume: "Volume obrigatório"
+                          })
+          
+          } else {
      
             const response = await axios.post(`http://localhost:5077/products/addProduct`, {
                 nome: product.nome,
@@ -98,13 +121,15 @@ const Conteiner = () => {
                 volume: product.volume,
             });
             console.log(response.data);
-            reset();
+            setProduct({id: 0, nome: "", quantidade: 0, peso: 0, volume: 0, pesoTotal: 0, volumeTotal: 0})
             setSubmitted(true);
             setMessage(true);
+            setErrors({});
 
             getProducts();
             getSumPesoTotal();
             getSumVolumeTotal();
+        }
 
         
     }
@@ -198,21 +223,21 @@ const Conteiner = () => {
                 
 
 
-                <form onSubmit={handleSubmit(addProduct)} className={`${styles.formContainer}`}>
+                <form onSubmit={(e) => handleSubmit(e)} className={`${styles.formContainer}`}>
 
-                    <input type="text" {... register("nome", {required: "Nome obrigatório"})} className={ product.nome ? "" : `${errors.nome && `${styles.invalid}`}`} placeholder="Digite o nome...." onChange={(e) => handleChange(e)} />
-                     {product.nome ?  "" :   errors.nome && <p className={styles.formError}>{`${errors.nome.message}`}</p> }
+                    <input type="text" name="nome" value={product.nome} className={ product.nome ? "" : `${errors.nome && `${styles.invalid}`}`} placeholder="Digite o nome...." onChange={(e) => handleChange(e)} />
+                     {product.nome ?  "" :   errors.nome && <p className={styles.formError}>{`${errors.nome}`}</p> }
 
-                    <input type="number" {... register("quantidade", {required: "Quantidade obrigatória"})} className={ product.quantidade ? "" : `${errors.quantidade && `${styles.invalid}`}`} placeholder="Digite a quantidade...." onChange={(e) => handleChange(e)} />
-                    {product.quantidade ?  "" :   errors.quantidade && <p className={styles.formError}>{`${errors.quantidade.message}`}</p> }
-
-
-                    <input type="number" {... register("peso", {required: "Peso obrigatório"})} className={ product.peso ? "" :  `${errors.peso && `${styles.invalid}`}`} placeholder="Digite o peso..." onChange={(e) => handleChange(e)} />
-                    {product.peso ?  "" :   errors.peso && <p className={styles.formError}>{`${errors.peso.message}`}</p> }
+                    <input type="number" name="quantidade" value={product.quantidade || ""} className={ product.quantidade ? "" : `${errors.quantidade && `${styles.invalid}`}`} placeholder="Digite a quantidade...." onChange={(e) => handleChange(e)} />
+                    {product.quantidade ?  "" :   errors.quantidade && <p className={styles.formError}>{`${errors.quantidade}`}</p> }
 
 
-                    <input type="number" {... register("volume", {required: "Volume obrigatório"})} className={ product.volume ? "" :  `${errors.volume && `${styles.invalid}`}`} placeholder="Digite o volume..." onChange={(e) => handleChange(e)} />
-                    {product.volume ?  "" :   errors.volume && <p className={styles.formError}>{`${errors.volume.message}`}</p> }
+                    <input type="number" name="peso" value={product.peso || ""} className={ product.peso ? "" :  `${errors.peso && `${styles.invalid}`}`} placeholder="Digite o peso..." onChange={(e) => handleChange(e)} />
+                    {product.peso ?  "" :   errors.peso && <p className={styles.formError}>{`${errors.peso}`}</p> }
+
+
+                    <input type="number" name="volume" value={product.volume || ""} className={ product.volume ? "" :  `${errors.volume && `${styles.invalid}`}`} placeholder="Digite o volume..." onChange={(e) => handleChange(e)} />
+                    {product.volume ?  "" :   errors.volume && <p className={styles.formError}>{`${errors.volume}`}</p> }
 
 
                     <button>Adicionar novo produto</button>
