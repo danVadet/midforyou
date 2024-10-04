@@ -38,7 +38,7 @@ public class ContainerController : ControllerBase
                      container.image = FileName;
                 }
                 */
-
+         container.capacidadePeso =  container.capacidadePeso * 1000;
         _applicationDbContext.Containers.Add(container);
 
         await _applicationDbContext.SaveChangesAsync();

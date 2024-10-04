@@ -81,25 +81,6 @@ namespace backend.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Vistors",
-                columns: table => new
-                {
-                    id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    nome = table.Column<string>(type: "text", nullable: true),
-                    telefone = table.Column<string>(type: "text", nullable: true),
-                    email = table.Column<string>(type: "text", nullable: true),
-                    nomeEmpresa = table.Column<string>(type: "text", nullable: true),
-                    ramoAtividade = table.Column<string>(type: "text", nullable: true),
-                    local = table.Column<string>(type: "text", nullable: true),
-                    mensagem = table.Column<string>(type: "text", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Vistors", x => x.id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "PortMarkers",
                 columns: table => new
                 {
@@ -142,9 +123,6 @@ namespace backend.Migrations
 
             migrationBuilder.DropTable(
                 name: "Products");
-
-            migrationBuilder.DropTable(
-                name: "Vistors");
 
             migrationBuilder.DropTable(
                 name: "Markers");

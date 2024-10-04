@@ -7,7 +7,6 @@ import { Product } from '../models/Product';
 import { Container } from '../models/Container';
 import Message from './Message';
 
-
 interface IValues {
     nome: string;
     quantidade: string;
@@ -17,9 +16,7 @@ interface IValues {
 
 interface IErrors extends Partial<IValues> {}
 
-
 const Conteiner = () => {
-
 
     const [products, setProducts] = useState<Product[]>([]);
     const [containers, setContainers] = useState<Container[]>([]);
@@ -37,7 +34,6 @@ const Conteiner = () => {
         volumeTotal: 0,
     });
    
-    
     const [errors, setErrors] = useState<IErrors>({});
     const [search, setSearch] = useState('');
     const [productCurrent, setProductCurrent] = useState<Product>();
@@ -50,8 +46,6 @@ const Conteiner = () => {
 
     });
     const [submitted, setSubmitted] = useState(false);
-  
-
     const [selectedContainer, setSelectedConatiner] = useState<Container>({
         id: 0,
         name: "",
@@ -66,9 +60,7 @@ const Conteiner = () => {
         const response = await axios.get(`http://localhost:5077/products/${id}`);
         console.log(response.data);
         setProductCurrent(response.data);
-
         setOpenDeleteModal(true);
-
     }
 
     const handleChange = (e: React.FormEvent) => {
@@ -87,7 +79,6 @@ const Conteiner = () => {
                 const response = await axios.get(`http://localhost:5077/containers/capacity/${value}`);
                 console.log(response.data);
                 setContainer(response.data);
-
                 setMessage(true);
             }
 
@@ -99,18 +90,34 @@ const Conteiner = () => {
         const value = e.target.value;
         setSearch(value);
     }
+    const validate = (product: Product) => {
+        const errors: { nome?: string; quantidade?: string; peso?: string; volume?: string; } = {};
+    
+        if (!product.nome) {
+          errors.nome = "Nome obrigatório";
+        }
+    
+        if(!product.quantidade) {
+           errors.quantidade = "Quantidade obrigatória";
+        }
+    
+        if (!product.peso) {
+          errors.peso = "Peso obrigatório";
+        }
+    
+        if(!product.volume) {
+            errors.volume = "Volume obrigatório";
+        }
+
+        return errors;
+    }
+    
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-
-
-        if(!product.nome || !product.quantidade ||  !product.peso || !product.volume) {
-
-            setErrors({
-                          nome: "Nome obrigatório",
-                           quantidade: "Quantidade obrigatória",
-                           peso: "Peso obrigatório",
-                           volume: "Volume obrigatório"
-                          })
+        
+        const errors = validate(product);
+        if (errors && Object.keys(errors).length > 0) {
+          return setErrors(errors);
           
           } else {
      
@@ -142,7 +149,6 @@ const Conteiner = () => {
     }
 
     const getProducts = async () => {
-
         try {
             if (search) {
                 const response = await axios.get(`http://localhost:5077/products?search=${search}`);
@@ -213,32 +219,29 @@ const Conteiner = () => {
 
     }, [search]);
 
- 
     return (
         <>
             <div className={`${styles.container}`}>
                 <h1>Calculadora de Carga</h1>
 
-
-                
-
-
                 <form onSubmit={(e) => handleSubmit(e)} className={`${styles.formContainer}`}>
 
-                    <input type="text" name="nome" value={product.nome} className={ product.nome ? "" : `${errors.nome && `${styles.invalid}`}`} placeholder="Digite o nome...." onChange={(e) => handleChange(e)} />
-                     {product.nome ?  "" :   errors.nome && <p className={styles.formError}>{`${errors.nome}`}</p> }
+                     <div>
+
+                     </div>
+                    <input type="text" name="nome" value={product.nome || "" } className={ product.nome ? "" : `${errors.nome && `${styles.invalid}`}`} placeholder="Digite o nome...." onChange={(e) => handleChange(e)} />
+                     {product.nome ?  "" :   errors.nome && <span className={styles.formError}>{`${errors.nome}`}</span> }
 
                     <input type="number" name="quantidade" value={product.quantidade || ""} className={ product.quantidade ? "" : `${errors.quantidade && `${styles.invalid}`}`} placeholder="Digite a quantidade...." onChange={(e) => handleChange(e)} />
-                    {product.quantidade ?  "" :   errors.quantidade && <p className={styles.formError}>{`${errors.quantidade}`}</p> }
+                    {product.quantidade ?  "" :   errors.quantidade && <span className={styles.formError}>{`${errors.quantidade}`}</span> }
 
 
                     <input type="number" name="peso" value={product.peso || ""} className={ product.peso ? "" :  `${errors.peso && `${styles.invalid}`}`} placeholder="Digite o peso..." onChange={(e) => handleChange(e)} />
-                    {product.peso ?  "" :   errors.peso && <p className={styles.formError}>{`${errors.peso}`}</p> }
+                    {product.peso ?  "" :   errors.peso && <span className={styles.formError}>{`${errors.peso}`}</span> }
 
 
                     <input type="number" name="volume" value={product.volume || ""} className={ product.volume ? "" :  `${errors.volume && `${styles.invalid}`}`} placeholder="Digite o volume..." onChange={(e) => handleChange(e)} />
-                    {product.volume ?  "" :   errors.volume && <p className={styles.formError}>{`${errors.volume}`}</p> }
-
+                    {product.volume ?  "" :   errors.volume && <span className={styles.formError}>{`${errors.volume}`}</span> }
 
                     <button>Adicionar novo produto</button>
                 </form>
@@ -246,9 +249,6 @@ const Conteiner = () => {
                     <> {message && <Message message='Produto adicionado com sucesso' type='sucess' />} </>
                 ) : null }
       
-
-                 
-
                 <div className={`${styles.calculadoraContent}`}>
 
                     <div className={`${styles.left}`}>
@@ -260,21 +260,15 @@ const Conteiner = () => {
                         </div>
 
                         <div className={`${styles.listProducts}`}>
-
                             {products.length === 0 ? (<div>Produto não adicionado</div>) : (
-
                                 products.map((product, index) => (
-
                                     <div className={`${styles.content}`} key={index}>
-
                                         <div>{product.nome}</div>
-
                                         <div className={`${styles.infoProduct}`}>
                                             <div>{`Peso unidade: ${product.peso} kg`}</div>
                                             <div>{`Volume unidade: ${product.volume} m³`}</div>
                                         </div>
                                         <div>{`Quantidade: ${product.quantidade}`}</div>
-
                                         <div className={`${styles.infoTotalProduct}`}>
                                             <div>{`Peso total: ${product.pesoTotal} kg`}</div>
                                             <div>{`Volume total: ${product.volumeTotal} m³`}</div>
@@ -284,7 +278,6 @@ const Conteiner = () => {
                                             {openEditModal && <EditProductModal closeModal={() => closeModal() } getProducts={getProducts} getSumPesoTotal={getSumPesoTotal} getSumVolumeTotal={getSumVolumeTotal} currentProduct={productCurrent} />}
                                             
                                             <button className={`${styles.buttonEdit}`} onClick={() => handleEditProduct(product.id)}>
-
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0,0,256,256">
                                                     <g fill="rgb(255, 255, 255)" >
                                                         <g transform="scale(5.12,5.12)">
@@ -302,25 +295,18 @@ const Conteiner = () => {
                                                             <path d="M46,13c-1.64497,0 -3,1.35503 -3,3v2h-10.73437c-1.7547,0 -3.38611,0.92281 -4.28906,2.42773l-1.54297,2.57227h-3.43359c-2.19733,0 -4,1.80267 -4,4c0,2.19733 1.80267,4 4,4h1.07422l3.57422,46.45898c0.23929,3.11679 2.85609,5.54102 5.98242,5.54102h32.73828c3.12633,0 5.74313,-2.42423 5.98242,-5.54102l3.57422,-46.45898h1.07422c2.19733,0 4,-1.80267 4,-4c0,-2.19733 -1.80267,-4 -4,-4h-3.43359l-1.54297,-2.57227c-0.90296,-1.50492 -2.53436,-2.42773 -4.28906,-2.42773h-10.73437v-2c0,-1.64497 -1.35503,-3 -3,-3zM46,15h8c0.56503,0 1,0.43497 1,1v2h-10v-2c0,-0.56503 0.43497,-1 1,-1zM32.26563,20h11.56641c0.10799,0.01785 0.21818,0.01785 0.32617,0h11.67383c0.10799,0.01785 0.21818,0.01785 0.32617,0h11.57617c1.0553,0 2.02922,0.55195 2.57227,1.45703l1.52734,2.54297h-3.33398c-0.18032,-0.00255 -0.34804,0.09219 -0.43894,0.24794c-0.0909,0.15575 -0.0909,0.34838 0,0.50413c0.0909,0.15575 0.25863,0.25049 0.43894,0.24794h5h3.5c1.11667,0 2,0.88333 2,2c0,1.11667 -0.88333,2 -2,2h-54c-1.11667,0 -2,-0.88333 -2,-2c0,-1.11667 0.88333,-2 2,-2h4h34.5c0.18032,0.00255 0.34804,-0.09219 0.43894,-0.24794c0.0909,-0.15575 0.0909,-0.34838 0,-0.50413c-0.0909,-0.15575 -0.25863,-0.25049 -0.43894,-0.24794h-33.33398l1.52734,-2.54297c0.54305,-0.90508 1.51697,-1.45703 2.57227,-1.45703zM64.5,24c-0.18032,-0.00255 -0.34804,0.09219 -0.43894,0.24794c-0.0909,0.15575 -0.0909,0.34838 0,0.50413c0.0909,0.15575 0.25863,0.25049 0.43894,0.24794h2c0.18032,0.00255 0.34804,-0.09219 0.43894,-0.24794c0.0909,-0.15575 0.0909,-0.34838 0,-0.50413c-0.0909,-0.15575 -0.25863,-0.25049 -0.43894,-0.24794zM26.07813,31h47.84375l-3.56445,46.30664c-0.16071,2.09321 -1.88861,3.69336 -3.98828,3.69336h-32.73828c-2.09967,0 -3.82757,-1.60015 -3.98828,-3.69336zM38,35c-1.65109,0 -3,1.34891 -3,3v35c0,1.65109 1.34891,3 3,3c1.65109,0 3,-1.34891 3,-3v-35c0,-1.65109 -1.34891,-3 -3,-3zM50,35c-1.65109,0 -3,1.34891 -3,3v35c0,1.65109 1.34891,3 3,3c1.65109,0 3,-1.34891 3,-3v-3.5c0.00255,-0.18032 -0.09219,-0.34804 -0.24794,-0.43894c-0.15575,-0.0909 -0.34838,-0.0909 -0.50413,0c-0.15575,0.0909 -0.25049,0.25863 -0.24794,0.43894v3.5c0,1.11091 -0.88909,2 -2,2c-1.11091,0 -2,-0.88909 -2,-2v-35c0,-1.11091 0.88909,-2 2,-2c1.11091,0 2,0.88909 2,2v25.5c-0.00255,0.18032 0.09219,0.34804 0.24794,0.43894c0.15575,0.0909 0.34838,0.0909 0.50413,0c0.15575,-0.0909 0.25049,-0.25863 0.24794,-0.43894v-25.5c0,-1.65109 -1.34891,-3 -3,-3zM62,35c-1.65109,0 -3,1.34891 -3,3v1.5c-0.00255,0.18032 0.09219,0.34804 0.24794,0.43894c0.15575,0.0909 0.34838,0.0909 0.50413,0c0.15575,-0.0909 0.25049,-0.25863 0.24794,-0.43894v-1.5c0,-1.11091 0.88909,-2 2,-2c1.11091,0 2,0.88909 2,2v35c0,1.11091 -0.88909,2 -2,2c-1.11091,0 -2,-0.88909 -2,-2v-25.5c0.00255,-0.18032 -0.09219,-0.34804 -0.24794,-0.43894c-0.15575,-0.0909 -0.34838,-0.0909 -0.50413,0c-0.15575,0.0909 -0.25049,0.25863 -0.24794,0.43894v25.5c0,1.65109 1.34891,3 3,3c1.65109,0 3,-1.34891 3,-3v-35c0,-1.65109 -1.34891,-3 -3,-3zM38,36c1.11091,0 2,0.88909 2,2v35c0,1.11091 -0.88909,2 -2,2c-1.11091,0 -2,-0.88909 -2,-2v-35c0,-1.11091 0.88909,-2 2,-2zM59.49219,41.99219c-0.13261,0.00207 -0.25896,0.05673 -0.35127,0.15197c-0.0923,0.09523 -0.14299,0.22324 -0.14092,0.35584v2c-0.00255,0.18032 0.09219,0.34804 0.24794,0.43894c0.15575,0.0909 0.34838,0.0909 0.50413,0c0.15575,-0.0909 0.25049,-0.25863 0.24794,-0.43894v-2c0.00212,-0.13532 -0.0507,-0.26572 -0.1464,-0.36141c-0.0957,-0.0957 -0.22609,-0.14852 -0.36141,-0.1464z"></path></g></g>
                                                 </svg>
                                             </button>
-
-
                                         </div>
-
                                     </div>
-
                                 )))}
                         </div>
                         <div className={`${styles.totalContainer}`}>
                             <h3>{`Peso total de  todos os produtos: ${sumPesoTotal} kg`}</h3>
                             <h3>{`Volume total de  todos os produtos: ${sumVolumeTotal} m³`}</h3>
                         </div>
-
                     </div>
 
                     {products.length !== 0 && <>    <div className={`${styles.right}`}>
-
                         <div className={`${styles.info_container}`}>
-
                             <select onChange={(e) => handleChangeSelectContainer(e)}>
                                 <option  hidden>Selecionar o  contêiner...</option>
                                 {containers.map((container, index) => (
@@ -333,16 +319,15 @@ const Conteiner = () => {
 
                             <img src={selectedContainer.image ? `${selectedContainer.image}` : `./assets/containerPlaceholder.png`} alt="" />
                             {product.pesoTotal <= container.capacidadePeso && product.volumeTotal <= container.capacidadeVolume ?
-                                <> </> : <>  {message && <Message message='Esse container não cabe' type='error' />}</>}
-
+                                <> </> : <h1>Esse container não cabe</h1>}
                         </div>
-
-                    </div></>}
+                    </div>
+                    </>
+                    }
                 </div>
             </div>
         </>
     );
-
 }
 
 export default Conteiner;

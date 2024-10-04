@@ -4,7 +4,6 @@ import { Visitor } from '../models/Visitor';
 import { IMaskInput } from 'react-imask';
 import axios from 'axios';
 
-
 interface IContactProps {
 
   contactTitle: string;
@@ -115,46 +114,59 @@ const Contact = (props: IContactProps) => {
       setErrors({});
       setSentData(true);
     }
-
   }
+
   return (
+   
     <div className={`${styles.contato}`} >
+       <div className={styles.imageContact}>
+         <h2 className={styles.legenda}>Estamos preparados para importar e exportar! </h2>
 
+        </div>
+    
+        <div className={`${styles.contactContainer}`}>
       <h1>{props.contactTitle}</h1>
+      
+      
+      <form onSubmit={(e) => handleSubmit(e)} className={`${styles.formContainer}`}>
 
-      <div>   <form onSubmit={(e) => handleSubmit(e)} className={`${styles.formContainer}`}>
+      <label>{props.fullName}</label>
+      <input type="text" name="nome" value={visitor.nome} className={visitor.nome ? "" : `${errors.nome && `${styles.invalid}`}`} onChange={(e) => handleChange(e)} placeholder="Digite o seu nome completo" />
+      {visitor.nome ? "" : errors.nome && <p className={styles.formError}>{`${errors.nome}`}</p>}
 
-        <label>{props.fullName}</label>
-        <input type="text" name="nome" value={visitor.nome} className={visitor.nome ? "" : `${errors.nome && `${styles.invalid}`}`} onChange={(e) => handleChange(e)} />
-        {visitor.nome ? "" : errors.nome && <p className={styles.formError}>{`${errors.nome}`}</p>}
+      <label>{props.phone}</label>
+      <IMaskInput name="telefone" value={visitor.telefone} className={visitor.telefone ? "" : `${errors.telefone && `${styles.invalid}`}`} mask="(00) #0000-0000" definitions={{ '#': /9?/ }} onChange={(e) => handleChange(e)} placeholder="Digite o número do seu telefone" />
+      {visitor.telefone ? "" : errors.telefone && <p className={styles.formError}>{`${errors.telefone}`}</p>}
 
-        <label>{props.phone}</label>
-        <IMaskInput name="telefone" value={visitor.telefone} className={visitor.telefone ? "" : `${errors.telefone && `${styles.invalid}`}`} mask="(00) #0000-0000" definitions={{ '#': /9?/ }} onChange={(e) => handleChange(e)} placeholder="Digite o número do seu telefone" />
-        {visitor.telefone ? "" : errors.telefone && <p className={styles.formError}>{`${errors.telefone}`}</p>}
+      <label>{props.email}</label>
+      <input type="text" name="email" value={visitor.email} className={visitor.email  && emailParrent.test(visitor.email) ? "" : `${errors.email && `${styles.invalid}`}`} placeholder="Digite o seu endereço de email"  onChange={(e) => handleChange(e)} />
+      {visitor.email && emailParrent.test(visitor.email) ? "" : errors.email && <p className={styles.formError}>{`${errors.email}`}</p>}
 
-        <label>{props.email}</label>
-        <input type="text" name="email" value={visitor.email} className={visitor.email  && emailParrent.test(visitor.email) ? "" : `${errors.email && `${styles.invalid}`}`} onChange={(e) => handleChange(e)} />
-        {visitor.email && emailParrent.test(visitor.email) ? "" : errors.email && <p className={styles.formError}>{`${errors.email}`}</p>}
+      <label>{props.companyName}</label>
+      <input type="text" name="nomeEmpresa" value={visitor.nomeEmpresa} className={visitor.nomeEmpresa ? "" : `${errors.nomeEmpresa && `${styles.invalid}`}`} placeholder="Digite o nome da empresa"  onChange={(e) => handleChange(e)} />
+      {visitor.nomeEmpresa ? "" : errors.nomeEmpresa && <p className={styles.formError}>{`${errors.nomeEmpresa}`}</p>}
 
-        <label>{props.companyName}</label>
-        <input type="text" name="nomeEmpresa" value={visitor.nomeEmpresa} className={visitor.nomeEmpresa ? "" : `${errors.nomeEmpresa && `${styles.invalid}`}`} onChange={(e) => handleChange(e)} />
-        {visitor.nomeEmpresa ? "" : errors.nomeEmpresa && <p className={styles.formError}>{`${errors.nomeEmpresa}`}</p>}
+      <label>{props.ramoAtividade}</label>
+      <input type="text" name="ramoAtividade" value={visitor.ramoAtividade} className={visitor.ramoAtividade ? "" : `${errors.ramoAtividade && `${styles.invalid}`}`}  placeholder="Digite o ramo da atividade"  onChange={(e) => handleChange(e)} />
+      {visitor.ramoAtividade ? "" : errors.ramoAtividade && <p className={styles.formError}>{`${errors.ramoAtividade}`}</p>}
 
-        <label>{props.ramoAtividade}</label>
-        <input type="text" name="ramoAtividade" value={visitor.ramoAtividade} className={visitor.ramoAtividade ? "" : `${errors.ramoAtividade && `${styles.invalid}`}`} onChange={(e) => handleChange(e)} />
-        {visitor.ramoAtividade ? "" : errors.ramoAtividade && <p className={styles.formError}>{`${errors.ramoAtividade}`}</p>}
+      <label>{props.local}</label>
+      <input type="text" name="local" value={visitor.local} className={visitor.local ? "" : `${errors.local && `${styles.invalid}`}`} placeholder="Digite o local"  onChange={(e) => handleChange(e)} />
+      {visitor.local ? "" : errors.local && <p className={styles.formError}>{`${errors.local}`}</p>}
 
-        <label>{props.local}</label>
-        <input type="text" name="local" value={visitor.local} className={visitor.local ? "" : `${errors.local && `${styles.invalid}`}`} onChange={(e) => handleChange(e)} />
-        {visitor.local ? "" : errors.local && <p className={styles.formError}>{`${errors.local}`}</p>}
+      <label>{props.message}</label>
+      <textarea name="mensagem" value={visitor.mensagem} className={visitor.mensagem ? "" : `${errors.mensagem && `${styles.invalid}`}`} placeholder="Escreva a mensagem aqui" onChange={(e) => handleChange(e)}>
+      </textarea>
+      {visitor.mensagem ? "" : errors.mensagem && <p className={styles.formError}>{`${errors.mensagem}`}</p>}
+      {sentData ? <button className={`${styles.sentButton}`}>Enviado</button> : <button className={`${styles.sendButton}`} >Enviar</button>}
+    </form>
 
-        <label>{props.message}</label>
-        <textarea name="mensagem" value={visitor.mensagem} className={visitor.mensagem ? "" : `${errors.mensagem && `${styles.invalid}`}`} onChange={(e) => handleChange(e)}>
-        </textarea>
-        {visitor.mensagem ? "" : errors.mensagem && <p className={styles.formError}>{`${errors.mensagem}`}</p>}
-        {sentData ? <button className={`${styles.sentButton}`}>Enviado</button> : <button className={`${styles.sendButton}`} >Enviar</button>}
-      </form>
       </div>
+     
+       
+
+    
+  
     </div>
   );
 }

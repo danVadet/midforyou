@@ -11,7 +11,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace backend.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240930111834_createInitial")]
+    [Migration("20241004113826_createInitial")]
     partial class createInitial
     {
         /// <inheritdoc />
@@ -170,40 +170,6 @@ namespace backend.Migrations
                     b.HasKey("id");
 
                     b.ToTable("Products");
-                });
-
-            modelBuilder.Entity("backend.Models.Visitor", b =>
-                {
-                    b.Property<int>("id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("id"));
-
-                    b.Property<string>("email")
-                        .HasColumnType("text");
-
-                    b.Property<string>("local")
-                        .HasColumnType("text");
-
-                    b.Property<string>("mensagem")
-                        .HasColumnType("text");
-
-                    b.Property<string>("nome")
-                        .HasColumnType("text");
-
-                    b.Property<string>("nomeEmpresa")
-                        .HasColumnType("text");
-
-                    b.Property<string>("ramoAtividade")
-                        .HasColumnType("text");
-
-                    b.Property<string>("telefone")
-                        .HasColumnType("text");
-
-                    b.HasKey("id");
-
-                    b.ToTable("Vistors");
                 });
 
             modelBuilder.Entity("PortMarker", b =>

@@ -12,8 +12,6 @@ public class ApplicationDbContext :DbContext {
     public DbSet<Product> Products { get; set; }
     public DbSet<Container> Containers { get; set; }
 
-    public DbSet<Visitor> Vistors { get; set; }
-
      public DbSet<Marker> Markers { get; set; }
 
      
