@@ -1,7 +1,6 @@
 .contato {
     display: flex;
-    margin: 0 5%
-
+     margin: 10px 50px;
 }
 .imageContact {
     width: 100%;
@@ -13,9 +12,17 @@
     background-position: center;
     
 }
-
+.imageContact_gradient {
+    width: 100%;
+    height:680px;
+    background: linear-gradient(
+      132deg,
+      rgba(0, 0, 0, 0.8) 0%,
+      rgba(0, 0, 0, 0) 52.9%
+    );
+    
+}
 .contactContainer {
-    border-radius: 5px;
     box-shadow: rgba(0, 0, 0, 0.089) 0px 2px 32px 0px;
     width: 100%;
     display: flex;
@@ -26,6 +33,7 @@
     display: flex;
     width: 100%;
     padding: 8px;
+    position: relative;
     background-color: rgb(255, 255, 255);
     flex-direction: column;
     margin: 5px 25%;
@@ -33,14 +41,20 @@
     border-radius: 5px;
     
 }
+.formContainer input::placeholder {
+   padding: 0 25px;
+}
 .formContainer .invalid {
     border: 1.5px solid rgb(240, 19, 11);
   
 }
 .legenda {
-    margin: 30% 0;
-    color:rgb(0, 175, 239);
-    box-shadow: rgb(201, 200, 200) 0px 2px 32px 0px;
+   color:rgb(255, 255, 255);
+   font-size: 20px;
+   position: absolute;
+   margin: 250px 5px;
+   font-family: "Roboto", "Lexend", "Sora";
+
 
 }
 
@@ -89,5 +103,88 @@
     background-color: rgb(35, 161, 4);
     color: rgb(255, 255, 255);
 }
+.userIcon {
+    position: absolute;
+    left: 10px;
+    top: 20px;
+}
+.phoneIcon {
+    position: absolute;
+    left: 10px;
+    top: 75px;
+}
+.emailIcon {
+    position: absolute;
+    left: 10px;
+    top: 120px;
+}
+.companyIcon {
+    position: absolute;
+    left: 10px;
+    top: 178px;
+}
+.suitcaseIcon {
+    position: absolute;
+    position: absolute;
+    left: 10px;
+    top: 228px;
+}
+.localIcon {
+    position: absolute;
+    left: 10px;
+    top: 281px;
+}
+.mensagemIcon {
+    position: absolute;
+    left: 10px;
+    top: 336px;
+}
+.iconError {
+    position: absolute;
+    margin: 15px -40px;
+}
+.formError {
+    color: rgb(240, 19, 11);
+}
+@media (max-width: 768px) {
+
+     .contato {
+        flex-direction: column;
+     }
+     .userIcon {
+      display: none;
+    
+    }
+    .phoneIcon {
+       display: none;
+    }
+    .emailIcon {
+        display: none;
+    }
+    .companyIcon {
+        display: none;
+    }
+    .suitcaseIcon {
+        display: none;
+    }
+    .localIcon {
+        display: none;
+      
+    }
+    .mensagemIcon {
+        display: none;
+    }
+   
+     
+
+   
+}
+
+
+
+
+
+
+
 
 

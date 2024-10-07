@@ -132,7 +132,6 @@ const Conteiner = () => {
             setSubmitted(true);
             setMessage(true);
             setErrors({});
-
             getProducts();
             getSumPesoTotal();
             getSumVolumeTotal();
@@ -230,25 +229,33 @@ const Conteiner = () => {
 
                      </div>
                     <input type="text" name="nome" value={product.nome || "" } className={ product.nome ? "" : `${errors.nome && `${styles.invalid}`}`} placeholder="Digite o nome...." onChange={(e) => handleChange(e)} />
-                     {product.nome ?  "" :   errors.nome && <span className={styles.formError}>{`${errors.nome}`}</span> }
+                     {product.nome ?  "" :   errors.nome && <p className={styles.nameError}>{`${errors.nome}`}</p> }
+                     {product.nome ?  "" :   errors.nome &&  < svg className={styles.iconError} xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="30" height="30" viewBox="0,0,256,256">
+<g fill="rgb(240, 19, 11)"><g transform="scale(8.53333,8.53333)"><path d="M15,3c-6.627,0 -12,5.373 -12,12c0,6.627 5.373,12 12,12c6.627,0 12,-5.373 12,-12c0,-6.627 -5.373,-12 -12,-12zM16.414,15c0,0 3.139,3.139 3.293,3.293c0.391,0.391 0.391,1.024 0,1.414c-0.391,0.391 -1.024,0.391 -1.414,0c-0.154,-0.153 -3.293,-3.293 -3.293,-3.293c0,0 -3.139,3.139 -3.293,3.293c-0.391,0.391 -1.024,0.391 -1.414,0c-0.391,-0.391 -0.391,-1.024 0,-1.414c0.153,-0.154 3.293,-3.293 3.293,-3.293c0,0 -3.139,-3.139 -3.293,-3.293c-0.391,-0.391 -0.391,-1.024 0,-1.414c0.391,-0.391 1.024,-0.391 1.414,0c0.154,0.153 3.293,3.293 3.293,3.293c0,0 3.139,-3.139 3.293,-3.293c0.391,-0.391 1.024,-0.391 1.414,0c0.391,0.391 0.391,1.024 0,1.414c-0.153,0.154 -3.293,3.293 -3.293,3.293z"></path></g></g>
+</svg>}
 
                     <input type="number" name="quantidade" value={product.quantidade || ""} className={ product.quantidade ? "" : `${errors.quantidade && `${styles.invalid}`}`} placeholder="Digite a quantidade...." onChange={(e) => handleChange(e)} />
-                    {product.quantidade ?  "" :   errors.quantidade && <span className={styles.formError}>{`${errors.quantidade}`}</span> }
+                    {product.quantidade ?  "" :   errors.quantidade && <p className={styles.quantityError}>{`${errors.quantidade}`}</p> }
+                    {product.quantidade ?  "" :   errors.quantidade &&  < svg className={styles.iconError} xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="30" height="30" viewBox="0,0,256,256">
+<g fill="rgb(240, 19, 11)"><g transform="scale(8.53333,8.53333)"><path d="M15,3c-6.627,0 -12,5.373 -12,12c0,6.627 5.373,12 12,12c6.627,0 12,-5.373 12,-12c0,-6.627 -5.373,-12 -12,-12zM16.414,15c0,0 3.139,3.139 3.293,3.293c0.391,0.391 0.391,1.024 0,1.414c-0.391,0.391 -1.024,0.391 -1.414,0c-0.154,-0.153 -3.293,-3.293 -3.293,-3.293c0,0 -3.139,3.139 -3.293,3.293c-0.391,0.391 -1.024,0.391 -1.414,0c-0.391,-0.391 -0.391,-1.024 0,-1.414c0.153,-0.154 3.293,-3.293 3.293,-3.293c0,0 -3.139,-3.139 -3.293,-3.293c-0.391,-0.391 -0.391,-1.024 0,-1.414c0.391,-0.391 1.024,-0.391 1.414,0c0.154,0.153 3.293,3.293 3.293,3.293c0,0 3.139,-3.139 3.293,-3.293c0.391,-0.391 1.024,-0.391 1.414,0c0.391,0.391 0.391,1.024 0,1.414c-0.153,0.154 -3.293,3.293 -3.293,3.293z"></path></g></g>
+</svg>}
 
 
                     <input type="number" name="peso" value={product.peso || ""} className={ product.peso ? "" :  `${errors.peso && `${styles.invalid}`}`} placeholder="Digite o peso..." onChange={(e) => handleChange(e)} />
-                    {product.peso ?  "" :   errors.peso && <span className={styles.formError}>{`${errors.peso}`}</span> }
+                    {product.peso ?  "" :   errors.peso && <p className={styles.pesoError}>{`${errors.peso}`}</p> }
+                    {product.peso ?  "" :   errors.peso &&  < svg className={styles.iconError} xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="30" height="30" viewBox="0,0,256,256">
+<g fill="rgb(240, 19, 11)"><g transform="scale(8.53333,8.53333)"><path d="M15,3c-6.627,0 -12,5.373 -12,12c0,6.627 5.373,12 12,12c6.627,0 12,-5.373 12,-12c0,-6.627 -5.373,-12 -12,-12zM16.414,15c0,0 3.139,3.139 3.293,3.293c0.391,0.391 0.391,1.024 0,1.414c-0.391,0.391 -1.024,0.391 -1.414,0c-0.154,-0.153 -3.293,-3.293 -3.293,-3.293c0,0 -3.139,3.139 -3.293,3.293c-0.391,0.391 -1.024,0.391 -1.414,0c-0.391,-0.391 -0.391,-1.024 0,-1.414c0.153,-0.154 3.293,-3.293 3.293,-3.293c0,0 -3.139,-3.139 -3.293,-3.293c-0.391,-0.391 -0.391,-1.024 0,-1.414c0.391,-0.391 1.024,-0.391 1.414,0c0.154,0.153 3.293,3.293 3.293,3.293c0,0 3.139,-3.139 3.293,-3.293c0.391,-0.391 1.024,-0.391 1.414,0c0.391,0.391 0.391,1.024 0,1.414c-0.153,0.154 -3.293,3.293 -3.293,3.293z"></path></g></g>
+</svg>}
 
 
                     <input type="number" name="volume" value={product.volume || ""} className={ product.volume ? "" :  `${errors.volume && `${styles.invalid}`}`} placeholder="Digite o volume..." onChange={(e) => handleChange(e)} />
-                    {product.volume ?  "" :   errors.volume && <span className={styles.formError}>{`${errors.volume}`}</span> }
+                    {product.volume ?  "" :   errors.volume && <p className={styles.volumeError}>{`${errors.volume}`}</p> }
+                    {product.volume ?  "" :   errors.peso &&  < svg className={styles.iconError} xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="30" height="30" viewBox="0,0,256,256">
+<g fill="rgb(240, 19, 11)"><g transform="scale(8.53333,8.53333)"><path d="M15,3c-6.627,0 -12,5.373 -12,12c0,6.627 5.373,12 12,12c6.627,0 12,-5.373 12,-12c0,-6.627 -5.373,-12 -12,-12zM16.414,15c0,0 3.139,3.139 3.293,3.293c0.391,0.391 0.391,1.024 0,1.414c-0.391,0.391 -1.024,0.391 -1.414,0c-0.154,-0.153 -3.293,-3.293 -3.293,-3.293c0,0 -3.139,3.139 -3.293,3.293c-0.391,0.391 -1.024,0.391 -1.414,0c-0.391,-0.391 -0.391,-1.024 0,-1.414c0.153,-0.154 3.293,-3.293 3.293,-3.293c0,0 -3.139,-3.139 -3.293,-3.293c-0.391,-0.391 -0.391,-1.024 0,-1.414c0.391,-0.391 1.024,-0.391 1.414,0c0.154,0.153 3.293,3.293 3.293,3.293c0,0 3.139,-3.139 3.293,-3.293c0.391,-0.391 1.024,-0.391 1.414,0c0.391,0.391 0.391,1.024 0,1.414c-0.153,0.154 -3.293,3.293 -3.293,3.293z"></path></g></g>
+</svg>}
 
                     <button>Adicionar novo produto</button>
                 </form>
-                {submitted ? (
-                    <> {message && <Message message='Produto adicionado com sucesso' type='sucess' />} </>
-                ) : null }
-      
                 <div className={`${styles.calculadoraContent}`}>
 
                     <div className={`${styles.left}`}>
@@ -319,7 +326,7 @@ const Conteiner = () => {
 
                             <img src={selectedContainer.image ? `${selectedContainer.image}` : `./assets/containerPlaceholder.png`} alt="" />
                             {product.pesoTotal <= container.capacidadePeso && product.volumeTotal <= container.capacidadeVolume ?
-                                <> </> : <h1>Esse container não cabe</h1>}
+                                <> </> :  <div className={styles.containerMessage}> <h2>Esse contêiner não cabe</h2> </div>}
                         </div>
                     </div>
                     </>

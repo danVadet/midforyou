@@ -12,7 +12,7 @@
     
 }
 .formContainer input {
-    margin: 8px;
+    margin: 10px;
     padding: 12px;
     border-radius: 5px;
     outline: none;
@@ -32,11 +32,33 @@
     border: 1.5px solid rgb(240, 19, 11);
   
 }
-.formError {
+.iconError {
+    position: absolute;
+    margin: 15px -40px;
+}
+.nameError {
     color: rgb(240, 19, 11);
     position: absolute;
-    margin: 0 -180px;
-    padding: 50px 0;
+    margin: -5px;
+    width: 960px;
+}
+.quantityError {
+    color: rgb(240, 19, 11);
+    position: absolute;
+    margin: -5px;
+    width: 1405px;
+}
+.pesoError {
+    color: rgb(240, 19, 11);
+    position: absolute;
+    margin: -5px;
+    width: 1830px;
+}
+.volumeError {
+    color: rgb(240, 19, 11);
+    position: absolute;
+    margin: -5px;
+    width: 2260px;
 }
 .formContainer button {
     margin: 8px;
@@ -166,9 +188,16 @@
     border-radius: 5px;
    
 }
+.containerMessage {
+    color: rgb(114, 28, 36);
+    background-color: rgb(248, 215, 218);
+    border-color: rgb(245, 198, 203);
 
 
-@media (max-width: 720px) {
+}
+
+
+@media (max-width: 768px) {
 
     .formContainer {
         display: flex;
@@ -197,6 +226,7 @@
        font-size: 12px;
        
     }
+
 
 
    
