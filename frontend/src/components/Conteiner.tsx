@@ -5,7 +5,32 @@ import EditProductModal from './EditProductModal';
 import DeleteProductModal from './DeleteProductModal';
 import { Product } from '../models/Product';
 import { Container } from '../models/Container';
-import Message from './Message';
+
+interface IContainerProps {
+
+    loadCalculator: string;
+    enterName: string;
+    nameRequiredContainer: string;
+    enterQuantity: string;
+    quantityRequiredContainer: string;
+    enterPeso: string;
+    pesoRequiredContainer: string;
+    enterVolume: string;
+    volumeRequiredContainer: string;
+    buttonAdd: string;
+    searchProduct: string;
+    productNotAdded: string;
+    productQuantity: string;
+    productUniPeso: string;
+    productUniVolume: string;
+    productTotalPeso: string;
+    productTotalVolume: string; 
+    pesoTotal: string;
+    volumeTotal:string;
+    selectContainer: string;
+    pesoCapicity: string;
+    cubCapacicity: string;
+}
 
 interface IValues {
     nome: string;
@@ -16,7 +41,7 @@ interface IValues {
 
 interface IErrors extends Partial<IValues> {}
 
-const Conteiner = () => {
+const Conteiner = (props: IContainerProps) => {
 
     const [products, setProducts] = useState<Product[]>([]);
     const [containers, setContainers] = useState<Container[]>([]);
@@ -45,7 +70,6 @@ const Conteiner = () => {
         capacidadeVolume: 0,
 
     });
-    const [submitted, setSubmitted] = useState(false);
     const [selectedContainer, setSelectedConatiner] = useState<Container>({
         id: 0,
         name: "",
@@ -53,7 +77,6 @@ const Conteiner = () => {
         capacidadePeso: 0,
         capacidadeVolume: 0,
     });
-    const [message, setMessage] = useState(false);
 
     const handleDeleteProduct = async (id: number) => {
 
@@ -75,12 +98,12 @@ const Conteiner = () => {
             console.log(response.data);
             setSelectedConatiner(response.data);
 
-            if (value != null) {
+            if (selectedContainer != null) {
                 const response = await axios.get(`http://localhost:5077/containers/capacity/${value}`);
                 console.log(response.data);
                 setContainer(response.data);
-                setMessage(true);
             }
+           
 
         } catch (error) {
             console.log(error);
@@ -94,19 +117,19 @@ const Conteiner = () => {
         const errors: { nome?: string; quantidade?: string; peso?: string; volume?: string; } = {};
     
         if (!product.nome) {
-          errors.nome = "Nome obrigatório";
+          errors.nome = `${props.nameRequiredContainer}`;
         }
     
         if(!product.quantidade) {
-           errors.quantidade = "Quantidade obrigatória";
+           errors.quantidade = `${props.quantityRequiredContainer}`;;
         }
     
         if (!product.peso) {
-          errors.peso = "Peso obrigatório";
+          errors.peso = `${props.pesoRequiredContainer}`;
         }
     
         if(!product.volume) {
-            errors.volume = "Volume obrigatório";
+            errors.volume = `${props.volumeRequiredContainer}`;;
         }
 
         return errors;
@@ -129,22 +152,17 @@ const Conteiner = () => {
             });
             console.log(response.data);
             setProduct({id: 0, nome: "", quantidade: 0, peso: 0, volume: 0, pesoTotal: 0, volumeTotal: 0})
-            setSubmitted(true);
-            setMessage(true);
             setErrors({});
             getProducts();
             getSumPesoTotal();
             getSumVolumeTotal();
-        }
-
-        
+        }        
     }
     const handleEditProduct = async (id: number) => {
         const response = await axios.get(`http://localhost:5077/products/${id}`);
         console.log(response.data);
         setProductCurrent(response.data);
         setOpenEditModal(true);
-        
     }
 
     const getProducts = async () => {
@@ -201,7 +219,6 @@ const Conteiner = () => {
         setOpenEditModal(false);
     }
 
-
     useEffect(() => {
 
         getProducts();
@@ -221,69 +238,61 @@ const Conteiner = () => {
     return (
         <>
             <div className={`${styles.container}`}>
-                <h1>Calculadora de Carga</h1>
+                <h1>{props.loadCalculator}</h1>
 
                 <form onSubmit={(e) => handleSubmit(e)} className={`${styles.formContainer}`}>
-
-                     <div>
-
-                     </div>
-                    <input type="text" name="nome" value={product.nome || "" } className={ product.nome ? "" : `${errors.nome && `${styles.invalid}`}`} placeholder="Digite o nome...." onChange={(e) => handleChange(e)} />
+                    <input type="text" name="nome" value={product.nome || "" } className={ product.nome ? "" : `${errors.nome && `${styles.invalid}`}`} placeholder={`${props.enterName}`} onChange={(e) => handleChange(e)} />
                      {product.nome ?  "" :   errors.nome && <p className={styles.nameError}>{`${errors.nome}`}</p> }
                      {product.nome ?  "" :   errors.nome &&  < svg className={styles.iconError} xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="30" height="30" viewBox="0,0,256,256">
 <g fill="rgb(240, 19, 11)"><g transform="scale(8.53333,8.53333)"><path d="M15,3c-6.627,0 -12,5.373 -12,12c0,6.627 5.373,12 12,12c6.627,0 12,-5.373 12,-12c0,-6.627 -5.373,-12 -12,-12zM16.414,15c0,0 3.139,3.139 3.293,3.293c0.391,0.391 0.391,1.024 0,1.414c-0.391,0.391 -1.024,0.391 -1.414,0c-0.154,-0.153 -3.293,-3.293 -3.293,-3.293c0,0 -3.139,3.139 -3.293,3.293c-0.391,0.391 -1.024,0.391 -1.414,0c-0.391,-0.391 -0.391,-1.024 0,-1.414c0.153,-0.154 3.293,-3.293 3.293,-3.293c0,0 -3.139,-3.139 -3.293,-3.293c-0.391,-0.391 -0.391,-1.024 0,-1.414c0.391,-0.391 1.024,-0.391 1.414,0c0.154,0.153 3.293,3.293 3.293,3.293c0,0 3.139,-3.139 3.293,-3.293c0.391,-0.391 1.024,-0.391 1.414,0c0.391,0.391 0.391,1.024 0,1.414c-0.153,0.154 -3.293,3.293 -3.293,3.293z"></path></g></g>
 </svg>}
 
-                    <input type="number" name="quantidade" value={product.quantidade || ""} className={ product.quantidade ? "" : `${errors.quantidade && `${styles.invalid}`}`} placeholder="Digite a quantidade...." onChange={(e) => handleChange(e)} />
+                    <input type="number" name="quantidade" value={product.quantidade || ""} className={ product.quantidade ? "" : `${errors.quantidade && `${styles.invalid}`}`}  placeholder={`${props.enterQuantity}`} onChange={(e) => handleChange(e)} />
                     {product.quantidade ?  "" :   errors.quantidade && <p className={styles.quantityError}>{`${errors.quantidade}`}</p> }
                     {product.quantidade ?  "" :   errors.quantidade &&  < svg className={styles.iconError} xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="30" height="30" viewBox="0,0,256,256">
 <g fill="rgb(240, 19, 11)"><g transform="scale(8.53333,8.53333)"><path d="M15,3c-6.627,0 -12,5.373 -12,12c0,6.627 5.373,12 12,12c6.627,0 12,-5.373 12,-12c0,-6.627 -5.373,-12 -12,-12zM16.414,15c0,0 3.139,3.139 3.293,3.293c0.391,0.391 0.391,1.024 0,1.414c-0.391,0.391 -1.024,0.391 -1.414,0c-0.154,-0.153 -3.293,-3.293 -3.293,-3.293c0,0 -3.139,3.139 -3.293,3.293c-0.391,0.391 -1.024,0.391 -1.414,0c-0.391,-0.391 -0.391,-1.024 0,-1.414c0.153,-0.154 3.293,-3.293 3.293,-3.293c0,0 -3.139,-3.139 -3.293,-3.293c-0.391,-0.391 -0.391,-1.024 0,-1.414c0.391,-0.391 1.024,-0.391 1.414,0c0.154,0.153 3.293,3.293 3.293,3.293c0,0 3.139,-3.139 3.293,-3.293c0.391,-0.391 1.024,-0.391 1.414,0c0.391,0.391 0.391,1.024 0,1.414c-0.153,0.154 -3.293,3.293 -3.293,3.293z"></path></g></g>
 </svg>}
 
-
-                    <input type="number" name="peso" value={product.peso || ""} className={ product.peso ? "" :  `${errors.peso && `${styles.invalid}`}`} placeholder="Digite o peso..." onChange={(e) => handleChange(e)} />
+                    <input type="number" name="peso" value={product.peso || ""} className={ product.peso ? "" :  `${errors.peso && `${styles.invalid}`}`}  placeholder={`${props.enterPeso}`} onChange={(e) => handleChange(e)} />
                     {product.peso ?  "" :   errors.peso && <p className={styles.pesoError}>{`${errors.peso}`}</p> }
                     {product.peso ?  "" :   errors.peso &&  < svg className={styles.iconError} xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="30" height="30" viewBox="0,0,256,256">
 <g fill="rgb(240, 19, 11)"><g transform="scale(8.53333,8.53333)"><path d="M15,3c-6.627,0 -12,5.373 -12,12c0,6.627 5.373,12 12,12c6.627,0 12,-5.373 12,-12c0,-6.627 -5.373,-12 -12,-12zM16.414,15c0,0 3.139,3.139 3.293,3.293c0.391,0.391 0.391,1.024 0,1.414c-0.391,0.391 -1.024,0.391 -1.414,0c-0.154,-0.153 -3.293,-3.293 -3.293,-3.293c0,0 -3.139,3.139 -3.293,3.293c-0.391,0.391 -1.024,0.391 -1.414,0c-0.391,-0.391 -0.391,-1.024 0,-1.414c0.153,-0.154 3.293,-3.293 3.293,-3.293c0,0 -3.139,-3.139 -3.293,-3.293c-0.391,-0.391 -0.391,-1.024 0,-1.414c0.391,-0.391 1.024,-0.391 1.414,0c0.154,0.153 3.293,3.293 3.293,3.293c0,0 3.139,-3.139 3.293,-3.293c0.391,-0.391 1.024,-0.391 1.414,0c0.391,0.391 0.391,1.024 0,1.414c-0.153,0.154 -3.293,3.293 -3.293,3.293z"></path></g></g>
 </svg>}
 
-
-                    <input type="number" name="volume" value={product.volume || ""} className={ product.volume ? "" :  `${errors.volume && `${styles.invalid}`}`} placeholder="Digite o volume..." onChange={(e) => handleChange(e)} />
+                    <input type="number" name="volume" value={product.volume || ""} className={ product.volume ? "" :  `${errors.volume && `${styles.invalid}`}`}  placeholder={`${props.enterVolume}`} onChange={(e) => handleChange(e)} />
                     {product.volume ?  "" :   errors.volume && <p className={styles.volumeError}>{`${errors.volume}`}</p> }
                     {product.volume ?  "" :   errors.peso &&  < svg className={styles.iconError} xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="30" height="30" viewBox="0,0,256,256">
 <g fill="rgb(240, 19, 11)"><g transform="scale(8.53333,8.53333)"><path d="M15,3c-6.627,0 -12,5.373 -12,12c0,6.627 5.373,12 12,12c6.627,0 12,-5.373 12,-12c0,-6.627 -5.373,-12 -12,-12zM16.414,15c0,0 3.139,3.139 3.293,3.293c0.391,0.391 0.391,1.024 0,1.414c-0.391,0.391 -1.024,0.391 -1.414,0c-0.154,-0.153 -3.293,-3.293 -3.293,-3.293c0,0 -3.139,3.139 -3.293,3.293c-0.391,0.391 -1.024,0.391 -1.414,0c-0.391,-0.391 -0.391,-1.024 0,-1.414c0.153,-0.154 3.293,-3.293 3.293,-3.293c0,0 -3.139,-3.139 -3.293,-3.293c-0.391,-0.391 -0.391,-1.024 0,-1.414c0.391,-0.391 1.024,-0.391 1.414,0c0.154,0.153 3.293,3.293 3.293,3.293c0,0 3.139,-3.139 3.293,-3.293c0.391,-0.391 1.024,-0.391 1.414,0c0.391,0.391 0.391,1.024 0,1.414c-0.153,0.154 -3.293,3.293 -3.293,3.293z"></path></g></g>
 </svg>}
 
-                    <button>Adicionar novo produto</button>
+                    <button>{props.buttonAdd}</button>
                 </form>
                 <div className={`${styles.calculadoraContent}`}>
 
                     <div className={`${styles.left}`}>
 
                         <div className={`${styles.searchContent}`}>
-
-                            <input type="text" value={search} onChange={(e) => handleChangeSearch(e)} placeholder='Pesquisa o produto...' />
-
+                            <input type="text" value={search} onChange={(e) => handleChangeSearch(e)}  placeholder={`${props.searchProduct}`} />
                         </div>
 
                         <div className={`${styles.listProducts}`}>
-                            {products.length === 0 ? (<div>Produto não adicionado</div>) : (
+                            {products.length === 0 ? (<div>{props.productNotAdded}</div>) : (
                                 products.map((product, index) => (
                                     <div className={`${styles.content}`} key={index}>
                                         <div>{product.nome}</div>
                                         <div className={`${styles.infoProduct}`}>
-                                            <div>{`Peso unidade: ${product.peso} kg`}</div>
-                                            <div>{`Volume unidade: ${product.volume} m³`}</div>
+                                            <div>{`${props.productUniPeso}: ${product.peso} kg`}</div>
+                                            <div>{`${props.productUniVolume}: ${product.volume} m³`}</div>
                                         </div>
-                                        <div>{`Quantidade: ${product.quantidade}`}</div>
+                                        <div>{`${props.productQuantity}: ${product.quantidade}`}</div>
                                         <div className={`${styles.infoTotalProduct}`}>
-                                            <div>{`Peso total: ${product.pesoTotal} kg`}</div>
-                                            <div>{`Volume total: ${product.volumeTotal} m³`}</div>
+                                            <div>{`${props.productTotalPeso}: ${product.pesoTotal} kg`}</div>
+                                            <div>{`${props.productTotalVolume}: ${product.volumeTotal} m³`}</div>
                                         </div>
                                         <div>
 
-                                            {openEditModal && <EditProductModal closeModal={() => closeModal() } getProducts={getProducts} getSumPesoTotal={getSumPesoTotal} getSumVolumeTotal={getSumVolumeTotal} currentProduct={productCurrent} />}
-                                            
+                                            {openEditModal && <EditProductModal 
+                                                 closeModal={() => closeModal() } getProducts={getProducts} getSumPesoTotal={getSumPesoTotal} getSumVolumeTotal={getSumVolumeTotal} currentProduct={productCurrent} />}
                                             <button className={`${styles.buttonEdit}`} onClick={() => handleEditProduct(product.id)}>
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0,0,256,256">
                                                     <g fill="rgb(255, 255, 255)" >
@@ -307,22 +316,22 @@ const Conteiner = () => {
                                 )))}
                         </div>
                         <div className={`${styles.totalContainer}`}>
-                            <h3>{`Peso total de  todos os produtos: ${sumPesoTotal} kg`}</h3>
-                            <h3>{`Volume total de  todos os produtos: ${sumVolumeTotal} m³`}</h3>
+                            <h3>{`${props.pesoTotal}: ${sumPesoTotal} kg`}</h3>
+                            <h3>{`${props.volumeTotal}: ${sumVolumeTotal} m³`}</h3>
                         </div>
                     </div>
 
                     {products.length !== 0 && <>    <div className={`${styles.right}`}>
                         <div className={`${styles.info_container}`}>
                             <select onChange={(e) => handleChangeSelectContainer(e)}>
-                                <option  hidden>Selecionar o  contêiner...</option>
+                                <option  hidden>{props.selectContainer}</option>
                                 {containers.map((container, index) => (
                                     <option value={container.id} key={index}>{container.name}</option>
                                 ))}
                             </select>
                             <h2>{`${selectedContainer.name}`}</h2>
-                            <h2>{`Capacidade de carga: ${selectedContainer.capacidadePeso} kg`}</h2>
-                            <h2>{`Capacidade cúbica: ${selectedContainer.capacidadeVolume} m³`}</h2>
+                            <h2>{`${props.pesoCapicity}: ${selectedContainer.capacidadePeso} kg`}</h2>
+                            <h2>{`${props.cubCapacicity}: ${selectedContainer.capacidadeVolume} m³`}</h2>
 
                             <img src={selectedContainer.image ? `${selectedContainer.image}` : `./assets/containerPlaceholder.png`} alt="" />
                             {product.pesoTotal <= container.capacidadePeso && product.volumeTotal <= container.capacidadeVolume ?

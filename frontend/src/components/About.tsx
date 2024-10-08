@@ -8,28 +8,25 @@ interface IAboutProps {
     aboutInfo4: string;
 
 }
-const About = ({ aboutInfo1, aboutInfo2, aboutInfo3, aboutInfo4}: IAboutProps) => {
+const About = ( props: IAboutProps) => {
     
     return (
 
         <>
-
            <div className={`${styles.aboutComponentContainer}`}>
             <div className={`${styles.aboutTextContainer}`}>
-                <h1>{aboutInfo1}</h1>
+                <h1>{props.aboutInfo1}</h1>
                 <p>
-                    {aboutInfo2}
+                    {props.aboutInfo2}
                     <br />
                     <br />
-                     {aboutInfo3}
+                     {props.aboutInfo3}
                     <br />
                     <br />
-                    {aboutInfo4}
+                    {props.aboutInfo4}
                    </p>
             </div>
            </div>
-         
-        
         </>
 
     );

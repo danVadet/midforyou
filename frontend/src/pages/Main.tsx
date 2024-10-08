@@ -30,6 +30,28 @@ interface IMainProps {
   card_3_description: string;
   card_4_title: string;
   card_4_description: string;
+  loadCalculator: string;
+  enterName: string;
+  nameRequiredContainer: string;
+  enterQuantity: string;
+  quantityRequiredContainer: string;
+  enterPeso: string;
+  pesoRequiredContainer: string;
+  enterVolume: string;
+  volumeRequiredContainer: string;
+  buttonAdd: string;
+  searchProduct: string;
+  productNotAdded: string;
+  productQuantity: string;
+  productUniPeso: string;
+  productUniVolume: string;
+  productTotalPeso: string;
+  productTotalVolume: string;
+  pesoTotal: string;
+  volumeTotal:string;
+  selectContainer: string;
+  pesoCapicity: string;
+  cubCapacicity: string;
   contactTitle: string;
   fullName: string;
   phone: string;
@@ -65,7 +87,28 @@ const  Main = (props: IMainProps) => {
 
 
                 <section className={`${styles.conteiners}`} id="conteiners">
-                <Conteiner/>
+                <Conteiner loadCalculator={props.loadCalculator}
+                           enterName={props.enterName}
+                           enterQuantity={props.enterQuantity}
+                           enterPeso={props.enterPeso}
+                           enterVolume={props.enterVolume}
+                           nameRequiredContainer={props.nameRequiredContainer} 
+                           quantityRequiredContainer={props.quantityRequiredContainer}
+                           pesoRequiredContainer={props.pesoRequiredContainer}
+                           volumeRequiredContainer={props.volumeRequiredContainer}
+                           buttonAdd={props.buttonAdd}
+                           searchProduct={props.searchProduct}
+                           productNotAdded={props.productNotAdded}
+                           productQuantity={props.productQuantity}
+                           productUniPeso={props.productUniPeso}
+                           productUniVolume={props.productUniVolume}
+                           productTotalPeso={props.productTotalPeso}
+                           productTotalVolume={props.productTotalVolume}
+                           pesoTotal={props.pesoTotal}
+                           volumeTotal={props.volumeTotal}
+                           selectContainer={props.selectContainer}
+                           pesoCapicity={props.pesoCapicity}
+                           cubCapacicity={props.cubCapacicity}/>
                 </section>
                  
        <section className={`${styles.contact}`} id="incoterms">

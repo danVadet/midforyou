@@ -27,6 +27,28 @@ const RoutesProvider = () => {
            card_3_description={`${multiLang.en.card_3_description}`}
            card_4_title= {`${multiLang.en.card_4_title}`}
            card_4_description= {`${multiLang.en.card_4_description}`}
+           loadCalculator={`${multiLang.en.loadCalculator}`}
+           enterName={`${multiLang.en.enterName}`}
+           nameRequiredContainer={`${multiLang.en.nameRequiredContainer}`}
+           enterQuantity={`${multiLang.en.enterQuantity}`}
+           quantityRequiredContainer={`${multiLang.en.quantityRequiredContainer}`}
+           enterPeso={`${multiLang.en.enterPeso}`}
+           pesoRequiredContainer={`${multiLang.en.pesoRequiredContainer}`}
+           enterVolume={`${multiLang.en.enterVolume}`}
+           volumeRequiredContainer={`${multiLang.en.volumeRequiredContainer}`}
+           buttonAdd={`${multiLang.en.buttonAdd}`}
+           searchProduct={`${multiLang.en.searchProduct}`}
+           productNotAdded={`${multiLang.en.productNotAdded}`}
+           productQuantity={`${multiLang.en.productQuantity}`}
+           productUniPeso={`${multiLang.en.productUniPeso}`}
+           productUniVolume={`${multiLang.en.productUniVolume}`}
+           productTotalPeso={`${multiLang.en.productTotalPeso}`}
+           productTotalVolume={`${multiLang.en.productTotalPeso}`}
+           pesoTotal={`${multiLang.en.pesoTotal}`}
+           volumeTotal={`${multiLang.en.volumeTotal}`}
+           selectContainer={`${multiLang.en.selectContainer}`}
+           pesoCapicity={`${multiLang.en.pesoCapacity}`}
+           cubCapacicity={`${multiLang.en.cubCapacity}`}
           contactTitle={`${multiLang.en.contactTitle}`}
           fullName={`${multiLang.en.fullName}`}
           phone={`${multiLang.en.phone}`}
@@ -55,6 +77,28 @@ const RoutesProvider = () => {
            card_3_description={`${multiLang.es.card_3_description}`}
            card_4_title= {`${multiLang.es.card_4_title}`}
            card_4_description= {`${multiLang.es.card_4_description}`}
+           loadCalculator={`${multiLang.es.loadCalculator}`}
+           enterName={`${multiLang.es.enterName}`}
+           nameRequiredContainer={`${multiLang.es.nameRequiredContainer}`}
+           enterQuantity={`${multiLang.es.enterQuantity}`}
+           quantityRequiredContainer={`${multiLang.es.quantityRequiredContainer}`}
+           enterPeso={`${multiLang.es.enterPeso}`}
+           pesoRequiredContainer={`${multiLang.es.pesoRequiredContainer}`}
+           enterVolume={`${multiLang.es.enterVolume}`}
+           volumeRequiredContainer={`${multiLang.es.volumeRequiredContainer}`}
+           buttonAdd={`${multiLang.es.buttonAdd}`}
+           searchProduct={`${multiLang.es.searchProduct}`}
+           productNotAdded={`${multiLang.es.productNotAdded}`}
+           productQuantity={`${multiLang.es.productQuantity}`}
+           productUniPeso={`${multiLang.es.productUniPeso}`}
+           productUniVolume={`${multiLang.es.productUniVolume}`}
+           productTotalPeso={`${multiLang.es.productTotalPeso}`}
+           productTotalVolume={`${multiLang.es.productTotalVolume}`}
+           pesoTotal={`${multiLang.es.pesoTotal}`}
+           volumeTotal={`${multiLang.es.volumeTotal}`}
+           selectContainer={`${multiLang.es.selectContainer}`}
+           pesoCapicity={`${multiLang.es.pesoCapacity}`}
+           cubCapacicity={`${multiLang.es.cubCapacity}`}
           contactTitle={`${multiLang.es.contactTitle}`}
           fullName={`${multiLang.es.fullName}`}
           phone={`${multiLang.es.phone}`}
@@ -83,6 +127,28 @@ const RoutesProvider = () => {
          card_3_description={`${multiLang.pt.card_3_description}`}
          card_4_title= {`${multiLang.pt.card_4_title}`}
          card_4_description= {`${multiLang.pt.card_4_description}`}
+         loadCalculator={`${multiLang.pt.loadCalculator}`}
+         enterName={`${multiLang.pt.enterName}`}
+         nameRequiredContainer={`${multiLang.pt.nameRequiredContainer}`}
+         enterQuantity={`${multiLang.pt.enterQuantity}`}
+         quantityRequiredContainer={`${multiLang.pt.quantityRequiredContainer}`}
+         enterPeso={`${multiLang.pt.enterPeso}`}
+         pesoRequiredContainer={`${multiLang.pt.pesoRequiredContainer}`}
+         enterVolume={`${multiLang.pt.enterVolume}`}
+         volumeRequiredContainer={`${multiLang.pt.volumeRequiredContainer}`}
+         buttonAdd={`${multiLang.pt.buttonAdd}`}
+         searchProduct={`${multiLang.pt.searchProduct}`}
+         productNotAdded={`${multiLang.pt.productNotAdded}`}
+         productQuantity={`${multiLang.pt.productQuantity}`}
+         productUniPeso={`${multiLang.pt.productUniPeso}`}
+         productUniVolume={`${multiLang.pt.productUniVolume}`}
+         productTotalPeso={`${multiLang.pt.productTotalPeso}`}
+         productTotalVolume={`${multiLang.pt.volumeTotal}`}
+         pesoTotal={`${multiLang.pt.pesoTotal}`}
+         volumeTotal={`${multiLang.pt.volumeTotal}`}
+         selectContainer={`${multiLang.pt.selectContainer}`}
+         pesoCapicity={`${multiLang.pt.pesoCapacity}`}
+         cubCapacicity={`${multiLang.pt.cubCapacity}`}
         contactTitle={`${multiLang.pt.contactTitle}`}
         fullName={`${multiLang.pt.fullName}`}
         phone={`${multiLang.pt.phone}`}
@@ -95,9 +161,7 @@ const RoutesProvider = () => {
         />
         </Routes>
     </Router>
-   
-
-    )
+    );
 }
 
 export default RoutesProvider;

@@ -27,17 +27,14 @@ public class ContainerController : ControllerBase
         return Ok(containers);
     }
     [HttpPost("containers/createContainer")]
-    public async Task<ActionResult> createContainer(Container container)
-    {
+    public async Task<ActionResult> createContainer( [FromForm] Container container, IFormFile pic) {
+      
+  
+        string FilePath = Path.Combine(Directory.GetCurrentDirectory(), "Images", pic.FileName);
+        pic.CopyTo(new FileStream(FilePath, FileMode.Create));
+         
+        container.image = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}/Images/{pic.FileName}";
 
-       /* string FileName = Path.GetFileName(pic.FileName);
-        string FilePath = Path.Combine(Directory.GetCurrentDirectory(), "Images", FileName);
-             using (var fs = new FileStream(FilePath, FileMode.Create))
-                {
-                    await pic.CopyToAsync(fs);
-                     container.image = FileName;
-                }
-                */
          container.capacidadePeso =  container.capacidadePeso * 1000;
         _applicationDbContext.Containers.Add(container);
 

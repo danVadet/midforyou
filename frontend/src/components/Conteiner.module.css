@@ -5,6 +5,7 @@
 }
 .formContainer {
     border: 1px solid rgb(204, 204, 204);
+    position: relative;
     box-shadow: rgba(0, 0, 0, 0.12) 0px 2px 32px 0px;
     margin: 10px;
     padding: 15px;
@@ -39,26 +40,26 @@
 .nameError {
     color: rgb(240, 19, 11);
     position: absolute;
-    margin: -5px;
-    width: 960px;
+    left: 440px;
+    bottom: 4px;
 }
 .quantityError {
     color: rgb(240, 19, 11);
     position: absolute;
-    margin: -5px;
-    width: 1405px;
+    left: 640px;
+    bottom: 4px;
 }
 .pesoError {
     color: rgb(240, 19, 11);
     position: absolute;
-    margin: -5px;
-    width: 1830px;
+    left: 880px;
+    bottom: 4px;
 }
 .volumeError {
     color: rgb(240, 19, 11);
     position: absolute;
-    margin: -5px;
-    width: 2260px;
+    left: 1080px;
+    bottom: 4px;
 }
 .formContainer button {
     margin: 8px;
