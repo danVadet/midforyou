@@ -24,34 +24,38 @@ interface ITaxModalProps {
 
 
 const TaxModal =  (props : ITaxModalProps) => {
-    let [valueBidData, setValueBidData] = useState<number []>([]);
-
-
-
-
+    const [historicData, setHistoricData] = useState<number[]>([]);
+    const [days, setDays] = useState(1);
+   
     useEffect (() => {
-        getDays();
+        getHistoricData();
 
-    }, [valueBidData]);
+    }, [historicData]);
 
-    const getDays = async () => {
+    const getHistoricData = async () => {
+
+        /*
+        const month: number = 0;
+        const dateNow = new Date();
+        const months = dateNow.getMonth() + month;
+        const year = dateNow.getFullYear();
+        const days = new Date( dateNow.getFullYear(), dateNow.getMonth() - month, 0).getDate()
+        */
+
+
         const response =  await axios.get(`http://economia.awesomeapi.com.br/json/${props.currentTax?.currencyCode}/30`);
         const quote = response.data;
 
         const valueBidArray: number [] = [];
-        let day  = new Date (30);
         
         Object.keys(quote).map((key) => {
             valueBidArray.push(quote[key].bid);
         });
 
-      console.log(valueBidArray);
-      console.log(day);
+      console.log(response.data);
 
-     
-
-      setValueBidData(valueBidArray);
-     
+      setHistoricData(valueBidArray);
+    
    
     }
 
@@ -73,12 +77,21 @@ const TaxModal =  (props : ITaxModalProps) => {
         <div className={`${styles.taxInfo}`}>
             
         <p> {props.currentTax?.name && FormatCurrencyName({ key: props.currentTax?.name })}  </p>
-        <p className={`${styles.variation} ${props.currentTax?.variation && props.currentTax?.variation >= 0 ?  `${styles.success}` : `${styles.danger}`}`}>{props.currentTax?.variation}</p>
+        {props.currentTax?.variation && props.currentTax?.variation >= 0 ? <p className={`${styles.variation} ${styles.success}`}> +{props.currentTax?.variation}%</p> :  <p className={`${styles.variation} ${styles.danger}`}> -{props.currentTax?.variation}%</p>}
         
         <Line data={{
-            labels: ['Jan', 'Fev', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Set', 'Out', 'Nov', 'Dec'],
+            labels: historicData.map((coin) => {
+                let date = new Date();
+                let time =
+                  date.getHours() > 12
+                    ? `${date.getHours() - 12}:${date.getMinutes()} PM`
+                    : `${date.getHours()}:${date.getMinutes()} AM`;
+                return days === 1 ? time : date.toLocaleDateString();
+            }),
             datasets: [{
-                data: valueBidData.map(tax => tax),
+                data: historicData.map(coin => {
+                    return coin;
+                }),
                 borderColor: 'rgb(0, 175, 239)',
             }
                 

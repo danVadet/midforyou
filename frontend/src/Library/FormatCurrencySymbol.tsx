@@ -9,7 +9,7 @@ const FormatCurrencySymbol = (props: IFormatCurrencySymbolProps) => {
     switch (props.key) {
 
         case "USDBRL":
-            return "U$";
+            return "$";
         case "CNYBRL":
             return "¥"
         case "EURBRL":

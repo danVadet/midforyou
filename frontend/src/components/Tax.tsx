@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import './Tax.css'
+import styles from './Tax.module.css'
 import axios from 'axios';
 import { ITaxModel } from '../models/ITaxModel';
 import ITaxKeys from '../models/ITaxKeys';
@@ -47,30 +47,26 @@ const Tax = () => {
 
     return (
         <>
-            <div className="tax-collection-component">
-
-                <div className="tax-wrapper">
+            <div className={`${styles.tax_collectionComponent}`}>
+                <div className={`${styles.taxWrapper}`}>
 
                     {taxes.map((tax, index) => (
                         
-                        <div key={index} className="tax-unit-component">
-                             <a className="s"onClick={() => getTax(tax.currencyCode)}>
-                             <div className="currency-container">
+                        <div key={index} className={`${styles.tax_unitComponent}`}>
+                             <a className={`${styles.s}`}onClick={() => getTax(tax.currencyCode)}>
+                             <div className={`${styles.currencyContainer}`}>
                            
-                           <div className="currency">
+                           <div className={`${styles.currency}`}>
                                {FormatCurrencySymbol({ key: tax.name })}
                            </div>
                        </div>
-                       <div className="text">
-                           <p className="name">{FormatCurrencyName({ key: tax.name })} </p>
+                       <div className={`${styles.text}`}>
+                           <p className={`${styles.name}`}>{FormatCurrencyName({ key: tax.name })} </p>
 
-                           <div className="value-container">
-                               <p className="value">{tax.value}</p>
-                               <p className={`variation ${tax.variation >= 0 ? 'success' : 'danger'}`}>{tax.variation}</p>
+                           <div className={`${styles.valueContainer}`} >
+                               <p className={`${styles.value}`}>{tax.value}</p>
+                               {tax.variation >= 0 ? <p className={`${styles.variation} ${styles.success}`}>+{tax.variation}%</p> : <p  className={`${styles.variation} ${styles.danger}`}>-{tax.variation}%</p>}
                            </div>
-                          
-
-
                        </div>
 
                                     </a>

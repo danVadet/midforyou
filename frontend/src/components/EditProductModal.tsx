@@ -2,7 +2,6 @@ import { useState } from "react";
 import styles from './EditProductModal.module.css'
 import axios from "axios";
 import { Product } from "../models/Product";
-import Message from "./Message";
 
 interface IEditProductModalProps {
 

@@ -1,25 +1,25 @@
-.tax-collection-component {
+.tax_collectionComponent {
     display: flex;
     align-items: center;
     justify-content: center;
     background-color: rgb(0, 140, 196);
 }
-.tax-collection-component .tax-wrapper {
+.tax_collectionComponent .taxWrapper {
     display: flex;
     align-items: center;
     margin: 20px;
     padding-top: 110px;
 
 }
-.tax-unit-component {
+.tax_unitComponent {
     display: flex;
     gap: 1rem;
 }
-.tax-unit-component .currency-container {
+.tax_unitComponentt .currency-container {
     display: flex;
     align-items: center;
 }
-.tax-unit-component .currency {
+.tax_unitComponent .currency {
     font-size: 20px;
     font-weight: bold;
     color: rgb(255, 255, 255);
@@ -27,23 +27,23 @@
   
 
 }
-.tax-unit-component .text {
+.tax_unitComponent .text {
     display: flex;
     flex-direction: column;
     gap: .25rem;
 }
-.tax-unit-component .text .name {
+.tax_unitComponent .text .name {
     font-weight: bold;
     font-size: 10px;
     color: rgb(255, 255, 255);
     font-weight: 700;
 }
-.tax-unit-component .value-container {
+.tax_unitComponent .currencyContainer{
     display: flex;
     align-items: center;
     gap: 10px;
 }
-.tax-unit-component .value-container .value {
+.tax_unitComponent .valueContainer .value {
     font-weight: bold;
     font-size: 10px;
     color: rgb(255, 255, 255);
@@ -56,10 +56,14 @@
     font-weight: 400;
 }
 .success{
-    color: #4BB543;
+    border-radius: 5px;
+    background-color: rgb(75, 181, 67);
+    color: rgb(255, 255, 255);
   }
 .danger {
-    color: #DE2C2C;
+    border-radius: 5px;
+    background-color: rgb(222 44 44);
+    color: rgb(255, 255, 255);
   }
 .tax-unit-component .text .value-container .value {
     font-size: 14px;
