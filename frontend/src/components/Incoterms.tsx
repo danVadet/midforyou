@@ -9,15 +9,15 @@ import TooltipIncoterm from './TooltipIncoterm';
 const Incoterms = () => {
   const [options, setOptions] = useState<Incoterm[]>([]);
   const [selectedIncoterm, setSelectedIncoterm] = useState<Incoterm>({
-    id: 0,
-    name: "" || "EXW",
-    acronym: "" || "Ex Works - Saída de fábrica",
+    id: 1,
+    name: "EXW",
+    acronym:  "Ex Works - Saída de fábrica",
     costStage: 0,
     riskStage: 0,
     safetyStage: 0,
-    freightDetails: "" || "Responsabilidade da fábrica",
-    modal: "" || "Aquaviário",
-    moreDetails: "" || "Ex Works (EXW) coloca a máxima responsabilidade sobre o comprador, incluindo todos os custos de transporte, riscos e liberação de exportação e importação. O vendedor é apenas responsável por disponibilizar as mercadorias em suas instalações ou outro local nomeado (fábrica, armazém, etc.). O comprador arca com todos os custos e riscos envolvidos em levar as mercadorias até o destino desejado."
+    freightDetails: "Responsabilidade da fábrica",
+    modal:  "Aquaviário",
+    moreDetails: "Ex Works (EXW) coloca a máxima responsabilidade sobre o comprador, incluindo todos os custos de transporte, riscos e liberação de exportação e importação. O vendedor é apenas responsável por disponibilizar as mercadorias em suas instalações ou outro local nomeado (fábrica, armazém, etc.). O comprador arca com todos os custos e riscos envolvidos em levar as mercadorias até o destino desejado."
 
   });
 

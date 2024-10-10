@@ -1,8 +1,9 @@
-interface IFormatCurrencyMonthProps {
+interface IFormatCurrencyPeriodProps {
     key: number;
 }
 
-const FormatCurrencyMonth = (props: IFormatCurrencyMonthProps) => {
+const FormatCurrencyPeriod = (props: IFormatCurrencyPeriodProps) => {
+   
 
     switch (props.key) {
 
@@ -36,4 +37,4 @@ const FormatCurrencyMonth = (props: IFormatCurrencyMonthProps) => {
 
 }
 
-export default FormatCurrencyMonth;
+export default FormatCurrencyPeriod;

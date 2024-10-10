@@ -8,62 +8,63 @@
     display: flex;
     align-items: center;
     margin: 20px;
-    padding-top: 110px;
+    padding-top: 90px;
 
 }
 .tax_unitComponent {
+    position: relative;
     display: flex;
     gap: 1rem;
 }
-.tax_unitComponentt .currency-container {
-    display: flex;
-    align-items: center;
-}
 .tax_unitComponent .currency {
-    font-size: 20px;
-    font-weight: bold;
+    font-size: 24px;
+    position: absolute;
+    top: 4px;
+    font-weight: 500;
     color: rgb(255, 255, 255);
-    
-  
-
 }
 .tax_unitComponent .text {
     display: flex;
+    margin: 0 10px;
     flex-direction: column;
-    gap: .25rem;
 }
 .tax_unitComponent .text .name {
-    font-weight: bold;
-    font-size: 10px;
+    font-size: 10.5px;
     color: rgb(255, 255, 255);
-    font-weight: 700;
+    font-weight: 500;
 }
 .tax_unitComponent .currencyContainer{
     display: flex;
     align-items: center;
     gap: 10px;
 }
+.tax_unitComponent .valueContainer {
+    display: flex;
+    align-items: center;
+    margin: 4px 10px;
+    gap: 10px;
+}
 .tax_unitComponent .valueContainer .value {
-    font-weight: bold;
-    font-size: 10px;
+    font-size: 15px;
     color: rgb(255, 255, 255);
     font-weight: 700;
 
 }
 .variation {
     font-family: 'Roboto';
-    font-size: 10px;
-    font-weight: 400;
+    font-weight: 500;
+    font-size: 10.5px;
+    color: rgb(255, 255, 255);
 }
 .success{
-    border-radius: 5px;
+    border-radius: 10px;
     background-color: rgb(75, 181, 67);
-    color: rgb(255, 255, 255);
+    padding: 5px;
   }
 .danger {
-    border-radius: 5px;
+    border-radius: 10px;
     background-color: rgb(222 44 44);
-    color: rgb(255, 255, 255);
+    padding: 5px;
   }
 .tax-unit-component .text .value-container .value {
     font-size: 14px;
@@ -71,5 +72,5 @@
     color: rgb(255, 255, 255);
 }
 a:hover {
-    background-color: rgba(255, 255, 255, 0.267);
+    background-color: rgba(255, 255, 255, 0.088);
 }

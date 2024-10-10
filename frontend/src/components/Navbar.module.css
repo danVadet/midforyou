@@ -1,6 +1,6 @@
 nav {
     width: 100%;
-    background: rgb(255, 255, 255);
+    background-color: rgb(255, 255, 255);
     box-shadow: rgba(0, 0, 0, 0.12) 0px 2px 32px 0px;
     padding: 15px 10px;
     position: fixed;
@@ -16,32 +16,29 @@ nav ul li {
     list-style: none;
     margin: 5px 20px;
 }
-nav ul li :hover {
-    border-bottom: 2px solid rgb(0, 175, 239);
-}
-
 nav ul li a {
     text-decoration: none;
     font-size: 20px;
     color:  rgb(0, 175, 239);
 
 }
-nav ul .selectLanguage {
-    display: flex;
-    gap: 1rem;
-    align-items: center;
-    justify-content: center;
-   
+nav ul li a:hover {
+    border-bottom: 2px solid rgb(0, 175, 239);
 }
-nav ul .selectLanguage img {
-   border-radius: 50%;
-   
+
+nav ul .listLanguage a {
+    margin: 5px;
 }
+
+nav ul .listLanguage :hover {
+    border-bottom: 0;
+}
+
 nav .menuIcon {
     display: none;
 }
 
-@media screen and (max-width: 830px) {
+@media screen and (max-width: 768px) {
 
     .navLogoContainer {
         margin: 20px 5px;
@@ -54,7 +51,7 @@ nav .menuIcon {
         padding: 15px 10px;
     }
     nav ul  {
-        background: rgb(255, 255, 255);
+        background-color: rgb(255, 255, 255);
         box-shadow: rgba(0, 0, 0, 0.12) 0px 2px 32px 0px;
         position: fixed;
         top: 0;
@@ -68,6 +65,9 @@ nav .menuIcon {
     nav ul li {
        display: block;
        margin: 25px 40px;
+    }
+    nav ul .listLanguage  {
+        display: flex;
     }
     nav .menuIcon {
         display: block;

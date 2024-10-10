@@ -5,5 +5,5 @@ export interface ITaxModel {
     value: number;
     variation: number;
     currencyCode: string;
-    day: string;
+    date: string;
 }

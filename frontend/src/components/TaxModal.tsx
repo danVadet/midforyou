@@ -24,37 +24,33 @@ interface ITaxModalProps {
 
 
 const TaxModal =  (props : ITaxModalProps) => {
-    const [historicData, setHistoricData] = useState<number[]>([]);
+    const [arrayBids, setArrayBids] = useState<number[]>([]);
+    const [arrayDates, setArrayDates] = useState<number[]>([]);
     const [days, setDays] = useState(1);
    
     useEffect (() => {
         getHistoricData();
 
-    }, [historicData]);
+    }, []);
 
     const getHistoricData = async () => {
 
-        /*
-        const month: number = 0;
-        const dateNow = new Date();
-        const months = dateNow.getMonth() + month;
-        const year = dateNow.getFullYear();
-        const days = new Date( dateNow.getFullYear(), dateNow.getMonth() - month, 0).getDate()
-        */
-
-
         const response =  await axios.get(`http://economia.awesomeapi.com.br/json/${props.currentTax?.currencyCode}/30`);
         const quote = response.data;
-
-        const valueBidArray: number [] = [];
+        const valueBidArray: number [] = []; 
+        const valueDateArray: number [] = [];
         
         Object.keys(quote).map((key) => {
             valueBidArray.push(quote[key].bid);
         });
+        Object.keys(quote).map((key) => {
+            valueDateArray.push(quote[key].timestamp);
+        });
 
       console.log(response.data);
 
-      setHistoricData(valueBidArray);
+      setArrayBids(valueBidArray);
+      setArrayDates(valueDateArray);
     
    
     }
@@ -77,11 +73,11 @@ const TaxModal =  (props : ITaxModalProps) => {
         <div className={`${styles.taxInfo}`}>
             
         <p> {props.currentTax?.name && FormatCurrencyName({ key: props.currentTax?.name })}  </p>
-        {props.currentTax?.variation && props.currentTax?.variation >= 0 ? <p className={`${styles.variation} ${styles.success}`}> +{props.currentTax?.variation}%</p> :  <p className={`${styles.variation} ${styles.danger}`}> -{props.currentTax?.variation}%</p>}
+        {props.currentTax?.variation && props.currentTax?.variation >= 0 ? <p className={`${styles.variation} ${styles.success}`}> +{props.currentTax?.variation}%</p> :  <p className={`${styles.variation} ${styles.danger}`}> {props.currentTax?.variation}%</p>}
         
         <Line data={{
-            labels: historicData.map((coin) => {
-                let date = new Date();
+            labels: arrayDates.map(coin => {
+                let date = new Date(coin * 1000);
                 let time =
                   date.getHours() > 12
                     ? `${date.getHours() - 12}:${date.getMinutes()} PM`
@@ -89,7 +85,7 @@ const TaxModal =  (props : ITaxModalProps) => {
                 return days === 1 ? time : date.toLocaleDateString();
             }),
             datasets: [{
-                data: historicData.map(coin => {
+                data: arrayBids.map(coin => {
                     return coin;
                 }),
                 borderColor: 'rgb(0, 175, 239)',

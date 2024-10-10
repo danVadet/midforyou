@@ -58,11 +58,11 @@ const Navbar = (props: INavbarProps) => {
                     <a href="#contact">{props.contact}</a>
                 </li>
 
-                <div className={`${styles.selectLanguage}`}>
-                    <a href="/"><img src={`./assets/brazil-flag.png`} width={30} height={30} /></a>
-                    <a href="/en"><img src={`./assets/english-flag.png`} width={30} height={30} /></a>
-                    <a href="/es"><img src={`./assets/spaish-flag.png`} width={30} height={30} /></a>
-                </div>
+                <li className={`${styles.listLanguage}`}>
+                    <a href="/"><img src={`./assets/brazil-flag.png`} width={35} height={35} /></a>
+                    <a href="/en"><img src={`./assets/english-flag.png`} width={35} height={35} /></a>
+                    <a href="/es"><img src={`./assets/spanish-flag.png`} width={35} height={35} /></a>
+                </li>
 
             </ul>
         </nav>

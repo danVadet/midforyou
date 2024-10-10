@@ -143,7 +143,7 @@ const RoutesProvider = () => {
          productUniPeso={`${multiLang.pt.productUniPeso}`}
          productUniVolume={`${multiLang.pt.productUniVolume}`}
          productTotalPeso={`${multiLang.pt.productTotalPeso}`}
-         productTotalVolume={`${multiLang.pt.volumeTotal}`}
+         productTotalVolume={`${multiLang.pt.productTotalVolume}`}
          pesoTotal={`${multiLang.pt.pesoTotal}`}
          volumeTotal={`${multiLang.pt.volumeTotal}`}
          selectContainer={`${multiLang.pt.selectContainer}`}

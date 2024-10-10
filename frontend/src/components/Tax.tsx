@@ -21,7 +21,7 @@ const Tax = () => {
         const taxesArray: ITaxModel[] = [];
 
         Object.keys(quotes).map((key) => {
-            taxesArray.push({ name: key as ITaxKeys, currencyCode: `${quotes[key].code}-BRL`, value: quotes[key].bid, variation: quotes[key].pctChange, day: quotes[key].create_date});
+            taxesArray.push({ name: key as ITaxKeys, currencyCode: `${quotes[key].code}-BRL`, value: quotes[key].bid, variation: quotes[key].pctChange, date: quotes[key].timestamp});
         });
         setTaxes(taxesArray);
     }
@@ -30,7 +30,7 @@ const Tax = () => {
         const quote = response.data;
         
         Object.keys(quote).map((key) => {
-            currentTax = { name: key as ITaxKeys, currencyCode: `${quote[key].code}-BRL`, value: quote[key].bid, variation: quote[key].pctChange, day:  quote[key].create_date  };
+            currentTax = { name: key as ITaxKeys, currencyCode: `${quote[key].code}-BRL`, value: quote[key].bid, variation: quote[key].pctChange, date:  quote[key].timestamp  };
         });
         console.log(currentTax);
         
@@ -64,8 +64,8 @@ const Tax = () => {
                            <p className={`${styles.name}`}>{FormatCurrencyName({ key: tax.name })} </p>
 
                            <div className={`${styles.valueContainer}`} >
-                               <p className={`${styles.value}`}>{tax.value}</p>
-                               {tax.variation >= 0 ? <p className={`${styles.variation} ${styles.success}`}>+{tax.variation}%</p> : <p  className={`${styles.variation} ${styles.danger}`}>-{tax.variation}%</p>}
+                               <p className={`${styles.value}`}>R$ {tax.value}</p>
+                               {tax.variation >= 0 ? <p className={`${styles.variation} ${styles.success}`}>+{tax.variation}%</p> : <p  className={`${styles.variation} ${styles.danger}`}>{tax.variation}%</p>}
                            </div>
                        </div>
 
