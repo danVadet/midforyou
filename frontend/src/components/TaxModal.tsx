@@ -26,7 +26,11 @@ interface ITaxModalProps {
 const TaxModal =  (props : ITaxModalProps) => {
     const [arrayBids, setArrayBids] = useState<number[]>([]);
     const [arrayDates, setArrayDates] = useState<number[]>([]);
-    const [days, setDays] = useState(1);
+    const [arrayBidsOneWeek, setArrayBidsOneWeek] = useState<number[]>([]);
+    const [arrayDatesOneWeek, setArrayDatesOneWeek] = useState<number[]>([]);
+    const [days, setDays] = useState(0);
+    const [date, setDate] = useState(new Date ());
+
    
     useEffect (() => {
         getHistoricData();
@@ -35,10 +39,18 @@ const TaxModal =  (props : ITaxModalProps) => {
 
     const getHistoricData = async () => {
 
-        const response =  await axios.get(`http://economia.awesomeapi.com.br/json/${props.currentTax?.currencyCode}/30`);
+        // DIA DE HOJE
+
+        let day = date.getDate();
+        let  month = date.getMonth() + 1;
+        let year = date.getFullYear()
+        let currentDay = year + month + day;
+
+        const response =  await axios.get(`http://economia.awesomeapi.com.br/${props.currentTax?.currencyCode}/${currentDay}?start_date=${year}${month}${day}&end_date=${year}${month}${day}`);
         const quote = response.data;
         const valueBidArray: number [] = []; 
         const valueDateArray: number [] = [];
+        setDays(currentDay);
         
         Object.keys(quote).map((key) => {
             valueBidArray.push(quote[key].bid);
@@ -47,19 +59,41 @@ const TaxModal =  (props : ITaxModalProps) => {
             valueDateArray.push(quote[key].timestamp);
         });
 
-      console.log(response.data);
-
       setArrayBids(valueBidArray);
       setArrayDates(valueDateArray);
+      setDays(currentDay);
+       
+    // 7 DIAS - UMA SEMANA
+
+    
+    let sevenDayAgo =  new Date(date.getTime() - 7 * (1000 * 60 * 60 * 24))
+    let daySevenDayAgo =  sevenDayAgo.getDate();
+     let monthSevenDayAgo = sevenDayAgo.getMonth() + 1;
+     let yearSevenDayAgo = sevenDayAgo.getFullYear();
+     let oneWeek = yearSevenDayAgo + monthSevenDayAgo + daySevenDayAgo;
+
+   
+   const responseOneWeek =  await axios.get(`http://economia.awesomeapi.com.br/${props.currentTax?.currencyCode}/${oneWeek}`);
+   const quoteOneWeek = responseOneWeek.data;
+   const valueBidArrayOneWeek: number [] = []; 
+   const valueDateArrayOneWeek: number [] = [];
+
+   
+   Object.keys(quoteOneWeek).map((key) => {
+       valueBidArrayOneWeek.push(quoteOneWeek[key].bid);
+   });
+   Object.keys(quoteOneWeek).map((key) => {
+       valueDateArrayOneWeek.push(quoteOneWeek[key].timestamp);
+   });
+
+ setArrayBidsOneWeek(valueBidArrayOneWeek);
+ setArrayDatesOneWeek(valueDateArrayOneWeek);
     
    
     }
 
     return (
 
-    
-    
-       
     
          <div className={`${styles.modal}`}>
         <div className={`${styles.modalBody}`}>
@@ -78,11 +112,14 @@ const TaxModal =  (props : ITaxModalProps) => {
         <Line data={{
             labels: arrayDates.map(coin => {
                 let date = new Date(coin * 1000);
-                let time =
-                  date.getHours() > 12
-                    ? `${date.getHours() - 12}:${date.getMinutes()} PM`
-                    : `${date.getHours()}:${date.getMinutes()} AM`;
-                return days === 1 ? time : date.toLocaleDateString();
+    
+             let time =
+             date.getHours() > 12
+               ? `${date.getHours()}:${date.getMinutes()} PM`
+               : `${date.getHours()}:${date.getMinutes()} AM`;
+            
+           return days  ? time : date.toLocaleDateString();
+
             }),
             datasets: [{
                 data: arrayBids.map(coin => {
@@ -92,6 +129,44 @@ const TaxModal =  (props : ITaxModalProps) => {
             }
                 
             ]
+        }}
+        
+        options={{
+            elements: {
+                point: {
+                    radius: 1
+                }
+            }
+        }}/>
+
+<Line data={{
+            labels: arrayDatesOneWeek.map(coin => {
+                let date = new Date(coin * 1000);
+                let daySevenDayAgo =  date.getDate() - 7;
+                let monthSevenDayAgo = date.getMonth() + 1;
+                let yearSevenDayAgo = date.getFullYear();
+    
+                  
+            
+           return `${daySevenDayAgo}/${monthSevenDayAgo}/${yearSevenDayAgo}`;
+
+            }),
+            datasets: [{
+                data: arrayBidsOneWeek.map(coin => {
+                    return coin;
+                }),
+                borderColor: 'rgb(0, 175, 239)',
+            }
+                
+            ]
+        }}
+        
+        options={{
+            elements: {
+                point: {
+                    radius: 1
+                }
+            }
         }}/>
 </div>
 
