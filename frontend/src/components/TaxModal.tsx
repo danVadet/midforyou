@@ -19,18 +19,20 @@ ChartJS.register(LineElement, CategoryScale, LinearScale, PointElement, Tooltip)
 interface ITaxModalProps {
     currentTax?:  ITaxModel
     closeModal(): void;
-
 }
-
-
 const TaxModal =  (props : ITaxModalProps) => {
     const [arrayBids, setArrayBids] = useState<number[]>([]);
-    const [arrayDates, setArrayDates] = useState<number[]>([]);
+    const [arrayDates, setArrayDates] = useState<Date[]>([]);
     const [arrayBidsOneWeek, setArrayBidsOneWeek] = useState<number[]>([]);
-    const [arrayDatesOneWeek, setArrayDatesOneWeek] = useState<number[]>([]);
-    const [days, setDays] = useState(0);
-    const [date, setDate] = useState(new Date ());
-
+    const [arrayDatesOneWeek, setArrayDatesOneWeek] = useState<Date[]>([]);
+    const [arrayBidsOneMouth, setArrayBidsOneMouth] = useState<number[]>([]);
+    const [arrayDatesOneMouth, setArrayDatesOneMouth] = useState<string[]>([]);
+    const [arrayBidsThreeMouth, setArrayBidsThreeMouth] = useState<number[]>([]);
+    const [arrayDatesThreeMouth, setArrayDatesThreeMouth] = useState<string[]>([]);
+    const [arrayBidsSixMouth, setArrayBidsSixMouth] = useState<number[]>([]);
+    const [arrayDatesSixMouth, setArrayDatesSixMouth] = useState<string[]>([]);
+    const [arrayBidsOneYear, setArrayBidsOneYear] = useState<number[]>([]);
+    const [arrayDatesOneYear, setArrayDatesOneYear] = useState<string[]>([]);
    
     useEffect (() => {
         getHistoricData();
@@ -41,56 +43,173 @@ const TaxModal =  (props : ITaxModalProps) => {
 
         // DIA DE HOJE
 
+        const date = new Date();
+
         let day = date.getDate();
         let  month = date.getMonth() + 1;
         let year = date.getFullYear()
-        let currentDay = year + month + day;
+        let currentDate = year + month + day;
+    
+            const response =  await axios.get(`http://economia.awesomeapi.com.br/${props.currentTax?.currencyCode}/${currentDate}`);
+            const quote = response.data;
 
-        const response =  await axios.get(`http://economia.awesomeapi.com.br/${props.currentTax?.currencyCode}/${currentDay}?start_date=${year}${month}${day}&end_date=${year}${month}${day}`);
-        const quote = response.data;
-        const valueBidArray: number [] = []; 
-        const valueDateArray: number [] = [];
-        setDays(currentDay);
+            const valueBidArray: number [] = [];
+            Object.keys(quote).map((key) => {
+                valueBidArray.push(quote[key].bid);
+            });
+
+          setArrayBids(valueBidArray);
+
+          const dates: Date [] = []; 
+          Object.keys(quote).map((key) => {
+            const date = new Date (quote[key].timestamp * 1000);
+            dates.push(date);
+        });
+
+            setArrayDates(dates);
+
+
+            let dayOneWeek = date.getDate() - 7;
+            let  monthOneWeek = date.getMonth() + 1;
+            let yearOneWeek = date.getFullYear()
+            let oneWeek = yearOneWeek + monthOneWeek + dayOneWeek;
         
-        Object.keys(quote).map((key) => {
-            valueBidArray.push(quote[key].bid);
-        });
-        Object.keys(quote).map((key) => {
-            valueDateArray.push(quote[key].timestamp);
-        });
-
-      setArrayBids(valueBidArray);
-      setArrayDates(valueDateArray);
-      setDays(currentDay);
+        
+    
        
-    // 7 DIAS - UMA SEMANA
-
+       const responseOneWeek =  await axios.get(`http://economia.awesomeapi.com.br/${props.currentTax?.currencyCode}/${oneWeek}`);
+       const quoteOneWeek = responseOneWeek.data;
+       const valueBidArrayOneWeek: number [] = []; 
     
-    let sevenDayAgo =  new Date(date.getTime() - 7 * (1000 * 60 * 60 * 24))
-    let daySevenDayAgo =  sevenDayAgo.getDate();
-     let monthSevenDayAgo = sevenDayAgo.getMonth() + 1;
-     let yearSevenDayAgo = sevenDayAgo.getFullYear();
-     let oneWeek = yearSevenDayAgo + monthSevenDayAgo + daySevenDayAgo;
+       
+       Object.keys(quoteOneWeek).map((key) => {
+           valueBidArrayOneWeek.push(quoteOneWeek[key].bid);
+       });
 
-   
-   const responseOneWeek =  await axios.get(`http://economia.awesomeapi.com.br/${props.currentTax?.currencyCode}/${oneWeek}`);
-   const quoteOneWeek = responseOneWeek.data;
-   const valueBidArrayOneWeek: number [] = []; 
-   const valueDateArrayOneWeek: number [] = [];
+       setArrayBidsOneWeek(valueBidArrayOneWeek);
+       const datesOneWeek: Date [] = [];
+       Object.keys(quoteOneWeek).map((key) => {
+        const date = new Date (quote[key].timestamp * 1000);
+        dates.push(date);
+     
 
-   
-   Object.keys(quoteOneWeek).map((key) => {
-       valueBidArrayOneWeek.push(quoteOneWeek[key].bid);
-   });
-   Object.keys(quoteOneWeek).map((key) => {
-       valueDateArrayOneWeek.push(quoteOneWeek[key].timestamp);
-   });
+        });
+           
+      setArrayDatesOneWeek(datesOneWeek);
 
- setArrayBidsOneWeek(valueBidArrayOneWeek);
- setArrayDatesOneWeek(valueDateArrayOneWeek);
-    
+
+        //  1 MÊS ATRÁS
+      const responseOneMouth =  await axios.get(`http://economia.awesomeapi.com.br/${props.currentTax?.currencyCode}/30`);
+      const quoteOneMouth = responseOneMouth.data;
+      const valueBidArrayOneMouth: number [] = []; 
    
+      
+      Object.keys(quoteOneMouth).map((key) => {
+          valueBidArrayOneMouth.push(quoteOneMouth[key].bid);
+      });
+
+      setArrayBidsOneMouth(valueBidArrayOneMouth);
+      const datesOneMouth: string [] = [];
+      Object.keys(quoteOneMouth).map((key) => {
+     
+           for(let i = 0; i  < 30; i++) {
+            if(!datesOneMouth.includes(`${i + 1}/${date.getMonth() + 1}/${date.getFullYear()}`)) {
+                datesOneMouth.push(`${i + 1}/${date.getMonth() + 1}/${date.getFullYear()}`);
+        }
+
     }
+    
+
+       });
+
+       setArrayDatesOneMouth(datesOneMouth);
+
+
+       const responseThreeMouth =  await axios.get(`http://economia.awesomeapi.com.br/${props.currentTax?.currencyCode}/90`);
+       const quoteThreeMouth = responseThreeMouth.data;
+       const valueBidArrayThreeMouth: number [] = []; 
+    
+       
+       Object.keys(quoteThreeMouth).map((key) => {
+           valueBidArrayThreeMouth.push(quoteThreeMouth[key].bid);
+       });
+ 
+       setArrayBidsThreeMouth(valueBidArrayThreeMouth);
+       const datesThreeMouth: string [] = [];
+       Object.keys(quoteThreeMouth).map((key) => {
+      
+        for(let j = 0; j  < date.getMonth() + 1; j++) {
+            if(!datesThreeMouth.includes(`${date.getDate()}/${j + 1}/${date.getFullYear()}`)) {
+                datesThreeMouth.push(`${date.getDate()}/${j + 1}/${date.getFullYear()}`);
+        }
+ 
+     }
+     
+ 
+        });
+ 
+        setArrayDatesThreeMouth(datesThreeMouth);
+
+        const responseSixMouth =  await axios.get(`http://economia.awesomeapi.com.br/${props.currentTax?.currencyCode}/180`);
+        const quoteSixMouth = responseSixMouth.data;
+        const valueBidArraySixMouth: number [] = []; 
+     
+        
+        Object.keys(quoteSixMouth).map((key) => {
+            valueBidArraySixMouth.push(quoteSixMouth[key].bid);
+        });
+  
+        setArrayBidsSixMouth(valueBidArraySixMouth);
+        const datesSixMouth: string [] = [];
+        Object.keys(quoteSixMouth).map((key) => {
+       
+             for(let j = 0; j  < date.getMonth() + 1; j++) {
+              if(!datesSixMouth.includes(`${date.getDate()}/${j + 1}/${date.getFullYear()}`)) {
+                  datesSixMouth.push(`${date.getDate()}/${j + 1}/${date.getFullYear()}`);
+          }
+  
+      }
+      
+  
+         });
+  
+         setArrayDatesSixMouth(datesSixMouth);
+
+
+
+
+      const responseOneYear =  await axios.get(`http://economia.awesomeapi.com.br/${props.currentTax?.currencyCode}/365`);
+      const quoteOneYear = responseOneYear.data;
+      const valueBidArrayOneYear: number [] = []; 
+   
+      
+      Object.keys(quoteOneYear).map((key) => {
+          valueBidArrayOneYear.push(quoteOneYear[key].bid);
+      });
+
+      setArrayBidsOneYear(valueBidArrayOneYear);
+      const datesOneYear: string [] = [];
+      Object.keys(quoteOneYear).map((key) => {
+     
+        for(let j = 0; j < date.getMonth() + 1; j ++) {
+            if(!datesOneYear.includes(`${date.getDate()}/${j + 1}/${date.getFullYear()}`)) {
+                datesOneYear.push(`${date.getDate()}/${j + 1}/${date.getFullYear()}`);
+                console.log(datesOneYear);
+        
+
+         
+  }
+    
+
+       }
+    });
+
+    setArrayDatesOneYear(datesOneYear);
+
+    }
+        
+     
+
 
     return (
 
@@ -111,16 +230,11 @@ const TaxModal =  (props : ITaxModalProps) => {
         
         <Line data={{
             labels: arrayDates.map(coin => {
-                let date = new Date(coin * 1000);
-    
-             let time =
-             date.getHours() > 12
-               ? `${date.getHours()}:${date.getMinutes()} PM`
-               : `${date.getHours()}:${date.getMinutes()} AM`;
-            
-           return days  ? time : date.toLocaleDateString();
 
-            }),
+            let time = coin.getHours() >= 12  ? `${coin.getHours()}:${coin.getMinutes()} PM` : `${coin.getHours()}:${coin.getMinutes()} AM`;
+            return time;
+
+            }).reverse(),
             datasets: [{
                 data: arrayBids.map(coin => {
                     return coin;
@@ -141,16 +255,12 @@ const TaxModal =  (props : ITaxModalProps) => {
 
 <Line data={{
             labels: arrayDatesOneWeek.map(coin => {
-                let date = new Date(coin * 1000);
-                let daySevenDayAgo =  date.getDate() - 7;
-                let monthSevenDayAgo = date.getMonth() + 1;
-                let yearSevenDayAgo = date.getFullYear();
-    
-                  
-            
-           return `${daySevenDayAgo}/${monthSevenDayAgo}/${yearSevenDayAgo}`;
 
-            }),
+              
+                    return `${coin.getDate()}/${coin.getMonth() + 1}/${coin.getFullYear()}`
+                
+            }).reverse(),
+
             datasets: [{
                 data: arrayBidsOneWeek.map(coin => {
                     return coin;
@@ -168,6 +278,98 @@ const TaxModal =  (props : ITaxModalProps) => {
                 }
             }
         }}/>
+        
+        <Line data={{
+            labels: arrayDatesOneMouth.map(coin => {
+                return coin;
+            }),
+
+            datasets: [{
+                data: arrayBidsOneMouth.map(coin => {
+                    return coin;
+                }),
+                borderColor: 'rgb(0, 175, 239)',
+            }
+                
+            ]
+        }}
+        
+        options={{
+            elements: {
+                point: {
+                    radius: 1
+                }
+            }
+        }}/>
+        <Line data={{
+            labels: arrayDatesThreeMouth.map(coin => {
+                return coin;
+            }),
+
+            datasets: [{
+                data: arrayBidsThreeMouth.map(coin => {
+                    return coin;
+                }),
+                borderColor: 'rgb(0, 175, 239)',
+            }
+                
+            ]
+        }}
+        
+        options={{
+            elements: {
+                point: {
+                    radius: 1
+                }
+            }
+        }}/>
+
+<Line data={{
+            labels: arrayDatesSixMouth.map(coin => {
+                return coin;
+            }),
+
+            datasets: [{
+                data: arrayBidsSixMouth.map(coin => {
+                    return coin;
+                }),
+                borderColor: 'rgb(0, 175, 239)',
+            }
+                
+            ]
+        }}
+        
+        options={{
+            elements: {
+                point: {
+                    radius: 1
+                }
+            }
+        }}/>
+          <Line data={{
+            labels: arrayDatesOneYear.map(coin => {
+                return coin;
+            }),
+
+            datasets: [{
+                data: arrayBidsOneYear.map(coin => {
+                    return coin;
+                }),
+                borderColor: 'rgb(0, 175, 239)',
+            }
+                
+            ]
+        }}
+        
+        options={{
+            elements: {
+                point: {
+                    radius: 1
+                }
+            }
+        }}/>
+
+
 </div>
 
 </div>
