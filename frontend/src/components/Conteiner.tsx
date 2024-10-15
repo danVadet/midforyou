@@ -7,7 +7,7 @@ import { Product } from '../models/Product';
 import { Container } from '../models/Container';
 
 interface IContainerProps {
-
+    
     loadCalculator: string;
     enterName: string;
     nameRequiredContainer: string;
@@ -68,7 +68,6 @@ const Conteiner = (props: IContainerProps) => {
         image: "",
         capacidadePeso: 0,
         capacidadeVolume: 0,
-
     });
     const [selectedContainer, setSelectedConatiner] = useState<Container>({
         id: 0,
@@ -79,7 +78,6 @@ const Conteiner = (props: IContainerProps) => {
     });
 
     const handleDeleteProduct = async (id: number) => {
-
         const response = await axios.get(`http://localhost:5077/products/${id}`);
         console.log(response.data);
         setProductCurrent(response.data);
@@ -103,7 +101,6 @@ const Conteiner = (props: IContainerProps) => {
                 console.log(response.data);
                 setContainer(response.data);
             }
-           
 
         } catch (error) {
             console.log(error);
@@ -137,13 +134,12 @@ const Conteiner = (props: IContainerProps) => {
     
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        
+
         const errors = validate(product);
         if (errors && Object.keys(errors).length > 0) {
           return setErrors(errors);
           
-          } else {
-     
+        } else {
             const response = await axios.post(`http://localhost:5077/products/addProduct`, {
                 nome: product.nome,
                 quantidade: product.quantidade,
@@ -209,7 +205,6 @@ const Conteiner = (props: IContainerProps) => {
         } catch (error) {
             console.log(error);
         }
-
     }
     const deleteAllProdutos = async () => {
         const response = await axios.delete(`http://localhost:5077/products`);
@@ -221,17 +216,21 @@ const Conteiner = (props: IContainerProps) => {
 
     useEffect(() => {
 
+    if(window.performance) {
+        deleteAllProdutos();
+    }
+
+     window.addEventListener('unload', deleteAllProdutos);
+     return () => {
+         window.removeEventListener('unload', deleteAllProdutos);
+     }}, []);
+
+    useEffect(() => {
+
         getProducts();
         getSumPesoTotal();
         getSumVolumeTotal();
         getContainers();
-
-        window.addEventListener('unload', deleteAllProdutos);
-
-        return () => {
-
-            window.removeEventListener('unload', deleteAllProdutos);
-        }
 
     }, [search]);
 
@@ -268,9 +267,7 @@ const Conteiner = (props: IContainerProps) => {
                     <button>{props.buttonAdd}</button>
                 </form>
                 <div className={`${styles.calculadoraContent}`}>
-
                     <div className={`${styles.left}`}>
-
                         <div className={`${styles.searchContent}`}>
                             <input type="text" value={search} onChange={(e) => handleChangeSearch(e)}  placeholder={`${props.searchProduct}`} />
                         </div>
@@ -290,7 +287,6 @@ const Conteiner = (props: IContainerProps) => {
                                             <div>{`${props.productTotalVolume}: ${product.volumeTotal} m³`}</div>
                                         </div>
                                         <div>
-
                                             {openEditModal && <EditProductModal 
                                                  closeModal={() => closeModal() } getProducts={getProducts} getSumPesoTotal={getSumPesoTotal} getSumVolumeTotal={getSumVolumeTotal} currentProduct={productCurrent} />}
                                             <button className={`${styles.buttonEdit}`} onClick={() => handleEditProduct(product.id)}>

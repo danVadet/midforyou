@@ -46,11 +46,11 @@ const TaxModal =  (props : ITaxModalProps) => {
         const date = new Date();
 
         let day = date.getDate();
-        let  month = date.getMonth() + 1;
-        let year = date.getFullYear()
-        let currentDate = year + month + day;
+        let month = date.getMonth() + 1;
+        let year = date.getFullYear();
+  
     
-            const response =  await axios.get(`http://economia.awesomeapi.com.br/${props.currentTax?.currencyCode}/${currentDate}`);
+            const response =  await axios.get(`http://economia.awesomeapi.com.br/${props.currentTax?.currencyCode}/${year}${month}${day}`);
             const quote = response.data;
 
             const valueBidArray: number [] = [];
@@ -61,6 +61,8 @@ const TaxModal =  (props : ITaxModalProps) => {
           setArrayBids(valueBidArray);
 
           const dates: Date [] = []; 
+            
+    
           Object.keys(quote).map((key) => {
             const date = new Date (quote[key].timestamp * 1000);
             dates.push(date);
@@ -69,15 +71,14 @@ const TaxModal =  (props : ITaxModalProps) => {
             setArrayDates(dates);
 
 
-            let dayOneWeek = date.getDate() - 7;
-            let  monthOneWeek = date.getMonth() + 1;
-            let yearOneWeek = date.getFullYear()
-            let oneWeek = yearOneWeek + monthOneWeek + dayOneWeek;
+
         
-        
+            const days = new Date( date.getFullYear(), date.getMonth(), 7).getDate();
+            
+
     
        
-       const responseOneWeek =  await axios.get(`http://economia.awesomeapi.com.br/${props.currentTax?.currencyCode}/${oneWeek}`);
+       const responseOneWeek =  await axios.get(`http://economia.awesomeapi.com.br/${props.currentTax?.currencyCode}/${days}`);
        const quoteOneWeek = responseOneWeek.data;
        const valueBidArrayOneWeek: number [] = []; 
     
@@ -89,13 +90,20 @@ const TaxModal =  (props : ITaxModalProps) => {
        setArrayBidsOneWeek(valueBidArrayOneWeek);
        const datesOneWeek: Date [] = [];
        Object.keys(quoteOneWeek).map((key) => {
-        const date = new Date (quote[key].timestamp * 1000);
-        dates.push(date);
+        const date = new Date (quoteOneWeek[key].timestamp * 1000); 
+
+
+        datesOneWeek.push(date);
+           
+          
+        
      
 
         });
            
       setArrayDatesOneWeek(datesOneWeek);
+
+      /*
 
 
         //  1 MÊS ATRÁS
@@ -205,10 +213,11 @@ const TaxModal =  (props : ITaxModalProps) => {
     });
 
     setArrayDatesOneYear(datesOneYear);
+     */
 
     }
         
-     
+    
 
 
     return (
@@ -234,7 +243,7 @@ const TaxModal =  (props : ITaxModalProps) => {
             let time = coin.getHours() >= 12  ? `${coin.getHours()}:${coin.getMinutes()} PM` : `${coin.getHours()}:${coin.getMinutes()} AM`;
             return time;
 
-            }).reverse(),
+            }),
             datasets: [{
                 data: arrayBids.map(coin => {
                     return coin;
@@ -256,10 +265,9 @@ const TaxModal =  (props : ITaxModalProps) => {
 <Line data={{
             labels: arrayDatesOneWeek.map(coin => {
 
-              
-                    return `${coin.getDate()}/${coin.getMonth() + 1}/${coin.getFullYear()}`
                 
-            }).reverse(),
+        return `${coin.toLocaleDateString()}`;
+            }),
 
             datasets: [{
                 data: arrayBidsOneWeek.map(coin => {
@@ -301,73 +309,9 @@ const TaxModal =  (props : ITaxModalProps) => {
                 }
             }
         }}/>
-        <Line data={{
-            labels: arrayDatesThreeMouth.map(coin => {
-                return coin;
-            }),
 
-            datasets: [{
-                data: arrayBidsThreeMouth.map(coin => {
-                    return coin;
-                }),
-                borderColor: 'rgb(0, 175, 239)',
-            }
-                
-            ]
-        }}
+  
         
-        options={{
-            elements: {
-                point: {
-                    radius: 1
-                }
-            }
-        }}/>
-
-<Line data={{
-            labels: arrayDatesSixMouth.map(coin => {
-                return coin;
-            }),
-
-            datasets: [{
-                data: arrayBidsSixMouth.map(coin => {
-                    return coin;
-                }),
-                borderColor: 'rgb(0, 175, 239)',
-            }
-                
-            ]
-        }}
-        
-        options={{
-            elements: {
-                point: {
-                    radius: 1
-                }
-            }
-        }}/>
-          <Line data={{
-            labels: arrayDatesOneYear.map(coin => {
-                return coin;
-            }),
-
-            datasets: [{
-                data: arrayBidsOneYear.map(coin => {
-                    return coin;
-                }),
-                borderColor: 'rgb(0, 175, 239)',
-            }
-                
-            ]
-        }}
-        
-        options={{
-            elements: {
-                point: {
-                    radius: 1
-                }
-            }
-        }}/>
 
 
 </div>
