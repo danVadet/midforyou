@@ -10,6 +10,8 @@ import Brand from '../components/Brand';
 import Incoterms from '../components/Incoterms';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import Message from '../components/Message';
+import { useEffect, useState } from 'react';
 
 interface IMainProps {
   home:  string;
@@ -65,10 +67,8 @@ interface IMainProps {
 
 
 const  Main = (props: IMainProps) => {
-
   return (
     <div>
-
       <Navbar home={props.home} about={props.about} container={props.container} contact={props.contact}></Navbar>
       <Tax></Tax>
        <Brand brandInfo1={props.brandInfo1} brandInfo2={props.brandInfo2} ></Brand>

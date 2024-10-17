@@ -149,6 +149,7 @@ setDiasCotados(dates);
     dates.push(date);
 });
     setDiasCotados(dates);
+    setDays(1);
 
   }
   } 
@@ -193,6 +194,8 @@ setDiasCotados(dates);
             }
         }}/>
 
+             
+             <button onClick={() => setDays(1)} className={`${styles.selectDay}`}>  Hoje</button>
              <button onClick={() => setDays(7)} className={`${styles.selectDay}`}> 1 semana</button>
              <button onClick={() => setDays(30)} className={`${styles.selectDay}`}> 1 mês</button>
              <button onClick={() => setDays(90)} className={`${styles.selectDay}`}> 3 meses </button>

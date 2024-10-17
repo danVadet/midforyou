@@ -23,7 +23,6 @@ public class ProductController : ControllerBase
             return Ok(products);
         } else {
               return Ok(products);
-
         }
       
     }

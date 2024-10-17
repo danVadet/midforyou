@@ -6,22 +6,18 @@ import styles from './Message.module.css'
 interface MessageProps {
     message: string
     type: string
-
-
 }
 
-
-const Message = ({ message, type }: MessageProps) => {
+const Message = (props: MessageProps) => {
 
     const [visible,  setVisible] = useState(false);
 
     useEffect(() => {
 
-        if(!message) {
+        if(!props.message) {
             setVisible(false);
             return;
         }
-
         setVisible(true);
 
         const  timeout =  setTimeout(() => {
@@ -29,12 +25,12 @@ const Message = ({ message, type }: MessageProps) => {
     }, 3000)
 
         return () => clearTimeout(timeout);
-    }, [message])
+    }, [props.message])
 
     return (
       <>
       {visible && (
-        <div className={`${styles.message} ${styles[type]}`}>{message}</div>
+            <div className={`${styles.message} ${styles[props.type]}`}>{props.message}</div>
       )}
       </>
 

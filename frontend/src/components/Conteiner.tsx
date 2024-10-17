@@ -5,6 +5,7 @@ import EditProductModal from './EditProductModal';
 import DeleteProductModal from './DeleteProductModal';
 import { Product } from '../models/Product';
 import { Container } from '../models/Container';
+import Message from './Message';
 
 interface IContainerProps {
     
@@ -61,6 +62,8 @@ const Conteiner = (props: IContainerProps) => {
    
     const [errors, setErrors] = useState<IErrors>({});
     const [search, setSearch] = useState('');
+    const [unsaved, setUnsaved] = useState(true);
+    const [message, setMessage] = useState(false);
     const [productCurrent, setProductCurrent] = useState<Product>();
     const [container, setContainer] = useState<Container>({
         id: 0,
@@ -206,24 +209,20 @@ const Conteiner = (props: IContainerProps) => {
             console.log(error);
         }
     }
-    const deleteAllProdutos = async () => {
+    const beforeUnload = async (e: BeforeUnloadEvent) => {
+        e.preventDefault();
         const response = await axios.delete(`http://localhost:5077/products`);
         console.log(response.data);
-    }
+
+        }
+
+
+
+
+       
     const closeModal = () => {
         setOpenEditModal(false);
     }
-
-    useEffect(() => {
-
-    if(window.performance) {
-        deleteAllProdutos();
-    }
-
-     window.addEventListener('unload', deleteAllProdutos);
-     return () => {
-         window.removeEventListener('unload', deleteAllProdutos);
-     }}, []);
 
     useEffect(() => {
 
@@ -231,13 +230,18 @@ const Conteiner = (props: IContainerProps) => {
         getSumPesoTotal();
         getSumVolumeTotal();
         getContainers();
+        
 
-    }, [search]);
+     window.addEventListener('beforeunload', beforeUnload);
+     return () => {
+         window.removeEventListener('beforeunload', beforeUnload);
+     }}, [search, unsaved]);
 
     return (
         <>
             <div className={`${styles.container}`}>
                 <h1>{props.loadCalculator}</h1>
+
 
                 <form onSubmit={(e) => handleSubmit(e)} className={`${styles.formContainer}`}>
                     <input type="text" name="nome" value={product.nome || "" } className={ product.nome ? "" : `${errors.nome && `${styles.invalid}`}`} placeholder={`${props.enterName}`} onChange={(e) => handleChange(e)} />
