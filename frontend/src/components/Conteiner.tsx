@@ -59,12 +59,10 @@ const Conteiner = (props: IContainerProps) => {
         pesoTotal: 0,
         volumeTotal: 0,
     });
-   
     const [errors, setErrors] = useState<IErrors>({});
-    const [search, setSearch] = useState('');
-    const [unsaved, setUnsaved] = useState(true);
-    const [message, setMessage] = useState(false);
-    const [productCurrent, setProductCurrent] = useState<Product>();
+    const [searchProduct, setSearchProduct] = useState('');
+    const [unsavedProduct, setUnsavedProduct] = useState(false);
+    const [currentProduct, setCurrentProduct] = useState<Product>();
     const [container, setContainer] = useState<Container>({
         id: 0,
         name: "",
@@ -79,11 +77,10 @@ const Conteiner = (props: IContainerProps) => {
         capacidadePeso: 0,
         capacidadeVolume: 0,
     });
-
     const handleDeleteProduct = async (id: number) => {
         const response = await axios.get(`http://localhost:5077/products/${id}`);
         console.log(response.data);
-        setProductCurrent(response.data);
+        setCurrentProduct(response.data);
         setOpenDeleteModal(true);
     }
 
@@ -92,7 +89,6 @@ const Conteiner = (props: IContainerProps) => {
         setProduct({ ...product, [target.name]: target.value })
     }
     const handleChangeSelectContainer = async (e: React.ChangeEvent<HTMLSelectElement>) => {
-
         try {
             const value = e.target.value;
             const response = await axios.get(`http://localhost:5077/containers/${value}`);
@@ -104,14 +100,13 @@ const Conteiner = (props: IContainerProps) => {
                 console.log(response.data);
                 setContainer(response.data);
             }
-
         } catch (error) {
             console.log(error);
         }
     }
     const handleChangeSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
         const value = e.target.value;
-        setSearch(value);
+        setSearchProduct(value);
     }
     const validate = (product: Product) => {
         const errors: { nome?: string; quantidade?: string; peso?: string; volume?: string; } = {};
@@ -134,14 +129,12 @@ const Conteiner = (props: IContainerProps) => {
 
         return errors;
     }
-    
+
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-
         const errors = validate(product);
         if (errors && Object.keys(errors).length > 0) {
           return setErrors(errors);
-          
         } else {
             const response = await axios.post(`http://localhost:5077/products/addProduct`, {
                 nome: product.nome,
@@ -160,14 +153,13 @@ const Conteiner = (props: IContainerProps) => {
     const handleEditProduct = async (id: number) => {
         const response = await axios.get(`http://localhost:5077/products/${id}`);
         console.log(response.data);
-        setProductCurrent(response.data);
+        setCurrentProduct(response.data);
         setOpenEditModal(true);
     }
-
     const getProducts = async () => {
         try {
-            if (search) {
-                const response = await axios.get(`http://localhost:5077/products?search=${search}`);
+            if (searchProduct) {
+                const response = await axios.get(`http://localhost:5077/products?search=${searchProduct}`);
                 setProducts(response.data);
                 console.log(response.data);
 
@@ -181,7 +173,6 @@ const Conteiner = (props: IContainerProps) => {
         }
     }
     const getSumPesoTotal = async () => {
-
         try {
             const response = await axios.get(`http://localhost:5077/sumPesoTotal`);
             console.log(response.data);
@@ -191,7 +182,6 @@ const Conteiner = (props: IContainerProps) => {
         }
     }
     const getSumVolumeTotal = async () => {
-
         try {
             const response = await axios.get(`http://localhost:5077/sumVolumeTotal`);
             setSumVolumeTotal(response.data);
@@ -209,40 +199,29 @@ const Conteiner = (props: IContainerProps) => {
             console.log(error);
         }
     }
-    const beforeUnload = async (e: BeforeUnloadEvent) => {
-        e.preventDefault();
+    const deleteAllProducts = async () => {
         const response = await axios.delete(`http://localhost:5077/products`);
         console.log(response.data);
-
-        }
-
-
-
-
-       
-    const closeModal = () => {
-        setOpenEditModal(false);
+        window.onbeforeunload = () => true;
+        setUnsavedProduct(true);
     }
 
     useEffect(() => {
-
-        getProducts();
-        getSumPesoTotal();
-        getSumVolumeTotal();
-        getContainers();
-        
-
-     window.addEventListener('beforeunload', beforeUnload);
-     return () => {
-         window.removeEventListener('beforeunload', beforeUnload);
-     }}, [search, unsaved]);
+        if(!unsavedProduct) {
+            deleteAllProducts();
+        } else {
+            getProducts();
+            getSumPesoTotal();
+            getSumVolumeTotal();
+            getContainers();
+        }
+    }, [searchProduct, unsavedProduct]);
 
     return (
         <>
             <div className={`${styles.container}`}>
                 <h1>{props.loadCalculator}</h1>
-
-
+                
                 <form onSubmit={(e) => handleSubmit(e)} className={`${styles.formContainer}`}>
                     <input type="text" name="nome" value={product.nome || "" } className={ product.nome ? "" : `${errors.nome && `${styles.invalid}`}`} placeholder={`${props.enterName}`} onChange={(e) => handleChange(e)} />
                      {product.nome ?  "" :   errors.nome && <p className={styles.nameError}>{`${errors.nome}`}</p> }
@@ -267,15 +246,14 @@ const Conteiner = (props: IContainerProps) => {
                     {product.volume ?  "" :   errors.peso &&  < svg className={styles.iconError} xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="30" height="30" viewBox="0,0,256,256">
 <g fill="rgb(240, 19, 11)"><g transform="scale(8.53333,8.53333)"><path d="M15,3c-6.627,0 -12,5.373 -12,12c0,6.627 5.373,12 12,12c6.627,0 12,-5.373 12,-12c0,-6.627 -5.373,-12 -12,-12zM16.414,15c0,0 3.139,3.139 3.293,3.293c0.391,0.391 0.391,1.024 0,1.414c-0.391,0.391 -1.024,0.391 -1.414,0c-0.154,-0.153 -3.293,-3.293 -3.293,-3.293c0,0 -3.139,3.139 -3.293,3.293c-0.391,0.391 -1.024,0.391 -1.414,0c-0.391,-0.391 -0.391,-1.024 0,-1.414c0.153,-0.154 3.293,-3.293 3.293,-3.293c0,0 -3.139,-3.139 -3.293,-3.293c-0.391,-0.391 -0.391,-1.024 0,-1.414c0.391,-0.391 1.024,-0.391 1.414,0c0.154,0.153 3.293,3.293 3.293,3.293c0,0 3.139,-3.139 3.293,-3.293c0.391,-0.391 1.024,-0.391 1.414,0c0.391,0.391 0.391,1.024 0,1.414c-0.153,0.154 -3.293,3.293 -3.293,3.293z"></path></g></g>
 </svg>}
-
                     <button>{props.buttonAdd}</button>
                 </form>
+
                 <div className={`${styles.calculadoraContent}`}>
                     <div className={`${styles.left}`}>
                         <div className={`${styles.searchContent}`}>
-                            <input type="text" value={search} onChange={(e) => handleChangeSearch(e)}  placeholder={`${props.searchProduct}`} />
+                            <input type="text" value={searchProduct} onChange={(e) => handleChangeSearch(e)}  placeholder={`${props.searchProduct}`} />
                         </div>
-
                         <div className={`${styles.listProducts}`}>
                             {products.length === 0 ? (<div>{props.productNotAdded}</div>) : (
                                 products.map((product, index) => (
@@ -292,7 +270,7 @@ const Conteiner = (props: IContainerProps) => {
                                         </div>
                                         <div>
                                             {openEditModal && <EditProductModal 
-                                                 closeModal={() => closeModal() } getProducts={getProducts} getSumPesoTotal={getSumPesoTotal} getSumVolumeTotal={getSumVolumeTotal} currentProduct={productCurrent} />}
+                                                 closeModal={() => setOpenEditModal(false)} getProducts={getProducts} getSumPesoTotal={getSumPesoTotal} getSumVolumeTotal={getSumVolumeTotal} currentProduct={currentProduct} />}
                                             <button className={`${styles.buttonEdit}`} onClick={() => handleEditProduct(product.id)}>
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0,0,256,256">
                                                     <g fill="rgb(255, 255, 255)" >
@@ -303,7 +281,7 @@ const Conteiner = (props: IContainerProps) => {
                                                 </svg>
                                             </button>
                                             {openDeleteModal && <DeleteProductModal
-                                                closeModal={() => setOpenDeleteModal(false)} message='Deseja excluir esse produto' getProducts={getProducts} getSumPesoTotal={getSumPesoTotal} getSumVolumeTotal={getSumVolumeTotal} productCurrent={productCurrent} />}
+                                                closeModal={() => setOpenDeleteModal(false)} message='Deseja excluir esse produto' getProducts={getProducts} getSumPesoTotal={getSumPesoTotal} getSumVolumeTotal={getSumVolumeTotal} productCurrent={currentProduct} />}
                                             <button className={`${styles.buttonDelete}`} onClick={() => handleDeleteProduct(product.id)}>
                                                 <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="30" height="30" viewBox="0,0,256,256">
                                                     <g fill="rgb(255, 255, 255)">
@@ -320,8 +298,8 @@ const Conteiner = (props: IContainerProps) => {
                             <h3>{`${props.volumeTotal}: ${sumVolumeTotal} m³`}</h3>
                         </div>
                     </div>
-
-                    {products.length !== 0 && <>    <div className={`${styles.right}`}>
+                    
+                    {products.length !== 0 && <> <div className={`${styles.right}`}>
                         <div className={`${styles.info_container}`}>
                             <select onChange={(e) => handleChangeSelectContainer(e)}>
                                 <option  hidden>{props.selectContainer}</option>

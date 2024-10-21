@@ -35,9 +35,7 @@
     width: 100%;
     padding: 8px;
     position: relative;
-    background-color: rgb(255, 255, 255);
     flex-direction: column;
-    margin: 5px 25%;
     align-items: center;
     border-radius: 5px;
     

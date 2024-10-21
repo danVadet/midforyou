@@ -148,7 +148,9 @@ const Contact = (props: IContactProps) => {
           </svg>
           <input type="text" name="email" value={visitor.email} className={visitor.email && emailParrent.test(visitor.email) ? "" : `${errors.email && `${styles.invalid}`}`} placeholder="Digite o seu endereço de email" onChange={(e) => handleChange(e)} />
           {visitor.email && emailParrent.test(visitor.email) ? "" : errors.email && <p className={styles.formError}>{`${errors.email}`}</p>}
-
+          {visitor.email ? "" : errors.email && < svg className={styles.iconError} xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="30" height="30" viewBox="0,0,256,256">
+            <g fill="rgb(240, 19, 11)"><g transform="scale(8.53333,8.53333)"><path d="M15,3c-6.627,0 -12,5.373 -12,12c0,6.627 5.373,12 12,12c6.627,0 12,-5.373 12,-12c0,-6.627 -5.373,-12 -12,-12zM16.414,15c0,0 3.139,3.139 3.293,3.293c0.391,0.391 0.391,1.024 0,1.414c-0.391,0.391 -1.024,0.391 -1.414,0c-0.154,-0.153 -3.293,-3.293 -3.293,-3.293c0,0 -3.139,3.139 -3.293,3.293c-0.391,0.391 -1.024,0.391 -1.414,0c-0.391,-0.391 -0.391,-1.024 0,-1.414c0.153,-0.154 3.293,-3.293 3.293,-3.293c0,0 -3.139,-3.139 -3.293,-3.293c-0.391,-0.391 -0.391,-1.024 0,-1.414c0.391,-0.391 1.024,-0.391 1.414,0c0.154,0.153 3.293,3.293 3.293,3.293c0,0 3.139,-3.139 3.293,-3.293c0.391,-0.391 1.024,-0.391 1.414,0c0.391,0.391 0.391,1.024 0,1.414c-0.153,0.154 -3.293,3.293 -3.293,3.293z"  strokeWidth="2"></path></g></g>
+          </svg>}
           <svg fill="rgb(0, 178, 239)" className={styles.companyIcon} viewBox="0 0 24 24" width="30" height="30" xmlns="http://www.w3.org/2000/svg">
             <path d="M22,7H13V2a1,1,0,0,0-1-1H2A1,1,0,0,0,1,2V22a1,1,0,0,0,1,1H22a1,1,0,0,0,1-1V8A1,1,0,0,0,22,7ZM11,13H3V11h8Zm0-5V9H3V7h8ZM3,15h8v2H3ZM11,3V5H3V3ZM3,19h8v2H3Zm18,2H13V9h8Zm-5-5H14V14h2Zm0,4H14V18h2Zm4-4H18V14h2Zm-4-4H14V10h2Zm4,0H18V10h2Zm0,8H18V18h2Z" />
           </svg>
