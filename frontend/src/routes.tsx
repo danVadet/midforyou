@@ -1,8 +1,6 @@
 import {Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import Main from './pages/Main';
 import  multiLang  from './multiLang.json';
-import Message from './components/Message';
-import { useEffect, useState } from 'react';
 
 const RoutesProvider = () => {
 

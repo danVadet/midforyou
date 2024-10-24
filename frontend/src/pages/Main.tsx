@@ -10,8 +10,6 @@ import Brand from '../components/Brand';
 import Incoterms from '../components/Incoterms';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
-import Message from '../components/Message';
-import { useEffect, useState } from 'react';
 
 interface IMainProps {
   home:  string;

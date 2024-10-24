@@ -13,7 +13,7 @@ interface IAboutServicesProps {
     card_4_description: string;
 }
 
-const AboutServices = ({card_1_title, card_1_description, card_2_title, card_2_description,  card_3_title, card_3_description, card_4_title, card_4_description} : IAboutServicesProps) => {
+const AboutServices = (props: IAboutServicesProps) => {
 
     return (
         <>
@@ -21,23 +21,23 @@ const AboutServices = ({card_1_title, card_1_description, card_2_title, card_2_d
                 <AboutServiceCard
                     imageUrl={`./assets/Acessoria comercial internacional.jpg`}
                     imagePosition='left'
-                    title={card_1_title}
-                    description={card_1_description} />
+                    title={props.card_1_title}
+                    description={props.card_1_description} />
                 <AboutServiceCard
                     imageUrl={`./assets/Análise Aduaneira.jpg`}
                     imagePosition='right'
-                    title={card_2_title}
-                    description={card_2_description} />
+                    title={props.card_2_title}
+                    description={props.card_2_description} />
                 <AboutServiceCard
                     imageUrl={`./assets/Importação e Exportação.jpg`}
                     imagePosition='left'
-                    title={card_3_title}
-                    description={card_3_description} />
+                    title={props.card_3_title}
+                    description={props.card_3_description} />
                 <AboutServiceCard
                     imageUrl={`./assets/Laboratório de Qualidade.jpg`}
                     imagePosition='right'
-                    title={card_4_title}
-                    description={card_4_description} />
+                    title={props.card_4_title}
+                    description={props.card_4_description} />
             </div>
         </>
     );
