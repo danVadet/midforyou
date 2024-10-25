@@ -24,50 +24,7 @@ const TaxModal =  (props : ITaxModalProps) => {
       }, [days])
     
 const getData = async () => {
-  if(days === 7) {
-    const response =  await axios.get(`http://economia.awesomeapi.com.br/${props.currentTax?.currencyCode}/${days}`);
-    const data = response.data;
-
-  
-    const array: number [] = []; 
-        
-    Object.keys(data).map((key) => {
-            array.push(data[key].bid);
-    });
-    setQuotation(array.reverse());
-
-    const dates: Date [] = [];
-      for (let i = 0; i <= days; i++) {
-        const data = new Date();
-        data.setDate(data.getDate() - i);
-         console.log(data);
-  
-         dates.push(data);
-      }
-      setDiasCotados(dates);
-
- } else if(days == 30) {
-
-  const response =  await axios.get(`http://economia.awesomeapi.com.br/${props.currentTax?.currencyCode}/${days}`);
-  const data = response.data;
-
-  const array: number [] = []; 
-        
-  Object.keys(data).map((key) => {
-          array.push(data[key].bid);
-  });
-  setQuotation(array.reverse());
-
-  const dates: Date [] = [];
-  for (let i = 0; i <= days; i++) {
-    const data = new Date();
-    data.setDate(data.getDate() - i);
-     console.log(data);
-
-     dates.push(data);
-  }
-  setDiasCotados(dates);
-} else if(days === 90) {
+ if (days === 7) {
   const response =  await axios.get(`http://economia.awesomeapi.com.br/${props.currentTax?.currencyCode}/${days}`);
   const data = response.data;
   const array: number [] = []; 
@@ -78,16 +35,17 @@ const getData = async () => {
 setQuotation(array.reverse());
 
 const dates: Date [] = [];
-for (let i = 0; i <= days; i++) {
 
-    const data = new Date();
-    data.setDate(data.getDate() - i);
-    dates.push(data);
+  for(let i = 0; i < days; i++) {
+    const date = new Date(data[i].timestamp * 1000);
+    dates.push(date);
   }
   setDiasCotados(dates);
-} else if (days === 180) {
+  
 
-  const response =  await axios.get(`http://economia.awesomeapi.com.br/${props.currentTax?.currencyCode}/${days}`);
+
+} else if (days === 365) {
+  const response =  await axios.get(`http://economia.awesomeapi.com.br/${props.currentTax?.currencyCode}/365`);
   const data = response.data;
   const array: number [] = []; 
 
@@ -97,35 +55,15 @@ for (let i = 0; i <= days; i++) {
 setQuotation(array.reverse());
 
 const dates: Date [] = [];
-for (let i = 0; i <= days; i++) {
 
-    const data = new Date();
-    data.setDate(data.getDate() - i);
-    dates.push(data);
-}
-setDiasCotados(dates);
 
-    
+  for(let i = 0; i < days; i++) {
+    const date = new Date ((data[i].timestamp * 1000))
+    setDays(date.getDate() - i);
+    console.log(days);
+  }
 
-  
- } else if (days === 365) {
-        const response =  await axios.get(`http://economia.awesomeapi.com.br/${props.currentTax?.currencyCode}/${days}`);
-        const data = response.data;
-        const array: number [] = []; 
 
-        Object.keys(data).map((key) => {
-          array.push(data[key].bid);
-      });
-      setQuotation(array.reverse());
-
-      const dates: Date [] = [];
-      for (let i = 0; i <= days; i++) {
-
-          const data = new Date();
-          data.setDate(data.getDate() - i);
-          dates.push(data);
-        }
-        setDiasCotados(dates);
   } else {
 
     const date = new Date();
@@ -196,11 +134,8 @@ setDiasCotados(dates);
 
              
              <button onClick={() => setDays(1)} className={`${styles.selectDay}`}>  Hoje</button>
-             <button onClick={() => setDays(7)} className={`${styles.selectDay}`}> 1 semana</button>
-             <button onClick={() => setDays(30)} className={`${styles.selectDay}`}> 1 mês</button>
-             <button onClick={() => setDays(90)} className={`${styles.selectDay}`}> 3 meses </button>
-             <button onClick={() => setDays(180)} className={`${styles.selectDay}`}> 6 meses </button>
-             <button onClick={() => setDays(365)} className={`${styles.selectDay}`}> 1 ano</button>
+             <button onClick={() => setDays(7)} className={`${styles.selectDay}`}>  1 semana</button>
+             <button onClick={() => setDays(365)} className={`${styles.selectDay}`}>  1 ano </button>
 </div>
 
 </div>

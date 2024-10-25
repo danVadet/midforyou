@@ -17,13 +17,11 @@
     padding: 20px;
     border-radius: 5px;
 
-
     }
     .closeButton {
        position: absolute;
        left: 90%;
        top: 0;
-        
     }
     .formContainer {
         display: flex;
@@ -33,7 +31,6 @@
         box-shadow: rgba(0, 0, 0, 0.12) 0px 2px 32px 0px;
         padding: 10px;
         border-radius: 5px;
-        
     }
     .formContainer input {
         margin: 8px;
@@ -41,7 +38,6 @@
         border-radius: 5px;
         outline: none;
         border: 1px solid rgb(204, 204, 204)
-    
     }
     .formContainer input::-webkit-inner-spin-button {
         -webkit-appearance: none;
