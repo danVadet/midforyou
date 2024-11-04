@@ -34,7 +34,6 @@ select {
 }
 
 .listPorts{
-    max-width: 800px;
     max-height: 300px;
     overflow-y: scroll;
 }
@@ -54,12 +53,9 @@ select {
     justify-content: space-around;
 
 }
-
-
 .infoPorts {
     display: flex;
     align-items: center;
-    
     margin: 10px;
 }
 

@@ -1,6 +1,7 @@
 import {Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import Main from './pages/Main';
 import  multiLang  from './multiLang.json';
+import Tax from './components/Tax';
 
 const RoutesProvider = () => {
 
@@ -161,6 +162,9 @@ const RoutesProvider = () => {
         message={`${multiLang.pt.message}`}
         buttonSend={`${multiLang.pt.buttonSend}`} /> }  
         />
+
+        <Route path='/:name' element={<Tax/>}/>
+
         </Routes>
     </Router>
       </>

@@ -13,6 +13,7 @@ const Tax = () => {
     const [openTaxModal, setOpenTaxModal] = useState(false);
     const [taxes, setTaxes] = useState<ITaxModel[]>([]);
     let [currentTax, setCurrentTax] = useState<ITaxModel>();
+    
 
     const getTaxes = async () => {
         const response = await axios.get(`http://economia.awesomeapi.com.br/last/USD-BRL,EUR-BRL,CNY-BRL,GBP-BRL,ARS-BRL`);
@@ -21,58 +22,54 @@ const Tax = () => {
         const taxesArray: ITaxModel[] = [];
 
         Object.keys(quotes).map((key) => {
-            taxesArray.push({ name: key as ITaxKeys, currencyCode: `${quotes[key].code}-BRL`, value: quotes[key].bid, variation: quotes[key].pctChange, date: quotes[key].timestamp});
+            taxesArray.push({ name: key as ITaxKeys, currencyCode: `${quotes[key].code}-BRL`, bid: quotes[key].bid, ask: quotes[key].ask, variation: quotes[key].pctChange, high: quotes[key].high, low: quotes[key].low, date: quotes[key].timestamp });
         });
         setTaxes(taxesArray);
     }
     const getTax = async (currencyCode: string) => {
         const response = await axios.get(`http://economia.awesomeapi.com.br/last/${currencyCode}`);
         const quote = response.data;
-        
+
         Object.keys(quote).map((key) => {
-            currentTax = { name: key as ITaxKeys, currencyCode: `${quote[key].code}-BRL`, value: quote[key].bid, variation: quote[key].pctChange, date:  quote[key].timestamp  };
+            currentTax = { name: key as ITaxKeys, currencyCode: `${quote[key].code}-BRL`, bid: quote[key].bid, ask: quote[key].ask, variation: quote[key].pctChange, high: quote[key].high, low: quote[key].low, date: quote[key].timestamp };
         });
         console.log(currentTax);
-        
+
         setCurrentTax(currentTax);
         setOpenTaxModal(true);
     }
 
     useEffect(() => {
-
         getTaxes();
-
-
-    })
+    }, []);
 
     return (
         <>
             <div className={`${styles.tax_collectionComponent}`}>
                 <div className={`${styles.taxWrapper}`}>
-
                     {taxes.map((tax, index) => (
-                        
+
                         <div key={index} className={`${styles.tax_unitComponent}`}>
-                             <a className={`${styles.s}`}onClick={() => getTax(tax.currencyCode)}>
-                             <div className={`${styles.currencyContainer}`}>
-                           
-                           <div className={`${styles.currency}`}>
-                               {FormatCurrencySymbol({ key: tax.name })}
-                           </div>
-                       </div>
-                       <div className={`${styles.text}`}>
-                           <p className={`${styles.name}`}>{FormatCurrencyName({ key: tax.name })} </p>
+                            <a className={`${styles.s}`} onClick={() => getTax(tax.currencyCode)}>
+                                <div className={`${styles.currencyContainer}`}>
 
-                           <div className={`${styles.valueContainer}`} >
-                               <p className={`${styles.value}`}>R$ {tax.value}</p>
-                               {tax.variation >= 0 ? <p className={`${styles.variation} ${styles.success}`}>+{tax.variation}%</p> : <p  className={`${styles.variation} ${styles.danger}`}>{tax.variation}%</p>}
-                           </div>
-                       </div>
+                                    <div className={`${styles.currency}`}>
+                                        {FormatCurrencySymbol({ key: tax.name })}
+                                    </div>
+                                </div>
+                                <div className={`${styles.text}`}>
+                                    <p className={`${styles.name}`}>{FormatCurrencyName({ key: tax.name })} </p>
 
-                                    </a>
-                                    {openTaxModal && <TaxModal closeModal={() => setOpenTaxModal(false)} currentTax={currentTax} />}
+                                    <div className={`${styles.valueContainer}`} >
+                                        <p className={`${styles.value}`}>R$ {tax.bid}</p>
+                                        {tax.variation >= 0 ? <p className={`${styles.variation} ${styles.success}`}>+{tax.variation}%</p> : <p className={`${styles.variation} ${styles.danger}`}>{tax.variation}%</p>}
+                                    </div>
+                                </div>
 
-                            
+                            </a>
+                            {openTaxModal && <TaxModal closeModal={() => setOpenTaxModal(false)} currentTax={currentTax} />}
+
+
                         </div>
                     ))}
 

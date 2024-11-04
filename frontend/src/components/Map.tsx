@@ -213,13 +213,11 @@ const Map = () => {
     </form>
     <div className={`${styles.listPorts}`}>
 
-      {portsMarker.map((portMarker, index) => (
-
+      {portsMarker.map(portMarker => (
         <div className={`${styles.content}`} key={portMarker.id}>
           {selectedState.id ? <>  {selectedState.id === portMarker.markerId && <div className={`${styles.infoPorts}`}>
             <img src={`${portMarker.urlImage}`} width={40} height={40} alt="" />
             <h1>{portMarker.label}</h1>
-
           </div>
 
           }</> : <>  <div className={`${styles.infoPorts}`}>
@@ -241,16 +239,11 @@ const Map = () => {
           height: '90vh', borderRadius: '10px', margin: '10px 50px'
         }}
         center={center}
-        zoom={zoom}
-
-      >
+        zoom={zoom}>
         { /* Child components, such as markers, info windows, etc. */
 
-          portsMarker.map((portMarker, index) => (
-
-            <div>
-
-              <MarkerF key={index}
+          portsMarker.map(portMarker => (
+              <MarkerF key={portMarker.id}
                 position={{ lat: portMarker.lat, lng: portMarker.lng }}
                 icon={{
                   url: `${portMarker.urlImage}`,
@@ -262,13 +255,11 @@ const Map = () => {
                     text: portMarker.label
                   },
 
-                }} onClick={(e) => onClickMarker(e)} />
-            </div>
+                }} onClick={(e) => onClickMarker(e)} />         
           ))
         }
 
         <>
-
         </>
       </GoogleMap>
     ) : <></>}
