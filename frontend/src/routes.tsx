@@ -163,8 +163,6 @@ const RoutesProvider = () => {
         buttonSend={`${multiLang.pt.buttonSend}`} /> }  
         />
 
-        <Route path='/:name' element={<Tax/>}/>
-
         </Routes>
     </Router>
       </>

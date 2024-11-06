@@ -5,7 +5,6 @@ import EditProductModal from './EditProductModal';
 import DeleteProductModal from './DeleteProductModal';
 import { Product } from '../models/Product';
 import { Container } from '../models/Container';
-import Message from './Message';
 
 interface IContainerProps {
     

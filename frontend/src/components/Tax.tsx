@@ -6,13 +6,15 @@ import ITaxKeys from '../models/ITaxKeys';
 import FormatCurrencySymbol from '../Library/FormatCurrencySymbol';
 import FormatCurrencyName from '../Library/FormatCurrencyName';
 import TaxModal from './TaxModal';
-
+import { useParams} from 'react-router-dom';
 
 const Tax = () => {
 
     const [openTaxModal, setOpenTaxModal] = useState(false);
     const [taxes, setTaxes] = useState<ITaxModel[]>([]);
     let [currentTax, setCurrentTax] = useState<ITaxModel>();
+    const { id } = useParams();
+
     
 
     const getTaxes = async () => {
@@ -34,7 +36,6 @@ const Tax = () => {
             currentTax = { name: key as ITaxKeys, currencyCode: `${quote[key].code}-BRL`, bid: quote[key].bid, ask: quote[key].ask, variation: quote[key].pctChange, high: quote[key].high, low: quote[key].low, date: quote[key].timestamp };
         });
         console.log(currentTax);
-
         setCurrentTax(currentTax);
         setOpenTaxModal(true);
     }

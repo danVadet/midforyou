@@ -14,7 +14,7 @@ top: 50%;
 left: 50%;
 transform: translate(-50%, -50%);
 background: rgb(255, 255, 255);
-padding: 20px;
+padding: 50px;
 border-radius: 5px;
 
 
@@ -37,11 +37,9 @@ border-radius: 5px;
  .filterPeriod h5 {
   color: rgb(255, 255, 255);
   margin: 20px;
-
  }
  .graphic {
-  padding: 20px;
-
+  margin: 12px;
  }
  .taxInfo_title {
    font-weight: 600;
@@ -95,7 +93,7 @@ border-radius: 5px;
   
   }
 /* SVG spinner icon animation */
-.spinner {
+ .spinner {
    -webkit-animation: rotate 2s linear infinite;
            animation: rotate 2s linear infinite;
    z-index: 2;

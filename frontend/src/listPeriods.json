@@ -1,0 +1,33 @@
+[
+    {
+        "day" : 1,
+        "period" : "Hoje"
+    },
+ 
+    {
+        "day" : 7,
+        "period" : "1 semana"
+
+    },
+    {
+        "day" : 30,
+        "period" : "1 mês"
+    },
+
+    {
+        "day" : 90,
+        "period": "3 meses"
+    },
+    {
+        "day" : 180,
+        "period" : "6 meses"
+    },
+
+    {
+        "day" : 365,
+        "period" : "1 ano"
+    }
+
+       
+
+]
