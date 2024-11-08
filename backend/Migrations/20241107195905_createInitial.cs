@@ -28,26 +28,6 @@ namespace backend.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Incoterms",
-                columns: table => new
-                {
-                    id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    name = table.Column<string>(type: "text", nullable: true),
-                    acronym = table.Column<string>(type: "text", nullable: true),
-                    costStage = table.Column<float>(type: "real", nullable: false),
-                    riskStage = table.Column<float>(type: "real", nullable: false),
-                    safetyStage = table.Column<float>(type: "real", nullable: false),
-                    freightDetails = table.Column<string>(type: "text", nullable: true),
-                    modal = table.Column<string>(type: "text", nullable: true),
-                    moreDetails = table.Column<string>(type: "text", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Incoterms", x => x.id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Markers",
                 columns: table => new
                 {
@@ -114,9 +94,6 @@ namespace backend.Migrations
         {
             migrationBuilder.DropTable(
                 name: "Containers");
-
-            migrationBuilder.DropTable(
-                name: "Incoterms");
 
             migrationBuilder.DropTable(
                 name: "PortMarkers");

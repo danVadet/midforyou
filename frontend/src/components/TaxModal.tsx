@@ -2,7 +2,6 @@ import FormatCurrencyName from "../Library/FormatCurrencyName";
 import { ITaxModel } from "../models/ITaxModel"
 import styles from './TaxModal.module.css'
 import { useEffect, useState } from "react";
-import listPeriods from "../listPeriods.json";
 import axios from "axios";
 import { Line } from 'react-chartjs-2';
 import { Chart as ChartJS, LineElement, CategoryScale, LinearScale, PointElement, Tooltip, Filler } from 'chart.js'
@@ -18,10 +17,17 @@ const TaxModal = (props: ITaxModalProps) => {
     const [quotation, setQuotation] = useState<number[]>([]);
     const [diasCotados, setDiasCotados] = useState<Date[]>([]);
     const [days, setDays] = useState(1);
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(true);
 
+
+   
     useEffect(() => {
-        getData();
+        setLoading(true);
+        setTimeout(() => {
+            getData();
+            setLoading(false);
+        }, 1000);
+    
     }, [days])
 
     const hoverCrossHair = {
@@ -164,9 +170,8 @@ const TaxModal = (props: ITaxModalProps) => {
             setQuotation(array.reverse());
             setDiasCotados(dates.reverse());
 
-        } else {
-
-            const date = new Date();
+        } else  {
+             const date = new Date();
 
             let day = date.getDate();
             let month = date.getMonth() + 1;
@@ -189,16 +194,19 @@ const TaxModal = (props: ITaxModalProps) => {
             });
             setDiasCotados(dates.reverse());
             setDays(1);
+            
+           
+            
+
         }
 
-        setTimeout(() => {
-            setLoading(true);
-        }, 3000);
+
+        
     }
 
     return (
         <div className={`${styles.modal}`}>
-            {!loading ? (<><svg className={styles.spinner} viewBox="0 0 50 50"><circle className={styles.path} cx="25" cy="25" r="20" fill="none" strokeWidth="5"></circle></svg></>) : (<>
+            {loading ? (<div className={styles.loader}><svg className={styles.spinner} viewBox="0 0 50 50"><circle className={styles.path} cx="25" cy="25" r="20" fill="none" strokeWidth="5"></circle></svg> <h1>Carregando...</h1></div>) : (<>
                 <div className={`${styles.modalBody}`}>
                     <a className={`${styles.closeButton}`} onClick={() => props.closeModal()}>
                         <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="40" height="40" viewBox="0,0,256,256">
@@ -229,7 +237,7 @@ const TaxModal = (props: ITaxModalProps) => {
 
                     <div className={`${styles.filterPeriod}`}>
                         <h5>FILTRAR PERÍODO</h5>
-                        <button onClick={() => setDays(1)} className={`${styles.selectPeriod}`}>  Hoje</button>
+                        <button onClick={() => setDays(0)} className={`${styles.selectPeriod}`}>  Hoje</button>
                         <button onClick={() => setDays(7)} className={`${styles.selectPeriod}`}>  1 semana</button>
                         <button onClick={() => setDays(30)} className={`${styles.selectPeriod}`}>  1 mês</button>
                         <button onClick={() => setDays(90)} className={`${styles.selectPeriod}`}>  3 meses </button>

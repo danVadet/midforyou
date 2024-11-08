@@ -1,7 +1,7 @@
 export interface Incoterm {
 
-    id: number
-    name: string
+    id: number,
+    name: string,
     acronym: string,
     costStage: number,
     riskStage: number,

@@ -21,43 +21,6 @@ namespace backend.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("Incoterm", b =>
-                {
-                    b.Property<int>("id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("id"));
-
-                    b.Property<string>("acronym")
-                        .HasColumnType("text");
-
-                    b.Property<float>("costStage")
-                        .HasColumnType("real");
-
-                    b.Property<string>("freightDetails")
-                        .HasColumnType("text");
-
-                    b.Property<string>("modal")
-                        .HasColumnType("text");
-
-                    b.Property<string>("moreDetails")
-                        .HasColumnType("text");
-
-                    b.Property<string>("name")
-                        .HasColumnType("text");
-
-                    b.Property<float>("riskStage")
-                        .HasColumnType("real");
-
-                    b.Property<float>("safetyStage")
-                        .HasColumnType("real");
-
-                    b.HasKey("id");
-
-                    b.ToTable("Incoterms");
-                });
-
             modelBuilder.Entity("Marker", b =>
                 {
                     b.Property<int>("id")

@@ -92,6 +92,19 @@ border-radius: 5px;
     padding: 5px;
   
   }
+
+ .loader {
+    position: absolute;
+    top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+background: rgb(255, 255, 255);
+margin: 80px 0;
+width: 30%;
+height: 28%;
+border-radius: 5px;
+ }
+
 /* SVG spinner icon animation */
  .spinner {
    -webkit-animation: rotate 2s linear infinite;
@@ -99,11 +112,12 @@ border-radius: 5px;
    z-index: 2;
    position: absolute;
    top: 50%;
-   left: 50%;
+   left: 45%;
    margin: -25px 0 0 -25px;
-   width: 50px;
-   height: 50px;
+   width: 100px;
+   height: 100px;
  }
+
  .spinner .path {
    stroke: rgb(0, 175, 239);
    stroke-linecap: round;
