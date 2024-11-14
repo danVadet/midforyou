@@ -92,7 +92,7 @@
                 "costStage": 4,
                 "riskStage": 3,
                 "safetyStage": 3,
-                "freightDetails":  "Factory responsibility",
+                "freightDetails": "Factory responsibility",
                 "modal": "Waterway",
                 "moreDetails": "Cost and Freight (CFR) requires the seller to deliver the goods on board the vessel or at a named port of destination. The seller must clear the goods for export, while the buyer is responsible for all costs and risks from that point onwards."
             },
@@ -104,7 +104,7 @@
                 "riskStage": 3,
                 "safetyStage": 4,
                 "freightDetails": "Factory responsibility",
-                "modal":"Waterway",
+                "modal": "Waterway",
                 "moreDetails": "Cost, Insurance and Freight (CIF) places additional responsibility on the seller to obtain insurance against the risk of loss or damage to the buyer during carriage. The seller delivers the goods on board the vessel or at a named port of destination, with the buyer bearing all costs and risks from that point onwards."
             },
             {
@@ -139,8 +139,8 @@
                 "freightDetails": "Factory responsibility",
                 "modal": "Any modal",
                 "moreDetails": "Delivered at Place Unloaded (DPU) means that the seller delivers the goods, cleared for import, to the buyer at the named place of destination. The seller is responsible for all costs and risks associated with transporting the goods to that place, including duties, taxes and other charges."
-              },
-              {
+            },
+            {
                 "id": 9,
                 "name": "Delivered at Place",
                 "acronym": "DAP",
@@ -150,8 +150,8 @@
                 "freightDetails": "Factory responsibility",
                 "modal": "Any modal",
                 "moreDetails": "Delivered at Place (DAP) means that the seller delivers the goods, cleared for import, to the buyer at the named place of destination. The seller bears all risks and costs associated with transporting the goods to that place, including duties, taxes and other charges."
-              },
-              {
+            },
+            {
                 "id": 10,
                 "name": "Delivered Duty Paid",
                 "acronym": "DDP",
@@ -161,17 +161,63 @@
                 "freightDetails": "Factory responsibility",
                 "modal": "Any modal",
                 "moreDetails": "Delivered Duty Paid (DDP) means that the seller is responsible for all costs and risks associated with delivering the goods to the named place of destination, including payment of import duties and taxes. The seller is obliged to make delivery of the goods at the named place of destination."
-              }
+            }
         ],
-
-        "costLabel": "Cost",
-        "riskLabel": "Risk",
-        "insuranceLabel": "Insurance",
-        "seller" : "Seller",
-        "buyer" : "Buyer",
-        "freight" : "Freight",
-        "modal" : "Modal",
-        "moreDetails" : "More details",
+        "iconsIcoterms": [
+            {
+                "id": 0,
+                "icon": "incoterms/01.svg",
+                "name": "SELLER"
+            },
+            {
+                "id": 1,
+                "icon": "incoterms/02.svg",
+                "name": "TRANSPORT"
+            },
+            {
+                "id": 2,
+                "icon": "incoterms/03.svg",
+                "name": "PORT PLACE"
+            },
+            {
+                "id": 3,
+                "icon": "incoterms/04.svg",
+                "name": "ON BOARD"
+            },
+            {
+                "id": 4,
+                "icon": "incoterms/05.svg",
+                "name": "PORT"
+            },
+            {
+                "id": 5,
+                "icon": "incoterms/06.svg",
+                "name": "ON ARRIVED"
+            },
+            {
+                "id": 6,
+                "icon": "incoterms/07.svg",
+                "name": "DESTINATION PLACE"
+            },
+            {
+                "id": 7,
+                "icon": "incoterms/08.svg",
+                "name": "TRANSPORT"
+            },
+            {
+                "id": 8,
+                "icon": "incoterms/09.svg",
+                "name": "BUYER"
+            }
+        ],
+        "costLabel": "COST",
+        "riskLabel": "RISK",
+        "insuranceLabel": "INSURANCE",
+        "seller": "SELLER",
+        "buyer": "BUYER",
+        "freight": "Freight",
+        "modal": "Modal",
+        "moreDetails": "More details",
         "contactTitle": "Contact",
         "fullName": "Full name",
         "phone": "Phone",
@@ -299,7 +345,7 @@
                 "safetyStage": 2,
                 "freightDetails": "Responsabilidad de la fábrica",
                 "modal": "Cualquier modo",
-                "moreDetails":"Carriage Paid To (CPT) significa que el vendedor entrega los bienes a un transportista u otra persona designada por el vendedor en un lugar acordado, y el vendedor debe organizar y pagar los costos de transporte necesarios para llevar los bienes al lugar de destino designado."
+                "moreDetails": "Carriage Paid To (CPT) significa que el vendedor entrega los bienes a un transportista u otra persona designada por el vendedor en un lugar acordado, y el vendedor debe organizar y pagar los costos de transporte necesarios para llevar los bienes al lugar de destino designado."
             },
             {
                 "id": 7,
@@ -322,8 +368,8 @@
                 "freightDetails": "Responsabilidad de la fábrica",
                 "modal": "Cualquier modo",
                 "moreDetails": "Delivered at Place Unloaded (DPU) significa que el vendedor entrega la mercancía, liberada para la importación, al comprador en el lugar de destino acordado. El vendedor es responsable de todos los costos y riesgos asociados con el transporte de la mercancía a ese lugar, incluidos aranceles, impuestos y otros cargos."
-              },
-              {
+            },
+            {
                 "id": 9,
                 "name": "Delivered at Place - Entregado en el lugar",
                 "acronym": "DAP",
@@ -333,8 +379,8 @@
                 "freightDetails": "Responsabilidad de la fábrica",
                 "modal": "Cualquier modo",
                 "moreDetails": "Delivered at Place (DAP) significa que el vendedor entrega la mercancía, liberada para la importación, al comprador en el lugar de destino acordado. El vendedor asume todos los riesgos y costos asociados con el transporte de la mercancía a ese lugar, incluidos honorarios, impuestos y otros cargos."
-              },
-              {
+            },
+            {
                 "id": 10,
                 "name": "Delivered Duty Paid - Entregado con derechos pagados",
                 "acronym": "DDP",
@@ -344,16 +390,63 @@
                 "freightDetails": "Responsabilidad de la fábrica",
                 "modal": "Cualquier modal",
                 "moreDetails": " Delivered Duty Paid (DDP) significa que el vendedor es responsable de todos los gastos y riesgos asociados con la entrega de los bienes al lugar de destino designado, incluido el pago de impuestos y aranceles de importación. El vendedor está obligado a entregar la mercancía en el lugar de destino convenido."
-              }
+            }
         ],
-        "costLabel": "Costo",
-        "riskLabel": "Riesgo",
-        "insuranceLabel": "Seguro",
-        "seller" : "Fábrica",
-        "buyer" : "Cliente",
-        "freight" : "Frete",
-        "modal" : "Modal",
-        "moreDetails" : "Más detalles",
+        "iconsIcoterms": [
+            {
+                "id": 0,
+                "icon": "incoterms/01.svg",
+                "name": "FÁBRICA"
+            },
+            {
+                "id": 1,
+                "icon": "incoterms/02.svg",
+                "name": "TRANSPORTE"
+            },
+            {
+                "id": 2,
+                "icon": "incoterms/03.svg",
+                "name": "EN PUETRO"
+            },
+            {
+                "id": 3,
+                "icon": "incoterms/04.svg",
+                "name": "A BORDO"
+            },
+            {
+                "id": 4,
+                "icon": "incoterms/05.svg",
+                "name": "PUETRO"
+            },
+            {
+                "id": 5,
+                "icon": "incoterms/06.svg",
+                "name": "A  LLEGADA"
+            },
+            {
+                "id": 6,
+                "icon": "incoterms/07.svg",
+                "name": "EN DESTINO"
+            },
+            {
+                "id": 7,
+                "icon": "incoterms/08.svg",
+                "name": "TRANSPORTE"
+            },
+            {
+                "id": 8,
+                "icon": "incoterms/09.svg",
+                "name": "CLIENTE"
+            }
+        ],
+        "costLabel": "COSTO",
+        "riskLabel": "RIESGO",
+        "insuranceLabel": "SEGURO",
+        "seller": "FÁBRICA",
+        "buyer": "CLIENTE",
+        "freight": "Frete",
+        "modal": "Modal",
+        "moreDetails": "Más detalles",
         "contactTitle": "Contacto",
         "fullName": "Nombre completo",
         "phone": "Teléfono",
@@ -504,8 +597,8 @@
                 "freightDetails": "Responsabilidade da fábrica",
                 "modal": "Qualquer modal",
                 "moreDetails": "Delivered at Place Unloaded (DPU) significa que o vendedor entrega as mercadorias, liberadas para importação, ao comprador no local nomeado de destino. O vendedor é responsável por todos os custos e riscos associados ao transporte das mercadorias até esse local, incluindo taxas, impostos e outras cobranças."
-              },
-              {
+            },
+            {
                 "id": 9,
                 "name": "Delivered at Place - Entregue no local",
                 "acronym": "DAP",
@@ -515,8 +608,8 @@
                 "freightDetails": "Responsabilidade da fábrica",
                 "modal": "Qualquer modal",
                 "moreDetails": "Delivered at Place (DAP) significa que o vendedor entrega as mercadorias, liberadas para importação, ao comprador no local nomeado de destino. O vendedor arca com todos os riscos e custos associados ao transporte das mercadorias até esse local, incluindo taxas, impostos e outras cobranças."
-              },
-              {
+            },
+            {
                 "id": 10,
                 "name": "Delivered Duty Paid - Entregue com direitos pagos",
                 "acronym": "DDP",
@@ -526,16 +619,63 @@
                 "freightDetails": "Responsabilidade da fábrica",
                 "modal": "Qualquer modal",
                 "moreDetails": "Delivered Duty Paid (DDP) significa que o vendedor é responsável por todas as despesas e riscos associados à entrega das mercadorias ao local nomeado de destino, incluindo o pagamento de impostos e taxas de importação. O vendedor é obrigado a fazer a entrega das mercadorias no local nomeado de destino."
-              }
+            }
         ],
-        "costLabel": "Custo",
-        "riskLabel": "Risco",
-        "insuranceLabel": "Seguro",
-        "seller" : "Fábrica",
-        "buyer" : "Cliente",
-        "freight" : "Frete",
-        "modal" : "Modal",
-        "moreDetails" : "Mais detalhes",
+        "iconsIcoterms": [
+            {
+                "id": 0,
+                "icon": "incoterms/01.svg",
+                "name": "FÁBRICA"
+            },
+            {
+                "id": 1,
+                "icon": "incoterms/02.svg",
+                "name": "TRANSPORTE"
+            },
+            {
+                "id": 2,
+                "icon": "incoterms/03.svg",
+                "name": "NO PORTO"
+            },
+            {
+                "id": 3,
+                "icon": "incoterms/04.svg",
+                "name": "A BORDO"
+            },
+            {
+                "id": 4,
+                "icon": "incoterms/05.svg",
+                "name": "PORTO"
+            },
+            {
+                "id": 5,
+                "icon": "incoterms/06.svg",
+                "name": "A CHEGADA"
+            },
+            {
+                "id": 6,
+                "icon": "incoterms/07.svg",
+                "name": "NO DESTINO"
+            },
+            {
+                "id": 7,
+                "icon": "incoterms/08.svg",
+                "name": "TRANSPORTE"
+            },
+            {
+                "id": 8,
+                "icon": "incoterms/09.svg",
+                "name": "CLIENTE"
+            }
+        ],
+        "costLabel": "CUSTO",
+        "riskLabel": "RISCO",
+        "insuranceLabel": "SEGURO",
+        "seller": "FÁBRICA",
+        "buyer": "CLIENTE",
+        "freight": "Frete",
+        "modal": "Modal",
+        "moreDetails": "Mais detalhes",
         "contactTitle": "Contato",
         "fullName": "Nome completo",
         "phone": "Telefone",

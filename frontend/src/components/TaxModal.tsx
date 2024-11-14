@@ -22,11 +22,7 @@ const TaxModal = (props: ITaxModalProps) => {
 
    
     useEffect(() => {
-        setLoading(true);
-        setTimeout(() => {
-            getData();
-            setLoading(false);
-        }, 1000);
+        getData();
     
     }, [days])
 
@@ -199,6 +195,9 @@ const TaxModal = (props: ITaxModalProps) => {
             
 
         }
+        setTimeout(() => {
+            setLoading(false);
+        }, 1000);
 
 
         

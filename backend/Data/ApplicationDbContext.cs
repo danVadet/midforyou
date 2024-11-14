@@ -12,7 +12,7 @@ public class ApplicationDbContext :DbContext {
     public DbSet<Product> Products { get; set; }
     public DbSet<Container> Containers { get; set; }
 
-     public DbSet<Marker> Markers { get; set; }
+     public DbSet<State> States { get; set; }
      
      public DbSet<PortMarker> PortMarkers { get; set; }
 

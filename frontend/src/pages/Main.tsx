@@ -11,6 +11,7 @@ import Incoterms from '../components/Incoterms';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import { Incoterm } from '../models/Incoterm';
+import { IconIcoterm } from '../models/IconIcoterm';
 
 interface IMainProps {
   home:  string;
@@ -54,6 +55,7 @@ interface IMainProps {
   pesoCapicity: string;
   cubCapacicity: string;
   incoterms: Incoterm[];
+  iconsIcoterm: IconIcoterm[]
   costLabel: string;
   riskLabel: string;
   insuranceLabel: string;
@@ -121,6 +123,7 @@ const  Main = (props: IMainProps) => {
                  
        <section className={`${styles.contact}`} id="incoterms">
                <Incoterms incoterms={props.incoterms} 
+                          iconsIcoterm={props.iconsIcoterm}
                           costLabel={props.costLabel} 
                           riskLabel={props.riskLabel} 
                           insuranceLabel={props.insuranceLabel}

@@ -5,20 +5,19 @@ public class PortMarker {
     public string? label { get; set; }
 
     
-    public string? urlImage { get; set; }
+    public string? color { get; set; }
 
     public float lat { get; set; }
 
     
     public float lng { get; set; }
 
-    public Marker marker { get; set; }
+    public State state { get; set; }
 
-    
     public PortType portType { get; set; }
 
     
-    public int? markerId { get; set; }
+    public int? stateId { get; set; }
 
     
 

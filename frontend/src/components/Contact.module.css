@@ -33,7 +33,6 @@
 .formContainer {
     display: flex;
     width: 100%;
-    padding: 8px;
     position: relative;
     flex-direction: column;
     align-items: center;
@@ -60,23 +59,22 @@
 
 .formError {
     color: rgb(240, 19, 11);
-    display: block;
-
 }
 
 .formContainer input {
-    margin: 8px;
+    margin: 10px;
     padding: 10px;
-    width: 100%;
+    width: 90%;
+    outline: 0;
     border-radius: 5px;
     border: 1px solid rgb(204, 204, 204);
-    outline: 0;
+   
 
 }
 .formContainer textarea {
     margin: 8px;
     padding: 30px;
-    width: 100%;
+    width: 90%;
     height: auto;
     border-radius: 5px;
     border: 1px solid rgb(204, 204, 204);
@@ -103,76 +101,59 @@
     background-color: rgb(35, 161, 4);
     color: rgb(255, 255, 255);
 }
+.inputField {
+    width: 100%;
+}
 .userIcon {
     position: absolute;
     left: 10px;
-    top: 20px;
+    top: 5px;
+  
 }
 .phoneIcon {
     position: absolute;
-    left: 10px;
+    left: 5px;
     top: 75px;
+}
+.formError .phoneIcon {
+    position: absolute;
 }
 .emailIcon {
     position: absolute;
     left: 10px;
-    top: 125px;
+    top: 115px;
 }
 .companyIcon {
     position: absolute;
     left: 10px;
-    top: 178px;
+    top: 150px;
 }
 .suitcaseIcon {
     position: absolute;
     left: 10px;
-    top: 228px;
+    top: 195px;
 }
 .localIcon {
     position: absolute;
     left: 10px;
-    top: 281px;
+    top: 240px;
 }
 .mensagemIcon {
     position: absolute;
     left: 10px;
-    top: 336px;
+    top: 328px;
 }
 .iconError {
     position: absolute;
     margin: 15px -40px;
 }
-.formError {
-    color: rgb(240, 19, 11);
-}
-@media screen and (max-width: 830px){
+
+@media screen and (max-width: 768px){
 
      .contato {
         flex-direction: column;
      }
-     .userIcon {
-      display: none;
     
-    }
-    .phoneIcon {
-       display: none;
-    }
-    .emailIcon {
-        display: none;
-    }
-    .companyIcon {
-        display: none;
-    }
-    .suitcaseIcon {
-        display: none;
-    }
-    .localIcon {
-        display: none;
-      
-    }
-    .mensagemIcon {
-        display: none;
-    }
    
      
 

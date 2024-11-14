@@ -14,46 +14,59 @@ public class MarkerController : ControllerBase
     }
 
     [HttpGet("markers/states")]
-    public async Task<ActionResult<List<Marker>>> getAllMarkerByState()
+    public async Task<ActionResult<List<State>>> getAllStates()
     {
-        var markers = await _applicationDbContext.Markers.ToListAsync();
-        return Ok(markers);
+        var states = await _applicationDbContext.States.ToListAsync();
+        return Ok(states);
     }
       [HttpGet("markers/states/{id}")]
     public async Task<ActionResult> getMarker(int id)
     {
 
-        var marker = await _applicationDbContext.Markers.FindAsync(id);
+        var state = await _applicationDbContext.States.FindAsync(id);
 
-        return Ok(marker);
+        return Ok(state);
       
 
     
     }
     [HttpPost("markers/state")]
-    public async Task<ActionResult> createMarkerByState([FromBody] Marker marker)
+    public async Task<ActionResult> createMarkerByState([FromBody] State state)
     {
     
-        _applicationDbContext.Markers.Add(marker);
+        _applicationDbContext.States.Add(state);
 
         await _applicationDbContext.SaveChangesAsync();
 
-        return Created("Marker by state created successfully", marker);
+        return Created("State created successfully", state);
+    }
+     [HttpGet("markers/ports")]
+    public async Task<ActionResult<List<PortMarker>>> getAllMarkerByPort()
+    {
+        var markers = await _applicationDbContext.PortMarkers.Include(p => p.state).ToListAsync();
+
+      
+        return Ok(markers);
+        }
+
+         
+    [HttpGet("markers/{stateId}/ports")]
+    public async Task<ActionResult<List<PortMarker>>> getAllPortByState(int stateId)
+    {
+        
+
+        var state = await _applicationDbContext.States.FindAsync(stateId);
+        var markers = await _applicationDbContext.PortMarkers.Where(p => p.stateId == state.id).ToListAsync();
+        return Ok(markers);
     }
 
     
-    [HttpGet("markers/ports")]
-    public async Task<ActionResult<List<PortMarker>>> getAllMarkerByPort([FromQuery] string search)
+    [HttpGet("markers/ports/{id}")]
+    public async Task<ActionResult<List<PortMarker>>> getAllPortByState(int stateId, int id)
     {
-        var markers = await _applicationDbContext.PortMarkers.Include(p => p.marker).ToListAsync();
-
-        if(!string.IsNullOrEmpty(search)) {
-            markers = markers.Where(m => m.label.Contains(search)).ToList();
-            return Ok(markers);
-
-        } else {
+        
+        var markers = await _applicationDbContext.PortMarkers.Where(p => p.id == id).ToListAsync();
         return Ok(markers);
-        }
     }
 
     [HttpPost("markers/port")]
@@ -64,18 +77,7 @@ public class MarkerController : ControllerBase
 
         await _applicationDbContext.SaveChangesAsync();
 
-        return Created("Marker by port created successfully", portMarker);
-    }
-    [HttpDelete("markersPorts")]
-    public async Task<ActionResult> deleteAllProducts()
-    {
-       foreach(var product in _applicationDbContext.PortMarkers) {
-
-        _applicationDbContext.Remove(product);
-
-       }
-        await _applicationDbContext.SaveChangesAsync();
-        return Ok("All products removed successfully");
+        return Created("Port created successfully", portMarker);
     }
 
     [HttpDelete("markers/ports/{id}")]
@@ -85,16 +87,6 @@ public class MarkerController : ControllerBase
 
         _applicationDbContext.PortMarkers.Remove(marker);
         await _applicationDbContext.SaveChangesAsync();
-        return Ok("Container removed successfully");
-    }
-    [HttpGet("markers/ports/{id}")]
-    public async Task<ActionResult> getPortById(int id)
-    {
-
-        var marker = await _applicationDbContext.PortMarkers.FindAsync(id);
-        return Ok(marker);
-      
-
-    
+        return Ok("Port removed successfully");
     }
 }

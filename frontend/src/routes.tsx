@@ -50,6 +50,7 @@ const RoutesProvider = () => {
            pesoCapicity={multiLang.en.pesoCapacity}
            cubCapacicity={multiLang.en.cubCapacity}
            incoterms={multiLang.en.incoterms}
+           iconsIcoterm={multiLang.en.iconsIcoterms}
            costLabel={multiLang.en.costLabel} 
            riskLabel={multiLang.en.riskLabel} 
            insuranceLabel={multiLang.en.insuranceLabel}
@@ -108,6 +109,7 @@ const RoutesProvider = () => {
            selectContainer={multiLang.es.selectContainer}
            pesoCapicity={multiLang.es.pesoCapacity}
            cubCapacicity={multiLang.es.cubCapacity}
+           iconsIcoterm={multiLang.es.iconsIcoterms}
            incoterms={multiLang.es.incoterms}
            costLabel={multiLang.es.costLabel} 
            riskLabel={multiLang.es.riskLabel} 
@@ -167,6 +169,7 @@ const RoutesProvider = () => {
          selectContainer={multiLang.pt.selectContainer}
          pesoCapicity={multiLang.pt.pesoCapacity}
          cubCapacicity={multiLang.pt.cubCapacity}
+         iconsIcoterm={multiLang.pt.iconsIcoterms}
          incoterms= {multiLang.pt.incoterms}
         costLabel={multiLang.pt.costLabel} 
         riskLabel={multiLang.pt.riskLabel} 

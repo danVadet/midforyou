@@ -21,28 +21,6 @@ namespace backend.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("Marker", b =>
-                {
-                    b.Property<int>("id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("id"));
-
-                    b.Property<string>("label")
-                        .HasColumnType("text");
-
-                    b.Property<float>("lat")
-                        .HasColumnType("real");
-
-                    b.Property<float>("lng")
-                        .HasColumnType("real");
-
-                    b.HasKey("id");
-
-                    b.ToTable("Markers");
-                });
-
             modelBuilder.Entity("PortMarker", b =>
                 {
                     b.Property<int>("id")
@@ -51,6 +29,9 @@ namespace backend.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("id"));
 
+                    b.Property<string>("color")
+                        .HasColumnType("text");
+
                     b.Property<string>("label")
                         .HasColumnType("text");
 
@@ -60,20 +41,39 @@ namespace backend.Migrations
                     b.Property<float>("lng")
                         .HasColumnType("real");
 
-                    b.Property<int?>("markerId")
-                        .HasColumnType("integer");
-
                     b.Property<int>("portType")
                         .HasColumnType("integer");
 
-                    b.Property<string>("urlImage")
-                        .HasColumnType("text");
+                    b.Property<int?>("stateId")
+                        .HasColumnType("integer");
 
                     b.HasKey("id");
 
-                    b.HasIndex("markerId");
+                    b.HasIndex("stateId");
 
                     b.ToTable("PortMarkers");
+                });
+
+            modelBuilder.Entity("State", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("id"));
+
+                    b.Property<string>("label")
+                        .HasColumnType("text");
+
+                    b.Property<float>("lat")
+                        .HasColumnType("real");
+
+                    b.Property<float>("lng")
+                        .HasColumnType("real");
+
+                    b.HasKey("id");
+
+                    b.ToTable("States");
                 });
 
             modelBuilder.Entity("backend.Models.Container", b =>
@@ -134,11 +134,11 @@ namespace backend.Migrations
 
             modelBuilder.Entity("PortMarker", b =>
                 {
-                    b.HasOne("Marker", "marker")
+                    b.HasOne("State", "state")
                         .WithMany()
-                        .HasForeignKey("markerId");
+                        .HasForeignKey("stateId");
 
-                    b.Navigation("marker");
+                    b.Navigation("state");
                 });
 #pragma warning restore 612, 618
         }

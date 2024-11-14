@@ -8,54 +8,24 @@ select {
     border: 1px solid rgb(204, 204, 204)
 
 }
-
 .searchContent {
     border: 1px solid rgb(204, 204, 204);
     box-shadow: rgba(0, 0, 0, 0.12) 0px 2px 32px 0px;
-    margin: 40px 120px;
-    padding: 10px;
+    margin: 40px;
+    padding: 8px;
     border-radius: 5px;
+    width: 91%;
 }
-.searchContent input {
-    margin: 8px;
-    padding: 10px;
-    border-radius: 5px;
-    outline: none;
-    border: 1px solid rgb(204, 204, 204)
-
-}
-.searchContent button {
-    margin: 8px;
-    padding: 12px;
-    border-radius: 50px;
-    background-color:  rgb(0, 175, 239);
-    color: rgb(255, 255, 255);
-    border: 0
-}
-
-.listPorts{
-    max-height: 300px;
-    overflow-y: scroll;
-}
-.listPorts::-webkit-scrollbar {
-    width: 12px;
-    border: 1px solid rgb(204, 204, 204);
-    border-radius: 20px;
-}
-.listPorts::-webkit-scrollbar-thumb {
-    background-color:  rgb(0, 175, 239);
-    border: 1px solid  rgb(0, 146, 199);
-    border-radius: 20px;
-}
-.listPorts .content {
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-
-}
-.infoPorts {
-    display: flex;
-    align-items: center;
-    margin: 10px;
+.portMapLabel {
+    position: absolute;
+    text-shadow: -1px -1px 0px rgb(255, 255, 255),
+    -1px 1px 0px rgb(255, 255, 255),
+     1px -1px 0px rgb(255, 255, 255),
+     1px 0px 0px  rgb(255, 255, 255);
+     font-size: 5px;
+     font-weight: 600;
+     color: rgb(0, 0, 0);
+     left: -25px;
+     top: 35px;
 }
 

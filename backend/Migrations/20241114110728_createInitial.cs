@@ -28,21 +28,6 @@ namespace backend.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Markers",
-                columns: table => new
-                {
-                    id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    label = table.Column<string>(type: "text", nullable: true),
-                    lat = table.Column<float>(type: "real", nullable: false),
-                    lng = table.Column<float>(type: "real", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Markers", x => x.id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Products",
                 columns: table => new
                 {
@@ -61,32 +46,47 @@ namespace backend.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "States",
+                columns: table => new
+                {
+                    id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    label = table.Column<string>(type: "text", nullable: true),
+                    lat = table.Column<float>(type: "real", nullable: false),
+                    lng = table.Column<float>(type: "real", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_States", x => x.id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "PortMarkers",
                 columns: table => new
                 {
                     id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     label = table.Column<string>(type: "text", nullable: true),
-                    urlImage = table.Column<string>(type: "text", nullable: true),
+                    color = table.Column<string>(type: "text", nullable: true),
                     lat = table.Column<float>(type: "real", nullable: false),
                     lng = table.Column<float>(type: "real", nullable: false),
                     portType = table.Column<int>(type: "integer", nullable: false),
-                    markerId = table.Column<int>(type: "integer", nullable: true)
+                    stateId = table.Column<int>(type: "integer", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_PortMarkers", x => x.id);
                     table.ForeignKey(
-                        name: "FK_PortMarkers_Markers_markerId",
-                        column: x => x.markerId,
-                        principalTable: "Markers",
+                        name: "FK_PortMarkers_States_stateId",
+                        column: x => x.stateId,
+                        principalTable: "States",
                         principalColumn: "id");
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_PortMarkers_markerId",
+                name: "IX_PortMarkers_stateId",
                 table: "PortMarkers",
-                column: "markerId");
+                column: "stateId");
         }
 
         /// <inheritdoc />
@@ -102,7 +102,7 @@ namespace backend.Migrations
                 name: "Products");
 
             migrationBuilder.DropTable(
-                name: "Markers");
+                name: "States");
         }
     }
 }
