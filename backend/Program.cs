@@ -1,14 +1,23 @@
 
 
 using System.Text.Json.Serialization;
+using backend.Repositories;
+using backend.Services;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.FileProviders;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
+builder.Services.AddScoped<IProductService, ProductService>();
+builder.Services.AddScoped<IPortRepository, PortRepository>();
+builder.Services.AddScoped<IPortService, PortService>();
+builder.Services.AddScoped<IStateRepository, StateRepository>();
+builder.Services.AddScoped<IStateService, StateService>();
+
+builder.Services.AddAutoMapper(typeof(ConfigurationMapper));
 
 builder.Services.AddDbContext<ApplicationDbContext>(options => {
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"));

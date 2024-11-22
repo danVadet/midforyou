@@ -31,12 +31,13 @@
 
 .formContainer .invalid {
     border: 1.5px solid rgb(240, 19, 11);
+    background-image: url('../../public/icons/buttonError.svg');
+    background-size: 20px;
+    background-repeat: no-repeat;
+    background-position: calc(100% - 10px);
   
 }
-.iconError {
-    position: absolute;
-    margin: 15px -40px;
-}
+
 .nameError {
     color: rgb(240, 19, 11);
     position: absolute;
@@ -228,6 +229,17 @@
        font-size: 12px;
        
     }
+    .nameError {
+        position: absolute;
+        left: 270px;
+        top: 65px;
+    }
+    .quantityError {
+        position: absolute;
+        left: 260px;
+        top: 125px;
+    }
+    
 
 
 

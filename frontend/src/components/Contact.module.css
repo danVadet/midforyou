@@ -28,23 +28,21 @@
     width: 100%;
     display: flex;
     flex-direction: column;
-    align-items: center;
 }
 .formContainer {
     display: flex;
-    width: 100%;
-    position: relative;
+    width: 90%;
+    margin: 10px;
     flex-direction: column;
-    align-items: center;
     border-radius: 5px;
     
 }
-.formContainer input::placeholder {
-   padding: 0 25px;
-}
-.formContainer .invalid {
+ .formContainer .invalid {
     border: 1.5px solid rgb(240, 19, 11);
-  
+    background-image: url('../../public/icons/buttonError.svg');
+    background-size: 20px;
+    background-repeat: no-repeat;
+    background-position: calc(100% - 10px);  
 }
 .legenda {
    color:rgb(255, 255, 255);
@@ -53,38 +51,43 @@
    left: 60px;
    top: 260px;
    font-family: "Roboto";
-
-
 }
-
 .formError {
     color: rgb(240, 19, 11);
 }
 
 .formContainer input {
-    margin: 10px;
-    padding: 10px;
-    width: 90%;
-    outline: 0;
+    padding: 8px 30px;
+    margin: 8px 0;
+    width: 100%;
+    outline: none;
     border-radius: 5px;
     border: 1px solid rgb(204, 204, 204);
-   
-
+}
+.inputIcon {
+    position: relative;
+}
+.inputIcon svg {
+    position: absolute;
+    left: 0;
+    top: 10px;
+    transition: 0.3s;
 }
 .formContainer textarea {
-    margin: 8px;
+    margin: 8px 0;
     padding: 30px;
-    width: 90%;
+    width: 100%;
     height: auto;
     border-radius: 5px;
     border: 1px solid rgb(204, 204, 204);
-    outline: 0;
+    outline: none;
+    resize: none;
 }
 
 .formContainer .sendButton {
     margin: 20px;
     padding: 10px;
-    width: 50%;
+    width: 100%;
     border: 0;
     font-weight: 500;
     border-radius: 5px;
@@ -94,77 +97,18 @@
 .formContainer .sentButton {
     margin: 20px;
     padding: 10px;
-    width: 50%;
+    width: 100%;
     border: 0;
     border-radius: 5px;
     font-weight: 500;
     background-color: rgb(35, 161, 4);
     color: rgb(255, 255, 255);
 }
-.inputField {
-    width: 100%;
-}
-.userIcon {
-    position: absolute;
-    left: 10px;
-    top: 5px;
-  
-}
-.phoneIcon {
-    position: absolute;
-    left: 5px;
-    top: 75px;
-}
-.formError .phoneIcon {
-    position: absolute;
-}
-.emailIcon {
-    position: absolute;
-    left: 10px;
-    top: 115px;
-}
-.companyIcon {
-    position: absolute;
-    left: 10px;
-    top: 150px;
-}
-.suitcaseIcon {
-    position: absolute;
-    left: 10px;
-    top: 195px;
-}
-.localIcon {
-    position: absolute;
-    left: 10px;
-    top: 240px;
-}
-.mensagemIcon {
-    position: absolute;
-    left: 10px;
-    top: 328px;
-}
-.iconError {
-    position: absolute;
-    margin: 15px -40px;
-}
+
 
 @media screen and (max-width: 768px){
 
      .contato {
         flex-direction: column;
-     }
-    
-   
-     
-
-   
+     }  
 }
-
-
-
-
-
-
-
-
-

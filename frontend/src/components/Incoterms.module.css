@@ -88,23 +88,61 @@
   color: rgb(0, 0, 0);
   justify-content: flex-end;
 }
-.costStage0, .riskStage0, .safetyStage0  {
+.incotermStage__cost .costStage0 {
+  background-color: #edc13b;
+  border-radius: 0.25rem;
   width: calc(calc(100% / 25) * 2);
 }
-.costStage1, .riskStage1, .safetyStage1  {
-   width: calc(calc(100% / 22.2) * 4);
+.incotermStage__risk .riskStage0 {
+  background-color: #6b7799;
+  border-radius: 0.25rem;
+  width: calc(calc(100% / 25) * 2);
+}
+.incotermStage__cost .costStage1 {
+  background-color: #edc13b;
+  border-radius: 0.25rem;
+  width: calc(calc(100% / 32) * 4);
+}
+.incotermStage__risk .riskStage1 {
+  background-color: #6b7799;
+  border-radius: 0.25rem;
+  width: calc(calc(100% / 32) * 4);
 }
 
-
-.costStage2, .riskStage2, .safetyStage2 {
-  width: calc(calc(100% / 16.1 ) * 6);
+.incotermStage__cost .costStage2 {
+  background-color: #edc13b;
+  border-radius: 0.25rem;
+  width: calc(calc(100% / 23 ) * 6);
 }
-.costStage3, .riskStage3, .safetyStage3 {
+.incotermStage__risk .riskStage2 {
+  background-color: #6b7799;
+  border-radius: 0.25rem;
+  width: calc(calc(100% / 23) * 6);
+
+}
+.incotermStage__cost .costStage2 {
+  background-color: #edc13b;
+  border-radius: 0.25rem;
+  width: calc(calc(100% / 23 ) * 6);
+}
+
+.incotermStage__cost .costStage3 {
+  background-color: #edc13b;
+  border-radius: 0.25rem;
   width: calc(calc(100% / 21.5) * 8);
 }
-.costStage4, .riskStage4, .safetyStage4 {
-  width: calc(calc(100% / 19) * 10);
+.incotermStage__risk .riskStage3 {
+  background-color: #6b7799;
+  border-radius: 0.25rem;
+  width: calc(calc(100% / 21.5) * 8);
+
 }
+.incotermStage__cost .costStage4 {
+  background-color: #edc13b;
+  border-radius: 0.25rem;
+  width: calc(calc(100% / 17) * 8);
+}
+
 .costStage5, .riskStage5, .safetyStage5 {
   width: calc(calc(100% / 20) * 12 );
 }
@@ -117,23 +155,6 @@
 .costStage8, .riskStage8, .safetyStage8 {
   width: calc(calc(100% / 18) * 18 );
 }
-
-.incotermStage__cost .factory__bar{
-  background-color: #edc13b;
-  border-radius: 0.25rem;
-
-}
-.incotermStage__risk .factory__bar {
-  background-color: #6b7799;
-  border-radius: 0.25rem;
-
-}
-.incotermStage__safety .factory__bar {
-  background-color: #30bb50;
-  border-radius: 0.25rem;
-
-}
-
 .captions {
     display: flex;
     align-items: center;

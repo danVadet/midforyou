@@ -63,8 +63,9 @@ const Footer = () => {
 
               </div>
           
-                 
-                 <h4> © Criado por Mid For You - Import & Export | CNPJ: 10.501.613/0001-66 </h4>
+                <div className={`${styles.copyright}`}>
+                    <h4> © Criado por Mid For You - Import & Export | CNPJ: 10.501.613/0001-66 </h4>
+                 </div> 
 
 
         

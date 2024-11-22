@@ -1,4 +1,7 @@
+using AutoMapper;
 using backend.Models;
+
+using backend.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -7,17 +10,16 @@ namespace backend.Controllers;
 [Controller]
 public class ProductController : ControllerBase
 {
-    private readonly ApplicationDbContext _applicationDbContext;
-    public ProductController(ApplicationDbContext applicationDbContext)
+    private readonly IProductService _productService;
+    public ProductController(IProductService productService)
     {
-        _applicationDbContext = applicationDbContext;
+        _productService = productService;
 
     }
-
-    [HttpGet("products")]
+     [HttpGet("products")]
     public async Task<ActionResult> getAllProducts( [FromQuery] string search)
     {
-        var products = await _applicationDbContext.Products.ToListAsync();
+        var products = await _productService.GetAllAsync();
           if(!string.IsNullOrEmpty(search)) {
             products = products.Where(p => p.nome.Contains(search)).ToList();
             return Ok(products);
@@ -30,94 +32,91 @@ public class ProductController : ControllerBase
     [HttpGet("products/{id}")]
     public async Task<ActionResult> getProductById(int id)
     {
-        var product = await _applicationDbContext.Products.FindAsync(id);
-        return Ok(product);
+        Product product = await _productService.GetByIdAsync(id);
+       return Ok(product);
     }
     [HttpGet("sumPesoTotal")]
     public async Task<ActionResult> getSumPesoTotal()
     {
-        var products = await _applicationDbContext.Products.ToListAsync();
+        List<Product> products = await _productService.GetAllAsync();
         var sumPesoTotal = products.Sum(product => product.pesoTotal);
         return Ok(sumPesoTotal);
     }
     [HttpGet("sumVolumeTotal")]
     public async Task<ActionResult> getSumVolumeTotal()
     {
-        var products = await _applicationDbContext.Products.ToListAsync();
+        List<Product> products = await _productService.GetAllAsync();
         var sumVolumeTotal = products.Sum(product => product.volumeTotal);
         return Ok(sumVolumeTotal);
     }
     [HttpPost("products/addProduct")]
-    public async Task<ActionResult> addProduct([FromBody] Product product)
+    public async Task<ActionResult> addProduct([FromBody] ProductDTO productDTO)
     {
-        var pesoTotal = product.peso * product.quantidade;
-        var volumeTotal = product.volume * product.quantidade;
+        var pesoTotal = productDTO.peso * productDTO.quantidade;
+        var volumeTotal = productDTO.volume * productDTO.quantidade;
 
-         product.pesoTotal = pesoTotal;
-         product.volumeTotal =  volumeTotal;
+         productDTO.pesoTotal = pesoTotal;
+         productDTO.volumeTotal =  volumeTotal;
 
-        if (product == null){
+        if (productDTO == null){
             return BadRequest();
         }
+      await _productService.CreateAsync(productDTO);
 
-        _applicationDbContext.Products.Add(product);
-
-        await _applicationDbContext.SaveChangesAsync();
-
-        return Created("Product created successfully", product);
+        return Created("Product created successfully", productDTO);
     }
 
     [HttpDelete("products/{id}")]
     public async Task<ActionResult> deleteProduct(int id)
     {
-        var product = await _applicationDbContext.Products.FindAsync(id);
+        Product product = await _productService.GetByIdAsync(id);
 
         if (product == null)
         {
             return NotFound("Product not found");
 
         }
-        _applicationDbContext.Products.Remove(product);
-        await _applicationDbContext.SaveChangesAsync();
-        return Ok("Container removed successfully");
+        await _productService.DeleteAsync(product);
+        return Ok("Product removed successfully");
     }
     [HttpDelete("products")]
     public async Task<ActionResult> deleteAllProducts()
     {
-       foreach(var product in _applicationDbContext.Products) {
+       List<Product> products = await _productService.GetAllAsync();
 
-        _applicationDbContext.Remove(product);
-
+       foreach (Product product in products) {
+           await _productService.DeleteAsync(product);
        }
-        await _applicationDbContext.SaveChangesAsync();
         return Ok("All products removed successfully");
     }
 
     [HttpPut("products/{id}")]
-    public async Task<ActionResult> updateProduct(int id, [FromBody] Product product)
+    public async Task<ActionResult> updateProduct(int id, [FromBody] ProductDTO productDto)
     {
-        var productCurrent = await _applicationDbContext.Products.FindAsync(id);
+        var productCurrent = await _productService.GetByIdAsync(id);
 
         if (productCurrent == null)
         {
-            return NotFound();
+        return NotFound("Product not found");
 
         }
-        var pesoTotal = product.peso * product.quantidade;
-        var volumeTotal = product.volume * product.quantidade;
+        var pesoTotal = productDto.peso * productDto.quantidade;
+        var volumeTotal = productDto.volume * productDto.quantidade;
 
-        product.pesoTotal = pesoTotal;
-        product.volumeTotal = volumeTotal;
+        productDto.pesoTotal = pesoTotal;
+        productDto.volumeTotal = volumeTotal;
 
-        productCurrent.nome = product.nome;
-        productCurrent.quantidade = product.quantidade;
-        productCurrent.peso = product.peso;
-        productCurrent.volume =  product.volume;
-        productCurrent.pesoTotal =  product.pesoTotal;
-        productCurrent.volumeTotal = product.volumeTotal;
+        if(productDto.nome != null)
+        productCurrent.nome = productDto.nome;
+        productCurrent.quantidade = productDto.quantidade;
+        productCurrent.peso = productDto.peso;
+        productCurrent.volume =  productDto.volume;
+        productCurrent.pesoTotal =  productDto.pesoTotal;
+        productCurrent.volumeTotal = productDto.volumeTotal;
 
-       _applicationDbContext.Products.Update(productCurrent);
-        await _applicationDbContext.SaveChangesAsync();
+ 
+        await _productService.UpdateAsync(productCurrent);
         return Ok("Product updated successfully");
     }
+
 }

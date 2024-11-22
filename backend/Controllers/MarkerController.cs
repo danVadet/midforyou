@@ -1,3 +1,4 @@
+using backend.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -5,25 +6,27 @@ using Microsoft.EntityFrameworkCore;
 public class MarkerController : ControllerBase
 {
 
-    private readonly ApplicationDbContext _applicationDbContext;
-    public MarkerController(ApplicationDbContext applicationDbContext)
+     private readonly IStateService _stateService;
+    private readonly IPortService _portService;
+    public MarkerController( IStateService stateService, IPortService portService)
     {
 
-        _applicationDbContext = applicationDbContext;
+        _portService = portService;
+        _stateService = stateService;
 
     }
 
     [HttpGet("markers/states")]
     public async Task<ActionResult<List<State>>> getAllStates()
     {
-        var states = await _applicationDbContext.States.ToListAsync();
+        List <State> states = await _stateService.GetAllAsync();
         return Ok(states);
     }
       [HttpGet("markers/states/{id}")]
     public async Task<ActionResult> getMarker(int id)
     {
 
-        var state = await _applicationDbContext.States.FindAsync(id);
+        State state = await _stateService.GetByIdAsync(id);
 
         return Ok(state);
       
@@ -34,16 +37,13 @@ public class MarkerController : ControllerBase
     public async Task<ActionResult> createMarkerByState([FromBody] State state)
     {
     
-        _applicationDbContext.States.Add(state);
-
-        await _applicationDbContext.SaveChangesAsync();
-
+        await _stateService.CreateAsync(state);
         return Created("State created successfully", state);
     }
      [HttpGet("markers/ports")]
     public async Task<ActionResult<List<PortMarker>>> getAllMarkerByPort()
     {
-        var markers = await _applicationDbContext.PortMarkers.Include(p => p.state).ToListAsync();
+        var markers = await _portService.GetAllPortsByState();
 
       
         return Ok(markers);
@@ -54,18 +54,16 @@ public class MarkerController : ControllerBase
     public async Task<ActionResult<List<PortMarker>>> getAllPortByState(int stateId)
     {
         
-
-        var state = await _applicationDbContext.States.FindAsync(stateId);
-        var markers = await _applicationDbContext.PortMarkers.Where(p => p.stateId == state.id).ToListAsync();
+        var markers = await _portService.GetPortByState(stateId);
         return Ok(markers);
     }
 
     
     [HttpGet("markers/ports/{id}")]
-    public async Task<ActionResult<List<PortMarker>>> getAllPortByState(int stateId, int id)
+    public async Task<ActionResult<List<PortMarker>>> getAllPortById(int id)
     {
         
-        var markers = await _applicationDbContext.PortMarkers.Where(p => p.id == id).ToListAsync();
+        var markers = await _portService.GetAllPortsById(id);
         return Ok(markers);
     }
 
@@ -73,9 +71,7 @@ public class MarkerController : ControllerBase
     public async Task<ActionResult> createMarkerByPort([FromBody] PortMarker portMarker)
     {
       
-        _applicationDbContext.PortMarkers.Add(portMarker);
-
-        await _applicationDbContext.SaveChangesAsync();
+        await _portService.CreateAsync(portMarker);
 
         return Created("Port created successfully", portMarker);
     }
@@ -83,10 +79,9 @@ public class MarkerController : ControllerBase
     [HttpDelete("markers/ports/{id}")]
     public async Task<ActionResult> deleteMarkerByPort(int id)
     {
-        var marker = await _applicationDbContext.PortMarkers.FindAsync(id);
+        var marker = await _portService.GetByIdAsync(id);
 
-        _applicationDbContext.PortMarkers.Remove(marker);
-        await _applicationDbContext.SaveChangesAsync();
+        await _portService.DeleteAsync(marker);
         return Ok("Port removed successfully");
     }
 }

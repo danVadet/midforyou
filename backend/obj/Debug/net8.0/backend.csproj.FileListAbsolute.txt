@@ -523,3 +523,4 @@ D:\PROJETOS\MIDFORYOU\midforyou\backend\obj\Debug\net8.0\refint\backend.dll
 D:\PROJETOS\MIDFORYOU\midforyou\backend\obj\Debug\net8.0\backend.pdb
 D:\PROJETOS\MIDFORYOU\midforyou\backend\obj\Debug\net8.0\backend.genruntimeconfig.cache
 D:\PROJETOS\MIDFORYOU\midforyou\backend\obj\Debug\net8.0\ref\backend.dll
+D:\PROJETOS\MIDFORYOU\midforyou\backend\bin\Debug\net8.0\AutoMapper.dll
