@@ -28,4 +28,16 @@ select {
      left: -25px;
      top: 35px;
 }
+.mapContainer {
+    position: relative;
+    width: 90vw;
+    height: 90vh; 
+    border-radius: 10px;
+     margin: 10px 50px
+}
+.countInfo {
+    position: absolute;
+    right: 5%;
+    top: 10%;
+}
 

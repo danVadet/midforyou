@@ -1,5 +1,6 @@
 
 
+using System.ComponentModel;
 using System.Text.Json.Serialization;
 using backend.Repositories;
 using backend.Services;
@@ -12,10 +13,14 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<IProductService, ProductService>();
+builder.Services.AddScoped<IContainerRepository, ContainerRepository>();
+builder.Services.AddScoped<IContainerService, ContainerService>();
+builder.Services.AddScoped<IStateService, StateService>();
 builder.Services.AddScoped<IPortRepository, PortRepository>();
 builder.Services.AddScoped<IPortService, PortService>();
 builder.Services.AddScoped<IStateRepository, StateRepository>();
 builder.Services.AddScoped<IStateService, StateService>();
+
 
 builder.Services.AddAutoMapper(typeof(ConfigurationMapper));
 

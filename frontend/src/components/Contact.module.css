@@ -1,38 +1,21 @@
-.contato {
-    display: flex;
-     margin: 10px 50px;
-}
-.imageContact {
-    width: 100%;
-    height: 680px;
-    border-radius: 5px;
-    background-image: url('./../../public/assets/backgroundContact.jpg');
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    
-}
-.imageContact_gradient {
-    width: 100%;
-    height:680px;
+
+.contactImage {
     position: relative;
-    background: linear-gradient(
-      132deg,
-      rgba(0, 0, 0, 0.8) 0%,
-      rgba(0, 0, 0, 0) 52.9%
-    );
-    
+    height: 888px;
+    background-image: url('./../../public/assets/fundo-blog.jpg'); 
+    background-repeat: no-repeat;
 }
 .contactContainer {
-    box-shadow: rgba(0, 0, 0, 0.089) 0px 2px 32px 0px;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
+    position: absolute;
+    background-color: rgba(178, 198, 214, 0.151);
+    width: 50%;
+    border-radius: 5px;
+    left: 50%;
+    top: 30%;
+    transform: translateX(-50%);
 }
 .formContainer {
     display: flex;
-    width: 90%;
-    margin: 10px;
     flex-direction: column;
     border-radius: 5px;
     
@@ -44,22 +27,23 @@
     background-repeat: no-repeat;
     background-position: calc(100% - 10px);  
 }
-.legenda {
-   color:rgb(255, 255, 255);
+.contactLegend {
+   color:rgba(0, 175, 239, 0.753);
    font-size: 30px;
    position: absolute;
-   left: 60px;
-   top: 260px;
+   left: 120px;
+   top: 80px;
    font-family: "Roboto";
 }
+
 .formError {
     color: rgb(240, 19, 11);
 }
 
 .formContainer input {
-    padding: 8px 30px;
-    margin: 8px 0;
-    width: 100%;
+    padding: 9px 35px;
+    margin: 5px 0;
+    width: 90%;
     outline: none;
     border-radius: 5px;
     border: 1px solid rgb(204, 204, 204);
@@ -69,25 +53,24 @@
 }
 .inputIcon svg {
     position: absolute;
-    left: 0;
+    left: 50px;
     top: 10px;
     transition: 0.3s;
 }
 .formContainer textarea {
     margin: 8px 0;
     padding: 30px;
-    width: 100%;
-    height: auto;
+    width: 90%;
+    height: 20%;
     border-radius: 5px;
     border: 1px solid rgb(204, 204, 204);
     outline: none;
     resize: none;
 }
-
 .formContainer .sendButton {
-    margin: 20px;
+    margin: 20px 50px;
     padding: 10px;
-    width: 100%;
+    width: 90%;
     border: 0;
     font-weight: 500;
     border-radius: 5px;
@@ -95,9 +78,9 @@
     color: rgb(255, 255, 255);
 }
 .formContainer .sentButton {
-    margin: 20px;
+    margin: 20px 50px;
     padding: 10px;
-    width: 100%;
+    width: 90%;
     border: 0;
     border-radius: 5px;
     font-weight: 500;

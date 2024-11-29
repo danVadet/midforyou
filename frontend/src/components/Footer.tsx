@@ -12,10 +12,10 @@ const Footer = () => {
 <h3>  <svg viewBox="0 0 24 24" fill="none" width="23.5" height="23.5"  xmlns="http://www.w3.org/2000/svg"> 
 <path d="M12 21C15.5 17.4 19 14.1764 19 10.2C19 6.22355 15.866 3 12 3C8.13401 3 5 6.22355 5 10.2C5 14.1764 8.5 17.4 12 21Z M12 13C13.6569 13 15 11.6569 15 10C15 8.34315 13.6569 7 12 7C10.3431 7 9 8.34315 9 10C9 11.6569 10.3431 13 12 13Z" stroke="rgb(255, 255, 255)"  strokeWidth="2" />
 </svg> Rua João Alves da Silva </h3>
-<h3>CEP: 58900-000 -  Jardim Oásis</h3>
-<h3>Cajazeiras - Paraíba</h3>
+<h3> Jardim Oásis, 58900-000, Cajazeiras/PB - Brasil</h3>
 </div>
               <div className={`${styles.mediaSocial}`}>
+                <h3>Siga nossas redes socais</h3>
 
 <a href="https://www.facebook.com/mid4ubrasil" target="_blank">
 

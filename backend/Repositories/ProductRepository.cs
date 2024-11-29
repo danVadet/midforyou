@@ -1,8 +1,7 @@
-namespace backend.Services;
+namespace backend.Repositories;
 
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using AutoMapper;
 using backend.Models;
 using backend.Repositories;
 using Microsoft.EntityFrameworkCore;
@@ -10,41 +9,36 @@ using Microsoft.EntityFrameworkCore;
 public class ProductRepository : IProductRepository
 {
     private readonly ApplicationDbContext _applicationDbContext;
-    private readonly IMapper _mapper;
 
-    public ProductRepository(ApplicationDbContext applicationDbContext, IMapper mapper)
+    public ProductRepository(ApplicationDbContext applicationDbContext)
     {
         _applicationDbContext = applicationDbContext;
-        _mapper = mapper;
-
     }
-    public async Task CreateAsync(ProductDTO productDTO)
+    public async Task <Product> CreateAsync(Product product)
     {
-       
-        Product product = _mapper.Map<Product>(productDTO);
         _applicationDbContext.Products.Add(product);
         await _applicationDbContext.SaveChangesAsync();
+        return product;
     }
-
-  
-
      public async Task <Product> GetByIdAsync(int id)
     {
 
-    Product product = await _applicationDbContext.Products.FindAsync(id);
-    return product;
+        Product product = await _applicationDbContext.Products.FindAsync(id);
+        return product;
     }
 
-    public async Task UpdateAsync(Product product)
+    public async Task <Product> UpdateAsync(Product product)
     {
          _applicationDbContext.Products.Update(product);
         await _applicationDbContext.SaveChangesAsync();
+        return product;
        
     }
-       public async Task DeleteAsync(Product product)
+       public async Task <Product> DeleteAsync(Product product)
     {
         _applicationDbContext.Products.Remove(product);
         await _applicationDbContext.SaveChangesAsync();
+       return product;
     }
 
     public async Task <List<Product>> GetAllAsync()
@@ -53,4 +47,5 @@ public class ProductRepository : IProductRepository
         List <Product> products = await _applicationDbContext.Products.ToListAsync();
         return products;    
     }
+
 }

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using AutoMapper;
 using backend.Models;
 using backend.Repositories;
 using Microsoft.EntityFrameworkCore;
@@ -7,60 +8,74 @@ using Microsoft.EntityFrameworkCore;
 public class PortService : IPortService
 {
     private readonly IPortRepository _portRepository;
-    public PortService(IPortRepository portRepository)
+    private readonly IMapper _mapper;
+
+    public PortService(IPortRepository portRepository, IMapper mapper)
     {
         _portRepository = portRepository;
+        _mapper = mapper;
 
     }
-    public async Task CreateAsync(PortMarker portMarker)
+    public async Task CreateAsync(PortMarkerRequest portMarkerRequest)
     {
-       
+        PortMarker portMarker = _mapper.Map<PortMarker>(portMarkerRequest);
         await _portRepository.CreateAsync(portMarker);
     }
-
-  
-
-     public async Task <PortMarker> GetByIdAsync(int id)
+     public async Task <PortMarkerResponse> GetByIdAsync(int id)
     {
 
     PortMarker portMarker = await _portRepository.GetByIdAsync(id);
-    return portMarker;
+    return _mapper.Map<PortMarkerResponse>(portMarker);
+
     }
 
-    public async Task UpdateAsync(PortMarker portMarker)
-    {
-        await _portRepository.UpdateAsync(portMarker);
-    }
-       public async Task DeleteAsync(PortMarker portMarker)
-    {
-        await _portRepository.DeleteAsync(portMarker);
-    }
-
-    public async Task <List<PortMarker>> GetAllAsync()
+    public async Task <List<PortMarkerResponse>> GetAllAsync()
     {
 
         List <PortMarker> portMarkers = await _portRepository.GetAllAsync();
-        return portMarkers;
+        return _mapper.Map<List <PortMarkerResponse>>(portMarkers);
     }
 
-    public async Task<List<PortMarker>> GetAllPortsByState()
+    public async Task<List<PortMarkerResponse>> GetAllPortsByState()
     {
      List <PortMarker> portMarkers = await _portRepository.GetAllPortsByState();
-        return portMarkers;
+        return _mapper.Map<List <PortMarkerResponse>>(portMarkers);
     }
-       public async Task<List<PortMarker>> GetAllPortsById(int id)
+       public async Task<List<PortMarkerResponse>> GetAllPortsById(int id)
     {
 
-         var markers = await _portRepository.GetAllPortsById(id);
-        return markers;
+      var markers = await _portRepository.GetAllPortsById(id);
+
+        return _mapper.Map<List <PortMarkerResponse>>(markers);
         
     }
 
-    public async Task<List<PortMarker>> GetPortByState(int stateId)
+    public async Task<List<PortMarkerResponse>> GetPortByState(int stateId)
     {
             var markers = await _portRepository.GetPortByState(stateId);
 
-      return  markers;
+            return _mapper.Map<List <PortMarkerResponse>>(markers);
+
+
+    }
+
+    public Task<int> GetAllPortsByAir()
+    {
+            return _portRepository.GetAllPortsByAir();
+    }
+
+    public Task<int> GetAllPortsBySea()
+    {
+        return _portRepository.GetAllPortsBySea();
     }
     
+    public Task<int> GetAllPortsAirByState(int stateId) 
+    {
+        return _portRepository.GetAllPortsAirByState(stateId);
+    }
+    public Task<int> GetAllPortsSeaByState(int stateId) 
+
+    {
+        return _portRepository.GetAllPortsSeaByState(stateId);
+    }
 }

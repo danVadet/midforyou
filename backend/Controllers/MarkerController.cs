@@ -1,3 +1,4 @@
+using System.Reflection.Metadata;
 using backend.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -19,14 +20,14 @@ public class MarkerController : ControllerBase
     [HttpGet("markers/states")]
     public async Task<ActionResult<List<State>>> getAllStates()
     {
-        List <State> states = await _stateService.GetAllAsync();
+        List <StateResponse> states = await _stateService.GetAllAsync();
         return Ok(states);
     }
       [HttpGet("markers/states/{id}")]
     public async Task<ActionResult> getMarker(int id)
     {
 
-        State state = await _stateService.GetByIdAsync(id);
+        StateResponse state = await _stateService.GetByIdAsync(id);
 
         return Ok(state);
       
@@ -34,11 +35,11 @@ public class MarkerController : ControllerBase
     
     }
     [HttpPost("markers/state")]
-    public async Task<ActionResult> createMarkerByState([FromBody] State state)
+    public async Task<ActionResult> createMarkerByState([FromBody] StateRequest stateRequest)
     {
     
-        await _stateService.CreateAsync(state);
-        return Created("State created successfully", state);
+        await _stateService.CreateAsync(stateRequest);
+        return Created("State created successfully", stateRequest);
     }
      [HttpGet("markers/ports")]
     public async Task<ActionResult<List<PortMarker>>> getAllMarkerByPort()
@@ -49,9 +50,45 @@ public class MarkerController : ControllerBase
         return Ok(markers);
         }
 
+        [HttpGet("markers/ports/air")]
+    public async Task<ActionResult<int>> getAllPortsByAir()
+    {
+        var count = await _portService.GetAllPortsByAir();
+
+      
+        return Ok(count);
+        }
+        
+         [HttpGet("markers/ports/{stateId}/air")]
+    public async Task<ActionResult<int>> getAllPortsAirByState(int stateId)
+    {
+        var count = await _portService.GetAllPortsAirByState(stateId);
+
+      
+        return Ok(count);
+        }
+
+         [HttpGet("markers/ports/{stateId}/sea")]
+    public async Task<ActionResult<int>> getAllPortsBySea(int stateId)
+    {
+        var count = await _portService.GetAllPortsSeaByState(stateId);
+
+      
+        return Ok(count);
+        }
+
+         [HttpGet("markers/ports/sea")]
+    public async Task<ActionResult<int>> getAllPortsBySea()
+    {
+        var count = await _portService.GetAllPortsBySea();
+
+      
+        return Ok(count);
+        }
+        
          
     [HttpGet("markers/{stateId}/ports")]
-    public async Task<ActionResult<List<PortMarker>>> getAllPortByState(int stateId)
+    public async Task<ActionResult> getAllPortByState(int stateId)
     {
         
         var markers = await _portService.GetPortByState(stateId);
@@ -68,20 +105,11 @@ public class MarkerController : ControllerBase
     }
 
     [HttpPost("markers/port")]
-    public async Task<ActionResult> createMarkerByPort([FromBody] PortMarker portMarker)
+    public async Task<ActionResult> createMarkerByPort([FromBody] PortMarkerRequest portMarkerRequest)
     {
       
-        await _portService.CreateAsync(portMarker);
+        await _portService.CreateAsync(portMarkerRequest);
 
-        return Created("Port created successfully", portMarker);
-    }
-
-    [HttpDelete("markers/ports/{id}")]
-    public async Task<ActionResult> deleteMarkerByPort(int id)
-    {
-        var marker = await _portService.GetByIdAsync(id);
-
-        await _portService.DeleteAsync(marker);
-        return Ok("Port removed successfully");
+        return Created("Port created successfully", portMarkerRequest);
     }
 }

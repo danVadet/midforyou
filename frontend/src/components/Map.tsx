@@ -17,6 +17,9 @@ const Map = () => {
     lng: -51.9253
   });
   const [markers, setMarkers] = useState<MarkerModel[]>([]);
+  const [countAllPortsBySea, setCountAllPortsBySea] = useState(0);
+  const [countAllPortsByAir, setCountAllPortsByAir] = useState(0);
+
   const [portsMarker, setPortsMarker] = useState<PortMarker[]>([]);
   const [portsByState, setPortsByState] = useState<PortMarker[]>([]);
 
@@ -39,6 +42,24 @@ const Map = () => {
     }
 
   }
+  const getCountMarkersPortsByAir = async () => {
+    try {
+      const response = await axios.get(`http://localhost:5077/markers/ports/air`);
+      setCountAllPortsByAir(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+
+  }
+  const  getCountMarkersPortsBySea = async () => {
+    try {
+      const response = await axios.get(`http://localhost:5077/markers/ports/sea`);
+      setCountAllPortsBySea(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+
+  }
   const getMarkersPort = async () => {
     try {
       const response = await axios.get(`http://localhost:5077/markers/ports`);
@@ -54,8 +75,16 @@ const Map = () => {
 
       if (value) {
         const response = await axios.get(`http://localhost:5077/markers/${value}/ports`);
+        const responseAir = await axios.get(`http://localhost:5077/markers/ports/${value}/air`);
+        const responseSea = await axios.get(`http://localhost:5077/markers/ports/${value}/sea`);
+
         console.log(response.data);
         setPortsByState(response.data);
+        setCountAllPortsByAir(responseAir.data);
+        setCountAllPortsBySea(responseSea.data);
+
+      
+
         setCenter({ lat: response.data[0].lat, lng: response.data[0].lng });
         setTimeout(() => {
           const targetZoom = 10;
@@ -156,6 +185,8 @@ const Map = () => {
   useEffect(() => {
     getMarkers();
     getMarkersPort();
+    getCountMarkersPortsByAir();
+    getCountMarkersPortsBySea();
   }, []);
 
   return <div className={`${styles.map}`}>
@@ -183,10 +214,7 @@ const Map = () => {
     </div>
     {isLoaded ? (
       <GoogleMap
-        mapContainerStyle={{
-          width: '90vw',
-          height: '90vh', borderRadius: '10px', margin: '10px 50px'
-        }}
+        mapContainerClassName={`${styles.mapContainer}`}
         center={center}
         zoom={zoom}>
         { /* Child components, such as markers, info windows, etc. */
@@ -238,6 +266,10 @@ const Map = () => {
         }
 
         <>
+        <div className={`${styles.countInfo}`}>
+         <h3>{countAllPortsByAir}  portos aéreos</h3>
+         <h3>{countAllPortsBySea} portos marítimos</h3>
+     </div>
         </>
       </GoogleMap>
     ) : <></>}

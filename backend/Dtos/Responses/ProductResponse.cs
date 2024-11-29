@@ -1,5 +1,7 @@
 
-public class ProductDTO {
+public class ProductResponse {
+
+     public int id  { get; set; }
 
     public string? nome  { get; set; }
 
@@ -12,8 +14,5 @@ public class ProductDTO {
     public float volumeTotal { get; set; }
 
     public float pesoTotal { get; set; }
-
-
-
 
 }

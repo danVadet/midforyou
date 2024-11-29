@@ -1,5 +1,6 @@
 
 using backend.Models;
+using backend.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -10,46 +11,42 @@ namespace backend.Controllers;
 public class ContainerController : ControllerBase
 {
 
-    private readonly ApplicationDbContext _applicationDbContext;
+    private readonly IContainerService _conatinerService;
+    private readonly IProductService _productService;
 
-
-    public ContainerController(ApplicationDbContext applicationDbContext)
+    public ContainerController(IContainerService containerService, IProductService productService)
     {
 
-        _applicationDbContext = applicationDbContext;
+        _conatinerService = containerService;
+        _productService = productService;
 
     }
 
     [HttpGet("containers")]
-    public async Task<ActionResult<List<Container>>> getAllContainer()
+    public async Task<ActionResult<List<ContainerResponse>>> getAllContainer()
     {
-        var containers = await _applicationDbContext.Containers.ToListAsync();
+        List <ContainerResponse> containers = await _conatinerService.GetAllAsync();
         return Ok(containers);
     }
     [HttpPost("containers/createContainer")]
-    public async Task<ActionResult> createContainer( [FromForm] Container container, IFormFile pic) {
+    public async Task<ActionResult> createContainer( [FromForm] ContainerRequest containerRequest, IFormFile pic) {
       
-  
         string FilePath = Path.Combine(Directory.GetCurrentDirectory(), "Images", pic.FileName);
         pic.CopyTo(new FileStream(FilePath, FileMode.Create));
          
-        container.image = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}/Images/{pic.FileName}";
+        containerRequest.image = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}/Images/{pic.FileName}";
+        containerRequest.capacidadePeso =  containerRequest.capacidadePeso * 1000;
+    
+        await _conatinerService.CreateAsync(containerRequest);
 
-         container.capacidadePeso =  container.capacidadePeso * 1000;
-        _applicationDbContext.Containers.Add(container);
-
-        await _applicationDbContext.SaveChangesAsync();
-
-        return Created("Container created successfully", container);
+        return Created("Container created successfully", containerRequest);
     }
      [HttpGet("containers/{id}")]
-    public async Task<ActionResult> getContainerById (int id)
+    public async Task<ActionResult<ContainerResponse>> getContainerById (int id)
     {
 
-        var container = await _applicationDbContext.Containers.FindAsync(id);
-       
-            return Ok(container);
-
+        ContainerResponse container = await _conatinerService.GetByIdAsync(id);
+        return Ok(container);
     }
    
 
@@ -57,8 +54,8 @@ public class ContainerController : ControllerBase
     public async Task<ActionResult> verfiqueCapacityProduct(int id)
     {
 
-        var container = await _applicationDbContext.Containers.FindAsync(id);
-        var products = await _applicationDbContext.Products.ToListAsync();
+        var container = await  _conatinerService.GetByIdAsync(id);
+        var products = await _productService.GetAllAsync();
 
         var sumVolumeTotal = products.Sum(product => product.volumeTotal);
         var sumPesoTotal = products.Sum(product => product.pesoTotal);
@@ -73,21 +70,5 @@ public class ContainerController : ControllerBase
         {
             return Ok("Esse tipo de contêiner não cabe");
         }
-    }
-    
-    [HttpDelete("containers/{id}")]
-    public async Task<ActionResult> deleteContainer(int id)
-    {
-        var container = await _applicationDbContext.Containers.FindAsync(id);
-
-
-        if (container == null)
-        {
-            return NotFound("Container not found");
-
-        }
-        _applicationDbContext.Containers.Remove(container);
-        await _applicationDbContext.SaveChangesAsync();
-        return Ok("Container removed successfully");
     }
 }

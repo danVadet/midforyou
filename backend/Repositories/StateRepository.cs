@@ -1,3 +1,7 @@
+
+
+namespace backend.Repositories;
+
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using backend.Models;
@@ -12,29 +16,18 @@ public class StateRepository : IStateRepository
         _applicationDbContext = applicationDbContext;
 
     }
-    public async Task CreateAsync(State state)
+    public async Task<State> CreateAsync(State state)
     {
        
         _applicationDbContext.States.Add(state);
         await _applicationDbContext.SaveChangesAsync();
+        return state;
     }
      public async Task <State> GetByIdAsync(int id)
     {
 
     State state = await _applicationDbContext.States.FindAsync(id);
     return state;
-    }
-
-    public async Task UpdateAsync(State state)
-    {
-         _applicationDbContext.States.Update(state);
-        await _applicationDbContext.SaveChangesAsync();
-       
-    }
-       public async Task DeleteAsync(State state)
-    {
-        _applicationDbContext.States.Remove(state);
-        await _applicationDbContext.SaveChangesAsync();
     }
 
     public async Task <List<State>> GetAllAsync()

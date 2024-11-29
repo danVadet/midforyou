@@ -6,20 +6,20 @@ import styles from './Main.module.css'
 import About from '../components/About';
 import AboutServices from '../components/AboutServices';
 import Map from '../components/Map';
-import Brand from '../components/Brand';
 import Incoterms from '../components/Incoterms';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import { Incoterm } from '../models/Incoterm';
 import { IconIcoterm } from '../models/IconIcoterm';
+import Banner from '../components/Banner';
 
 interface IMainProps {
   home:  string;
   about: string;
   container: string;
   contact: string;
-  brandInfo1: string;
-  brandInfo2: string;
+  bannerInfo1: string;
+  bannerInfo2: string;
   aboutInfo1: string;
   aboutInfo2: string;
   aboutInfo3: string;
@@ -65,14 +65,23 @@ interface IMainProps {
   seller: string;
   buyer: string;
   contactTitle: string;
-  fullName: string;
-  phone: string;
-  email: string;
-  companyName: string;
-  ramoAtividade: string;
-  local: string;
-  message: string;
+  imageLegend: string;
+  enterFullName: string;
+  fullNameRequiredContact: string;
+  enterPhone: string;
+  phoneRequiredContact: string;
+  enterEmail: string;
+  emailRequiredContact: string;
+  enterCompanyName: string;
+  companyNameRequiredContact: string;
+  enterRamoAtividade: string;
+  ramoAtividadeRequiredContact: string;
+  enterLocal: string;
+  localRequiredContact: string;
+  enterMessage: string;
+  messageRequiredContact: string
   buttonSend: string;
+  buttonSent: string;
 }
 
 
@@ -81,7 +90,7 @@ const  Main = (props: IMainProps) => {
     <div>
       <Navbar home={props.home} about={props.about} container={props.container} contact={props.contact}></Navbar>
       <Tax></Tax>
-       <Brand brandInfo1={props.brandInfo1} brandInfo2={props.brandInfo2} ></Brand>
+       <Banner bannerInfo1={props.bannerInfo1} bannerInfo2={props.bannerInfo2} ></Banner>
        <section className={`${styles.about}`} id="about">
                     <About aboutInfo1={props.aboutInfo1} aboutInfo2={props.aboutInfo2} aboutInfo3={props.aboutInfo3} aboutInfo4={props.aboutInfo4}  />
                     <AboutServices card_1_title={props.card_1_title} 
@@ -139,14 +148,23 @@ const  Main = (props: IMainProps) => {
        <section className={`${styles.contact}`} id="contact">
                <Contact 
                         contactTitle={props.contactTitle} 
-                        fullName={props.fullName} 
-                        phone={props.phone} 
-                        email={props.email} 
-                        companyName={props.companyName}
-                        ramoAtividade={props.ramoAtividade}
-                        local={props.local}
-                        message={props.message}
-                        buttonSend={props.buttonSend}/>
+                        imageLegend={props.imageLegend}
+                        enterFullName={props.enterFullName} 
+                        fullNameRequiredContact={props.fullNameRequiredContact}
+                        enterPhone ={props.enterPhone} 
+                        phoneRequiredContact={props.phoneRequiredContact}
+                        enterEmail={props.enterEmail}
+                        emailRequiredContact={props.emailRequiredContact}
+                        enterCompanyName={props.enterCompanyName}
+                        companyNameRequiredContact={props.companyNameRequiredContact}
+                        enterRamoAtividade={props.enterRamoAtividade}
+                        ramoAtividadeRequiredContact={props.ramoAtividadeRequiredContact}
+                        enterLocal={props.enterLocal}
+                        localRequiredContact={props.localRequiredContact}
+                        enterMessage={props.enterMessage}
+                        messageRequiredContact={props.messageRequiredContact}
+                        buttonSend={props.buttonSend}
+                        buttonSent={props.buttonSent}/>
                 </section>
 
        <Footer></Footer>

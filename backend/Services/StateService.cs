@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using AutoMapper;
 using backend.Models;
 using backend.Repositories;
 using Microsoft.EntityFrameworkCore;
@@ -7,39 +8,33 @@ using Microsoft.EntityFrameworkCore;
 public class StateService : IStateService
 {
     private readonly IStateRepository _stateRepository;
-    public StateService(IStateRepository stateRepository)
+    private readonly IMapper _mapper;
+    public StateService(IStateRepository stateRepository, IMapper mapper)
     {
         _stateRepository = stateRepository;
+        _mapper = mapper;
 
     }
-    public async Task CreateAsync(State state)
+    public async Task CreateAsync(StateRequest stateRequest)
     {
-       
+
+        State state = _mapper.Map<State>(stateRequest);
         await _stateRepository.CreateAsync(state);
     }
 
   
 
-     public async Task <State> GetByIdAsync(int id)
+     public async Task <StateResponse> GetByIdAsync(int id)
     {
 
     State state = await _stateRepository.GetByIdAsync(id);
-    return state;
+     return  _mapper.Map<StateResponse>(state);
     }
 
-    public async Task UpdateAsync(State state)
-    {
-        await _stateRepository.UpdateAsync(state);
-    }
-       public async Task DeleteAsync(State state)
-    {
-        await _stateRepository.DeleteAsync(state);
-    }
-
-    public async Task <List<State>> GetAllAsync()
+    public async Task <List<StateResponse>> GetAllAsync()
     {
 
         List <State> states = await _stateRepository.GetAllAsync();
-        return states;
+        return _mapper.Map<List<StateResponse>>(states);
     }
 }

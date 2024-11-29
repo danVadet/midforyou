@@ -1,3 +1,6 @@
+namespace backend.Repositories;
+
+
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using backend.Models;
@@ -12,11 +15,12 @@ public class PortRepository : IPortRepository
         _applicationDbContext = applicationDbContext;
 
     }
-    public async Task CreateAsync(PortMarker portMarker)
+    public async Task <PortMarker> CreateAsync(PortMarker portMarker)
     {
        
         _applicationDbContext.PortMarkers.Add(portMarker);
         await _applicationDbContext.SaveChangesAsync();
+        return portMarker;
     }
 
   
@@ -27,19 +31,6 @@ public class PortRepository : IPortRepository
     PortMarker portMarker = await _applicationDbContext.PortMarkers.FindAsync(id);
     return portMarker;
     }
-
-    public async Task UpdateAsync(PortMarker portMarker)
-    {
-         _applicationDbContext.PortMarkers.Update(portMarker);
-        await _applicationDbContext.SaveChangesAsync();
-       
-    }
-       public async Task DeleteAsync(PortMarker portMarker)
-    {
-        _applicationDbContext.PortMarkers.Remove(portMarker);
-        await _applicationDbContext.SaveChangesAsync();
-    }
-
     public async Task <List<PortMarker>> GetAllAsync()
     {
 
@@ -68,4 +59,35 @@ public class PortRepository : IPortRepository
 
       return  markers;
     }
+        public async Task<int> GetAllPortsByAir()
+    {
+
+         var markers = await _applicationDbContext.PortMarkers.Where(p => p.portType == PortType.AIR).ToListAsync();
+        return markers.Count();
+        
+    }
+    
+        public async Task<int> GetAllPortsAirByState(int stateId)
+    {
+
+         var markers = await _applicationDbContext.PortMarkers.Where(p => p.portType == PortType.AIR && p.stateId == stateId).ToListAsync();
+        return markers.Count();
+        
+    }
+        public async Task<int> GetAllPortsBySea()
+    {
+
+         var markers = await _applicationDbContext.PortMarkers.Where(p => p.portType == PortType.SEA).ToListAsync();
+        return markers.Count();
+        
+    }
+       public async Task<int> GetAllPortsSeaByState(int stateId)
+    {
+
+         var markers = await _applicationDbContext.PortMarkers.Where(p => p.portType == PortType.SEA && p.stateId == stateId).ToListAsync();
+        return markers.Count();
+        
+    }
+
+  
 }
