@@ -19,12 +19,6 @@ const Message = (props: MessageProps) => {
             return;
         }
         setVisible(true);
-
-        const  timeout =  setTimeout(() => {
-          setVisible(false);
-    }, 3000)
-
-        return () => clearTimeout(timeout);
     }, [props.message])
 
     return (

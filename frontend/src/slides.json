@@ -2,14 +2,17 @@
     {
      
         "id" : 1,
-        "url" : "assets/cover-image.jpg",
-        "info" : "Torne sua experiência com o comércio exterior mais eficiente e segura."
+        "url" : "assets/cover-image.jpg"
 
     },
     {
         "id" : 2,
-        "url" : "assets/cover-image-2.jpg",
-        "info" : "Somos o meio para você importar e exportar com segurança!"
+        "url" : "assets/cover-image-2.jpg"
+    }, 
+
+    {
+        "id" : 3,
+        "url" :"assets/cover-image-3.jpg"
     }
 
 ]

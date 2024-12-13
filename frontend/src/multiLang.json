@@ -235,7 +235,8 @@
         "enterMessage": "Enter message here",
         "messageRequiredContact" : "Message required",
         "buttonSend": "Send",
-        "buttonSent" : "Sent"
+        "buttonSending" : "Sending"
+
     },
     "es": {
         "home": "Inicio ",
@@ -473,7 +474,7 @@
         "enterMessage": "Ingresa el mensaje aquí",
         "messageRequiredContact" : "Mensaje requerido",
         "buttonSend": "Enviar",
-        "buttonSent" : "Enviado"
+        "buttonSending" : "Enviando"
     },
     "pt": {
         "home": "Início",
@@ -711,6 +712,6 @@
         "enterMessage": "Digite a mensagem aqui",
         "messageRequiredContact" : "Mensagem obrigatória",
         "buttonSend": "Enviar",
-        "buttonSent" : "Enviado"
+        "buttonSending" : "Enviando"
     }
 }

@@ -9,6 +9,7 @@ select {
 
 }
 .searchContent {
+    position: relative;
     border: 1px solid rgb(204, 204, 204);
     box-shadow: rgba(0, 0, 0, 0.12) 0px 2px 32px 0px;
     margin: 40px;
@@ -35,9 +36,35 @@ select {
     border-radius: 10px;
      margin: 10px 50px
 }
+
+.airplane {
+    width: 280px;
+    position: absolute;
+    right: 10%;
+    bottom: 30px;
+}
+
+.ship {
+    width: 280px;
+    position: absolute;
+    left: 10%;
+    bottom: 20px;
+}
 .countInfo {
     position: absolute;
     right: 5%;
     top: 10%;
 }
 
+.portImageContainer {
+    width: 380px;
+    height: 250px;
+    border-radius: 5px;
+}
+.addressContent {
+    display: flex;
+    font-size: 16px;
+}
+.localContent {
+    font-size: 18px;
+}

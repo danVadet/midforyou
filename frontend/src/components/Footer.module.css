@@ -1,47 +1,45 @@
-
 footer {
     width: 100%;
     background-color:  rgb(0, 175, 239);
     color: rgb(255, 255, 255);
 }
-footer .info {
+footer .footerContainer {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     padding: 28px;
 }
-
-
 footer .mediaSocial {
     display: flex;
-    gap: 1rem;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
+}
+.iconsMediaSocial {
+    display: flex;
+    gap: 1rem;
     margin: 8px;
 }
+.facebookIcon:hover {
+    background-color: rgb(66, 103, 178);
 
-footer .facebookIcon {
-    background-color: rgb(255, 255, 255);
-    width: 40px;
-    height: 40px;
-    padding: 5px;
-    border-radius: 20px;
 }
-
-footer .instagramIcon {
-    background-color: rgb(255, 255, 255);
-    width: 40px;
-    height: 40px;
-    padding: 5px;
-    border-radius: 20px;
+.instagramIcon:hover {
+    background: linear-gradient(rgb(254,218,117), rgb(250,126,30), rgb(214,41,118), rgb(150,47,191), rgb(79,91,213));
 }
+.linkedinIcon:hover:hover {
+    background-color: rgb(0, 119, 181)
+}
+.facebookIcon:hover svg, .instagramIcon:hover svg, .linkedinIcon:hover svg {
+    fill: rgb(255, 255, 255);
 
-
-footer .linkedinIcon {
+}
+.facebookIcon, .instagramIcon, .linkedinIcon {
     background-color: rgb(255, 255, 255);
     width: 40px;
     height: 40px;
     padding: 5px;
-    border-radius: 20px;
+    border-radius: 50%;
+    transition:all 0.3s ease-in-out;
 }
 footer .copyright {
     padding: 8px;

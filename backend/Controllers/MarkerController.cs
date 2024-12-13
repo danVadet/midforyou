@@ -104,7 +104,7 @@ public class MarkerController : ControllerBase
         return Ok(markers);
     }
 
-    [HttpPost("markers/port")]
+       [HttpPost("markers/port")]
     public async Task<ActionResult> createMarkerByPort([FromBody] PortMarkerRequest portMarkerRequest)
     {
       

@@ -81,7 +81,7 @@ interface IMainProps {
   enterMessage: string;
   messageRequiredContact: string
   buttonSend: string;
-  buttonSent: string;
+  buttonSending: string;
 }
 
 
@@ -164,7 +164,7 @@ const  Main = (props: IMainProps) => {
                         enterMessage={props.enterMessage}
                         messageRequiredContact={props.messageRequiredContact}
                         buttonSend={props.buttonSend}
-                        buttonSent={props.buttonSent}/>
+                        buttonSending={props.buttonSending}/>
                 </section>
 
        <Footer></Footer>

@@ -13,7 +13,7 @@ public class ConfigurationMapper : Profile
         CreateMap <PortMarker, PortMarkerResponse>();
         
         CreateMap <ProductRequest, Product>();
-        CreateMap <ContainerRequest, Product>();
+        CreateMap <ContainerRequest, Container>();
         CreateMap<StateRequest, State>();
         CreateMap <PortMarkerRequest, PortMarker>();
 

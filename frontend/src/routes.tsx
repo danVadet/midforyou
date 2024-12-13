@@ -76,7 +76,7 @@ const RoutesProvider = () => {
           enterMessage={multiLang.en.enterMessage}
           messageRequiredContact={multiLang.en.messageRequiredContact}
           buttonSend={multiLang.en.buttonSend}
-          buttonSent={multiLang.en.buttonSent} />}  />
+          buttonSending={multiLang.en.buttonSending} />}  />
             <Route path='/es' element={ <Main 
             home={multiLang.es.home}
             about= {multiLang.es.about}
@@ -145,7 +145,7 @@ const RoutesProvider = () => {
           enterMessage={multiLang.es.enterMessage}
           messageRequiredContact={multiLang.es.messageRequiredContact}
           buttonSend={multiLang.es.buttonSend}
-          buttonSent={multiLang.es.buttonSent} />}  />
+          buttonSending={multiLang.es.buttonSending} />}  />
             <Route path='/' element={<Main 
           home={multiLang.pt.home}
           about= {multiLang.pt.about}
@@ -214,7 +214,7 @@ const RoutesProvider = () => {
         enterMessage={multiLang.pt.enterMessage}
         messageRequiredContact={multiLang.pt.messageRequiredContact}
         buttonSend={multiLang.pt.buttonSend}
-        buttonSent={multiLang.pt.buttonSent} /> }  
+        buttonSending={multiLang.pt.buttonSending} /> }  
         />
 
         </Routes>

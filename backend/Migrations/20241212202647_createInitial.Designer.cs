@@ -11,7 +11,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace backend.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20241129135809_createInitial")]
+    [Migration("20241212202647_createInitial")]
     partial class createInitial
     {
         /// <inheritdoc />
@@ -32,6 +32,9 @@ namespace backend.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("id"));
 
+                    b.Property<string>("address")
+                        .HasColumnType("text");
+
                     b.Property<string>("color")
                         .HasColumnType("text");
 
@@ -43,6 +46,9 @@ namespace backend.Migrations
 
                     b.Property<float>("lng")
                         .HasColumnType("real");
+
+                    b.Property<string>("portImage")
+                        .HasColumnType("text");
 
                     b.Property<int>("portType")
                         .HasColumnType("integer");

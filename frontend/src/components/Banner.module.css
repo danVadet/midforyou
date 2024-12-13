@@ -1,0 +1,125 @@
+.bannerContainer {
+  width: 100%;
+   height: 80vh;   
+  overflow: hidden;
+
+}
+.bannerImage  {
+  height: 100%;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  animation: shrink 5s infinite alternate;
+}
+.bannerWave {
+  position: absolute;
+  width: 100%;
+  height: 143px;
+  bottom: 0;
+  left: 0;
+  background-image: url("../../public/assets/wave.png");
+  animation: wave 10s linear infinite;
+}
+.ship {
+  width: 350px;
+  position: absolute;
+  top: 78%; 
+  left: 5%;
+  transform: translateX(-50%);
+  animation: moving 10s linear infinite;
+
+}
+
+.bannerText {
+  position: absolute;
+  font-size: 25px;
+  top: 30%;
+  left: 10%;
+  transform: translate(-50%, -50%);
+  color: rgb(255, 255, 255);
+  animation: textup 15s linear infinite;
+  transform: translateY(100px);
+}
+.leftArrow, .rightArrow {
+  cursor: pointer;
+  position: absolute;
+  top: 45%;
+  border: none;
+}
+.leftArrow {
+  left: 25px;
+}
+.leftArrow svg:hover {
+  fill:rgba(0, 140, 192, 0.5);
+}
+.rightArrow {
+  right: 25px;
+}
+.rightArrow svg:hover {
+  fill:rgba(0, 140, 192, 0.5);
+}
+.dots {
+  position: absolute;
+  margin: 20px 40px;
+  top: 70%;
+  left: 50%;
+  translate: -50%;
+  display: flex;
+  gap: .25rem
+}
+.dot {
+  z-index: 500;
+  gap: 1rem;
+  font-family: "Roboto", "Lexend", "Sora";
+  cursor: pointer;
+  height: 1.5rem;
+  width: 1.5rem;
+  margin: 0px 3px;
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+  display: inline-block;
+}
+.dot_active{
+  background-color: rgba(0, 140, 192, 0.5);
+}
+
+
+@keyframes shrink {
+  0% {
+    background-size: 110% 100%;
+  }
+  100% {
+    background-size: 100% 100%;
+  }
+}
+@keyframes moving {
+  0% {
+    transform: rotate(0deg) translateX(0);
+  }
+    100% {
+      transform: rotate(0deg) translateX(1000px);
+    };
+  
+}
+@keyframes textup {
+  10% {
+    transform: translateY(0px);
+  }
+  100% {
+    transform: translateY(0px);
+
+
+  }
+}
+  @keyframes  wave {
+    0% {
+      background-position: 0px;
+    }
+    100% {
+      background-position: 1360px;
+    
+    }
+    
+  }

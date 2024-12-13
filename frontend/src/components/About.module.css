@@ -1,18 +1,11 @@
-
-
-
 .aboutTextContainer h1 {
-
-    margin: 0 0 32px 0;
+    margin: 10px;
     color: #2F2F2F;
     font-family: 'Roboto', 'Lexend', sans-serif;
     font-size: 48px;
     font-style: normal;
     font-weight: 500;
     line-height: normal;
-
-
-
 }
 .aboutTextContainer p {
         color: #5E5E5E;

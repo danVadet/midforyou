@@ -66,7 +66,9 @@ namespace backend.Migrations
                 {
                     id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    portImage = table.Column<string>(type: "text", nullable: true),
                     label = table.Column<string>(type: "text", nullable: true),
+                    address = table.Column<string>(type: "text", nullable: true),
                     color = table.Column<string>(type: "text", nullable: true),
                     lat = table.Column<float>(type: "real", nullable: false),
                     lng = table.Column<float>(type: "real", nullable: false),
