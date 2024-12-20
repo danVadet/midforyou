@@ -160,12 +160,10 @@ const Conteiner = (props: IContainerProps) => {
             if (searchProduct) {
                 const response = await axios.get(`http://localhost:5077/products?search=${searchProduct}`);
                 setProducts(response.data);
-                console.log(response.data);
 
             } else {
                 const response = await axios.get(`http://localhost:5077/products`);
                 setProducts(response.data);
-                console.log(response.data);
             }
         } catch (error) {
             console.log(error);

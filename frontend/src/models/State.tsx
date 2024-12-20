@@ -1,4 +1,4 @@
-export interface MarkerModel {
+export interface State {
     id: number;
     label: string;
     lat: number;

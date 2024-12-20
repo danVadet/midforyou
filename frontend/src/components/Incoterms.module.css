@@ -17,6 +17,10 @@
  margin-bottom: 200px;
  padding: 20px;
 }
+.selectedIncoterm:focus {
+
+    border: 1.5px solid rgb(0, 175, 239);
+}
 .incotermStages {
     display: flex;
     flex-direction: column;
@@ -28,46 +32,6 @@
   display: flex;
   gap: 4rem;
   
-}
-#line1 {
-  position: absolute;
-  border: none;
-  border-left: 2.5px dashed  rgb(206, 206, 206);
-  height: 250px;
-  top: 130px;
-  left: 323px;
-}
-#line2 {
-  position: absolute;
-  border: none;
-  border-left: 2.5px dashed  rgb(206, 206, 206);
-  height: 250px;
-  top: 130px;
-  left: 490px;
-}
-#line3{
-  position: absolute;
-  border: none;
-  border-left: 2.5px dashed  rgb(206, 206, 206);
-  height: 250px;
-  top: 130px;
-  left: 610px;
-}
-#line4{
-  position: absolute;
-  border: none;
-  border-left: 2.5px dashed  rgb(206, 206, 206);
-  height: 250px;
-  top: 130px;
-  left: 750px;
-}
-#line5{
-  position: absolute;
-  border: none;
-  border-left: 2.5px dashed  rgb(206, 206, 206);
-  height: 250px;
-  top: 130px;
-  left: 800px;
 }
 
 .incotermStage {
@@ -88,58 +52,30 @@
   color: rgb(0, 0, 0);
   justify-content: flex-end;
 }
-.incotermStage__cost .costStage0 {
+.incotermStage__cost .factory__bar {
   background-color: #edc13b;
   border-radius: 0.25rem;
-  width: calc(calc(100% / 25) * 2);
 }
-.incotermStage__risk .riskStage0 {
+.incotermStage__risk .factory__bar {
   background-color: #6b7799;
   border-radius: 0.25rem;
+}
+
+
+.costStage0, .riskStage0 {
   width: calc(calc(100% / 25) * 2);
 }
-.incotermStage__cost .costStage1 {
-  background-color: #edc13b;
-  border-radius: 0.25rem;
-  width: calc(calc(100% / 32) * 4);
-}
-.incotermStage__risk .riskStage1 {
-  background-color: #6b7799;
-  border-radius: 0.25rem;
+.costStage1, .riskStage1 {
   width: calc(calc(100% / 32) * 4);
 }
 
-.incotermStage__cost .costStage2 {
-  background-color: #edc13b;
-  border-radius: 0.25rem;
+.costStage2, .riskStage2 {
   width: calc(calc(100% / 23 ) * 6);
 }
-.incotermStage__risk .riskStage2 {
-  background-color: #6b7799;
-  border-radius: 0.25rem;
-  width: calc(calc(100% / 23) * 6);
-
-}
-.incotermStage__cost .costStage2 {
-  background-color: #edc13b;
-  border-radius: 0.25rem;
-  width: calc(calc(100% / 23 ) * 6);
-}
-
-.incotermStage__cost .costStage3 {
-  background-color: #edc13b;
-  border-radius: 0.25rem;
+.costStage3, .riskStage3 {
   width: calc(calc(100% / 21.5) * 8);
 }
-.incotermStage__risk .riskStage3 {
-  background-color: #6b7799;
-  border-radius: 0.25rem;
-  width: calc(calc(100% / 21.5) * 8);
-
-}
-.incotermStage__cost .costStage4 {
-  background-color: #edc13b;
-  border-radius: 0.25rem;
+.costStage4 {
   width: calc(calc(100% / 17) * 8);
 }
 

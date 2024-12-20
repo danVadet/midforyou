@@ -3,6 +3,7 @@
     position: relative;
     height: 888px;
     background-image: url('./../../public/assets/fundo-blog.jpg'); 
+    background-size: contain;
     background-repeat: no-repeat;
 }
 .contactContainer {
@@ -48,6 +49,10 @@
     border-radius: 5px;
     border: 1px solid rgb(204, 204, 204);
 }
+.formContainer input:focus {
+  border: 1px solid rgb(0, 175, 239);
+
+}
 .inputIcon {
     position: relative;
 }
@@ -67,6 +72,10 @@
     outline: none;
     resize: none;
 }
+.formContainer textarea:focus {
+  border: 1px solid rgb(0, 175, 239);
+
+}
 .formContainer .sendButton {
     margin: 20px 50px;
     padding: 10px;
@@ -74,13 +83,16 @@
     border: 0;
     font-weight: 500;
     border-radius: 5px;
-    background-color: rgb(0, 175, 239);
+    background: rgb(0, 175, 239);
     color: rgb(255, 255, 255);
 }
+.formContainer .sendButton:hover {
+    background-color: rgb(0, 140, 196);
+}
 .sucess {
-    color: #155724;
-    background: #D4EDDA;
-    border-color: #C3E6CB;
+    color: rgb(21 87 36);
+    background: rgb(212 237 218);
+    border-color: rgb(212 237 218);
 }
 .formContainer .sendingButton {
     margin: 20px 50px;
@@ -148,8 +160,7 @@
     }
   }
   
-
-
+  
 @media screen and (max-width: 768px){
 
      .contato {

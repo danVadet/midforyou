@@ -8,9 +8,9 @@
     font-size: 20px;
 }
 .sucess {
-    color: #155724;
-    background: #D4EDDA;
-    border-color: #C3E6CB;
+    color: rgb(21 87 36);
+    background: rgb(212 237 218);
+    border-color: rgb(212 237 218);
 }
 .error {
     color: rgb(114, 28, 36);

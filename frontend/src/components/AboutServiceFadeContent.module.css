@@ -1,0 +1,17 @@
+
+@keyframes fadeAnimate {
+    0% {
+        opacity: 0;
+        transform: translate3d(-100%, 0, 0);
+  
+    }
+    100% {
+        opacity: 1;
+        transform: none;
+  
+    }
+  }
+  
+  .animate_fade {
+    animation: fadeAnimate 2s ease-out;
+  }

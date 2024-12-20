@@ -35,15 +35,11 @@ const Banner = (props: IBannerProps) => {
 
         ( index  === currentIndex  && <div key={index} className={`${styles.bannerImage}`} style={{backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${slide.url})`}}>
 
-          <div className={`${styles.bannerWave}`}>
-         </div>       
-        
          <div className={`${styles.bannerText}`}>
               <h1> {props.bannerInfo1}</h1>
               <h3>{props.bannerInfo2}</h3>
     
-              </div>   
-              <img  className={`${styles.ship}`} src={`./assets/ship.png`} alt="" />
+              </div>  
 
           </div>
            )

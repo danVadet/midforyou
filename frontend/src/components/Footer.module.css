@@ -8,6 +8,23 @@ footer .footerContainer {
     grid-template-columns: repeat(2, 1fr);
     padding: 28px;
 }
+footer .info {
+    margin: 8px;
+}
+footer .email {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+
+
+}
+footer .phone {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
 footer .mediaSocial {
     display: flex;
     flex-direction: column;

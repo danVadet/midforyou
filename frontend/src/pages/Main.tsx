@@ -86,6 +86,8 @@ interface IMainProps {
 
 
 const  Main = (props: IMainProps) => {
+  
+
   return (
     <div>
       <Navbar home={props.home} about={props.about} container={props.container} contact={props.contact}></Navbar>
@@ -146,7 +148,7 @@ const  Main = (props: IMainProps) => {
                 <Map></Map>
             
        <section className={`${styles.contact}`} id="contact">
-               <Contact 
+               <Contact
                         contactTitle={props.contactTitle} 
                         imageLegend={props.imageLegend}
                         enterFullName={props.enterFullName} 

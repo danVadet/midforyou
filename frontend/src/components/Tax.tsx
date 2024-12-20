@@ -13,9 +13,7 @@ const Tax = () => {
     const [openTaxModal, setOpenTaxModal] = useState(false);
     const [taxes, setTaxes] = useState<ITaxModel[]>([]);
     let [currentTax, setCurrentTax] = useState<ITaxModel>();
-    const { id } = useParams();
-
-    
+    const [loading, setLoading] = useState(true);
 
     const getTaxes = async () => {
         const response = await axios.get(`http://economia.awesomeapi.com.br/last/USD-BRL,EUR-BRL,CNY-BRL,GBP-BRL,ARS-BRL`);
@@ -26,7 +24,9 @@ const Tax = () => {
         Object.keys(quotes).map((key) => {
             taxesArray.push({ name: key as ITaxKeys, currencyCode: `${quotes[key].code}-BRL`, bid: quotes[key].bid, ask: quotes[key].ask, variation: quotes[key].pctChange, high: quotes[key].high, low: quotes[key].low, date: quotes[key].timestamp });
         });
-        setTaxes(taxesArray);
+        setTimeout(() => {
+            setTaxes(taxesArray);
+        }, 1000);
     }
     const getTax = async (currencyCode: string) => {
         const response = await axios.get(`http://economia.awesomeapi.com.br/last/${currencyCode}`);
@@ -41,12 +41,17 @@ const Tax = () => {
     }
 
     useEffect(() => {
-        getTaxes();
+        setInterval(() => {
+            setLoading(false);
+            getTaxes();
+        }, 1000);
+    
     }, []);
 
     return (
         <>
             <div className={`${styles.tax_collectionComponent}`}>
+                
                 <div className={`${styles.taxWrapper}`}>
                     {taxes.map((tax, index) => (
 

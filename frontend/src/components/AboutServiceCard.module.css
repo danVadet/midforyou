@@ -1,18 +1,17 @@
 
 .about_service_card_component {
         padding: 1rem;
+        overflow: hidden;
     }
 .about_service_card_wrapper_left {
     display: flex;
     align-items: center;
-    align-self: stretch;
     gap: 64px;
 }
 
 .about_service_card_wrapper_right {
     display: flex;
     align-items: center;
-    align-self: stretch;
     gap: 64px;
 }
 
@@ -68,6 +67,8 @@
     border-radius: 8px;
     z-index: 1;
   }  
+
+  
 
 @media (max-width: 720px) {
 
