@@ -6,7 +6,6 @@ import ITaxKeys from '../models/ITaxKeys';
 import FormatCurrencySymbol from '../Library/FormatCurrencySymbol';
 import FormatCurrencyName from '../Library/FormatCurrencyName';
 import TaxModal from './TaxModal';
-import { useParams} from 'react-router-dom';
 
 const Tax = () => {
 
@@ -56,7 +55,7 @@ const Tax = () => {
                     {taxes.map((tax, index) => (
 
                         <div key={index} className={`${styles.tax_unitComponent}`}>
-                            <a className={`${styles.s}`} onClick={() => getTax(tax.currencyCode)}>
+                            <a href={`${tax.currencyCode}`} className={`${styles.s}`} onClick={() => window.onbeforeunload = null }>
                                 <div className={`${styles.currencyContainer}`}>
 
                                     <div className={`${styles.currency}`}>
@@ -73,7 +72,7 @@ const Tax = () => {
                                 </div>
 
                             </a>
-                            {openTaxModal && <TaxModal closeModal={() => setOpenTaxModal(false)} currentTax={currentTax} />}
+                            {openTaxModal && <TaxModal closeModal={() => setOpenTaxModal(false)} currentTax={currentTax}  />}
 
 
                         </div>

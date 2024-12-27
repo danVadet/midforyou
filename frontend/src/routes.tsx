@@ -1,8 +1,15 @@
 import {Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import Main from './pages/Main';
 import  multiLang  from './multiLang.json';
+import TaxModal from './components/TaxModal';
+import { useState } from 'react';
+import ITaxKeys from './models/ITaxKeys';
+
 
 const RoutesProvider = () => {
+
+      const [openTaxModal, setOpenTaxModal] = useState(false);
+  
     return (
       <>
   
@@ -214,8 +221,11 @@ const RoutesProvider = () => {
         enterMessage={multiLang.pt.enterMessage}
         messageRequiredContact={multiLang.pt.messageRequiredContact}
         buttonSend={multiLang.pt.buttonSend}
-        buttonSending={multiLang.pt.buttonSending} /> }  
+        buttonSending={multiLang.pt.buttonSending} />
+      
+      }  
         />
+          <Route path="/:code"  element={<TaxModal closeModal={() => setOpenTaxModal(false)}/>}/>
 
         </Routes>
     </Router>

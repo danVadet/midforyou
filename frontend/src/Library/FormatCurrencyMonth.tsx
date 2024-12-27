@@ -9,29 +9,29 @@ const FormatCurrencyName = (props: IFormatCurrencyMonthProps) => {
     switch (props.key) {
 
         case 0:
-            return "Janeiro";
+            return "Jan";
         case 1:
-            return "Fevereiro";
+            return "Fev";
         case 2:
-            return "Março";
+            return "Mar";
         case 3:
-            return "Abril";
+            return "Abr";
         case 4:
-            return "Maio";
+            return "Mai";
         case 5: 
-         return "Junho";
+         return "Jun";
         case 6: 
-        return "Julho";
+        return "Jul";
         case 7:
-            return "Agosto";
+            return "Ago";
         case 8:
-            return "Setembro";
+            return "Set";
         case 9: 
-         return "Outubro";
+         return "Out";
         case 10: 
-        return "Novembro";
+        return "Nov";
         case 11:
-            return "Dezembro";
+         return "Dez";
        
        
     }

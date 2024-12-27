@@ -5,6 +5,9 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { Line } from 'react-chartjs-2';
 import { Chart as ChartJS, LineElement, CategoryScale, LinearScale, PointElement, Tooltip, Filler } from 'chart.js'
+import { useParams } from "react-router-dom";
+import FormatCurrencyCode from "../Library/FormatCurrencyCode";
+import ITaxKeys from "../models/ITaxKeys";
 
 ChartJS.register(LineElement, CategoryScale, LinearScale, PointElement, Tooltip, Filler);
 
@@ -17,7 +20,10 @@ const TaxModal = (props: ITaxModalProps) => {
     const [quotation, setQuotation] = useState<number[]>([]);
     const [diasCotados, setDiasCotados] = useState<Date[]>([]);
     const [days, setDays] = useState(1);
+    let { code } = useParams();
     const [loading, setLoading] = useState(true);
+    let [currentTax, setCurrentTax] = useState<ITaxModel>();
+
 
 
    
@@ -54,7 +60,7 @@ const TaxModal = (props: ITaxModalProps) => {
     const getData = async () => {
 
         if (days === 7) {
-            const response = await axios.get(`https://economia.awesomeapi.com.br/daily/${props.currentTax?.currencyCode}/${days}`);
+            const response = await axios.get(`https://economia.awesomeapi.com.br/daily/${code}/${days}`);
             const data = response.data;
 
             const array: number[] = [];
@@ -76,7 +82,7 @@ const TaxModal = (props: ITaxModalProps) => {
             setDiasCotados(dates.reverse());
 
         } else if (days === 30) {
-            const response = await axios.get(`https://economia.awesomeapi.com.br/daily/${props.currentTax?.currencyCode}/${days}`);
+            const response = await axios.get(`https://economia.awesomeapi.com.br/daily/${code}/${days}`);
             const data = response.data;
 
             const array: number[] = [];
@@ -99,7 +105,7 @@ const TaxModal = (props: ITaxModalProps) => {
 
 
         } else if (days === 90) {
-            const response = await axios.get(`https://economia.awesomeapi.com.br/daily/${props.currentTax?.currencyCode}/${days}`);
+            const response = await axios.get(`https://economia.awesomeapi.com.br/daily/${code}/${days}`);
             const data = response.data;
             const array: number[] = [];
 
@@ -119,7 +125,7 @@ const TaxModal = (props: ITaxModalProps) => {
             setDiasCotados(dates.reverse());
 
         } else if (days === 180) {
-            const response = await axios.get(`https://economia.awesomeapi.com.br/daily/${props.currentTax?.currencyCode}/${days}`);
+            const response = await axios.get(`https://economia.awesomeapi.com.br/daily/${code}/${days}`);
             const data = response.data;
             const array: number[] = [];
 
@@ -144,7 +150,7 @@ const TaxModal = (props: ITaxModalProps) => {
 
         } else if (days === 365) {
 
-            const response = await axios.get(`https://economia.awesomeapi.com.br/daily/${props.currentTax?.currencyCode}/${days}`);
+            const response = await axios.get(`https://economia.awesomeapi.com.br/daily/${code}/${days}`);
             const data = response.data;
 
             const array: number[] = [];
@@ -173,9 +179,15 @@ const TaxModal = (props: ITaxModalProps) => {
             let month = date.getMonth() + 1;
             let year = date.getFullYear();
 
-            const response = await axios.get(`http://economia.awesomeapi.com.br/${props.currentTax?.currencyCode}/${year}${month}${day}`);
+            const response = await axios.get(`http://economia.awesomeapi.com.br/${code}/${year}${month}${day}`);
             const data = response.data;
             const array: number[] = [];
+
+            Object.keys(data).map((key) => {
+            currentTax = { name: key as ITaxKeys, currencyCode: `${data[key].code}-BRL`, bid: data[key].bid, ask: data[key].ask, variation: data[key].pctChange, high: data[key].high, low: data[key].low, date: data[key].timestamp };
+            });
+            console.log(currentTax);
+            setCurrentTax(currentTax);
 
             Object.keys(data).map((key) => {
                 array.push(data[key].bid);
@@ -190,6 +202,7 @@ const TaxModal = (props: ITaxModalProps) => {
             });
             setDiasCotados(dates.reverse());
             setDays(1);
+        
             
            
             
@@ -214,7 +227,7 @@ const TaxModal = (props: ITaxModalProps) => {
                     </a>
 
                     <div className={`${styles.taxInfo}`}>
-                        <p className={`${styles.taxInfo_title}`} > {props.currentTax?.name && FormatCurrencyName({ key: props.currentTax?.name })}  </p>
+                    <p className={`${styles.taxInfo_title}`} >{code && FormatCurrencyCode({code})}   </p>
                         <div className={`${styles.taxInfo_titles}`}>
                             <p>COMPRA</p>
                             <p>VENDA</p>
@@ -224,11 +237,11 @@ const TaxModal = (props: ITaxModalProps) => {
 
                         </div>
                         <div className={`${styles.taxInfo_values}`}>
-                            <p><span>R$</span>{props.currentTax?.bid}</p>
-                            <p><span>R$</span>{props.currentTax?.ask}</p>
-                            <p><span>R$</span>{props.currentTax?.high}</p>
-                            <p><span>R$</span>{props.currentTax?.low}</p>
-                            {props.currentTax?.variation && props.currentTax?.variation >= 0 ? <p className={`${styles.variation} ${styles.success}`}> +{props.currentTax?.variation}%</p> : <p className={`${styles.variation} ${styles.danger}`}> {props.currentTax?.variation}%</p>}
+                            <p><span>R$</span>{currentTax?.bid}</p>
+                            <p><span>R$</span>{currentTax?.ask}</p>
+                            <p><span>R$</span>{currentTax?.high}</p>
+                            <p><span>R$</span>{currentTax?.low}</p>
+                            {currentTax?.variation && currentTax?.variation >= 0 ? <p className={`${styles.variation} ${styles.success}`}> +{currentTax?.variation}%</p> : <p className={`${styles.variation} ${styles.danger}`}> {currentTax?.variation}%</p>}
                         </div>
 
 

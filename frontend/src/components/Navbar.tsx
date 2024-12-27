@@ -14,18 +14,6 @@ const Navbar = (props: INavbarProps) => {
     const ref = useRef<HTMLDivElement>(null);
 
 
-    const selectLang = (lang: string) => {
-        window.onbeforeunload = null;
-        window.location.href = `${lang}`
-    }
-    const scrollToTop = () => {
-        window.scrollTo({
-          top: 0,
-          behavior: "auto",
-        })
-    }
-
-
     useEffect(() => {
 
 
@@ -73,9 +61,9 @@ const Navbar = (props: INavbarProps) => {
                 </li>
 
                 <li className={`${styles.listLanguage}`}>
-                    <a onClick={() => selectLang("/")}><img src={`./assets/brazil-flag.png`} width={35} height={35} /></a>
-                    <a onClick={() => selectLang("/en")}><img src={`./assets/english-flag.png`} width={35} height={35} /></a>
-                    <a onClick={() => selectLang("/es")}><img src={`./assets/spanish-flag.png`} width={35} height={35} /></a>
+                    <a href="/" onClick={() => window.onbeforeunload = null }><img src={`./assets/brazil-flag.png`} width={35} height={35} /></a>
+                    <a href='/en' onClick={() => window.onbeforeunload = null }><img src={`./assets/english-flag.png`} width={35} height={35} /></a>
+                    <a href='/es' onClick={() => window.onbeforeunload = null }><img src={`./assets/spanish-flag.png`} width={35} height={35} /></a>
                 </li>
 
             </ul>
