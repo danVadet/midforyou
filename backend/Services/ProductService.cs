@@ -65,4 +65,10 @@ public class ProductService : IProductService
         List <Product> products = await _productRepository.GetAllAsync();
         return  _mapper.Map<List<ProductResponse>>(products);    
     }
+     public async Task <List<ProductResponse>> GetAllPerPageAsync(int page, int pageSize)
+    {
+
+        List <Product> products = await _productRepository.GetAllPerPageAsync(page, pageSize);
+        return  _mapper.Map<List<ProductResponse>>(products);    
+    }
 }

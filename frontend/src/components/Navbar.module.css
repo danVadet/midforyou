@@ -39,6 +39,12 @@ nav ul .listLanguage :hover {
     border-bottom: 0;
 }
 
+.activeLink {
+    border-bottom: 2px solid rgb(0, 175, 239)
+
+}
+
+
 @media screen and (max-width: 768px) {
 
     .navLogoContainer {

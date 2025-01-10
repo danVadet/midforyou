@@ -41,6 +41,12 @@ public class ProductRepository : IProductRepository
        return product;
     }
 
+    public async Task <List<Product>> GetAllPerPageAsync(int page, int pageSize)
+    {
+
+        List <Product> products = await _applicationDbContext.Products.Skip((page - 1) * pageSize).Take(pageSize).ToListAsync();
+        return products;    
+    }
     public async Task <List<Product>> GetAllAsync()
     {
 

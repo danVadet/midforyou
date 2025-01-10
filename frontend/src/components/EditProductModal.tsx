@@ -4,7 +4,7 @@ import axios from "axios";
 import { Product } from "../models/Product";
 
 interface IEditProductModalProps {
-
+    setShowEditMessage(): void;
     closeModal(): void;
     getProducts(): void;
     getSumPesoTotal(): void;
@@ -13,7 +13,6 @@ interface IEditProductModalProps {
 } 
 
 const EditProductModal = (props : IEditProductModalProps) => {
-   
 
     const [product, setProduct] = useState<Product>({
         id: props.currentProduct?.id || 0,
@@ -42,20 +41,16 @@ const EditProductModal = (props : IEditProductModalProps) => {
                 quantidade: product.quantidade,
                 peso: product.peso,
                 volume: product.volume
-
             });
             
             console.log(response.data);
             props.closeModal();
+            props.setShowEditMessage();
             props.getProducts();
             props.getSumPesoTotal();
             props.getSumVolumeTotal();
-
         }
-
     } 
-
-
     return (
 
         <div className={`${styles.modal}`}>

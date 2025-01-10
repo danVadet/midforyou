@@ -12,6 +12,7 @@ import Footer from '../components/Footer';
 import { Incoterm } from '../models/Incoterm';
 import { IconIcoterm } from '../models/IconIcoterm';
 import Banner from '../components/Banner';
+import { Outlet } from 'react-router-dom';
 
 interface IMainProps {
   home:  string;
@@ -63,7 +64,11 @@ interface IMainProps {
   modal: string;
   moreDetails: string;
   seller: string;
-  buyer: string;
+  agreedPlace: string;
+  loadPort: string;
+  destinationPort: string;
+  destinationPlace: string;
+  destination: string;
   contactTitle: string;
   imageLegend: string;
   enterFullName: string;
@@ -89,7 +94,7 @@ const  Main = (props: IMainProps) => {
   
 
   return (
-    <div>
+    <div id="home">
       <Navbar home={props.home} about={props.about} container={props.container} contact={props.contact}></Navbar>
       <Tax></Tax>
        <Banner bannerInfo1={props.bannerInfo1} bannerInfo2={props.bannerInfo2} ></Banner>
@@ -139,7 +144,11 @@ const  Main = (props: IMainProps) => {
                           riskLabel={props.riskLabel} 
                           insuranceLabel={props.insuranceLabel}
                           seller={props.seller}
-                          buyer={props.buyer}
+                          agreedPlace={props.agreedPlace}
+                          loadPort={props.loadPort}
+                          destinationPlace={props.destinationPlace}
+                          destinationPort={props.destinationPort}
+                          destination={props.destination}
                           freight={props.freight}
                           modal={props.modal}
                           moreDetails={props.moreDetails}

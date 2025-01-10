@@ -238,7 +238,10 @@ const Map = () => {
               options={{
                 label: {
                   text: portMarker.label,
-                  className: `${styles.portMapLabel}`
+                  className: `${styles.portMapLabel}`,
+                  color: 'black',
+                  fontSize: '10px',
+                  fontWeight: '600',
                 },
 
               }} onClick={() => onClickMarker(portMarker.id)} >
@@ -281,6 +284,9 @@ const Map = () => {
                   label: {
                     text: portMarker.label,
                     className: `${styles.portMapLabel}`,
+                        color: 'black',
+                  fontSize: '10px',
+                  fontWeight: '600',
                   },
 
                 }} onClick={() => onClickMarker(portMarker.id)} > 

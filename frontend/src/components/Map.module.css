@@ -20,16 +20,10 @@ select:focus {
     border-radius: 5px;
 }
 .portMapLabel {
-    position: absolute;
-    text-shadow: -1px -1px 0px rgb(255, 255, 255),
-    -1px 1px 0px rgb(255, 255, 255),
-     1px -1px 0px rgb(255, 255, 255),
-     1px 0px 0px  rgb(255, 255, 255);
-     font-size: 5px;
-     font-weight: 600;
-     color: rgb(0, 0, 0);
-     left: -25px;
-     top: 35px;
+     background: rgb(255, 255, 255);
+     border-radius: 500px;
+     padding: 0 4px;
+     margin: 0 0 20px 0;
 }
 .mapContainer {
     position: relative;
@@ -76,3 +70,41 @@ select:focus {
 .localContent {
     font-size: 18px;
 }
+@media screen and (max-width: 768px) {
+
+    .mapContainer {
+        margin: 10px 30px;
+    }
+    .searchContent {
+        margin: 10px;
+    }
+    .airplane {
+        width: 180px;
+        right: 0;
+    }
+    .ship {
+        width: 180px;
+        left: 0;
+    }
+}
+
+@media screen and (max-width: 480px) {
+
+    
+    .mapContainer {
+        margin: 10px 80px;
+    }
+    .searchContent {
+        margin: 0 0 0 60px;
+    }
+    .airplane {
+        width: 180px;
+        right: 0;
+    }
+    .ship {
+        width: 180px;
+        left: 0;
+    }
+ 
+  
+  }

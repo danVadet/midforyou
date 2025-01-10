@@ -162,8 +162,30 @@
   
   
 @media screen and (max-width: 768px){
+  .contactImage {
+    background-size: 768px 920px;
+  }
+  .inputIcon svg {
+    left: 20px;
+  }
+  .formContainer .sendButton {
+    margin: 20px;
+  }
+  .contactLegend {
+   left: 0;
+   top: 80px;
+}
+    
+}
 
-     .contato {
-        flex-direction: column;
-     }  
+@media screen and (max-width: 480px) {
+  
+  .contactImage {
+    background-size: 580px 920px;
+  }
+  .contactContainer {
+    width: 100%;
+    left: 70%;
+    top: 30%;
+  }
 }

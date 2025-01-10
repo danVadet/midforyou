@@ -1,10 +1,12 @@
+
 import styles from './Conteiner.module.css'
-import  { useEffect, useState } from 'react'
+import  { useEffect, useRef, useState } from 'react'
 import axios from 'axios';
 import EditProductModal from './EditProductModal';
 import DeleteProductModal from './DeleteProductModal';
 import { Product } from '../models/Product';
 import { Container } from '../models/Container';
+import Message from './Message';
 
 interface IContainerProps {
     
@@ -43,12 +45,16 @@ interface IErrors extends Partial<IValues> {}
 
 const Conteiner = (props: IContainerProps) => {
 
+    const [submitMessage, setSubmitMessage] = useState(false);
     const [products, setProducts] = useState<Product[]>([]);
     const [containers, setContainers] = useState<Container[]>([]);
     const [sumPesoTotal, setSumPesoTotal] = useState(0);
     const [sumVolumeTotal, setSumVolumeTotal] = useState(0);
     const [openEditModal, setOpenEditModal] = useState(false);
+    const [editMessage, setEditMessage] = useState(false);
     const [openDeleteModal, setOpenDeleteModal] = useState(false);
+    const [deleteMessage, setDeleteMessage] = useState(false);
+
     const [product, setProduct] = useState<Product>({
         id: 0,
         nome: "",
@@ -69,6 +75,8 @@ const Conteiner = (props: IContainerProps) => {
         capacidadePeso: 0,
         capacidadeVolume: 0,
     });
+    const [showContainerMessage, setShowContainerMessage] = useState<boolean>(false);
+
     const [selectedContainer, setSelectedConatiner] = useState<Container>({
         id: 0,
         name: "",
@@ -76,28 +84,28 @@ const Conteiner = (props: IContainerProps) => {
         capacidadePeso: 0,
         capacidadeVolume: 0,
     });
-    const handleDeleteProduct = async (id: number) => {
-        const response = await axios.get(`http://localhost:5077/products/${id}`);
-        console.log(response.data);
-        setCurrentProduct(response.data);
-        setOpenDeleteModal(true);
-    }
+
+
+    const observer = useRef<IntersectionObserver | null>(null);
 
     const handleChange = (e: React.FormEvent) => {
         const target = e.target as HTMLInputElement;
         setProduct({ ...product, [target.name]: target.value })
     }
     const handleChangeSelectContainer = async (e: React.ChangeEvent<HTMLSelectElement>) => {
+        const value = e.target.value;
+
         try {
-            const value = e.target.value;
-            const response = await axios.get(`http://localhost:5077/containers/${value}`);
-            console.log(response.data);
-            setSelectedConatiner(response.data);
+                const response = await axios.get(`http://localhost:5077/containers/${value}`);
+                setSelectedConatiner(response.data);
 
             if (selectedContainer != null) {
                 const response = await axios.get(`http://localhost:5077/containers/capacity/${value}`);
-                console.log(response.data);
                 setContainer(response.data);
+                setShowContainerMessage(true);
+                setTimeout(async () => {
+                    setShowContainerMessage(false);
+                }, 1000);
             }
         } catch (error) {
             console.log(error);
@@ -147,20 +155,51 @@ const Conteiner = (props: IContainerProps) => {
             getProducts();
             getSumPesoTotal();
             getSumVolumeTotal();
+
+            setSubmitMessage(true);
+            setTimeout(async () => {
+                setSubmitMessage(false);
+            }, 1000);
         }        
     }
     const handleEditProduct = async (id: number) => {
         const response = await axios.get(`http://localhost:5077/products/${id}`);
         console.log(response.data);
         setCurrentProduct(response.data);
-        setOpenEditModal(true);
+        if(!openEditModal) {
+            setOpenEditModal(true);
+        } else {
+            showEditMessage();
+        }      
     }
-    const getProducts = async () => {
+    const showEditMessage = () => {
+        setEditMessage(true);
+        setTimeout(async () => {
+            setEditMessage(false);
+        }, 1000);
+    }
+    const handleDeleteProduct = async (id: number) => {
+        const response = await axios.get(`http://localhost:5077/products/${id}`);
+        console.log(response.data);
+        setCurrentProduct(response.data);
+        if(!openDeleteModal) {
+            setOpenDeleteModal(true);
+        } else {
+            showDeleteMessage();
+        }
+    }
+    const showDeleteMessage = () => {
+        setDeleteMessage(true);
+        setTimeout(async () => {
+            setDeleteMessage(false);
+        }, 1000);
+    }
+    const getProducts = async  () => {
+
         try {
             if (searchProduct) {
                 const response = await axios.get(`http://localhost:5077/products?search=${searchProduct}`);
                 setProducts(response.data);
-
             } else {
                 const response = await axios.get(`http://localhost:5077/products`);
                 setProducts(response.data);
@@ -169,6 +208,8 @@ const Conteiner = (props: IContainerProps) => {
             console.log(error);
         }
     }
+
+      
     const getSumPesoTotal = async () => {
         try {
             const response = await axios.get(`http://localhost:5077/sumPesoTotal`);
@@ -204,6 +245,7 @@ const Conteiner = (props: IContainerProps) => {
     }
 
     useEffect(() => {
+
         if(!unsavedProduct) {
             deleteAllProducts();
         } else {
@@ -240,11 +282,19 @@ const Conteiner = (props: IContainerProps) => {
                         <div className={`${styles.searchContent}`}>
                             <input type="text" value={searchProduct} onChange={(e) => handleChangeSearch(e)}  placeholder={`${props.searchProduct}`} />
                         </div>
+                        {submitMessage && <Message type='sucess' message='Produto adicionado com sucesso'/> }
+                        {editMessage  && <Message type='sucess' message='Produto atualizado com sucesso'/>} 
+                        {deleteMessage && <Message type='sucess' message='Produto excluído com sucesso'/> }
+                        
+
                         <div className={`${styles.listProducts}`}>
                             {products.length === 0 ? (<div>{props.productNotAdded}</div>) : (
-                                products.map((product, index) => (
-                                    <div className={`${styles.content}`} key={index}>
-                                        <div>{product.nome}</div>
+                                products.map((product, index) => {
+
+                                        return (
+                                           <div className={`${styles.content}`} key={index}>
+                                           <div>{product.nome}</div>
+                                           
                                         <div className={`${styles.infoProduct}`}>
                                             <div>{`${props.productUniPeso}: ${product.peso} kg`}</div>
                                             <div>{`${props.productUniVolume}: ${product.volume} m³`}</div>
@@ -254,31 +304,36 @@ const Conteiner = (props: IContainerProps) => {
                                             <div>{`${props.productTotalPeso}: ${product.pesoTotal} kg`}</div>
                                             <div>{`${props.productTotalVolume}: ${product.volumeTotal} m³`}</div>
                                         </div>
-                                        <div>
-                                            {openEditModal && <EditProductModal 
-                                                 closeModal={() => setOpenEditModal(false)} getProducts={getProducts} getSumPesoTotal={getSumPesoTotal} getSumVolumeTotal={getSumVolumeTotal} currentProduct={currentProduct} />}
-                                            <button className={`${styles.buttonEdit}`} onClick={() => handleEditProduct(product.id)}>
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0,0,256,256">
-                                                    <g fill="rgb(255, 255, 255)" >
-                                                        <g transform="scale(5.12,5.12)">
-                                                            <path d="M43.125,2c-1.24609,0 -2.48828,0.48828 -3.4375,1.4375l-0.8125,0.8125l6.875,6.875c-0.00391,0.00391 0.8125,-0.8125 0.8125,-0.8125c1.90234,-1.90234 1.89844,-4.97656 0,-6.875c-0.95312,-0.94922 -2.19141,-1.4375 -3.4375,-1.4375zM37.34375,6.03125c-0.22656,0.03125 -0.4375,0.14453 -0.59375,0.3125l-32.4375,32.46875c-0.12891,0.11719 -0.22656,0.26953 -0.28125,0.4375l-2,7.5c-0.08984,0.34375 0.01172,0.70703 0.26172,0.95703c0.25,0.25 0.61328,0.35156 0.95703,0.26172l7.5,-2c0.16797,-0.05469 0.32031,-0.15234 0.4375,-0.28125l32.46875,-32.4375c0.39844,-0.38672 0.40234,-1.02344 0.01563,-1.42187c-0.38672,-0.39844 -1.02344,-0.40234 -1.42187,-0.01562l-32.28125,32.28125l-4.0625,-4.0625l32.28125,-32.28125c0.30078,-0.28906 0.39063,-0.73828 0.22266,-1.12109c-0.16797,-0.38281 -0.55469,-0.62109 -0.97266,-0.59766c-0.03125,0 -0.0625,0 -0.09375,0z"></path>
-                                                        </g>
-                                                    </g>
-                                                </svg>
-                                            </button>
-                                            {openDeleteModal && <DeleteProductModal
-                                                closeModal={() => setOpenDeleteModal(false)} message='Deseja excluir esse produto' getProducts={getProducts} getSumPesoTotal={getSumPesoTotal} getSumVolumeTotal={getSumVolumeTotal} productCurrent={currentProduct} />}
-                                            <button className={`${styles.buttonDelete}`} onClick={() => handleDeleteProduct(product.id)}>
-                                                <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="30" height="30" viewBox="0,0,256,256">
-                                                    <g fill="rgb(255, 255, 255)">
-                                                        <g transform="scale(2.56,2.56)">
-                                                            <path d="M46,13c-1.64497,0 -3,1.35503 -3,3v2h-10.73437c-1.7547,0 -3.38611,0.92281 -4.28906,2.42773l-1.54297,2.57227h-3.43359c-2.19733,0 -4,1.80267 -4,4c0,2.19733 1.80267,4 4,4h1.07422l3.57422,46.45898c0.23929,3.11679 2.85609,5.54102 5.98242,5.54102h32.73828c3.12633,0 5.74313,-2.42423 5.98242,-5.54102l3.57422,-46.45898h1.07422c2.19733,0 4,-1.80267 4,-4c0,-2.19733 -1.80267,-4 -4,-4h-3.43359l-1.54297,-2.57227c-0.90296,-1.50492 -2.53436,-2.42773 -4.28906,-2.42773h-10.73437v-2c0,-1.64497 -1.35503,-3 -3,-3zM46,15h8c0.56503,0 1,0.43497 1,1v2h-10v-2c0,-0.56503 0.43497,-1 1,-1zM32.26563,20h11.56641c0.10799,0.01785 0.21818,0.01785 0.32617,0h11.67383c0.10799,0.01785 0.21818,0.01785 0.32617,0h11.57617c1.0553,0 2.02922,0.55195 2.57227,1.45703l1.52734,2.54297h-3.33398c-0.18032,-0.00255 -0.34804,0.09219 -0.43894,0.24794c-0.0909,0.15575 -0.0909,0.34838 0,0.50413c0.0909,0.15575 0.25863,0.25049 0.43894,0.24794h5h3.5c1.11667,0 2,0.88333 2,2c0,1.11667 -0.88333,2 -2,2h-54c-1.11667,0 -2,-0.88333 -2,-2c0,-1.11667 0.88333,-2 2,-2h4h34.5c0.18032,0.00255 0.34804,-0.09219 0.43894,-0.24794c0.0909,-0.15575 0.0909,-0.34838 0,-0.50413c-0.0909,-0.15575 -0.25863,-0.25049 -0.43894,-0.24794h-33.33398l1.52734,-2.54297c0.54305,-0.90508 1.51697,-1.45703 2.57227,-1.45703zM64.5,24c-0.18032,-0.00255 -0.34804,0.09219 -0.43894,0.24794c-0.0909,0.15575 -0.0909,0.34838 0,0.50413c0.0909,0.15575 0.25863,0.25049 0.43894,0.24794h2c0.18032,0.00255 0.34804,-0.09219 0.43894,-0.24794c0.0909,-0.15575 0.0909,-0.34838 0,-0.50413c-0.0909,-0.15575 -0.25863,-0.25049 -0.43894,-0.24794zM26.07813,31h47.84375l-3.56445,46.30664c-0.16071,2.09321 -1.88861,3.69336 -3.98828,3.69336h-32.73828c-2.09967,0 -3.82757,-1.60015 -3.98828,-3.69336zM38,35c-1.65109,0 -3,1.34891 -3,3v35c0,1.65109 1.34891,3 3,3c1.65109,0 3,-1.34891 3,-3v-35c0,-1.65109 -1.34891,-3 -3,-3zM50,35c-1.65109,0 -3,1.34891 -3,3v35c0,1.65109 1.34891,3 3,3c1.65109,0 3,-1.34891 3,-3v-3.5c0.00255,-0.18032 -0.09219,-0.34804 -0.24794,-0.43894c-0.15575,-0.0909 -0.34838,-0.0909 -0.50413,0c-0.15575,0.0909 -0.25049,0.25863 -0.24794,0.43894v3.5c0,1.11091 -0.88909,2 -2,2c-1.11091,0 -2,-0.88909 -2,-2v-35c0,-1.11091 0.88909,-2 2,-2c1.11091,0 2,0.88909 2,2v25.5c-0.00255,0.18032 0.09219,0.34804 0.24794,0.43894c0.15575,0.0909 0.34838,0.0909 0.50413,0c0.15575,-0.0909 0.25049,-0.25863 0.24794,-0.43894v-25.5c0,-1.65109 -1.34891,-3 -3,-3zM62,35c-1.65109,0 -3,1.34891 -3,3v1.5c-0.00255,0.18032 0.09219,0.34804 0.24794,0.43894c0.15575,0.0909 0.34838,0.0909 0.50413,0c0.15575,-0.0909 0.25049,-0.25863 0.24794,-0.43894v-1.5c0,-1.11091 0.88909,-2 2,-2c1.11091,0 2,0.88909 2,2v35c0,1.11091 -0.88909,2 -2,2c-1.11091,0 -2,-0.88909 -2,-2v-25.5c0.00255,-0.18032 -0.09219,-0.34804 -0.24794,-0.43894c-0.15575,-0.0909 -0.34838,-0.0909 -0.50413,0c-0.15575,0.0909 -0.25049,0.25863 -0.24794,0.43894v25.5c0,1.65109 1.34891,3 3,3c1.65109,0 3,-1.34891 3,-3v-35c0,-1.65109 -1.34891,-3 -3,-3zM38,36c1.11091,0 2,0.88909 2,2v35c0,1.11091 -0.88909,2 -2,2c-1.11091,0 -2,-0.88909 -2,-2v-35c0,-1.11091 0.88909,-2 2,-2zM59.49219,41.99219c-0.13261,0.00207 -0.25896,0.05673 -0.35127,0.15197c-0.0923,0.09523 -0.14299,0.22324 -0.14092,0.35584v2c-0.00255,0.18032 0.09219,0.34804 0.24794,0.43894c0.15575,0.0909 0.34838,0.0909 0.50413,0c0.15575,-0.0909 0.25049,-0.25863 0.24794,-0.43894v-2c0.00212,-0.13532 -0.0507,-0.26572 -0.1464,-0.36141c-0.0957,-0.0957 -0.22609,-0.14852 -0.36141,-0.1464z"></path></g></g>
-                                                </svg>
-                                            </button>
-                                        </div>
-                                    </div>
-                                )))}
-                        </div>
+                                        
+                                               
+                                                                                        
+                                                    {openEditModal && <EditProductModal 
+                                                         closeModal={() => setOpenEditModal(false)} getProducts={getProducts} getSumPesoTotal={getSumPesoTotal} getSumVolumeTotal={getSumVolumeTotal} currentProduct={currentProduct} setShowEditMessage={showEditMessage} />}
+                                                    <button className={`${styles.buttonEdit}`} onClick={() => handleEditProduct(product.id)}>
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0,0,256,256">
+                                                            <g fill="rgb(255, 255, 255)" >
+                                                                <g transform="scale(5.12,5.12)">
+                                                                    <path d="M43.125,2c-1.24609,0 -2.48828,0.48828 -3.4375,1.4375l-0.8125,0.8125l6.875,6.875c-0.00391,0.00391 0.8125,-0.8125 0.8125,-0.8125c1.90234,-1.90234 1.89844,-4.97656 0,-6.875c-0.95312,-0.94922 -2.19141,-1.4375 -3.4375,-1.4375zM37.34375,6.03125c-0.22656,0.03125 -0.4375,0.14453 -0.59375,0.3125l-32.4375,32.46875c-0.12891,0.11719 -0.22656,0.26953 -0.28125,0.4375l-2,7.5c-0.08984,0.34375 0.01172,0.70703 0.26172,0.95703c0.25,0.25 0.61328,0.35156 0.95703,0.26172l7.5,-2c0.16797,-0.05469 0.32031,-0.15234 0.4375,-0.28125l32.46875,-32.4375c0.39844,-0.38672 0.40234,-1.02344 0.01563,-1.42187c-0.38672,-0.39844 -1.02344,-0.40234 -1.42187,-0.01562l-32.28125,32.28125l-4.0625,-4.0625l32.28125,-32.28125c0.30078,-0.28906 0.39063,-0.73828 0.22266,-1.12109c-0.16797,-0.38281 -0.55469,-0.62109 -0.97266,-0.59766c-0.03125,0 -0.0625,0 -0.09375,0z"></path>
+                                                                </g>
+                                                            </g>
+                                                        </svg>
+                                                    </button>
+                                                    {openDeleteModal && <DeleteProductModal
+                                                        closeModal={() => setOpenDeleteModal(false)} message='Deseja excluir esse produto' getProducts={getProducts} getSumPesoTotal={getSumPesoTotal} getSumVolumeTotal={getSumVolumeTotal} productCurrent={currentProduct}  setShowDeleteMessage={showDeleteMessage}/>}
+                                                    <button className={`${styles.buttonDelete}`} onClick={() => handleDeleteProduct(product.id)}>
+                                                        <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="30" height="30" viewBox="0,0,256,256">
+                                                            <g fill="rgb(255, 255, 255)">
+                                                                <g transform="scale(2.56,2.56)">
+                                                                    <path d="M46,13c-1.64497,0 -3,1.35503 -3,3v2h-10.73437c-1.7547,0 -3.38611,0.92281 -4.28906,2.42773l-1.54297,2.57227h-3.43359c-2.19733,0 -4,1.80267 -4,4c0,2.19733 1.80267,4 4,4h1.07422l3.57422,46.45898c0.23929,3.11679 2.85609,5.54102 5.98242,5.54102h32.73828c3.12633,0 5.74313,-2.42423 5.98242,-5.54102l3.57422,-46.45898h1.07422c2.19733,0 4,-1.80267 4,-4c0,-2.19733 -1.80267,-4 -4,-4h-3.43359l-1.54297,-2.57227c-0.90296,-1.50492 -2.53436,-2.42773 -4.28906,-2.42773h-10.73437v-2c0,-1.64497 -1.35503,-3 -3,-3zM46,15h8c0.56503,0 1,0.43497 1,1v2h-10v-2c0,-0.56503 0.43497,-1 1,-1zM32.26563,20h11.56641c0.10799,0.01785 0.21818,0.01785 0.32617,0h11.67383c0.10799,0.01785 0.21818,0.01785 0.32617,0h11.57617c1.0553,0 2.02922,0.55195 2.57227,1.45703l1.52734,2.54297h-3.33398c-0.18032,-0.00255 -0.34804,0.09219 -0.43894,0.24794c-0.0909,0.15575 -0.0909,0.34838 0,0.50413c0.0909,0.15575 0.25863,0.25049 0.43894,0.24794h5h3.5c1.11667,0 2,0.88333 2,2c0,1.11667 -0.88333,2 -2,2h-54c-1.11667,0 -2,-0.88333 -2,-2c0,-1.11667 0.88333,-2 2,-2h4h34.5c0.18032,0.00255 0.34804,-0.09219 0.43894,-0.24794c0.0909,-0.15575 0.0909,-0.34838 0,-0.50413c-0.0909,-0.15575 -0.25863,-0.25049 -0.43894,-0.24794h-33.33398l1.52734,-2.54297c0.54305,-0.90508 1.51697,-1.45703 2.57227,-1.45703zM64.5,24c-0.18032,-0.00255 -0.34804,0.09219 -0.43894,0.24794c-0.0909,0.15575 -0.0909,0.34838 0,0.50413c0.0909,0.15575 0.25863,0.25049 0.43894,0.24794h2c0.18032,0.00255 0.34804,-0.09219 0.43894,-0.24794c0.0909,-0.15575 0.0909,-0.34838 0,-0.50413c-0.0909,-0.15575 -0.25863,-0.25049 -0.43894,-0.24794zM26.07813,31h47.84375l-3.56445,46.30664c-0.16071,2.09321 -1.88861,3.69336 -3.98828,3.69336h-32.73828c-2.09967,0 -3.82757,-1.60015 -3.98828,-3.69336zM38,35c-1.65109,0 -3,1.34891 -3,3v35c0,1.65109 1.34891,3 3,3c1.65109,0 3,-1.34891 3,-3v-35c0,-1.65109 -1.34891,-3 -3,-3zM50,35c-1.65109,0 -3,1.34891 -3,3v35c0,1.65109 1.34891,3 3,3c1.65109,0 3,-1.34891 3,-3v-3.5c0.00255,-0.18032 -0.09219,-0.34804 -0.24794,-0.43894c-0.15575,-0.0909 -0.34838,-0.0909 -0.50413,0c-0.15575,0.0909 -0.25049,0.25863 -0.24794,0.43894v3.5c0,1.11091 -0.88909,2 -2,2c-1.11091,0 -2,-0.88909 -2,-2v-35c0,-1.11091 0.88909,-2 2,-2c1.11091,0 2,0.88909 2,2v25.5c-0.00255,0.18032 0.09219,0.34804 0.24794,0.43894c0.15575,0.0909 0.34838,0.0909 0.50413,0c0.15575,-0.0909 0.25049,-0.25863 0.24794,-0.43894v-25.5c0,-1.65109 -1.34891,-3 -3,-3zM62,35c-1.65109,0 -3,1.34891 -3,3v1.5c-0.00255,0.18032 0.09219,0.34804 0.24794,0.43894c0.15575,0.0909 0.34838,0.0909 0.50413,0c0.15575,-0.0909 0.25049,-0.25863 0.24794,-0.43894v-1.5c0,-1.11091 0.88909,-2 2,-2c1.11091,0 2,0.88909 2,2v35c0,1.11091 -0.88909,2 -2,2c-1.11091,0 -2,-0.88909 -2,-2v-25.5c0.00255,-0.18032 -0.09219,-0.34804 -0.24794,-0.43894c-0.15575,-0.0909 -0.34838,-0.0909 -0.50413,0c-0.15575,0.0909 -0.25049,0.25863 -0.24794,0.43894v25.5c0,1.65109 1.34891,3 3,3c1.65109,0 3,-1.34891 3,-3v-35c0,-1.65109 -1.34891,-3 -3,-3zM38,36c1.11091,0 2,0.88909 2,2v35c0,1.11091 -0.88909,2 -2,2c-1.11091,0 -2,-0.88909 -2,-2v-35c0,-1.11091 0.88909,-2 2,-2zM59.49219,41.99219c-0.13261,0.00207 -0.25896,0.05673 -0.35127,0.15197c-0.0923,0.09523 -0.14299,0.22324 -0.14092,0.35584v2c-0.00255,0.18032 0.09219,0.34804 0.24794,0.43894c0.15575,0.0909 0.34838,0.0909 0.50413,0c0.15575,-0.0909 0.25049,-0.25863 0.24794,-0.43894v-2c0.00212,-0.13532 -0.0507,-0.26572 -0.1464,-0.36141c-0.0957,-0.0957 -0.22609,-0.14852 -0.36141,-0.1464z"></path></g></g>
+                                                        </svg>
+                                                    </button>
+                                                </div>
+                                        );                         
+
+                                } ))}
+
+                        </div>   
+
                         <div className={`${styles.totalContainer}`}>
                             <h3>{`${props.pesoTotal}: ${sumPesoTotal} kg`}</h3>
                             <h3>{`${props.volumeTotal}: ${sumVolumeTotal} m³`}</h3>
@@ -296,10 +351,9 @@ const Conteiner = (props: IContainerProps) => {
                             <h2>{`${selectedContainer.name}`}</h2>
                             <h2>{`${props.pesoCapicity}: ${selectedContainer.capacidadePeso} kg`}</h2>
                             <h2>{`${props.cubCapacicity}: ${selectedContainer.capacidadeVolume} m³`}</h2>
-
-                            <img src={selectedContainer.image ? `${selectedContainer.image}` : `./assets/containerPlaceholder.png`} alt="" />
+                            <img src={selectedContainer.image ? `${selectedContainer.image}` : `./assets/containerPlaceholder.png`} alt="" /> 
                             {product.pesoTotal <= container.capacidadePeso && product.volumeTotal <= container.capacidadeVolume ?
-                                <> </> :  <div className={styles.containerMessage}> <h2>Esse contêiner não cabe</h2> </div>}
+                                <> </> :  showContainerMessage &&  <Message type='error' message='Esse container não cabe'/>}
                         </div>
                     </div>
                     </>

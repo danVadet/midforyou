@@ -58,6 +58,14 @@ const TaxModal = (props: ITaxModalProps) => {
     }
 
     const getData = async () => {
+        const response = await axios.get(`http://economia.awesomeapi.com.br/last/${code}`);
+        const data = response.data;
+
+        Object.keys(data).map((key) => {
+            currentTax = { name: key as ITaxKeys, currencyCode: `${data[key].code}-BRL`, bid: data[key].bid, ask: data[key].ask, variation: data[key].pctChange, high: data[key].high, low: data[key].low, date: data[key].timestamp };
+            });
+        
+            setCurrentTax(currentTax);
 
         if (days === 7) {
             const response = await axios.get(`https://economia.awesomeapi.com.br/daily/${code}/${days}`);
@@ -184,41 +192,23 @@ const TaxModal = (props: ITaxModalProps) => {
             const array: number[] = [];
 
             Object.keys(data).map((key) => {
-            currentTax = { name: key as ITaxKeys, currencyCode: `${data[key].code}-BRL`, bid: data[key].bid, ask: data[key].ask, variation: data[key].pctChange, high: data[key].high, low: data[key].low, date: data[key].timestamp };
-            });
-            console.log(currentTax);
-            setCurrentTax(currentTax);
-
-            Object.keys(data).map((key) => {
                 array.push(data[key].bid);
             });
             setQuotation(array.reverse());
 
             const dates: Date[] = [];
             Object.keys(data).map((key) => {
-                const date = new Date(data[key].timestamp * 1000
-                );
+                const date = new Date(data[key].timestamp * 1000);
                 dates.push(date);
             });
             setDiasCotados(dates.reverse());
-            setDays(1);
-        
-            
-           
-            
-
         }
-        setTimeout(() => {
-            setLoading(false);
-        }, 1000);
-
-
         
     }
 
     return (
         <div className={`${styles.modal}`}>
-            {loading ? (<div className={styles.loader}><svg className={styles.spinner} viewBox="0 0 50 50"><circle className={styles.path} cx="25" cy="25" r="20" fill="none" strokeWidth="5"></circle></svg> <h1>Carregando...</h1></div>) : (<>
+        
                 <div className={`${styles.modalBody}`}>
                     <a className={`${styles.closeButton}`} onClick={() => props.closeModal()}>
                         <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="40" height="40" viewBox="0,0,256,256">
@@ -329,9 +319,7 @@ const TaxModal = (props: ITaxModalProps) => {
                     </div>
 
                 </div>
-
-            </>)
-            }
+            
 
         </div>
     );

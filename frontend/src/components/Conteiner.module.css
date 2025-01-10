@@ -209,14 +209,74 @@
 
 
 }
+.loader {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+ }
 
+/* SVG spinner icon animation */
+ .spinner {
+   -webkit-animation: rotate 2s linear infinite;
+           animation: rotate 2s linear infinite;
+   width: 30px;
+   height: 30px;
+ }
 
-@media (max-width: 768px) {
+ .spinner .path {
+   stroke: rgb(0, 140, 196);
+   stroke-linecap: round;
+   -webkit-animation: dash 1.5s ease-in-out infinite;
+           animation: dash 1.5s ease-in-out infinite;
+ }
+ 
+ @-webkit-keyframes rotate {
+   100% {
+     -webkit-transform: rotate(360deg);
+             transform: rotate(360deg);
+   }
+ }
+ 
+ @keyframes rotate {
+   100% {
+     -webkit-transform: rotate(360deg);
+             transform: rotate(360deg);
+   }
+ }
+ @-webkit-keyframes dash {
+   0% {
+     stroke-dasharray: 1, 150;
+     stroke-dashoffset: 0;
+   }
+   50% {
+     stroke-dasharray: 90, 150;
+     stroke-dashoffset: -35;
+   }
+   100% {
+     stroke-dasharray: 90, 150;
+     stroke-dashoffset: -124;
+   }
+ }
+ @keyframes dash {
+   0% {
+     stroke-dasharray: 1, 150;
+     stroke-dashoffset: 0;
+   }
+   50% {
+     stroke-dasharray: 90, 150;
+     stroke-dashoffset: -35;
+   }
+   100% {
+     stroke-dasharray: 90, 150;
+     stroke-dashoffset: -124;
+   }
+ }
+ 
+@media screen and (max-width: 768px) {
 
     .formContainer {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
+       width: 80%;
+       margin: 20px 60px;
        
 
     }
@@ -250,9 +310,5 @@
         left: 260px;
         top: 125px;
     }
-    
-
-
-
-   
 }
+

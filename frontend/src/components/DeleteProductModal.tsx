@@ -4,6 +4,7 @@ import styles from './DeleteProductModal.module.css'
 import { Product } from '../models/Product'
 
 interface IDeleteProductModalProps {
+    setShowDeleteMessage(): void;
     message: string
     productCurrent?: Product
     closeModal(): void
@@ -19,13 +20,11 @@ const DeleteProductModal = (props: IDeleteProductModalProps) => {
         const response = await axios.delete(`http://localhost:5077/products/${props.productCurrent?.id}`);
         console.log(response.data);  
 
-
         props.closeModal();
+        props.setShowDeleteMessage();
         props.getProducts();
         props.getSumPesoTotal();
-        props.getSumVolumeTotal();
-      
-       
+        props.getSumVolumeTotal(); 
     }
     return (
         <>

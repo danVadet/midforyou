@@ -87,3 +87,18 @@
 
   }
 }
+@media screen and (max-width: 768px) {
+  .bannerText {
+    font-size: 20px;
+    left: 0;
+  }
+}
+@media screen and (max-width: 600px) {
+  .bannerContainer {
+    width: 107.2%;
+  
+  }
+  .bannerImage  {
+    background-size: contain;
+  }
+}

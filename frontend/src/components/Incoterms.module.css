@@ -4,40 +4,35 @@
     align-items: center;
     justify-content: center;
     margin: 20px;
-    padding: 10px;
+    padding: 8px;
     box-shadow: rgba(0, 0, 0, 0.12) 0px 2px 32px 0px;
 }
 .incotermsLeft, .incotermsRight {
   display: flex;
   flex-direction: column;
-  margin: 10px;
 
 }
 .incotermsLeft, .selectedIncoterm{
- margin-bottom: 200px;
+ margin-bottom: 180px;
  padding: 20px;
 }
 .selectedIncoterm:focus {
 
     border: 1.5px solid rgb(0, 175, 239);
 }
-.incotermStages {
-    display: flex;
-    flex-direction: column;
-    background-color: rgb(255, 255, 255);
-    gap: 1rem;
-}
 .inco {
-  margin: 8px;
+  margin: 20px;
   display: flex;
-  gap: 4rem;
-  
+  align-items: center;
+  justify-content: center;
+  gap: 6.5em;
+   
 }
 
 .incotermStage {
     display: flex;
     width: 100%;
-    background-color: #e1e8fa;;
+    background-color: rgb(166, 219, 238);
     border-radius: 0.25rem;
 }
 .factory__bar , .customer__bar {
@@ -53,40 +48,35 @@
   justify-content: flex-end;
 }
 .incotermStage__cost .factory__bar {
-  background-color: #edc13b;
+  background-color: rgb(0, 140, 196);
   border-radius: 0.25rem;
 }
-.incotermStage__risk .factory__bar {
-  background-color: #6b7799;
-  border-radius: 0.25rem;
-}
-
 
 .costStage0, .riskStage0 {
-  width: calc(calc(100% / 25) * 2);
+  width: calc(calc(100% / 27) * 2);
 }
 .costStage1, .riskStage1 {
-  width: calc(calc(100% / 32) * 4);
+  width: calc(calc(100% / 22.5) * 4);
 }
 
 .costStage2, .riskStage2 {
-  width: calc(calc(100% / 23 ) * 6);
+  width: calc(calc(100% / 21 ) * 6);
 }
 .costStage3, .riskStage3 {
-  width: calc(calc(100% / 21.5) * 8);
+  width: calc(calc(100% / 20) * 8);
 }
 .costStage4 {
-  width: calc(calc(100% / 17) * 8);
+  width: calc(calc(100% / 13.5) * 8);
 }
 
 .costStage5, .riskStage5, .safetyStage5 {
-  width: calc(calc(100% / 20) * 12 );
+  width: calc(calc(100% / 16.9) * 12 );
 }
 .costStage6, .riskStage6, .safetyStage6 {
-  width: calc(calc(100% / 22) * 14 );
+  width: calc(calc(100% /  17) * 14 );
 }
 .costStage7, .riskStage7, .safetyStage7 {
-  width: calc(calc(100% / 20.55) * 16 );
+  width: calc(calc(100% / 19.5) * 16 );
 }
 .costStage8, .riskStage8, .safetyStage8 {
   width: calc(calc(100% / 18) * 18 );
@@ -97,12 +87,66 @@
     justify-content: end;
 
 }
-.captions__cost,
-.captions__risk,
-.captions__safety {
+.caption__seller,
+.caption__buyer,
+.caption__transferRisk {
   display: flex;
   gap: 0.25rem;
   align-items: center;
+}
+.gary  {
+  position: absolute;
+  top: 40.5%;
+  border-left: 6px dotted rgb(204, 201, 201);
+  border-right: 0;
+  height: 100px;
+  
+}
+.gary0 {
+  left: 15%;
+}
+.gary1 {
+  left: 24.5%;
+}
+.gary2 {
+  left: 34.2%;
+}
+.gary3 {
+  left: 44.7%;
+}
+.gary4 {
+  left: 62.2%;
+}
+.gary4 {
+  left: 62.2%;
+}
+.gary5 {
+  left: 73%;
+}
+.gary6 {
+  left: 83%;
+}
+.transferRisk {
+  position: absolute;
+  
+}
+.transferRisk0 {
+  left: 14.4%;
+}
+.transferRisk1 {
+  left: 23.8%;
+}
+.transferRisk2 {
+  left: 33.5%;
+}
+.transferRisk3 {
+  left: 44%;
+}
+.transferRisk4 {
+  left: 72.3%;
+}
+.transferRisk5 {
+  left: 82.3%;
 }
 .square {
     width: 1rem;
@@ -112,19 +156,14 @@
     border-radius: 3px;
     margin: 0.5rem;
   }
-  .captions__cost .square {
-    background-color: #edc13b;
+  .caption__seller .square {
+    background-color: rgb(0, 140, 196);
   }
-  .captions__risk .square {
-    background-color: #6b7799;
-  }
-  .captions__safety .square {
-    background-color: #30bb50;
-  }
-  .incotermTitle {
-    margin: 15px 0;
+  .caption__buyer .square {
+    background-color: rgb(166, 219, 238);
   }
   .incotermsInformations {
+    margin: 50px;
     display: flex;
     gap: 0.8rem;
   }
@@ -133,7 +172,7 @@
     font-size: 16px;
   }
 
-@media screen and (max-width: 768px) {
+@media (max-width: 768px) {
 
   .incotermsComponent {
    
@@ -152,7 +191,7 @@
     
   }
   .inco {
-    gap: 7px;
+    gap: 0;
   }
   .costStage0, .riskStage0, .safetyStage0  {
     width: calc(calc(100% / 16) * 2);

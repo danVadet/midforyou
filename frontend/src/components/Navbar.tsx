@@ -1,3 +1,4 @@
+import { NavLink } from 'react-router-dom';
 import styles from './Navbar.module.css'
 import { useEffect, useRef, useState } from 'react'
 
@@ -9,10 +10,17 @@ interface INavbarProps {
 }
 
 const Navbar = (props: INavbarProps) => {
-
+     const [isActive, setIsActive] = useState(false);
     const [mobileMenu, setMobileMenu] = useState(false);
     const ref = useRef<HTMLDivElement>(null);
 
+
+    const toggleActive = () => {
+      if(!isActive) {
+        window.onbeforeunload = null;
+        setIsActive(true);
+      }
+    }
 
     useEffect(() => {
 
@@ -24,11 +32,26 @@ const Navbar = (props: INavbarProps) => {
         };
     
         window.addEventListener("touchstart", handleOutSideClick);
+
     
         return () => {
           window.removeEventListener("touchstart", handleOutSideClick);
         };
       }, [ref]);
+
+      const handleScroll = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
+        // first prevent the default behavior
+        e.preventDefault();
+        // get the href and remove everything before the hash (#)
+        const href = e.currentTarget.href;
+    
+        const targetId = href.replace(/.*#/, "");
+        // get the element by id and use scrollIntoView
+        const elem = document.getElementById(targetId);
+        elem?.scrollIntoView({
+          behavior: "smooth",
+        });
+      };
 
     return (
         <nav>
@@ -44,26 +67,28 @@ const Navbar = (props: INavbarProps) => {
             </div>
             <ul className={mobileMenu ? '' : `${styles.hideMobileMenu}`}>
                 <li>
-                    <a href="#"> {props.home} </a>
+                    <a href="#home" onClick={handleScroll}> {props.home} </a>
                 </li>
                 <li>
-                    <a href="#about">{props.about}</a>
+                    <a href="#about"  onClick={handleScroll}>{props.about}</a>
 
                 </li>
                 <li>
-                    <a href="#incoterms"> Incoterms </a>
+                    <a href="#incoterms"  onClick={handleScroll}> Incoterms </a>
                 </li>
                 <li>
-                    <a href="#conteiners">{props.container}</a>
+                    <a href="#conteiners"  onClick={handleScroll}>{props.container}</a>
                 </li>
                 <li>
-                    <a href="#contact">{props.contact}</a>
+                    <a href="#contact"  onClick={handleScroll}>{props.contact}</a>
                 </li>
 
                 <li className={`${styles.listLanguage}`}>
-                    <a href="/" onClick={() => window.onbeforeunload = null }><img src={`./assets/brazil-flag.png`} width={35} height={35} /></a>
-                    <a href='/en' onClick={() => window.onbeforeunload = null }><img src={`./assets/english-flag.png`} width={35} height={35} /></a>
-                    <a href='/es' onClick={() => window.onbeforeunload = null }><img src={`./assets/spanish-flag.png`} width={35} height={35} /></a>
+                    <a href='/' className={!isActive ? styles.activeLink : ''} onClick={() =>  toggleActive() }><img src={`./assets/brazil-flag.png`} width={35} height={35} /></a>
+
+                     <a href='/en' className={!isActive ? styles.activeLink : ''} onClick={() =>  toggleActive() }><img src={`./assets/english-flag.png`} width={35} height={35} /></a>
+
+                    <a href='/es' className={!isActive ? styles.activeLink : ''} onClick={() => toggleActive()}><img src={`./assets/spanish-flag.png`} width={35} height={35} /></a>
                 </li>
 
             </ul>

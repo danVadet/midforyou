@@ -35,6 +35,9 @@ const RoutesProvider = () => {
            card_4_title= {multiLang.en.card_4_title}
            card_4_description= {multiLang.en.card_4_description}
            loadCalculator={multiLang.en.loadCalculator}
+           destinationPort={multiLang.en.destinationPort}
+           destinationPlace={multiLang.en.destinationPlace}
+           destination={multiLang.en.destination}
            enterName={multiLang.en.enterName}
            nameRequiredContainer={multiLang.en.nameRequiredContainer}
            enterQuantity={multiLang.en.enterQuantity}
@@ -62,7 +65,8 @@ const RoutesProvider = () => {
            riskLabel={multiLang.en.riskLabel} 
            insuranceLabel={multiLang.en.insuranceLabel}
            seller={multiLang.en.seller}
-           buyer={multiLang.en.buyer}
+           agreedPlace={multiLang.en.agreedPlace}
+           loadPort={multiLang.en.loadPort}
            freight={multiLang.en.freight}
            modal={multiLang.en.modal}
            moreDetails={multiLang.en.moreDetails}
@@ -131,7 +135,11 @@ const RoutesProvider = () => {
            riskLabel={multiLang.es.riskLabel} 
            insuranceLabel={multiLang.es.insuranceLabel}
            seller={multiLang.es.seller}
-           buyer={multiLang.es.buyer}
+           agreedPlace={multiLang.es.agreedPlace}
+           loadPort={multiLang.es.loadPort}
+           destinationPort={multiLang.es.destinationPort}
+           destinationPlace={multiLang.es.destinationPlace}
+           destination={multiLang.es.destination}
            freight={multiLang.es.freight}
            modal={multiLang.es.modal}
            moreDetails={multiLang.es.moreDetails}   
@@ -200,7 +208,11 @@ const RoutesProvider = () => {
         riskLabel={multiLang.pt.riskLabel} 
         insuranceLabel={multiLang.pt.insuranceLabel}
         seller={multiLang.pt.seller}
-        buyer={multiLang.pt.buyer}
+        agreedPlace={multiLang.pt.agreedPlace}
+        loadPort={multiLang.pt.loadPort}
+        destinationPort={multiLang.pt.destinationPort}
+        destinationPlace={multiLang.pt.destinationPlace}
+        destination={multiLang.pt.destination}
         freight={multiLang.pt.freight}
         modal={multiLang.pt.modal}
         moreDetails={multiLang.pt.moreDetails}
