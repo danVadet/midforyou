@@ -13,5 +13,7 @@ public class Container {
     public float  capacidadePeso { get; set; }
 
     public float  capacidadeVolume { get; set; }
+
+    public List <Product> products { get; set; }
    
 }

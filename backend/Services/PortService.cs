@@ -59,16 +59,6 @@ public class PortService : IPortService
 
     }
 
-    public Task<int> GetAllPortsByAir()
-    {
-            return _portRepository.GetAllPortsByAir();
-    }
-
-    public Task<int> GetAllPortsBySea()
-    {
-        return _portRepository.GetAllPortsBySea();
-    }
-    
     public Task<int> GetAllPortsAirByState(int stateId) 
     {
         return _portRepository.GetAllPortsAirByState(stateId);

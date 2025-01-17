@@ -59,13 +59,7 @@ public class PortRepository : IPortRepository
 
       return  markers;
     }
-        public async Task<int> GetAllPortsByAir()
-    {
-
-         var markers = await _applicationDbContext.PortMarkers.Where(p => p.portType == PortType.AIR).ToListAsync();
-        return markers.Count();
-        
-    }
+     
     
         public async Task<int> GetAllPortsAirByState(int stateId)
     {
@@ -74,17 +68,10 @@ public class PortRepository : IPortRepository
         return markers.Count();
         
     }
-        public async Task<int> GetAllPortsBySea()
-    {
-
-         var markers = await _applicationDbContext.PortMarkers.Where(p => p.portType == PortType.SEA).ToListAsync();
-        return markers.Count();
-        
-    }
        public async Task<int> GetAllPortsSeaByState(int stateId)
     {
 
-         var markers = await _applicationDbContext.PortMarkers.Where(p => p.portType == PortType.SEA && p.stateId == stateId).ToListAsync();
+         var markers = await _applicationDbContext.PortMarkers.Where(p => p.portType == PortType.WATER && p.stateId == stateId).ToListAsync();
         return markers.Count();
         
     }

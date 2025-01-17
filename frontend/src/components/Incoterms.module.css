@@ -172,53 +172,106 @@
     font-size: 16px;
   }
 
-@media (max-width: 768px) {
+@media screen and (max-width: 768px) {
 
   .incotermsComponent {
-   
-   width: 50%;
+   width: 95%;
   }
   .incotermsLeft, .selectedIncoterm{
-    margin: 50px;
-    padding: 20px;
+    padding: 0 0 20px 20px;
+    width: 78px;
    }
   .incotermStages {
-    width: 98%;
+    width: 95%;
     margin: 8px;
    }
   .captions {
-    margin: 20px;
+    justify-content: center;
+
+    
     
   }
   .inco {
-    gap: 0;
+    gap: 10px;
   }
-  .costStage0, .riskStage0, .safetyStage0  {
-    width: calc(calc(100% / 16) * 2);
+
+  .gary  {
+    top: 29%;
+    
   }
-  .costStage1, .riskStage1, .safetyStage1  {
-    width: calc(calc(100% / 10) * 2);
+  .gary0 {
+    left: 16%;
   }
-  .costStage2 {
-    width: calc(calc(100% / 13) * 6);
+  .gary1 {
+    left: 25.6%;
   }
-  .riskStage2, .safetyStage2 {
-    width: calc(calc(100% / 15 ) * 6);
+  .gary2 {
+    left: 35.2%;
   }
-  .costStage3, .riskStage3, .safetyStage3 {
-    width: calc(calc(100% / 16) * 8);
+   .gary2 {
+    left: 35.2%;
   }
-  .costStage4, .riskStage4, .safetyStage4 {
-    width: calc(calc(100% / 15) * 10);
+  .gary3 {
+    left: 45.5%;
   }
-  .costStage5, .riskStage5, .safetyStage5 {
+  .costStage0, .riskStage0 {
+    width: calc(calc(100% / 24) * 2);
+  }
+  .costStage1, .riskStage1 {
+    width: calc(calc(100% / 10.5) * 2);
+  }
+  .costStage2, .riskStage2 {
+    width: calc(calc(100% / 20 ) * 6);
+  }
+  .costStage3, .riskStage3 {
+    width: calc(calc(100% / 19.5) * 8);
+  }
+  .costStage4, .riskStage4 {
+    width: calc(calc(100% / 16.7) * 10);
+  }
+  .costStage5, .riskStage5 {
     width: calc(calc(100% / 16) * 12 );
   }
-  .costStage6, .riskStage6, .safetyStage6 {
+  .costStage6, .riskStage6 {
     width: calc(calc(100% / 20) * 14 );
   }
-  .costStage7, .riskStage7, .safetyStage7 {
-    width: calc(calc(100% / 19) * 16 );
+  .costStage7, .riskStage7 {
+    width: calc(calc(100% / 20) * 16 );
   }
+
+}
+
+@media (min-width: 481px) and (max-width: 767px) {
+  .incotermsComponent {
+    width: 130%;
+    margin: 5px;
+  }
+
+  .inco {
+   margin: 50px 0;
+   width: 500px;
+    gap: 5px;
+     
+  }
+  .incotermsLeft, .selectedIncoterm{
+    margin: 0;
+    padding: 0;
+   }
+  .incotermStage {
+    width: 100%;
+    margin: 0 -40px;
+}
+  .captions {
+    justify-content: center;
+  }
+
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  .incotermsComponent {
+    width: 140%;
+  }
+
+
 
 }

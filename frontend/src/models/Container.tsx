@@ -1,3 +1,4 @@
+import { Product } from "./Product";
 
 export interface Container  {
     
@@ -6,5 +7,6 @@ export interface Container  {
     image: string;
     capacidadePeso: number;
     capacidadeVolume: number;
+    products: Product[];
     
 }

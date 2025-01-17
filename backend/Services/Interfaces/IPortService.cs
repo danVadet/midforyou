@@ -11,9 +11,6 @@ public interface IPortService {
     public Task<List<PortMarkerResponse>> GetAllPortsByState();
     public Task<List<PortMarkerResponse>> GetAllPortsById(int id);
 
-     public Task<int> GetAllPortsByAir();
-    public Task<int> GetAllPortsBySea();
-
     public Task<int> GetAllPortsAirByState(int stateId);
     public Task<int> GetAllPortsSeaByState(int stateId);
 

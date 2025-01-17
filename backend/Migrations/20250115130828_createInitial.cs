@@ -28,24 +28,6 @@ namespace backend.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Products",
-                columns: table => new
-                {
-                    id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    nome = table.Column<string>(type: "text", nullable: true),
-                    quantidade = table.Column<int>(type: "integer", nullable: false),
-                    peso = table.Column<float>(type: "real", nullable: false),
-                    volume = table.Column<float>(type: "real", nullable: false),
-                    volumeTotal = table.Column<float>(type: "real", nullable: false),
-                    pesoTotal = table.Column<float>(type: "real", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Products", x => x.id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "States",
                 columns: table => new
                 {
@@ -58,6 +40,30 @@ namespace backend.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_States", x => x.id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Products",
+                columns: table => new
+                {
+                    id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    nome = table.Column<string>(type: "text", nullable: true),
+                    quantidade = table.Column<int>(type: "integer", nullable: false),
+                    peso = table.Column<float>(type: "real", nullable: false),
+                    volume = table.Column<float>(type: "real", nullable: false),
+                    volumeTotal = table.Column<float>(type: "real", nullable: false),
+                    pesoTotal = table.Column<float>(type: "real", nullable: false),
+                    Containerid = table.Column<int>(type: "integer", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Products", x => x.id);
+                    table.ForeignKey(
+                        name: "FK_Products_Containers_Containerid",
+                        column: x => x.Containerid,
+                        principalTable: "Containers",
+                        principalColumn: "id");
                 });
 
             migrationBuilder.CreateTable(
@@ -89,14 +95,16 @@ namespace backend.Migrations
                 name: "IX_PortMarkers_stateId",
                 table: "PortMarkers",
                 column: "stateId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Products_Containerid",
+                table: "Products",
+                column: "Containerid");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(
-                name: "Containers");
-
             migrationBuilder.DropTable(
                 name: "PortMarkers");
 
@@ -105,6 +113,9 @@ namespace backend.Migrations
 
             migrationBuilder.DropTable(
                 name: "States");
+
+            migrationBuilder.DropTable(
+                name: "Containers");
         }
     }
 }

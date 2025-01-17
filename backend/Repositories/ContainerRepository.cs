@@ -1,6 +1,7 @@
 
 namespace backend.Repositories;
 
+using System.Collections.Generic;
 using AutoMapper;
 using backend.Models;
 using Microsoft.EntityFrameworkCore;

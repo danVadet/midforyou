@@ -145,6 +145,7 @@
     overflow-y: scroll;
     margin: 20px;
 }
+
 .listProducts::-webkit-scrollbar {
     width: 0.62rem;
     border: 1px solid rgb(204, 204, 204);
@@ -214,7 +215,6 @@
    align-items: center;
    justify-content: center;
  }
-
 /* SVG spinner icon animation */
  .spinner {
    -webkit-animation: rotate 2s linear infinite;

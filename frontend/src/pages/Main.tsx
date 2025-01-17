@@ -12,7 +12,6 @@ import Footer from '../components/Footer';
 import { Incoterm } from '../models/Incoterm';
 import { IconIcoterm } from '../models/IconIcoterm';
 import Banner from '../components/Banner';
-import { Outlet } from 'react-router-dom';
 
 interface IMainProps {
   home:  string;
@@ -91,6 +90,8 @@ interface IMainProps {
 
 
 const  Main = (props: IMainProps) => {
+
+  
   
 
   return (

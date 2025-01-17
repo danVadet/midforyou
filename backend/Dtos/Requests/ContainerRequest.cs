@@ -8,4 +8,6 @@ public class ContainerRequest {
     public float  capacidadePeso { get; set; }
 
     public float  capacidadeVolume { get; set; }
+
+
 }

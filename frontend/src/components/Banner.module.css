@@ -87,18 +87,62 @@
 
   }
 }
-@media screen and (max-width: 768px) {
-  .bannerText {
-    font-size: 20px;
-    left: 0;
-  }
-}
-@media screen and (max-width: 600px) {
+@media (min-width: 320px) and (max-width: 480px) {
   .bannerContainer {
-    width: 107.2%;
+      width: 173%;
+      height: 120vh;
+  }
+  .bannerText {
+    font-size: 15px;
+    left: 0
+  }
+  .dots {
+    top: 120%;
+    left: 70%;
+  }
+  .leftArrow, .rightArrow {
+
+    display: none;
   
   }
-  .bannerImage  {
-    background-size: contain;
+}
+
+/* Media Query for low resolution Tablets, Ipads */
+@media  (min-width: 481px) and (max-width: 767px) {
+  .bannerContainer {
+      width: 132%;
   }
+  .bannerText {
+    left: 0;
+    font-size: 20px;
+  } 
+  .leftArrow, .rightArrow {
+    display: none;
+  
+  }
+  .dots {
+    top: 80%;
+    left: 57%;
+  }
+}
+
+/* Media Query for Tablets Ipads portrait mode */
+@media (min-width: 768px) and (max-width: 1024px) {
+
+  .bannerContainer {
+      width: 148%;
+      height: 120vh;
+  }
+  .bannerText {
+    font-size: 22px;
+    left: 0;
+  }
+  .rightArrow {
+    left: 135%;
+  }
+  .dots {
+    top: 100%;
+    left: 67%;
+  }
+
 }

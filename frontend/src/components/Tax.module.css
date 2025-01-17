@@ -146,17 +146,54 @@ border-radius: 5px;
      stroke-dashoffset: -124;
    }
  }
- @media screen and (max-width: 600px) {
+
+ 
+/* Media Query for Mobile devices */
+@media (min-width: 320px) and (max-width: 480px) {
   .tax_collectionComponent {
-    width: 107%;
+    width: 172%;
   }
-  .tax_collectionComponent .taxWrapper {
-    margin: 20px;
-  }
-  .tax_unitComponent .valueContainer .value {
-    font-size: 12px;
+  .tax_unitComponent .text {
+   margin: 0;
   }
 
 }
+
+/* Media Query for low resolution Tablets, Ipads */
+@media  (min-width: 481px) and (max-width: 767px) {
+  .tax_collectionComponent {
+    width: 132%;
+  }
+  .tax_unitComponent .text {
+   margin: 0;
+  }
+
+}
+
+/* Media Query for Tablets Ipads portrait mode */
+@media (min-width: 768px) and (max-width: 1024px) {
+
+  .tax_collectionComponent {
+    width: 147.5%;
+  }
+
+
  
+
+}
+
+/* Media Query for Laptops and Desktops */
+@media (min-width: 1025px) and (max-width: 1280px) {
+  .tax_collectionComponent {
+    width: 128%;
+  }
+
+
+
+}
+
+/* Media Query for Large screens */
+@media (min-width: 1281px) {
+
+}
 

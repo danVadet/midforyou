@@ -1,5 +1,5 @@
 public enum PortType {  
-    SEA,
+    WATER,
     AIR,
 
 

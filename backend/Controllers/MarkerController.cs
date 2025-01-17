@@ -9,6 +9,8 @@ public class MarkerController : ControllerBase
 
      private readonly IStateService _stateService;
     private readonly IPortService _portService;
+         private readonly ApplicationDbContext _applicationDbContext;
+
     public MarkerController( IStateService stateService, IPortService portService)
     {
 

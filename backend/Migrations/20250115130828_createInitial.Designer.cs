@@ -11,7 +11,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace backend.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20241227173623_createInitial")]
+    [Migration("20250115130828_createInitial")]
     partial class createInitial
     {
         /// <inheritdoc />
@@ -118,6 +118,9 @@ namespace backend.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("id"));
 
+                    b.Property<int?>("Containerid")
+                        .HasColumnType("integer");
+
                     b.Property<string>("nome")
                         .HasColumnType("text");
 
@@ -138,6 +141,8 @@ namespace backend.Migrations
 
                     b.HasKey("id");
 
+                    b.HasIndex("Containerid");
+
                     b.ToTable("Products");
                 });
 
@@ -148,6 +153,18 @@ namespace backend.Migrations
                         .HasForeignKey("stateId");
 
                     b.Navigation("state");
+                });
+
+            modelBuilder.Entity("backend.Models.Product", b =>
+                {
+                    b.HasOne("backend.Models.Container", null)
+                        .WithMany("products")
+                        .HasForeignKey("Containerid");
+                });
+
+            modelBuilder.Entity("backend.Models.Container", b =>
+                {
+                    b.Navigation("products");
                 });
 #pragma warning restore 612, 618
         }

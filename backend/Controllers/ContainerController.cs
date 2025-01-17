@@ -12,13 +12,16 @@ public class ContainerController : ControllerBase
 {
 
     private readonly IContainerService _conatinerService;
+     private readonly ApplicationDbContext _applicationDbContext;
+
     private readonly IProductService _productService;
 
-    public ContainerController(IContainerService containerService, IProductService productService)
+    public ContainerController(IContainerService containerService, IProductService productService, ApplicationDbContext applicationDbContext)
     {
 
         _conatinerService = containerService;
         _productService = productService;
+        _applicationDbContext = applicationDbContext;
 
     }
 
@@ -41,24 +44,21 @@ public class ContainerController : ControllerBase
 
         return Created("Container created successfully", containerRequest);
     }
-     [HttpGet("containers/{id}")]
-    public async Task<ActionResult<ContainerResponse>> getContainerById (int id)
-    {
-
-        ContainerResponse container = await _conatinerService.GetByIdAsync(id);
-        return Ok(container);
-    }
-   
 
     [HttpGet("containers/capacity/{id}")]
     public async Task<ActionResult> verfiqueCapacityProduct(int id)
     {
 
-        var container = await  _conatinerService.GetByIdAsync(id);
-        var products = await _productService.GetAllAsync();
+        Container container = await _applicationDbContext.Containers.FindAsync(id);
+         List <Product> products = await  _applicationDbContext.Products.ToListAsync();
+
+        container.products = products;
+
+        _applicationDbContext.Containers.Add(container);
 
         var sumVolumeTotal = products.Sum(product => product.volumeTotal);
         var sumPesoTotal = products.Sum(product => product.pesoTotal);
+
 
 
         if (sumPesoTotal <= container.capacidadePeso && sumVolumeTotal <= container.capacidadeVolume)
