@@ -1,3 +1,7 @@
+.conteinerComponent {
+    padding-top: 135px;
+}
+
 .container {
     margin: 20px;
     padding: 10px;
@@ -272,43 +276,3 @@
    }
  }
  
-@media screen and (max-width: 768px) {
-
-    .formContainer {
-       width: 80%;
-       margin: 20px 60px;
-       
-
-    }
-    .listProducts .content {
-        display: flex;
-        flex-direction: column;
-
-    }
-    .info_container  img {
-         width: 300px;
-         height: 200px;
-
-      }
-
-      .info_container .message {
-    
-       width: 350px;
-        
-    }
-    .totalContainer {
-       font-size: 12px;
-       
-    }
-    .nameError {
-        position: absolute;
-        left: 270px;
-        top: 65px;
-    }
-    .quantityError {
-        position: absolute;
-        left: 260px;
-        top: 125px;
-    }
-}
-

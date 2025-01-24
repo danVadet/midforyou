@@ -1,4 +1,8 @@
 
+.contactComponent {
+  padding-top: 145px;
+
+}
 .contactImage {
     position: relative;
     height: 888px;
@@ -176,16 +180,4 @@
    top: 80px;
 }
     
-}
-
-@media screen and (max-width: 480px) {
-  
-  .contactImage {
-    background-size: 580px 920px;
-  }
-  .contactContainer {
-    width: 100%;
-    left: 70%;
-    top: 30%;
-  }
 }

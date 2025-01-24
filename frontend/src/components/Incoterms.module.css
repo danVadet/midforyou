@@ -1,4 +1,9 @@
 .incotermsComponent {
+  padding-top: 120px;
+}
+
+
+.incotermsContainer {
   position: relative;
     display: flex;
     align-items: center;
@@ -172,106 +177,3 @@
     font-size: 16px;
   }
 
-@media screen and (max-width: 768px) {
-
-  .incotermsComponent {
-   width: 95%;
-  }
-  .incotermsLeft, .selectedIncoterm{
-    padding: 0 0 20px 20px;
-    width: 78px;
-   }
-  .incotermStages {
-    width: 95%;
-    margin: 8px;
-   }
-  .captions {
-    justify-content: center;
-
-    
-    
-  }
-  .inco {
-    gap: 10px;
-  }
-
-  .gary  {
-    top: 29%;
-    
-  }
-  .gary0 {
-    left: 16%;
-  }
-  .gary1 {
-    left: 25.6%;
-  }
-  .gary2 {
-    left: 35.2%;
-  }
-   .gary2 {
-    left: 35.2%;
-  }
-  .gary3 {
-    left: 45.5%;
-  }
-  .costStage0, .riskStage0 {
-    width: calc(calc(100% / 24) * 2);
-  }
-  .costStage1, .riskStage1 {
-    width: calc(calc(100% / 10.5) * 2);
-  }
-  .costStage2, .riskStage2 {
-    width: calc(calc(100% / 20 ) * 6);
-  }
-  .costStage3, .riskStage3 {
-    width: calc(calc(100% / 19.5) * 8);
-  }
-  .costStage4, .riskStage4 {
-    width: calc(calc(100% / 16.7) * 10);
-  }
-  .costStage5, .riskStage5 {
-    width: calc(calc(100% / 16) * 12 );
-  }
-  .costStage6, .riskStage6 {
-    width: calc(calc(100% / 20) * 14 );
-  }
-  .costStage7, .riskStage7 {
-    width: calc(calc(100% / 20) * 16 );
-  }
-
-}
-
-@media (min-width: 481px) and (max-width: 767px) {
-  .incotermsComponent {
-    width: 130%;
-    margin: 5px;
-  }
-
-  .inco {
-   margin: 50px 0;
-   width: 500px;
-    gap: 5px;
-     
-  }
-  .incotermsLeft, .selectedIncoterm{
-    margin: 0;
-    padding: 0;
-   }
-  .incotermStage {
-    width: 100%;
-    margin: 0 -40px;
-}
-  .captions {
-    justify-content: center;
-  }
-
-}
-
-@media (min-width: 768px) and (max-width: 1024px) {
-  .incotermsComponent {
-    width: 140%;
-  }
-
-
-
-}

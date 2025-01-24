@@ -1,106 +1,162 @@
-import { NavLink } from 'react-router-dom';
 import styles from './Navbar.module.css'
 import { useEffect, useRef, useState } from 'react'
+import listLang from '../listLanginNavbar.json'
 
 interface INavbarProps {
-    home: string;
-    about: string;
-    container: string;
-    contact: string;
+  scrollToSection: (elementRef: React.RefObject<HTMLDivElement>) => void
+
+  home: string;
+  about: string;
+  container: string;
+  contact: string;
+
+  homeRef: React.RefObject<HTMLDivElement>;
+  aboutRef: React.RefObject<HTMLDivElement>;
+  incotermsRef: React.RefObject<HTMLDivElement>;
+  conteinersRef: React.RefObject<HTMLDivElement>;
+  contactRef: React.RefObject<HTMLDivElement>;
+
 }
 
+interface NavItems {
+  id: number
+  name: string
+  ref: React.RefObject<HTMLDivElement>;
+}
+
+
 const Navbar = (props: INavbarProps) => {
-     const [isActive, setIsActive] = useState(false);
-    const [mobileMenu, setMobileMenu] = useState(false);
-    const ref = useRef<HTMLDivElement>(null);
+
+  const navItems: NavItems[] = [
+    { id: 1, name: `${props.home}`, ref: props.homeRef },
+    { id: 2, name: `${props.about}`, ref: props.aboutRef },
+    { id: 3, name: 'Incoterms', ref: props.incotermsRef },
+    { id: 4, name: `${props.container}`, ref: props.conteinersRef },
+    { id: 5, name: `${props.contact}`, ref: props.contactRef },
+
+  ]
+  const [activeLink, setActiveLink] = useState<number>(0);
+  const [activeLinkLang, setActiveLinkLang] = useState<number>(0);
 
 
-    const toggleActive = () => {
-      if(!isActive) {
-        window.onbeforeunload = null;
-        setIsActive(true);
-      }
+  const [mobileMenu, setMobileMenu] = useState(false);
+  const navRef = useRef<HTMLDivElement>(null);
+
+  const handleLinkClick = (index: number) => {
+    setActiveLink(index)
+    switch (index) {
+      case 1:
+        props.scrollToSection(props.homeRef)
+        break
+      case 2:
+        props.scrollToSection(props.aboutRef)
+        break
+      case 3:
+        props.scrollToSection(props.incotermsRef)
+        break
+      case 4:
+        props.scrollToSection(props.conteinersRef)
+        break
+      case 5:
+        props.scrollToSection(props.contactRef)
+        break
+      default:
+        break
     }
+  }
 
-    useEffect(() => {
+  useEffect(() => {
+
+    const observer = new IntersectionObserver(([entry]) => {
+
+      if (entry.isIntersecting) {
+        switch (entry.target) {
+          case props.homeRef.current:
+            setActiveLink(1)
+            break
+          case props.aboutRef.current:
+            setActiveLink(2)
+            break
+          case props.incotermsRef.current:
+            setActiveLink(3)
+            break
+          case props.conteinersRef.current:
+            setActiveLink(4)
+            break
+          case props.contactRef.current:
+            setActiveLink(5)
+            break
+          default:
+            break
+        }
+      }
+  }, {
+    threshold: 0.25,
+  })
+
+  {navItems.map((navItem) => {
+    if(navItem.ref.current)
+       observer.observe(navItem.ref.current)
+  })}
+
+    return () => {
+      {navItems.map((navItem) => {
+        if(navItem.ref.current)
+           observer.unobserve(navItem.ref.current)
+      })}
+    }
+  }, [props.homeRef, props.aboutRef, props.incotermsRef, props.conteinersRef, props.contactRef])
 
 
-        const handleOutSideClick = (event: { target: any }) => {
-          if (!ref.current?.contains(event.target)) {
-            setMobileMenu(false);
-          }
-        };
+  const onClickLang = (index: number) => {
+    window.onbeforeunload = null
+    console.log(index);
+  }
+
+  useEffect(() => {
     
-        window.addEventListener("touchstart", handleOutSideClick);
+    const handleOutSideClick = (event: { target: any }) => {
+      if (!navRef.current?.contains(event.target)) {
+        setMobileMenu(false);
+      }
+    };
 
-    
-        return () => {
-          window.removeEventListener("touchstart", handleOutSideClick);
-        };
-      }, [ref]);
+    window.addEventListener("touchstart", handleOutSideClick);
 
-      const handleScroll = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
-        // first prevent the default behavior
-        e.preventDefault();
-        // get the href and remove everything before the hash (#)
-        const href = e.currentTarget.href;
-    
-        const targetId = href.replace(/.*#/, "");
-        // get the element by id and use scrollIntoView
-        const elem = document.getElementById(targetId);
-        elem?.scrollIntoView({
-          behavior: "smooth",
-        });
-      };
+    return () => {
+      window.removeEventListener("touchstart", handleOutSideClick);
+    };
+  }, [navRef]);
 
-    return (
-        <nav>
 
-            <div ref={ref} className={`${styles.hamburger} ${mobileMenu ? styles.active : ''}`} onClick={() => setMobileMenu(!mobileMenu)}>
-                <span className={`${styles.bar}`}></span>
-                <span className={`${styles.bar}`}></span>
-                <span className={`${styles.bar}`}></span>
-            </div>
+  return (
+    <nav>
 
-            <div className={`${styles.navLogoContainer}`}>
-                <img src={`logo.png`} alt="" height={40} />
-            </div>
-            <ul className={mobileMenu ? '' : `${styles.hideMobileMenu}`}>
-                <li>
-                    <a href="#home" onClick={handleScroll}> {props.home} </a>
-                </li>
-                <li>
-                    <a href="#about"  onClick={handleScroll}>{props.about}</a>
+      <div ref={navRef} className={`${styles.hamburger} ${mobileMenu ? styles.active : ''}`} onClick={() => setMobileMenu(!mobileMenu)}>
+        <span className={`${styles.bar}`}></span>
+        <span className={`${styles.bar}`}></span>
+        <span className={`${styles.bar}`}></span>
+      </div>
 
-                </li>
-                <li>
-                    <a href="#incoterms"  onClick={handleScroll}> Incoterms </a>
-                </li>
-                <li>
-                    <a href="#conteiners"  onClick={handleScroll}>{props.container}</a>
-                </li>
-                <li>
-                    <a href="#contact"  onClick={handleScroll}>{props.contact}</a>
-                </li>
+      <div className={`${styles.navLogoContainer}`}>
+        <img src={`logo.png`} alt="" height={40} />
+      </div>
+      <ul className={mobileMenu ? '' : `${styles.hideMobileMenu}`}>
 
-                <li className={`${styles.listLanguage}`}>
-                    <a href='/' className={!isActive ? styles.activeLink : ''} onClick={() =>  toggleActive() }><img src={`./assets/brazil-flag.png`} width={35} height={35} /></a>
+        {navItems.map((navItem, index) => (
+          <li key={index}>
+            <a className={activeLink === index + 1 ? `${styles.activeLink}` : ""} onClick={() => handleLinkClick(index + 1)}>{navItem.name}</a>
+          </li>
+        ))}
 
-                     <a href='/en' className={!isActive ? styles.activeLink : ''} onClick={() =>  toggleActive() }><img src={`./assets/english-flag.png`} width={35} height={35} /></a>
-
-                    <a href='/es' className={!isActive ? styles.activeLink : ''} onClick={() => toggleActive()}><img src={`./assets/spanish-flag.png`} width={35} height={35} /></a>
-                </li>
-
-            </ul>
-            <style>{`
-        
-          html {
-            scroll-behavior: smooth;
-          }
-
-        `}</style>
-        </nav>
-    );
+        {listLang.map((lang, index) => (
+          <li key={lang.id} className={`${styles.listLanguage}`}>
+          <a href={`${lang.link}`} className={activeLinkLang === index + 1  ? styles.activeLang : ''} onClick={() => onClickLang(index) }><img src={`${lang.image}`} width={35} height={35} /></a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  );
 
 }
 

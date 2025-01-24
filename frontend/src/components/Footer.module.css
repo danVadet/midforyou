@@ -63,25 +63,4 @@ footer .copyright {
 }
 
 
-/* Media Query for Mobile devices */
-@media (min-width: 320px) and (max-width: 480px) {
-    footer {
-        width: 170%;
-    }
-}
 
-/* Media Query for low resolution Tablets, Ipads */
-@media  (min-width: 481px) and (max-width: 767px) {
-    footer {
-        width: 130%;
-    }
-}
-
-/* Media Query for Tablets Ipads portrait mode */
-@media (min-width: 768px) and (max-width: 1024px) {
-
-    footer {
-        width: 148%;
-    }
-
-}

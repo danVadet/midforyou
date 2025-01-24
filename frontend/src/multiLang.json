@@ -49,7 +49,7 @@
                 "riskStage": 0,
                 "safetyStage": 0,
                 "freightDetails": "Factory responsibility",
-                "modal": "Waterway",
+                "modal": "Any modal",
                 "moreDetails": "Ex Works (EXW) places the maximum responsibility on the buyer, including all transportation costs, risks and export and import clearance. The seller is only responsible for making the goods available at his premises or other named place (factory, warehouse, etc.). The buyer bears all costs and risks involved in bringing the goods to the desired destination."
             },
             {
@@ -60,7 +60,7 @@
                 "riskStage": 1,
                 "safetyStage": 1,
                 "freightDetails": "Factory responsibility",
-                "modal": "Waterway",
+                "modal": "Any modal",                
                 "moreDetails": "Free Carrier (FCA) means that the seller delivers the goods, cleared for export, to the buyer’s nominated carrier at the named place. The seller is responsible for loading the goods onto the buyer’s collecting vehicle. The buyer is responsible for all risks and costs after this point, including unloading at its premises."
             },
             {
@@ -82,7 +82,7 @@
                 "riskStage": 3,
                 "safetyStage": 3,
                 "freightDetails": "Factory responsibility",
-                "modal": "Waterway",
+                "modal": "Water",
                 "moreDetails": "Free On Board (FOB) means that the seller delivers the goods, cleared for export, on board the buyer's named vessel at the named port of shipment. The seller is responsible for all costs and risks until the goods are loaded onto the vessel."
             },
             {
@@ -93,7 +93,7 @@
                 "riskStage": 3,
                 "safetyStage": 3,
                 "freightDetails": "Factory responsibility",
-                "modal": "Waterway",
+                "modal": "Water",
                 "moreDetails": "Cost and Freight (CFR) requires the seller to deliver the goods on board the vessel or at a named port of destination. The seller must clear the goods for export, while the buyer is responsible for all costs and risks from that point onwards."
             },
             {
@@ -104,7 +104,7 @@
                 "riskStage": 3,
                 "safetyStage": 4,
                 "freightDetails": "Factory responsibility",
-                "modal": "Waterway",
+                "modal": "Water",
                 "moreDetails": "Cost, Insurance and Freight (CIF) places additional responsibility on the seller to obtain insurance against the risk of loss or damage to the buyer during carriage. The seller delivers the goods on board the vessel or at a named port of destination, with the buyer bearing all costs and risks from that point onwards."
             },
             {
@@ -292,7 +292,7 @@
                 "riskStage": 0,
                 "safetyStage": 0,
                 "freightDetails": "Responsabilidad de la fábrica",
-                "modal": "Vía fluvial",
+                "modal": "Cualquier modal",
                 "moreDetails": "Ex Works (EXW) coloca la máxima responsabilidad al comprador, incluidos todos los costos de transporte, riesgos y despacho de exportación e importación. El vendedor sólo es responsable de poner la mercancía a disposición en sus instalaciones o en otro lugar designado (fábrica, almacén, etc.). El comprador corre con todos los costos y riesgos involucrados en llevar la mercancía al destino deseado."
             },
             {
@@ -303,7 +303,7 @@
                 "riskStage": 1,
                 "safetyStage": 1,
                 "freightDetails": "Responsabilidad de la fábrica",
-                "modal": "Vía fluvial",
+                "modal": "Cualquier modal",
                 "moreDetails": "Free Carrier (FCA) significa que el vendedor entrega la mercancía, liberada para la exportación, al transportista designado por el comprador en el lugar designado. El vendedor es responsable de cargar la mercancía en el vehículo de recogida del comprador. El comprador es responsable de todos los riesgos y costos posteriores a este punto, incluida la descarga en sus instalaciones."
             },
             {
@@ -358,7 +358,7 @@
                 "riskStage": 2,
                 "safetyStage": 2,
                 "freightDetails": "Responsabilidad de la fábrica",
-                "modal": "Cualquier modo",
+                "modal": "Cualquier modal",
                 "moreDetails": "Carriage Paid To (CPT) significa que el vendedor entrega los bienes a un transportista u otra persona designada por el vendedor en un lugar acordado, y el vendedor debe organizar y pagar los costos de transporte necesarios para llevar los bienes al lugar de destino designado."
             },
             {
@@ -369,7 +369,7 @@
                 "riskStage": 2,
                 "safetyStage": 5,
                 "freightDetails": "Responsabilidad de la fábrica",
-                "modal": "Cualquier modo",
+                "modal": "Cualquier modal",
                 "moreDetails": "Carriage and Insurance Paid To (CIP) requiere que el vendedor entregue los bienes a un transportista u otra persona designada por el vendedor en un lugar acordado, y el vendedor debe organizar y pagar los costos de transporte necesarios para llevar los bienes al lugar designado. de destino. Además, el vendedor debe obtener un seguro contra el riesgo de pérdida o daño del comprador durante el transporte."
             },
             {
@@ -380,7 +380,7 @@
                 "riskStage": 6,
                 "safetyStage": 6,
                 "freightDetails": "Responsabilidad de la fábrica",
-                "modal": "Cualquier modo",
+                "modal": "Cualquier modal",
                 "moreDetails": "Delivered at Place Unloaded (DPU) significa que el vendedor entrega la mercancía, liberada para la importación, al comprador en el lugar de destino acordado. El vendedor es responsable de todos los costos y riesgos asociados con el transporte de la mercancía a ese lugar, incluidos aranceles, impuestos y otros cargos."
             },
             {
@@ -534,7 +534,7 @@
                 "riskStage": 0,
                 "safetyStage": 0,
                 "freightDetails": "Responsabilidade da fábrica",
-                "modal": "Aquaviário",
+                "modal": "Qualquer modal",
                 "moreDetails": "Ex Works (EXW) coloca a máxima responsabilidade sobre o comprador, incluindo todos os custos de transporte, riscos e liberação de exportação e importação. O vendedor é apenas responsável por disponibilizar as mercadorias em suas instalações ou outro local nomeado (fábrica, armazém, etc.). O comprador arca com todos os custos e riscos envolvidos em levar as mercadorias até o destino desejado."
             },
             {
@@ -545,7 +545,7 @@
                 "riskStage": 1,
                 "safetyStage": 1,
                 "freightDetails": "Responsabilidade da fábrica",
-                "modal": "Aquaviário",
+                "modal": "Qualquer modal",
                 "moreDetails": "Free Carrier (FCA) significa que o vendedor entrega as mercadorias, liberadas para exportação, ao transportador nomeado pelo comprador no local nomeado. O vendedor é responsável por carregar as mercadorias no veículo coletor do comprador. O comprador é responsável por todos os riscos e custos após este ponto, incluindo o descarregamento em suas instalações."
             },
             {

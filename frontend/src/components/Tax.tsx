@@ -6,13 +6,15 @@ import ITaxKeys from '../models/ITaxKeys';
 import FormatCurrencySymbol from '../Library/FormatCurrencySymbol';
 import FormatCurrencyName from '../Library/FormatCurrencyName';
 import TaxModal from './TaxModal';
+import { Link, useLocation, useParams } from 'react-router-dom';
 
 const Tax = () => {
 
-    const [openTaxModal, setOpenTaxModal] = useState(false);
     const [taxes, setTaxes] = useState<ITaxModel[]>([]);
     let [currentTax, setCurrentTax] = useState<ITaxModel>();
     const [loading, setLoading] = useState(true);
+
+    const location = useLocation();
 
     const getTaxes = async () => {
 
@@ -29,7 +31,6 @@ const Tax = () => {
         });
         
        setTaxes(taxesArray);
-       setLoading(false);
 
     } catch (error){
         console.log(error);
@@ -38,7 +39,8 @@ const Tax = () => {
     }
 
 
-    useEffect(() => {
+
+    useEffect(() => {            
          const interval = setInterval(() => {
             getTaxes();
 
@@ -46,21 +48,35 @@ const Tax = () => {
 
 
             return () => clearInterval(interval);
+
+
+
+            
+
+
             
         
-    }, []);
+    }, 
+    
+   
+        
+    
+    
+    
+    
+    []);
 
     return (
         <>
+
             <div className={`${styles.tax_collectionComponent}`}>
                 
                 <div className={`${styles.taxWrapper}`}>
-
-
-                    {loading ? <> <svg className={styles.spinner} viewBox="0 0 50 50"><circle className={styles.path} cx="25" cy="25" r="20" fill="none" strokeWidth="5"></circle></svg> </> :  <>  {taxes.map((tax, index) => (
+                    
+                    { taxes.map((tax, index) => (
 
 <div key={index} className={`${styles.tax_unitComponent}`}>
-    <a href={`${tax.currencyCode}`} className={`${styles.s}`} onClick={() => window.onbeforeunload = null }>
+    <Link  to={`${tax.currencyCode}`}  state={{ previousLocation: location }} className={`${styles.s}`}>
         <div className={`${styles.currencyContainer}`}>
 
             <div className={`${styles.currency}`}>
@@ -76,15 +92,16 @@ const Tax = () => {
             </div>
         </div>
 
-    </a>
-
+    </Link>
 
 </div>
-))}</>}
+))}
                   
 
                 </div>
             </div>
+
+
         </>
     )
 }

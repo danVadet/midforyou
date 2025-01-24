@@ -217,7 +217,8 @@ const Map = () => {
         zoom={zoom}
         options={{
           mapTypeControl: false, 
-          fullscreenControl: false
+          fullscreenControl: false,
+          
         }}
         >
         { /* Child components, such as markers, info windows, etc. */

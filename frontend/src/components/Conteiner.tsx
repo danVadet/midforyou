@@ -6,6 +6,7 @@ import DeleteProductModal from './DeleteProductModal';
 import { Product } from '../models/Product';
 import { Container } from '../models/Container';
 import Message from './Message';
+import Map from './Map';
 
 interface IContainerProps {
 
@@ -31,6 +32,8 @@ interface IContainerProps {
     selectContainer: string;
     pesoCapicity: string;
     cubCapacicity: string;
+
+    conteinersRef: React.RefObject<HTMLDivElement>
 }
 
 interface IValues {
@@ -78,7 +81,9 @@ const Conteiner = (props: IContainerProps) => {
     });
     const [showContainerMessage, setShowContainerMessage] = useState<boolean>(false);
 
-    const observer = useRef<IntersectionObserver | null>(null);
+
+
+    
 
     const handleChange = (e: React.FormEvent) => {
         const target = e.target as HTMLInputElement;
@@ -214,7 +219,6 @@ const Conteiner = (props: IContainerProps) => {
     const getSumPesoTotal = async () => {
         try {
             const response = await axios.get(`http://localhost:5077/sumPesoTotal`);
-            console.log(response.data);
             setSumPesoTotal(response.data);
         } catch (error) {
             console.log(error);
@@ -224,7 +228,6 @@ const Conteiner = (props: IContainerProps) => {
         try {
             const response = await axios.get(`http://localhost:5077/sumVolumeTotal`);
             setSumVolumeTotal(response.data);
-            console.log(response.data);
         } catch (error) {
             console.log(error);
         }
@@ -232,7 +235,6 @@ const Conteiner = (props: IContainerProps) => {
     const getContainers = async () => {
         try {
             const response = await axios.get(`http://localhost:5077/containers`);
-            console.log(response.data);
             setContainers(response.data);
         } catch (error) {
             console.log(error);
@@ -240,7 +242,6 @@ const Conteiner = (props: IContainerProps) => {
     }
     const deleteAllProducts = async () => {
         const response = await axios.delete(`http://localhost:5077/products`);
-        console.log(response.data);
         window.onbeforeunload = () => true;
         setUnsavedProduct(true);
     }
@@ -260,7 +261,8 @@ const Conteiner = (props: IContainerProps) => {
     }, [searchProduct, unsavedProduct]);
 
     return (
-        <>
+        <section ref={props.conteinersRef}>
+            <div className={`${styles.conteinerComponent}`}>
             <div className={`${styles.container}`}>
                 <h1>{props.loadCalculator}</h1>
 
@@ -375,7 +377,11 @@ const Conteiner = (props: IContainerProps) => {
                     }
                 </div>
             </div>
-        </>
+
+            <Map></Map>
+            </div>
+
+            </section>
     );
 }
 

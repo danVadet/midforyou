@@ -20,29 +20,49 @@ nav ul li {
     position: absolute;
 }
 
-nav ul li a {
+nav ul li a{
+    position: relative;
     text-decoration: none;
     font-size: 20px;
     color: rgb(0, 175, 239);
+    border: 0;
 
 }
-
-nav ul li a:hover {
-    border-bottom: 2px solid rgb(0, 175, 239);
+nav ul li a::before {
+    content: "";
+    position: absolute;
+    height: 1px;
+    width: 100%;
+    background: rgb(0, 175, 239);
+    left: 0;
+    bottom: -5px;
+    transform: scale(0, 1);
+    transition: transform 0.25s ease;
+    transform-origin: 0 100%;
 }
+nav ul li a:hover::before {
+    transform: scale(1, 1);
+}
+.activeLink, .activeLink:hover {
+    color: rgb(3, 0, 199);
+}
+
 
 nav ul .listLanguage a {
     margin: 5px;
+
 }
+.listLanguage .activeLang {
+    border: 2px solid rgb(0, 175, 239);
+}
+
 
 nav ul .listLanguage :hover {
     border-bottom: 0;
 }
 
-.activeLink {
-    border-bottom: 2px solid rgb(0, 175, 239)
 
-}
+
 
 
 @media screen and (max-width: 768px) {

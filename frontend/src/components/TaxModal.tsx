@@ -5,31 +5,40 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { Line } from 'react-chartjs-2';
 import { Chart as ChartJS, LineElement, CategoryScale, LinearScale, PointElement, Tooltip, Filler } from 'chart.js'
-import { useParams } from "react-router-dom";
-import FormatCurrencyCode from "../Library/FormatCurrencyCode";
+import { useNavigate, useParams } from "react-router-dom";
 import ITaxKeys from "../models/ITaxKeys";
 
 ChartJS.register(LineElement, CategoryScale, LinearScale, PointElement, Tooltip, Filler);
 
 interface ITaxModalProps {
     currentTax?: ITaxModel
-    closeModal(): void;
 }
 const TaxModal = (props: ITaxModalProps) => {
+    const navigate = useNavigate();
+
 
     const [quotation, setQuotation] = useState<number[]>([]);
     const [diasCotados, setDiasCotados] = useState<Date[]>([]);
     const [days, setDays] = useState(1);
-    let { code } = useParams();
     const [loading, setLoading] = useState(true);
     let [currentTax, setCurrentTax] = useState<ITaxModel>();
+    let { code } = useParams();
+
 
 
 
    
-    useEffect(() => {
-        getData();
-    
+ 
+
+        useEffect(() => {            
+            const interval = setInterval(() => {
+               getData();
+   
+               }, 1000); 
+   
+   
+               return () => clearInterval(interval);
+   
     }, [days])
 
     const hoverCrossHair = {
@@ -210,14 +219,14 @@ const TaxModal = (props: ITaxModalProps) => {
         <div className={`${styles.modal}`}>
         
                 <div className={`${styles.modalBody}`}>
-                    <a className={`${styles.closeButton}`} onClick={() => props.closeModal()}>
+                    <a className={`${styles.closeButton}`} onClick={() => navigate("/")}>
                         <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="40" height="40" viewBox="0,0,256,256">
                             <g fill="#00afef" fillRule="nonzero" stroke="none" strokeWidth="1" strokeLinecap="butt" strokeLinejoin="miter" strokeMiterlimit="10" strokeDasharray="" strokeDashoffset="0" fontFamily="none" fontWeight="none" fontSize="none" textAnchor="none"><g transform="scale(16,16)"><path d="M7.5,1c-3.58594,0 -6.5,2.91406 -6.5,6.5c0,3.58594 2.91406,6.5 6.5,6.5c3.58594,0 6.5,-2.91406 6.5,-6.5c0,-3.58594 -2.91406,-6.5 -6.5,-6.5zM10.20703,9.5l-0.70703,0.70703l-2,-2l-2,2l-0.70703,-0.70703l2,-2l-2,-2l0.70703,-0.70703l2,2l2,-2l0.70703,0.70703l-2,2z"></path></g></g>
                         </svg>
                     </a>
 
                     <div className={`${styles.taxInfo}`}>
-                    <p className={`${styles.taxInfo_title}`} >{code && FormatCurrencyCode({code})}   </p>
+                    <p className={`${styles.taxInfo_title}`} >  {currentTax?.name && FormatCurrencyName({ key: currentTax?.name })}    </p>
                         <div className={`${styles.taxInfo_titles}`}>
                             <p>COMPRA</p>
                             <p>VENDA</p>
@@ -248,6 +257,7 @@ const TaxModal = (props: ITaxModalProps) => {
                     </div>
 
                     <div className={`${styles.graphic}`}>
+                        
                         <Line data={{
                             labels: diasCotados.map(coin => {
                                 let time = coin.getHours() >= 12 ? `${coin.getHours()}:${(coin.getMinutes() < 10 ? '0' : '') + coin.getMinutes()}` : `${coin.getHours()}: ${(coin.getMinutes() < 10 ? '0' : '') + coin.getMinutes()}`;

@@ -19,6 +19,8 @@ interface IIncotermProps {
   destinationPort: string;
   destinationPlace: string;
   destination: string;
+  
+  incotermsRef: React.RefObject<HTMLDivElement>
 
 }
 
@@ -37,15 +39,17 @@ const Incoterms = (props: IIncotermProps) => {
 
   },);
 
+
   const handleChangeSelectIncoterm = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const selected = props.incoterms.find(incoterm => incoterm.id === parseInt(e.target.value));
     setSelectedIncoterm(selected);
   }
   return (
-    <>
+    <section ref={props.incotermsRef}>
 
-      <h1>Incoterms</h1>
       <div className={`${styles.incotermsComponent}`}>
+      <h1>Incoterms</h1>
+      <div className={`${styles.incotermsContainer}`}>
 
         <div className={`${styles.incotermsLeft}`}>
           <select className={`${styles.selectedIncoterm}`} onChange={(e) => handleChangeSelectIncoterm(e)}>
@@ -213,7 +217,11 @@ const Incoterms = (props: IIncotermProps) => {
           </div>
         </div>
       </div>
-    </>
+        
+      </div>
+
+      
+    </section>
   )
 }
 

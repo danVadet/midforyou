@@ -1,4 +1,4 @@
-import {Route, BrowserRouter as Router, Routes } from 'react-router-dom';
+import {Route, BrowserRouter as Router, Routes, useLocation } from 'react-router-dom';
 import Main from './pages/Main';
 import  multiLang  from './multiLang.json';
 import TaxModal from './components/TaxModal';
@@ -9,12 +9,15 @@ import ITaxKeys from './models/ITaxKeys';
 const RoutesProvider = () => {
 
       const [openTaxModal, setOpenTaxModal] = useState(false);
+
+      const location = useLocation();
+      const previousLocation = location.state?.previousLocation;
+
   
     return (
       <>
   
-       <Router>
-       <Routes>
+       <Routes location={previousLocation}>
             <Route path='/en' element={ <Main 
             home={ multiLang.en.home}
             about= { multiLang.en.about}
@@ -237,10 +240,14 @@ const RoutesProvider = () => {
       
       }  
         />
-          <Route path="/:code"  element={<TaxModal closeModal={() => setOpenTaxModal(false)}/>}/>
+                
+
 
         </Routes>
-    </Router>
+
+        <Routes>
+          <Route path="/:code" element={<TaxModal />} />
+        </Routes>
       </>
    
     );

@@ -1,17 +1,14 @@
 
 import Conteiner from '../components/Conteiner';
 import Contact from '../components/Contact';
-import Tax from '../components/Tax';
-import styles from './Main.module.css'
 import About from '../components/About';
-import AboutServices from '../components/AboutServices';
-import Map from '../components/Map';
 import Incoterms from '../components/Incoterms';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import { Incoterm } from '../models/Incoterm';
 import { IconIcoterm } from '../models/IconIcoterm';
-import Banner from '../components/Banner';
+import Home from '../components/Home';
+import { useRef } from 'react';
 
 interface IMainProps {
   home:  string;
@@ -90,30 +87,72 @@ interface IMainProps {
 
 
 const  Main = (props: IMainProps) => {
+  const homeRef = useRef<HTMLDivElement>(null);
+  const aboutRef = useRef<HTMLDivElement>(null);
+  const conteinersRef = useRef<HTMLDivElement>(null);
+  const incotermsRef = useRef<HTMLDivElement>(null);
+  const contactRef = useRef<HTMLDivElement>(null);
+
+
+  const scrollToSection = (ref: React.RefObject<HTMLDivElement>) => {
+    if (ref.current) {
+      window.scrollTo({
+        top: ref.current.offsetTop,
+        behavior: 'smooth',
+      })
+  }
+  };
 
   
-  
+
 
   return (
-    <div id="home">
-      <Navbar home={props.home} about={props.about} container={props.container} contact={props.contact}></Navbar>
-      <Tax></Tax>
-       <Banner bannerInfo1={props.bannerInfo1} bannerInfo2={props.bannerInfo2} ></Banner>
-       <section className={`${styles.about}`} id="about">
-                    <About aboutInfo1={props.aboutInfo1} aboutInfo2={props.aboutInfo2} aboutInfo3={props.aboutInfo3} aboutInfo4={props.aboutInfo4}  />
-                    <AboutServices card_1_title={props.card_1_title} 
-                                   card_1_description={props.card_1_description} 
-                                   card_2_title={props.card_2_title} 
-                                   card_2_description={props.card_2_description}
-                                   card_3_title={props.card_3_title}
-                                   card_3_description={props.card_3_description}
-                                   card_4_title={props.card_4_title}
-                                   card_4_description={props.card_4_description}
-                                    />
-                </section>
+    <>
+      <Navbar 
+       home={props.home} about={props.about} container={props.container} contact={props.contact}
+       homeRef={homeRef} aboutRef={aboutRef} conteinersRef={conteinersRef} incotermsRef={incotermsRef} contactRef={contactRef}
+       scrollToSection={scrollToSection}
+       
+       />
 
+        <Home  bannerInfo1={props.bannerInfo1} bannerInfo2={props.bannerInfo2}
 
-                <section className={`${styles.conteiners}`} id="conteiners">
+          homeRef={homeRef}
+        />
+
+        <About aboutInfo1={props.aboutInfo1} aboutInfo2={props.aboutInfo2} aboutInfo3={props.aboutInfo3} aboutInfo4={props.aboutInfo4}
+                    card_1_title={props.card_1_title} 
+                    card_1_description={props.card_1_description} 
+                    card_2_title={props.card_2_title} 
+                    card_2_description={props.card_2_description}
+                    card_3_title={props.card_3_title}
+                    card_3_description={props.card_3_description}
+                    card_4_title={props.card_4_title}
+                    card_4_description={props.card_4_description}
+
+                    aboutRef={aboutRef}
+                    
+                    />
+                  
+               <Incoterms incoterms={props.incoterms} 
+                          iconsIcoterm={props.iconsIcoterm}
+                          costLabel={props.costLabel} 
+                          riskLabel={props.riskLabel} 
+                          insuranceLabel={props.insuranceLabel}
+                          seller={props.seller}
+                          agreedPlace={props.agreedPlace}
+                          loadPort={props.loadPort}
+                          destinationPlace={props.destinationPlace}
+                          destinationPort={props.destinationPort}
+                          destination={props.destination}
+                          freight={props.freight}
+                          modal={props.modal}
+                          moreDetails={props.moreDetails}
+
+                          incotermsRef={incotermsRef}
+                          
+                          />
+
                 <Conteiner loadCalculator={props.loadCalculator}
                            enterName={props.enterName}
                            enterQuantity={props.enterQuantity}
@@ -135,29 +174,11 @@ const  Main = (props: IMainProps) => {
                            volumeTotal={props.volumeTotal}
                            selectContainer={props.selectContainer}
                            pesoCapicity={props.pesoCapicity}
-                           cubCapacicity={props.cubCapacicity}/>
-                </section>
-                 
-       <section className={`${styles.contact}`} id="incoterms">
-               <Incoterms incoterms={props.incoterms} 
-                          iconsIcoterm={props.iconsIcoterm}
-                          costLabel={props.costLabel} 
-                          riskLabel={props.riskLabel} 
-                          insuranceLabel={props.insuranceLabel}
-                          seller={props.seller}
-                          agreedPlace={props.agreedPlace}
-                          loadPort={props.loadPort}
-                          destinationPlace={props.destinationPlace}
-                          destinationPort={props.destinationPort}
-                          destination={props.destination}
-                          freight={props.freight}
-                          modal={props.modal}
-                          moreDetails={props.moreDetails}
-                          />
-                </section>
-                <Map></Map>
-            
-       <section className={`${styles.contact}`} id="contact">
+                           cubCapacicity={props.cubCapacicity}
+                           
+                           conteinersRef={conteinersRef}
+                           
+                           />            
                <Contact
                         contactTitle={props.contactTitle} 
                         imageLegend={props.imageLegend}
@@ -176,11 +197,13 @@ const  Main = (props: IMainProps) => {
                         enterMessage={props.enterMessage}
                         messageRequiredContact={props.messageRequiredContact}
                         buttonSend={props.buttonSend}
-                        buttonSending={props.buttonSending}/>
-                </section>
+                        buttonSending={props.buttonSending}
+                        contactRef={contactRef}
+                        />
 
+        
        <Footer></Footer>
-    </div>
+    </>
   );
 }
 

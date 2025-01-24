@@ -16,9 +16,9 @@
 
 .bannerText {
   position: absolute;
-  font-size: 25px;
-  top: 30%;
-  left: 10%;
+  font-size: 30px;
+  top: 35%;
+  left: 15%;
   transform: translate(-50%, -50%);
   color: rgb(255, 255, 255);
   animation: textup 15s linear infinite;
@@ -105,44 +105,4 @@
     display: none;
   
   }
-}
-
-/* Media Query for low resolution Tablets, Ipads */
-@media  (min-width: 481px) and (max-width: 767px) {
-  .bannerContainer {
-      width: 132%;
-  }
-  .bannerText {
-    left: 0;
-    font-size: 20px;
-  } 
-  .leftArrow, .rightArrow {
-    display: none;
-  
-  }
-  .dots {
-    top: 80%;
-    left: 57%;
-  }
-}
-
-/* Media Query for Tablets Ipads portrait mode */
-@media (min-width: 768px) and (max-width: 1024px) {
-
-  .bannerContainer {
-      width: 148%;
-      height: 120vh;
-  }
-  .bannerText {
-    font-size: 22px;
-    left: 0;
-  }
-  .rightArrow {
-    left: 135%;
-  }
-  .dots {
-    top: 100%;
-    left: 67%;
-  }
-
 }
