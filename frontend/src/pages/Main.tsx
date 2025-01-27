@@ -8,6 +8,7 @@ import Footer from '../components/Footer';
 import { Incoterm } from '../models/Incoterm';
 import { IconIcoterm } from '../models/IconIcoterm';
 import Home from '../components/Home';
+import Map from '../components/Map';
 import { useRef } from 'react';
 
 interface IMainProps {
@@ -92,6 +93,7 @@ const  Main = (props: IMainProps) => {
   const conteinersRef = useRef<HTMLDivElement>(null);
   const incotermsRef = useRef<HTMLDivElement>(null);
   const contactRef = useRef<HTMLDivElement>(null);
+  const mapRef = useRef<HTMLDivElement>(null);
 
 
   const scrollToSection = (ref: React.RefObject<HTMLDivElement>) => {
@@ -110,7 +112,7 @@ const  Main = (props: IMainProps) => {
     <>
       <Navbar 
        home={props.home} about={props.about} container={props.container} contact={props.contact}
-       homeRef={homeRef} aboutRef={aboutRef} conteinersRef={conteinersRef} incotermsRef={incotermsRef} contactRef={contactRef}
+       homeRef={homeRef} aboutRef={aboutRef}  mapRef={mapRef} conteinersRef={conteinersRef} incotermsRef={incotermsRef} contactRef={contactRef}
        scrollToSection={scrollToSection}
        
        />
@@ -178,7 +180,9 @@ const  Main = (props: IMainProps) => {
                            
                            conteinersRef={conteinersRef}
                            
-                           />            
+                           />          
+                  
+            <Map mapRef={mapRef}></Map>  
                <Contact
                         contactTitle={props.contactTitle} 
                         imageLegend={props.imageLegend}

@@ -14,6 +14,7 @@ interface INavbarProps {
   aboutRef: React.RefObject<HTMLDivElement>;
   incotermsRef: React.RefObject<HTMLDivElement>;
   conteinersRef: React.RefObject<HTMLDivElement>;
+  mapRef: React.RefObject<HTMLDivElement>;
   contactRef: React.RefObject<HTMLDivElement>;
 
 }
@@ -32,7 +33,8 @@ const Navbar = (props: INavbarProps) => {
     { id: 2, name: `${props.about}`, ref: props.aboutRef },
     { id: 3, name: 'Incoterms', ref: props.incotermsRef },
     { id: 4, name: `${props.container}`, ref: props.conteinersRef },
-    { id: 5, name: `${props.contact}`, ref: props.contactRef },
+    {id: 5, name: "Portos do Brasil", ref: props.mapRef},
+    { id: 6, name: `${props.contact}`, ref: props.contactRef },
 
   ]
   const [activeLink, setActiveLink] = useState<number>(0);
@@ -56,8 +58,11 @@ const Navbar = (props: INavbarProps) => {
         break
       case 4:
         props.scrollToSection(props.conteinersRef)
-        break
+      break
       case 5:
+        props.scrollToSection(props.mapRef)
+        break
+      case 6:
         props.scrollToSection(props.contactRef)
         break
       default:
@@ -83,8 +88,11 @@ const Navbar = (props: INavbarProps) => {
           case props.conteinersRef.current:
             setActiveLink(4)
             break
-          case props.contactRef.current:
+          case props.mapRef.current:
             setActiveLink(5)
+           break
+          case props.contactRef.current:
+            setActiveLink(6)
             break
           default:
             break

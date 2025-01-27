@@ -377,8 +377,6 @@ const Conteiner = (props: IContainerProps) => {
                     }
                 </div>
             </div>
-
-            <Map></Map>
             </div>
 
             </section>

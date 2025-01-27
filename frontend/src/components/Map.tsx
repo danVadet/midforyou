@@ -5,7 +5,15 @@ import axios from 'axios';
 import { State } from '../models/State';
 import { PortMarker } from '../models/PortMarker';
 
-const Map = () => {
+interface IMapProps {
+
+  mapRef: React.RefObject<HTMLDivElement>
+}
+
+
+
+
+const Map = (props: IMapProps) => {
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
     googleMapsApiKey: "AIzaSyDKhBBIdo-9CFMlcObXeRstXDO8712dPqQ"
@@ -185,7 +193,9 @@ const Map = () => {
     getMarkersPort();
   }, []);
 
-  return ( <>
+  return ( 
+  
+  <section className={`${styles.mapComponent}`} ref={props.mapRef}>
 
     <h1>Portos do Brasil</h1>
 
@@ -334,7 +344,7 @@ const Map = () => {
     <div>
 
     </div>
-  </>
+  </section>
   );
 
 }
