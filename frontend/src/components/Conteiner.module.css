@@ -96,10 +96,11 @@
     border-radius: 10px;
 }
 
-.info_container  img {
+.info_container  .containerImage {
   margin: 8px;
-   width: 400px;
-   height: 300px;
+  width: 400px;
+  height: 300px;
+  border-radius: 10px;
 }
 .info_container select {
     margin: 8px;

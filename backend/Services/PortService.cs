@@ -68,4 +68,11 @@ public class PortService : IPortService
     {
         return _portRepository.GetAllPortsSeaByState(stateId);
     }
+
+    public async Task DeleteAsync(int id)
+    {
+            PortMarker portMarker = await _portRepository.GetByIdAsync(id);
+        await _portRepository.DeleteAsync(portMarker);
+
+    }
 }

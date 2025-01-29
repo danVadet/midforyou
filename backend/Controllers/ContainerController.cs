@@ -44,6 +44,13 @@ public class ContainerController : ControllerBase
 
         return Created("Container created successfully", containerRequest);
     }
+    
+    [HttpGet("containers/{id}")]
+    public async Task<ActionResult> getProductById(int id)
+    {
+        ContainerResponse  containerResponse = await _conatinerService.GetByIdAsync(id);
+       return Ok(containerResponse);
+    }
 
     [HttpGet("containers/capacity/{id}")]
     public async Task<ActionResult> verfiqueCapacityProduct(int id)
@@ -59,11 +66,38 @@ public class ContainerController : ControllerBase
         var sumVolumeTotal = products.Sum(product => product.volumeTotal);
         var sumPesoTotal = products.Sum(product => product.pesoTotal);
 
+        var pctVolume = sumVolumeTotal/container.capacidadeVolume * 100;
+        var pctPeso = sumPesoTotal/container.capacidadePeso * 100;
+
 
 
         if (sumPesoTotal <= container.capacidadePeso && sumVolumeTotal <= container.capacidadeVolume)
         {
-            return Ok(container);
+            return Ok(String.Format("{0:f0}", pctVolume));
+
+        }
+        else
+        {
+            return Ok("Esse tipo de contêiner não cabe");
+        }
+    }
+    [HttpGet("containers/capacityPeso/{id}")]
+    public async Task<ActionResult> verfiqueCapacityPesoProduct(int id)
+    {
+
+        Container container = await _applicationDbContext.Containers.FindAsync(id);
+         List <Product> products = await  _applicationDbContext.Products.ToListAsync();
+
+        var sumVolumeTotal = products.Sum(product => product.volumeTotal);
+        var sumPesoTotal = products.Sum(product => product.pesoTotal);
+
+        var pctPeso = sumPesoTotal/container.capacidadePeso * 100;
+
+
+
+        if (sumPesoTotal <= container.capacidadePeso && sumVolumeTotal <= container.capacidadeVolume)
+        {
+            return Ok(String.Format("{0:f0}", pctPeso));
 
         }
         else

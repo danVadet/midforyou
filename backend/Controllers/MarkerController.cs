@@ -96,4 +96,17 @@ public class MarkerController : ControllerBase
 
         return Created("Port created successfully", portMarkerRequest);
     }
+    [HttpDelete("markers/ports/{id}")]
+    public async Task<ActionResult> deletePor(int id)
+    {
+        
+        PortMarkerResponse portMarkerResponse = await _portService.GetByIdAsync(id);
+
+        if (portMarkerResponse == null) {
+            return NotFound("Port not found");
+        } else {
+            await _portService.DeleteAsync(portMarkerResponse.id);
+            return Ok("Port removed successfully");
+        }
+    }
 }

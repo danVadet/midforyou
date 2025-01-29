@@ -76,5 +76,11 @@ public class PortRepository : IPortRepository
         
     }
 
-  
+    public async Task<PortMarker> DeleteAsync(PortMarker portMarker)
+    {
+          _applicationDbContext.PortMarkers.Remove(portMarker);
+        await _applicationDbContext.SaveChangesAsync();
+       return portMarker ;
+
+    }
 }

@@ -521,8 +521,8 @@
         "productTotalPeso": "Peso total",
         "productTotalVolume": "Volume total",
         "pesoTotal": "Peso total de todos os produtos",
-        "volumeTotal": "Volume de todos os produtos",
-        "selectContainer": "Seleciona o contêiner",
+        "volumeTotal": "Volume total de todos os produtos",
+        "selectContainer": "Seleciona o tipo de contêiner",
         "pesoCapacity": "Capacidade de carga",
         "cubCapacity": "Capacidade cúbica",
         "incoterms": [

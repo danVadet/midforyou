@@ -15,6 +15,8 @@ public interface IPortRepository {
     public Task<List<PortMarker>> GetPortByState(int stateId);
     
     public Task<PortMarker> GetByIdAsync(int id);
+    public Task <PortMarker> DeleteAsync (PortMarker portMarker);
+
 
 
 }
