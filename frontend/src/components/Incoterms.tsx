@@ -1,8 +1,11 @@
 import styles from './Incoterms.module.css'
 import { Incoterm } from '../models/Incoterm';
-import { useEffect, useState } from 'react';
+import { useContext, useState } from 'react';
 import TooltipIncoterm from './TooltipIncoterm';
 import { IconIcoterm } from '../models/IconIcoterm';
+import { LanguageContext } from '../Context/LanguageContext';
+import  multiLang  from '../multiLang.json';
+
 
 interface IIncotermProps {
   incoterms: Incoterm[]
@@ -26,18 +29,48 @@ interface IIncotermProps {
 
 const Incoterms = (props: IIncotermProps) => {
 
-  const [selectedIncoterm, setSelectedIncoterm] = useState<Incoterm | undefined>({
-    id: props.incoterms[0].id,
-    name: props.incoterms[0].name,
-    acronym: props.incoterms[0].acronym,
-    costStage: props.incoterms[0].costStage,
-    riskStage: props.incoterms[0].riskStage,
-    safetyStage: props.incoterms[0].safetyStage,
-    freightDetails: props.incoterms[0].freightDetails,
-    modal: props.incoterms[0].modal,
-    moreDetails: props.incoterms[0].moreDetails
+  const { language, setLanguage } = useContext(LanguageContext);
+  const [incoterms, setIncoterms] = useState<Incoterm[]>([{
+    id: 0,
+    name: `${(language === "pt" && `${multiLang.pt.incoterms[0].name}`) || (language === "en"  && `${multiLang.en.incoterms[0].name}`) ||( language === "es" && `${multiLang.es.incoterms[0].name}`)}`,
+    acronym: "EXW",
+    costStage: 0,
+    riskStage: 0,
+    insuranceStage: 0,
+    freightDetails: `${(language === "pt" && `${multiLang.pt.incoterms[0].freightDetails}`) || (language === "en"  && `${multiLang.en.incoterms[0].freightDetails}`) ||( language === "es" && `${multiLang.es.incoterms[0].freightDetails}`)}`,
+     modal: `${(language === "pt" && `${multiLang.pt.incoterms[0].modal}`) || (language === "en"  && `${multiLang.en.incoterms[0].modal}`) ||( language === "es" && `${multiLang.es.incoterms[0].modal}`)}`,
+    moreDetails: `${(language === "pt" && `${multiLang.pt.incoterms[0].moreDetails}`) || (language === "en"  && `${multiLang.en.incoterms[0].moreDetails}`) ||( language === "es" && `${multiLang.es.incoterms[0].moreDetails}`)}`
 
-  },);
+  }, 
+  {
+    id: 1,
+    name: `${(language === "pt" && `${multiLang.pt.incoterms[1].name}`) || (language === "en"  && `${multiLang.en.incoterms[1].name}`) ||( language === "es" && `${multiLang.es.incoterms[1].name}`)}`,
+    acronym: "FCA",
+    costStage: 0,
+    riskStage: 0,
+    insuranceStage: 0,
+    freightDetails: `${(language === "pt" && `${multiLang.pt.incoterms[1].freightDetails}`) || (language === "en"  && `${multiLang.en.incoterms[1].freightDetails}`) ||( language === "es" && `${multiLang.es.incoterms[1].freightDetails}`)}`,
+     modal: `${(language === "pt" && `${multiLang.pt.incoterms[1].modal}`) || (language === "en"  && `${multiLang.en.incoterms[1].modal}`) ||( language === "es" && `${multiLang.es.incoterms[1].modal}`)}`,
+    moreDetails: `${(language === "pt" && `${multiLang.pt.incoterms[1].moreDetails}`) || (language === "en"  && `${multiLang.en.incoterms[1].moreDetails}`) ||( language === "es" && `${multiLang.es.incoterms[1].moreDetails}`)}`
+
+  }
+
+
+]);
+
+  const [selectedIncoterm, setSelectedIncoterm] = useState<Incoterm | undefined>({
+    id: 0,
+    name: `${(language === "pt" && `${multiLang.pt.incoterms[0].name}`) || (language === "en"  && `${multiLang.en.incoterms[0].name}`) ||( language === "es" && `${multiLang.es.incoterms[0].name}`)}`,
+    acronym: "EXW",
+    costStage: 0,
+    riskStage: 0,
+    insuranceStage: 0,
+    freightDetails: `${(language === "pt" && `${multiLang.pt.incoterms[0].freightDetails}`) || (language === "en"  && `${multiLang.en.incoterms[0].freightDetails}`) ||( language === "es" && `${multiLang.es.incoterms[0].freightDetails}`)}`,
+     modal: `${(language === "pt" && `${multiLang.pt.incoterms[0].modal}`) || (language === "en"  && `${multiLang.en.incoterms[0].modal}`) ||( language === "es" && `${multiLang.es.incoterms[0].modal}`)}`,
+    moreDetails: `${(language === "pt" && `${multiLang.pt.incoterms[0].moreDetails}`) || (language === "en"  && `${multiLang.en.incoterms[0].moreDetails}`) ||( language === "es" && `${multiLang.es.incoterms[0].moreDetails}`)}`
+    
+    
+  });
 
 
   const handleChangeSelectIncoterm = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -53,7 +86,7 @@ const Incoterms = (props: IIncotermProps) => {
 
         <div className={`${styles.incotermsLeft}`}>
           <select className={`${styles.selectedIncoterm}`} onChange={(e) => handleChangeSelectIncoterm(e)}>
-            {props.incoterms.map((incoterm, index) => (
+            {incoterms.map((incoterm, index) => (
               <option value={incoterm.id} key={index}>{incoterm.acronym}</option>
             ))}
           </select>
@@ -98,6 +131,8 @@ const Incoterms = (props: IIncotermProps) => {
           <hr className={`${styles.gary}  ${styles.gary4}`}></hr>
           <hr className={`${styles.gary}  ${styles.gary5}`}></hr>
           <hr className={`${styles.gary}  ${styles.gary6}`}></hr>
+
+          
 
 
           <div className={`${styles.incotermStages}`}>            <div className={`${styles.incotermStage} ${styles.incotermStage__cost}`}>
@@ -208,7 +243,10 @@ const Incoterms = (props: IIncotermProps) => {
             </span>
             <span className={`${styles.detail__risk__details}`}>
               <strong>{props.modal}:</strong>
-              <span>{selectedIncoterm?.modal}</span>
+              <span>{ selectedIncoterm?.acronym === "EXW" &&
+              `${(language === "pt" && `${multiLang.pt.incoterms[0].modal}`) || (language === "en"  && `${multiLang.en.incoterms[0].modal}`) ||( language === "es" && `${multiLang.es.incoterms[0].modal}`)}`
+              
+              ||  selectedIncoterm?.acronym === "FCA" && `${(language === "pt" && `${multiLang.pt.incoterms[1].modal}`) || (language === "en"  && `${multiLang.en.incoterms[1].modal}`) ||( language === "es" && `${multiLang.es.incoterms[1].modal}`)}`}</span>
             </span>
             <span className={`${styles.detail__more__details}`}>
               <strong>{props.moreDetails}:</strong>

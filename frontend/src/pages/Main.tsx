@@ -1,4 +1,3 @@
-
 import Conteiner from '../components/Conteiner';
 import Contact from '../components/Contact';
 import About from '../components/About';
@@ -12,10 +11,6 @@ import Map from '../components/Map';
 import { useRef } from 'react';
 
 interface IMainProps {
-  home:  string;
-  about: string;
-  container: string;
-  contact: string;
   bannerInfo1: string;
   bannerInfo2: string;
   aboutInfo1: string;
@@ -31,27 +26,6 @@ interface IMainProps {
   card_4_title: string;
   card_4_description: string;
   loadCalculator: string;
-  enterName: string;
-  nameRequiredContainer: string;
-  enterQuantity: string;
-  quantityRequiredContainer: string;
-  enterPeso: string;
-  pesoRequiredContainer: string;
-  enterVolume: string;
-  volumeRequiredContainer: string;
-  buttonAdd: string;
-  searchProduct: string;
-  productNotAdded: string;
-  productQuantity: string;
-  productUniPeso: string;
-  productUniVolume: string;
-  productTotalPeso: string;
-  productTotalVolume: string;
-  pesoTotal: string;
-  volumeTotal:string;
-  selectContainer: string;
-  pesoCapicity: string;
-  cubCapacicity: string;
   incoterms: Incoterm[];
   iconsIcoterm: IconIcoterm[]
   costLabel: string;
@@ -111,7 +85,6 @@ const  Main = (props: IMainProps) => {
   return (
     <>
       <Navbar 
-       home={props.home} about={props.about} container={props.container} contact={props.contact}
        homeRef={homeRef} aboutRef={aboutRef}  mapRef={mapRef} conteinersRef={conteinersRef} incotermsRef={incotermsRef} contactRef={contactRef}
        scrollToSection={scrollToSection}
        
@@ -155,34 +128,8 @@ const  Main = (props: IMainProps) => {
                           
                           />
 
-                <Conteiner loadCalculator={props.loadCalculator}
-                           enterName={props.enterName}
-                           enterQuantity={props.enterQuantity}
-                           enterPeso={props.enterPeso}
-                           enterVolume={props.enterVolume}
-                           nameRequiredContainer={props.nameRequiredContainer} 
-                           quantityRequiredContainer={props.quantityRequiredContainer}
-                           pesoRequiredContainer={props.pesoRequiredContainer}
-                           volumeRequiredContainer={props.volumeRequiredContainer}
-                           buttonAdd={props.buttonAdd}
-                           searchProduct={props.searchProduct}
-                           productNotAdded={props.productNotAdded}
-                           productQuantity={props.productQuantity}
-                           productUniPeso={props.productUniPeso}
-                           productUniVolume={props.productUniVolume}
-                           productTotalPeso={props.productTotalPeso}
-                           productTotalVolume={props.productTotalVolume}
-                           pesoTotal={props.pesoTotal}
-                           volumeTotal={props.volumeTotal}
-                           selectContainer={props.selectContainer}
-                           pesoCapicity={props.pesoCapicity}
-                           cubCapacicity={props.cubCapacicity}
-                           
-                           conteinersRef={conteinersRef}
-                           
-                           />          
-                  
-            <Map mapRef={mapRef}></Map>  
+                <Conteiner conteinersRef={conteinersRef} />          
+                <Map mapRef={mapRef}/>
                <Contact
                         contactTitle={props.contactTitle} 
                         imageLegend={props.imageLegend}

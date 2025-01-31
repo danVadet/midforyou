@@ -9,7 +9,8 @@ import TaxModal from './TaxModal';
 import { Link, useLocation, useParams } from 'react-router-dom';
 
 const Tax = () => {
-
+    
+    const [openTaxModal, setOpenTaxModal] = useState(false);
     const [taxes, setTaxes] = useState<ITaxModel[]>([]);
     let [currentTax, setCurrentTax] = useState<ITaxModel>();
     const [loading, setLoading] = useState(true);
@@ -76,7 +77,7 @@ const Tax = () => {
                     { taxes.map((tax, index) => (
 
 <div key={index} className={`${styles.tax_unitComponent}`}>
-    <Link  to={`${tax.currencyCode}`}  state={{ previousLocation: location }} className={`${styles.s}`}>
+    <a href={`${tax.currencyCode}`} onClick={() => window.onbeforeunload = null } className={`${styles.s}`}>
         <div className={`${styles.currencyContainer}`}>
 
             <div className={`${styles.currency}`}>
@@ -92,7 +93,8 @@ const Tax = () => {
             </div>
         </div>
 
-    </Link>
+    </a>
+    {openTaxModal && <TaxModal  currentTax={currentTax}  />}
 
 </div>
 ))}

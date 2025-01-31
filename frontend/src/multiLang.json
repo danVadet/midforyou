@@ -47,7 +47,7 @@
                 "acronym": "EXW",
                 "costStage": 0,
                 "riskStage": 0,
-                "safetyStage": 0,
+                "insuranceStage": 0,
                 "freightDetails": "Factory responsibility",
                 "modal": "Any modal",
                 "moreDetails": "Ex Works (EXW) places the maximum responsibility on the buyer, including all transportation costs, risks and export and import clearance. The seller is only responsible for making the goods available at his premises or other named place (factory, warehouse, etc.). The buyer bears all costs and risks involved in bringing the goods to the desired destination."
@@ -58,7 +58,7 @@
                 "acronym": "FCA",
                 "costStage": 1,
                 "riskStage": 1,
-                "safetyStage": 1,
+                "insuranceStage": 1,
                 "freightDetails": "Factory responsibility",
                 "modal": "Any modal",                
                 "moreDetails": "Free Carrier (FCA) means that the seller delivers the goods, cleared for export, to the buyer’s nominated carrier at the named place. The seller is responsible for loading the goods onto the buyer’s collecting vehicle. The buyer is responsible for all risks and costs after this point, including unloading at its premises."
@@ -69,7 +69,7 @@
                 "acronym": "FAS",
                 "costStage": 2,
                 "riskStage": 2,
-                "safetyStage": 2,
+                "insuranceStage": 2,
                 "freightDetails": "Factory responsibility",
                 "modal": "Waterway",
                 "moreDetails": "Free Alongside Ship (FAS) requires the seller to deliver the goods alongside the buyer's named vessel at the named port of shipment. The seller must then release the goods for export. The buyer bears all costs and risks of loss or damage from that point onwards."
@@ -80,9 +80,9 @@
                 "acronym": "FOB",
                 "costStage": 3,
                 "riskStage": 3,
-                "safetyStage": 3,
+                "insuranceStage": 3,
                 "freightDetails": "Factory responsibility",
-                "modal": "Water",
+                "modal": "Waterway",
                 "moreDetails": "Free On Board (FOB) means that the seller delivers the goods, cleared for export, on board the buyer's named vessel at the named port of shipment. The seller is responsible for all costs and risks until the goods are loaded onto the vessel."
             },
             {
@@ -91,9 +91,9 @@
                 "acronym": "CFR",
                 "costStage": 4,
                 "riskStage": 3,
-                "safetyStage": 3,
+                "insuranceStage": 3,
                 "freightDetails": "Factory responsibility",
-                "modal": "Water",
+                "modal": "Waterway",
                 "moreDetails": "Cost and Freight (CFR) requires the seller to deliver the goods on board the vessel or at a named port of destination. The seller must clear the goods for export, while the buyer is responsible for all costs and risks from that point onwards."
             },
             {
@@ -102,9 +102,9 @@
                 "acronym": "CIF",
                 "costStage": 4,
                 "riskStage": 3,
-                "safetyStage": 4,
+                "insuranceStage": 4,
                 "freightDetails": "Factory responsibility",
-                "modal": "Water",
+                "modal": "Waterway",
                 "moreDetails": "Cost, Insurance and Freight (CIF) places additional responsibility on the seller to obtain insurance against the risk of loss or damage to the buyer during carriage. The seller delivers the goods on board the vessel or at a named port of destination, with the buyer bearing all costs and risks from that point onwards."
             },
             {
@@ -113,7 +113,7 @@
                 "acronym": "CPT",
                 "costStage": 5,
                 "riskStage": 2,
-                "safetyStage": 2,
+                "insuranceStage": 2,
                 "freightDetails": "Factory responsibility",
                 "modal": "Any modal",
                 "moreDetails": "Carriage Paid To (CPT) means that the seller delivers the goods to a carrier or other person nominated by the seller at an agreed place, and the seller must contract for and pay the carriage costs necessary to bring the goods to the named place of destination."
@@ -124,40 +124,41 @@
                 "acronym": "CIP",
                 "costStage": 5,
                 "riskStage": 2,
-                "safetyStage": 5,
+                "insuranceStage": 5,
                 "freightDetails": "Factory responsibility",
                 "modal": "Any modal",
                 "moreDetails": "Carriage and Insurance Paid To (CIP) requires the seller to deliver the goods to a carrier or other person nominated by the seller at an agreed place, and the seller must contract for and pay the carriage costs necessary to bring the goods to the named place of destination. In addition, the seller must obtain insurance against the risk of loss or damage to the buyer during carriage."
             },
             {
                 "id": 8,
-                "name": "Delivered at Place Unloaded",
-                "acronym": "DPU",
-                "costStage": 6,
-                "riskStage": 6,
-                "safetyStage": 6,
-                "freightDetails": "Factory responsibility",
-                "modal": "Any modal",
-                "moreDetails": "Delivered at Place Unloaded (DPU) means that the seller delivers the goods, cleared for import, to the buyer at the named place of destination. The seller is responsible for all costs and risks associated with transporting the goods to that place, including duties, taxes and other charges."
-            },
-            {
-                "id": 9,
                 "name": "Delivered at Place",
                 "acronym": "DAP",
                 "costStage": 7,
                 "riskStage": 7,
-                "safetyStage": 7,
+                "insuranceStage": 7,
                 "freightDetails": "Factory responsibility",
                 "modal": "Any modal",
                 "moreDetails": "Delivered at Place (DAP) means that the seller delivers the goods, cleared for import, to the buyer at the named place of destination. The seller bears all risks and costs associated with transporting the goods to that place, including duties, taxes and other charges."
             },
+            {
+                "id": 9,
+                "name": "Delivered at Place Unloaded",
+                "acronym": "DPU",
+                "costStage": 6,
+                "riskStage": 6,
+                "insuranceStage": 6,
+                "freightDetails": "Factory responsibility",
+                "modal": "Any modal",
+                "moreDetails": "Delivered at Place Unloaded (DPU) means that the seller delivers the goods, cleared for import, to the buyer at the named place of destination. The seller is responsible for all costs and risks associated with transporting the goods to that place, including duties, taxes and other charges."
+            },
+           
             {
                 "id": 10,
                 "name": "Delivered Duty Paid",
                 "acronym": "DDP",
                 "costStage": 7,
                 "riskStage": 7,
-                "safetyStage": 7,
+                "insuranceStage": 7,
                 "freightDetails": "Factory responsibility",
                 "modal": "Any modal",
                 "moreDetails": "Delivered Duty Paid (DDP) means that the seller is responsible for all costs and risks associated with delivering the goods to the named place of destination, including payment of import duties and taxes. The seller is obliged to make delivery of the goods at the named place of destination."
@@ -290,7 +291,7 @@
                 "acronym": "EXW",
                 "costStage": 0,
                 "riskStage": 0,
-                "safetyStage": 0,
+                "insuranceStage": 0,
                 "freightDetails": "Responsabilidad de la fábrica",
                 "modal": "Cualquier modal",
                 "moreDetails": "Ex Works (EXW) coloca la máxima responsabilidad al comprador, incluidos todos los costos de transporte, riesgos y despacho de exportación e importación. El vendedor sólo es responsable de poner la mercancía a disposición en sus instalaciones o en otro lugar designado (fábrica, almacén, etc.). El comprador corre con todos los costos y riesgos involucrados en llevar la mercancía al destino deseado."
@@ -301,7 +302,7 @@
                 "acronym": "FCA",
                 "costStage": 1,
                 "riskStage": 1,
-                "safetyStage": 1,
+                "insuranceStage": 1,
                 "freightDetails": "Responsabilidad de la fábrica",
                 "modal": "Cualquier modal",
                 "moreDetails": "Free Carrier (FCA) significa que el vendedor entrega la mercancía, liberada para la exportación, al transportista designado por el comprador en el lugar designado. El vendedor es responsable de cargar la mercancía en el vehículo de recogida del comprador. El comprador es responsable de todos los riesgos y costos posteriores a este punto, incluida la descarga en sus instalaciones."
@@ -312,7 +313,7 @@
                 "acronym": "FAS",
                 "costStage": 2,
                 "riskStage": 2,
-                "safetyStage": 2,
+                "insuranceStage": 2,
                 "freightDetails": "Responsabilidad de la fábrica",
                 "modal": "Vía fluvial",
                 "moreDetails": "Free Alongside Ship (FAS) requiere que el vendedor entregue las mercancías junto al barco designado por el comprador en el puerto de envío designado. El vendedor debe liberar la mercancía para su exportación. El comprador corre con todos los costos y riesgos de pérdida o daño a partir de ese momento."
@@ -323,7 +324,7 @@
                 "acronym": "FOB",
                 "costStage": 3,
                 "riskStage": 3,
-                "safetyStage": 3,
+                "insuranceStage": 3,
                 "freightDetails": "Responsabilidad de la fábrica",
                 "modal": "Vía fluvial",
                 "moreDetails": "Free On Board (FOB) significa que el vendedor entrega las mercancías, liberadas para la exportación, a bordo del buque designado por el comprador en el puerto de embarque designado. El vendedor es responsable de todos los costos y riesgos hasta que la mercancía se carga en el barco."
@@ -334,7 +335,7 @@
                 "acronym": "CFR",
                 "costStage": 4,
                 "riskStage": 3,
-                "safetyStage": 3,
+                "insuranceStage": 3,
                 "freightDetails": "Responsabilidad de la fábrica",
                 "modal": "Vía fluvial",
                 "moreDetails": "Cost and Freight (CFR) requiere que el vendedor entregue la mercancía a bordo del barco o en un puerto de destino designado. El vendedor debe liberar la mercancía para la exportación, mientras que el comprador es responsable de todos los costos y riesgos a partir de ese momento."
@@ -345,7 +346,7 @@
                 "acronym": "CIF",
                 "costStage": 4,
                 "riskStage": 3,
-                "safetyStage": 4,
+                "insuranceStage": 4,
                 "freightDetails": "Responsabilidad de la fábrica",
                 "modal": "Vía fluvial",
                 "moreDetails": "Cost, Insurance and Freight (CIF) coloca al vendedor la responsabilidad adicional de obtener un seguro contra el riesgo de pérdida o daño al comprador durante el transporte. El vendedor entrega la mercancía a bordo del barco o en un puerto de destino determinado, asumiendo el comprador todos los costos y riesgos a partir de ese momento."
@@ -356,7 +357,7 @@
                 "acronym": "CPT",
                 "costStage": 5,
                 "riskStage": 2,
-                "safetyStage": 2,
+                "insuranceStage": 2,
                 "freightDetails": "Responsabilidad de la fábrica",
                 "modal": "Cualquier modal",
                 "moreDetails": "Carriage Paid To (CPT) significa que el vendedor entrega los bienes a un transportista u otra persona designada por el vendedor en un lugar acordado, y el vendedor debe organizar y pagar los costos de transporte necesarios para llevar los bienes al lugar de destino designado."
@@ -367,32 +368,33 @@
                 "acronym": "CIP",
                 "costStage": 5,
                 "riskStage": 2,
-                "safetyStage": 5,
+                "insuranceStage": 5,
                 "freightDetails": "Responsabilidad de la fábrica",
                 "modal": "Cualquier modal",
                 "moreDetails": "Carriage and Insurance Paid To (CIP) requiere que el vendedor entregue los bienes a un transportista u otra persona designada por el vendedor en un lugar acordado, y el vendedor debe organizar y pagar los costos de transporte necesarios para llevar los bienes al lugar designado. de destino. Además, el vendedor debe obtener un seguro contra el riesgo de pérdida o daño del comprador durante el transporte."
             },
+         
             {
                 "id": 8,
-                "name": "Delivered at Place Unloaded - Entregado en Lugar Descargado",
-                "acronym": "DPU",
-                "costStage": 6,
-                "riskStage": 6,
-                "safetyStage": 6,
-                "freightDetails": "Responsabilidad de la fábrica",
-                "modal": "Cualquier modal",
-                "moreDetails": "Delivered at Place Unloaded (DPU) significa que el vendedor entrega la mercancía, liberada para la importación, al comprador en el lugar de destino acordado. El vendedor es responsable de todos los costos y riesgos asociados con el transporte de la mercancía a ese lugar, incluidos aranceles, impuestos y otros cargos."
-            },
-            {
-                "id": 9,
                 "name": "Delivered at Place - Entregado en el lugar",
                 "acronym": "DAP",
                 "costStage": 7,
                 "riskStage": 7,
-                "safetyStage": 7,
+                "insuranceStage": 7,
                 "freightDetails": "Responsabilidad de la fábrica",
                 "modal": "Cualquier modo",
                 "moreDetails": "Delivered at Place (DAP) significa que el vendedor entrega la mercancía, liberada para la importación, al comprador en el lugar de destino acordado. El vendedor asume todos los riesgos y costos asociados con el transporte de la mercancía a ese lugar, incluidos honorarios, impuestos y otros cargos."
+            },
+            {
+                "id": 9,
+                "name": "Delivered at Place Unloaded - Entregado en Lugar Descargado",
+                "acronym": "DPU",
+                "costStage": 6,
+                "riskStage": 6,
+                "insuranceStage": 6,
+                "freightDetails": "Responsabilidad de la fábrica",
+                "modal": "Cualquier modal",
+                "moreDetails": "Delivered at Place Unloaded (DPU) significa que el vendedor entrega la mercancía, liberada para la importación, al comprador en el lugar de destino acordado. El vendedor es responsable de todos los costos y riesgos asociados con el transporte de la mercancía a ese lugar, incluidos aranceles, impuestos y otros cargos."
             },
             {
                 "id": 10,
@@ -400,7 +402,7 @@
                 "acronym": "DDP",
                 "costStage": 7,
                 "riskStage": 7,
-                "safetyStage": 7,
+                "insuranceStage": 7,
                 "freightDetails": "Responsabilidad de la fábrica",
                 "modal": "Cualquier modal",
                 "moreDetails": " Delivered Duty Paid (DDP) significa que el vendedor es responsable de todos los gastos y riesgos asociados con la entrega de los bienes al lugar de destino designado, incluido el pago de impuestos y aranceles de importación. El vendedor está obligado a entregar la mercancía en el lugar de destino convenido."
@@ -532,7 +534,7 @@
                 "acronym": "EXW",
                 "costStage": 0,
                 "riskStage": 0,
-                "safetyStage": 0,
+                "insuranceStage": 0,
                 "freightDetails": "Responsabilidade da fábrica",
                 "modal": "Qualquer modal",
                 "moreDetails": "Ex Works (EXW) coloca a máxima responsabilidade sobre o comprador, incluindo todos os custos de transporte, riscos e liberação de exportação e importação. O vendedor é apenas responsável por disponibilizar as mercadorias em suas instalações ou outro local nomeado (fábrica, armazém, etc.). O comprador arca com todos os custos e riscos envolvidos em levar as mercadorias até o destino desejado."
@@ -543,7 +545,7 @@
                 "acronym": "FCA",
                 "costStage": 1,
                 "riskStage": 1,
-                "safetyStage": 1,
+                "insuranceStage": 1,
                 "freightDetails": "Responsabilidade da fábrica",
                 "modal": "Qualquer modal",
                 "moreDetails": "Free Carrier (FCA) significa que o vendedor entrega as mercadorias, liberadas para exportação, ao transportador nomeado pelo comprador no local nomeado. O vendedor é responsável por carregar as mercadorias no veículo coletor do comprador. O comprador é responsável por todos os riscos e custos após este ponto, incluindo o descarregamento em suas instalações."
@@ -554,7 +556,7 @@
                 "acronym": "FAS",
                 "costStage": 2,
                 "riskStage": 2,
-                "safetyStage": 2,
+                "insuranceStage": 2,
                 "freightDetails": "Responsabilidade da fábrica",
                 "modal": "Aquaviário",
                 "moreDetails": "Free Alongside Ship (FAS) requer que o vendedor entregue as mercadorias ao lado do navio nomeado pelo comprador no porto nomeado de embarque. O vendedor deve liberar as mercadorias para exportação. O comprador arca com todos os custos e riscos de perda ou dano a partir desse momento."
@@ -565,7 +567,7 @@
                 "acronym": "FOB",
                 "costStage": 3,
                 "riskStage": 3,
-                "safetyStage": 3,
+                "insuranceStage": 3,
                 "freightDetails": "Responsabilidade da fábrica",
                 "modal": "Aquaviário",
                 "moreDetails": "Free On Board (FOB) significa que o vendedor entrega as mercadorias, liberadas para exportação, a bordo do navio nomeado pelo comprador no porto nomeado de embarque. O vendedor é responsável por todos os custos e riscos até que as mercadorias sejam carregadas no navio."
@@ -576,7 +578,7 @@
                 "acronym": "CFR",
                 "costStage": 4,
                 "riskStage": 3,
-                "safetyStage": 3,
+                "insuranceStage": 3,
                 "freightDetails": "Responsabilidade da fábrica",
                 "modal": "Aquaviário",
                 "moreDetails": "Cost and Freight (CFR) requer que o vendedor entregue as mercadorias a bordo do navio ou a um porto de destino nomeado. O vendedor deve liberar as mercadorias para exportação, enquanto o comprador é responsável por todos os custos e riscos a partir desse ponto."
@@ -587,7 +589,7 @@
                 "acronym": "CIF",
                 "costStage": 4,
                 "riskStage": 3,
-                "safetyStage": 4,
+                "insuranceStage": 4,
                 "freightDetails": "Responsabilidade da fábrica",
                 "modal": "Aquaviário",
                 "moreDetails": "Cost, Insurance and Freight (CIF) coloca responsabilidade adicional sobre o vendedor para obter seguro contra o risco de perda ou dano ao comprador durante o transporte. O vendedor entrega as mercadorias a bordo do navio ou a um porto de destino nomeado, com o comprador arrependendo todos os custos e riscos a partir desse momento."
@@ -597,8 +599,8 @@
                 "name": "Carriage Paid To - Transporte pago até",
                 "acronym": "CPT",
                 "costStage": 5,
-                "riskStage": 2,
-                "safetyStage": 2,
+                "riskStage": 1,
+                "insuranceStage": 1,
                 "freightDetails": "Responsabilidade da fábrica",
                 "modal": "Qualquer modal",
                 "moreDetails": "Carriage Paid To (CPT) significa que o vendedor entrega as mercadorias a um transportador ou outra pessoa nomeada pelo vendedor em um local acordado, e o vendedor deve contratar e pagar os custos de transporte necessários para levar as mercadorias ao local nomeado de destino."
@@ -607,34 +609,35 @@
                 "id": 7,
                 "name": "Carriage and Insurance Paid To - Transporte e seguro pagos até",
                 "acronym": "CIP",
-                "costStage": 5,
-                "riskStage": 2,
-                "safetyStage": 5,
+                "costStage": 4,
+                "riskStage": 1,
+                "insuranceStage": 4,
                 "freightDetails": "Responsabilidade da fábrica",
                 "modal": "Qualquer modal",
                 "moreDetails": "Carriage and Insurance Paid To (CIP) requer que o vendedor entregue as mercadorias a um transportador ou outra pessoa nomeada pelo vendedor em um local acordado, e o vendedor deve contratar e pagar os custos de transporte necessários para levar as mercadorias ao local nomeado de destino. Além disso, o vendedor deve obter seguro contra o risco de perda ou dano ao comprador durante o transporte."
             },
+            
             {
                 "id": 8,
-                "name": "Delivered at Place Unloaded - Entregue no local desembarcado",
-                "acronym": "DPU",
-                "costStage": 6,
-                "riskStage": 6,
-                "safetyStage": 6,
-                "freightDetails": "Responsabilidade da fábrica",
-                "modal": "Qualquer modal",
-                "moreDetails": "Delivered at Place Unloaded (DPU) significa que o vendedor entrega as mercadorias, liberadas para importação, ao comprador no local nomeado de destino. O vendedor é responsável por todos os custos e riscos associados ao transporte das mercadorias até esse local, incluindo taxas, impostos e outras cobranças."
-            },
-            {
-                "id": 9,
                 "name": "Delivered at Place - Entregue no local",
                 "acronym": "DAP",
                 "costStage": 7,
                 "riskStage": 7,
-                "safetyStage": 7,
+                "insuranceStage": 7,
                 "freightDetails": "Responsabilidade da fábrica",
                 "modal": "Qualquer modal",
                 "moreDetails": "Delivered at Place (DAP) significa que o vendedor entrega as mercadorias, liberadas para importação, ao comprador no local nomeado de destino. O vendedor arca com todos os riscos e custos associados ao transporte das mercadorias até esse local, incluindo taxas, impostos e outras cobranças."
+            },
+            {
+                "id": 9,
+                "name": "Delivered at Place Unloaded - Entregue no local desembarcado",
+                "acronym": "DPU",
+                "costStage": 6,
+                "riskStage": 6,
+                "insuranceStage": 6,
+                "freightDetails": "Responsabilidade da fábrica",
+                "modal": "Qualquer modal",
+                "moreDetails": "Delivered at Place Unloaded (DPU) significa que o vendedor entrega as mercadorias, liberadas para importação, ao comprador no local nomeado de destino. O vendedor é responsável por todos os custos e riscos associados ao transporte das mercadorias até esse local, incluindo taxas, impostos e outras cobranças."
             },
             {
                 "id": 10,
@@ -642,7 +645,7 @@
                 "acronym": "DDP",
                 "costStage": 7,
                 "riskStage": 7,
-                "safetyStage": 7,
+                "insuranceStage": 7,
                 "freightDetails": "Responsabilidade da fábrica",
                 "modal": "Qualquer modal",
                 "moreDetails": "Delivered Duty Paid (DDP) significa que o vendedor é responsável por todas as despesas e riscos associados à entrega das mercadorias ao local nomeado de destino, incluindo o pagamento de impostos e taxas de importação. O vendedor é obrigado a fazer a entrega das mercadorias no local nomeado de destino."

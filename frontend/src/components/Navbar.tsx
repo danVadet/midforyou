@@ -1,14 +1,11 @@
 import styles from './Navbar.module.css'
-import { useEffect, useRef, useState } from 'react'
-import listLang from '../listLanginNavbar.json'
+import { useContext, useEffect, useRef, useState } from 'react'
+import { LanguageContext } from '../Context/LanguageContext';
+import LanguageSelector from './LanguageSelector';
+import  multiLang  from '../multiLang.json';
 
 interface INavbarProps {
   scrollToSection: (elementRef: React.RefObject<HTMLDivElement>) => void
-
-  home: string;
-  about: string;
-  container: string;
-  contact: string;
 
   homeRef: React.RefObject<HTMLDivElement>;
   aboutRef: React.RefObject<HTMLDivElement>;
@@ -16,31 +13,31 @@ interface INavbarProps {
   conteinersRef: React.RefObject<HTMLDivElement>;
   mapRef: React.RefObject<HTMLDivElement>;
   contactRef: React.RefObject<HTMLDivElement>;
-
 }
 
 interface NavItems {
   id: number
-  name: string
   ref: React.RefObject<HTMLDivElement>;
+  name: string
 }
 
 
 const Navbar = (props: INavbarProps) => {
 
+  const { language, setLanguage } = useContext(LanguageContext);
+
   const navItems: NavItems[] = [
-    { id: 1, name: `${props.home}`, ref: props.homeRef },
-    { id: 2, name: `${props.about}`, ref: props.aboutRef },
-    { id: 3, name: 'Incoterms', ref: props.incotermsRef },
-    { id: 4, name: `${props.container}`, ref: props.conteinersRef },
-    {id: 5, name: "Portos do Brasil", ref: props.mapRef},
-    { id: 6, name: `${props.contact}`, ref: props.contactRef },
+
+    { id: 1,  ref: props.homeRef , name: `${(language === "pt" && `${multiLang.pt.home}`) || (language === "en"  && `${multiLang.en.home}`) ||( language === "es" && `${multiLang.es.home}`)}` },
+    { id: 2, ref: props.aboutRef, name: `${(language === "pt" && `${multiLang.pt.about}`) || (language === "en"  && `${multiLang.en.about}`) ||( language === "es" && `${multiLang.es.about}`)}` },
+    { id: 3,  ref: props.incotermsRef, name: 'Incoterms' },
+    {id: 4, ref: props.conteinersRef, name: `${(language === "pt" && `${multiLang.pt.container}`) || (language === "en"  && `${multiLang.en.container}`) ||( language === "es" && `${multiLang.es.container}`)}` },
+    {id: 5,  ref: props.mapRef, name: "Portos do Brasil",},
+    {id: 6, ref: props.contactRef, name: `${(language === "pt" && `${multiLang.pt.contact}`) || (language === "en"  && `${multiLang.en.contact}`) ||( language === "es" && `${multiLang.es.contact}`)}` },
 
   ]
+
   const [activeLink, setActiveLink] = useState<number>(0);
-  const [activeLinkLang, setActiveLinkLang] = useState<number>(0);
-
-
   const [mobileMenu, setMobileMenu] = useState(false);
   const navRef = useRef<HTMLDivElement>(null);
 
@@ -73,7 +70,6 @@ const Navbar = (props: INavbarProps) => {
   useEffect(() => {
 
     const observer = new IntersectionObserver(([entry]) => {
-
       if (entry.isIntersecting) {
         switch (entry.target) {
           case props.homeRef.current:
@@ -115,12 +111,6 @@ const Navbar = (props: INavbarProps) => {
     }
   }, [props.homeRef, props.aboutRef, props.incotermsRef, props.conteinersRef, props.contactRef])
 
-
-  const onClickLang = (index: number) => {
-    window.onbeforeunload = null
-    console.log(index);
-  }
-
   useEffect(() => {
     
     const handleOutSideClick = (event: { target: any }) => {
@@ -136,10 +126,8 @@ const Navbar = (props: INavbarProps) => {
     };
   }, [navRef]);
 
-
   return (
     <nav>
-
       <div ref={navRef} className={`${styles.hamburger} ${mobileMenu ? styles.active : ''}`} onClick={() => setMobileMenu(!mobileMenu)}>
         <span className={`${styles.bar}`}></span>
         <span className={`${styles.bar}`}></span>
@@ -156,12 +144,9 @@ const Navbar = (props: INavbarProps) => {
             <a className={activeLink === index + 1 ? `${styles.activeLink}` : ""} onClick={() => handleLinkClick(index + 1)}>{navItem.name}</a>
           </li>
         ))}
-
-        {listLang.map((lang, index) => (
-          <li key={lang.id} className={`${styles.listLanguage}`}>
-          <a href={`${lang.link}`} className={activeLinkLang === index + 1  ? styles.activeLang : ''} onClick={() => onClickLang(index) }><img src={`${lang.image}`} width={35} height={35} /></a>
-          </li>
-        ))}
+        <li>
+          <LanguageSelector setLanguage={setLanguage}/>
+        </li>
       </ul>
     </nav>
   );

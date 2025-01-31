@@ -5,7 +5,7 @@ export interface Incoterm {
     acronym: string,
     costStage: number,
     riskStage: number,
-    safetyStage: number,
+    insuranceStage: number,
     freightDetails: string,
     modal: string,
     moreDetails: string

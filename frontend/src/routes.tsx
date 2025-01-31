@@ -2,27 +2,26 @@ import {Route, BrowserRouter as Router, Routes, useLocation } from 'react-router
 import Main from './pages/Main';
 import  multiLang  from './multiLang.json';
 import TaxModal from './components/TaxModal';
+import { LanguageContext} from './Context/LanguageContext';
 import { useState } from 'react';
-import ITaxKeys from './models/ITaxKeys';
-
 
 const RoutesProvider = () => {
 
-      const [openTaxModal, setOpenTaxModal] = useState(false);
 
       const location = useLocation();
       const previousLocation = location.state?.previousLocation;
+      const [language, setLanguage] = useState("pt");
+
+
+    
 
   
     return (
       <>
-  
-       <Routes location={previousLocation}>
-            <Route path='/en' element={ <Main 
-            home={ multiLang.en.home}
-            about= { multiLang.en.about}
-            container= {multiLang.en.container}
-            contact= {multiLang.en.contact}
+      <LanguageContext.Provider  value={{language, setLanguage}}>
+      <Routes location={previousLocation}>
+
+      <Route path='/en' element={ <Main 
             bannerInfo1= {multiLang.en.bannerInfo1}
             bannerInfo2= {multiLang.en.bannerInfo2}
             aboutInfo1= {multiLang.en.aboutInfo1}
@@ -41,27 +40,6 @@ const RoutesProvider = () => {
            destinationPort={multiLang.en.destinationPort}
            destinationPlace={multiLang.en.destinationPlace}
            destination={multiLang.en.destination}
-           enterName={multiLang.en.enterName}
-           nameRequiredContainer={multiLang.en.nameRequiredContainer}
-           enterQuantity={multiLang.en.enterQuantity}
-           quantityRequiredContainer={multiLang.en.quantityRequiredContainer}
-           enterPeso={multiLang.en.enterPeso}
-           pesoRequiredContainer={multiLang.en.pesoRequiredContainer}
-           enterVolume={multiLang.en.enterVolume}
-           volumeRequiredContainer={multiLang.en.volumeRequiredContainer}
-           buttonAdd={multiLang.en.buttonAdd}
-           searchProduct={multiLang.en.searchProduct}
-           productNotAdded={multiLang.en.productNotAdded}
-           productQuantity={multiLang.en.productQuantity}
-           productUniPeso={multiLang.en.productUniPeso}
-           productUniVolume={multiLang.en.productUniVolume}
-           productTotalPeso={multiLang.en.productTotalPeso}
-           productTotalVolume={multiLang.en.productTotalPeso}
-           pesoTotal={multiLang.en.pesoTotal}
-           volumeTotal={multiLang.en.volumeTotal}
-           selectContainer={multiLang.en.selectContainer}
-           pesoCapicity={multiLang.en.pesoCapacity}
-           cubCapacicity={multiLang.en.cubCapacity}
            incoterms={multiLang.en.incoterms}
            iconsIcoterm={multiLang.en.iconsIcoterms}
            costLabel={multiLang.en.costLabel} 
@@ -91,84 +69,7 @@ const RoutesProvider = () => {
           messageRequiredContact={multiLang.en.messageRequiredContact}
           buttonSend={multiLang.en.buttonSend}
           buttonSending={multiLang.en.buttonSending} />}  />
-            <Route path='/es' element={ <Main 
-            home={multiLang.es.home}
-            about= {multiLang.es.about}
-            container= {multiLang.es.container}
-            contact= {`${multiLang.es.contact}`}
-            bannerInfo1= {multiLang.es.bannerInfo1}
-            bannerInfo2= {multiLang.es.bannerInfo2}
-            aboutInfo1= {multiLang.es.aboutInfo1}
-            aboutInfo2= {multiLang.es.aboutInfo2}
-            aboutInfo3= {multiLang.es.aboutInfo3}
-            aboutInfo4= {multiLang.es.aboutInfo4}
-            card_1_title= {multiLang.es.card_1_title}
-            card_1_description= {multiLang.es.card_1_description}
-            card_2_title= {multiLang.es.card_2_title}
-            card_2_description= {multiLang.es.card_2_description}
-            card_3_title= {multiLang.es.card_3_title}
-           card_3_description={multiLang.es.card_3_description}
-           card_4_title= {multiLang.es.card_4_title}
-           card_4_description= {multiLang.es.card_4_description}
-           loadCalculator={multiLang.es.loadCalculator}
-           enterName={multiLang.es.enterName}
-           nameRequiredContainer={multiLang.es.nameRequiredContainer}
-           enterQuantity={multiLang.es.enterQuantity}
-           quantityRequiredContainer={multiLang.es.quantityRequiredContainer}
-           enterPeso={multiLang.es.enterPeso}
-           pesoRequiredContainer={multiLang.es.pesoRequiredContainer}
-           enterVolume={multiLang.es.enterVolume}
-           volumeRequiredContainer={multiLang.es.volumeRequiredContainer}
-           buttonAdd={multiLang.es.buttonAdd}
-           searchProduct={multiLang.es.searchProduct}
-           productNotAdded={multiLang.es.productNotAdded}
-           productQuantity={multiLang.es.productQuantity}
-           productUniPeso={multiLang.es.productUniPeso}
-           productUniVolume={multiLang.es.productUniVolume}
-           productTotalPeso={multiLang.es.productTotalPeso}
-           productTotalVolume={multiLang.es.productTotalVolume}
-           pesoTotal={multiLang.es.pesoTotal}
-           volumeTotal={multiLang.es.volumeTotal}
-           selectContainer={multiLang.es.selectContainer}
-           pesoCapicity={multiLang.es.pesoCapacity}
-           cubCapacicity={multiLang.es.cubCapacity}
-           iconsIcoterm={multiLang.es.iconsIcoterms}
-           incoterms={multiLang.es.incoterms}
-           costLabel={multiLang.es.costLabel} 
-           riskLabel={multiLang.es.riskLabel} 
-           insuranceLabel={multiLang.es.insuranceLabel}
-           seller={multiLang.es.seller}
-           agreedPlace={multiLang.es.agreedPlace}
-           loadPort={multiLang.es.loadPort}
-           destinationPort={multiLang.es.destinationPort}
-           destinationPlace={multiLang.es.destinationPlace}
-           destination={multiLang.es.destination}
-           freight={multiLang.es.freight}
-           modal={multiLang.es.modal}
-           moreDetails={multiLang.es.moreDetails}   
-          contactTitle={multiLang.es.contactTitle}
-          imageLegend={multiLang.es.imageLegend}
-          enterFullName={multiLang.es.enterFullName}
-          fullNameRequiredContact={multiLang.es.fullNameRequiredContact}
-          enterPhone={multiLang.es.enterPhone}
-          phoneRequiredContact={multiLang.es.phoneRequiredContact}
-          enterEmail={multiLang.es.enterEmail}
-          emailRequiredContact={multiLang.es.emailRequiredContact}
-          enterCompanyName={multiLang.es.enterCompanyName}
-          companyNameRequiredContact={multiLang.es.companyNameRequiredContact}
-          enterRamoAtividade={multiLang.es.enterRamoAtividade}
-          ramoAtividadeRequiredContact={multiLang.es.ramoAividadeRequiredContact}
-          enterLocal={multiLang.es.enterLocal}
-          localRequiredContact={multiLang.es.localRequiredContact}
-          enterMessage={multiLang.es.enterMessage}
-          messageRequiredContact={multiLang.es.messageRequiredContact}
-          buttonSend={multiLang.es.buttonSend}
-          buttonSending={multiLang.es.buttonSending} />}  />
             <Route path='/' element={<Main 
-          home={multiLang.pt.home}
-          about= {multiLang.pt.about}
-          container= {multiLang.pt.container}
-          contact= {multiLang.pt.contact}
           bannerInfo1= {multiLang.pt.bannerInfo1}
           bannerInfo2= {multiLang.pt.bannerInfo2}
           aboutInfo1= {multiLang.pt.aboutInfo1}
@@ -184,27 +85,6 @@ const RoutesProvider = () => {
          card_4_title= {multiLang.pt.card_4_title}
          card_4_description= {multiLang.pt.card_4_description}
          loadCalculator={multiLang.pt.loadCalculator}
-         enterName={multiLang.pt.enterName}
-         nameRequiredContainer={multiLang.pt.nameRequiredContainer}
-         enterQuantity={multiLang.pt.enterQuantity}
-         quantityRequiredContainer={multiLang.pt.quantityRequiredContainer}
-         enterPeso={multiLang.pt.enterPeso}
-         pesoRequiredContainer={multiLang.pt.pesoRequiredContainer}
-         enterVolume={multiLang.pt.enterVolume}
-         volumeRequiredContainer={multiLang.pt.volumeRequiredContainer}
-         buttonAdd={multiLang.pt.buttonAdd}
-         searchProduct={multiLang.pt.searchProduct}
-         productNotAdded={multiLang.pt.productNotAdded}
-         productQuantity={multiLang.pt.productQuantity}
-         productUniPeso={multiLang.pt.productUniPeso}
-         productUniVolume={multiLang.pt.productUniVolume}
-         productTotalPeso={multiLang.pt.productTotalPeso}
-         productTotalVolume={multiLang.pt.productTotalVolume}
-         pesoTotal={multiLang.pt.pesoTotal}
-         volumeTotal={multiLang.pt.volumeTotal}
-         selectContainer={multiLang.pt.selectContainer}
-         pesoCapicity={multiLang.pt.pesoCapacity}
-         cubCapacicity={multiLang.pt.cubCapacity}
          iconsIcoterm={multiLang.pt.iconsIcoterms}
          incoterms= {multiLang.pt.incoterms}
         costLabel={multiLang.pt.costLabel} 
@@ -238,16 +118,19 @@ const RoutesProvider = () => {
         buttonSend={multiLang.pt.buttonSend}
         buttonSending={multiLang.pt.buttonSending} />
       
+    
       }  
         />
+                  <Route path="/:code" element={<TaxModal />} />
+
                 
 
 
         </Routes>
+      </LanguageContext.Provider>
+  
+      
 
-        <Routes>
-          <Route path="/:code" element={<TaxModal />} />
-        </Routes>
       </>
    
     );

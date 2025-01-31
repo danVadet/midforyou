@@ -47,24 +47,6 @@ nav ul li a:hover::before {
     color: rgb(3, 0, 199);
 }
 
-
-nav ul .listLanguage a {
-    margin: 5px;
-
-}
-.listLanguage .activeLang {
-    border: 2px solid rgb(0, 175, 239);
-}
-
-
-nav ul .listLanguage :hover {
-    border-bottom: 0;
-}
-
-
-
-
-
 @media screen and (max-width: 768px) {
 
     .navLogoContainer {
