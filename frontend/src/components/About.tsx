@@ -1,26 +1,19 @@
+import { useContext } from 'react';
 import styles from './About.module.css'
 import AboutServices from './AboutServices';
+import { LanguageContext } from '../Context/LanguageContext';
+import  multiLang  from '../multiLang.json';
+
 
 interface IAboutProps {
     
-    aboutInfo1: string;
-    aboutInfo2: string;
-    aboutInfo3: string;
-    aboutInfo4: string;
-    card_1_title: string;
-   card_1_description: string;
-   card_2_title: string;
-   card_2_description: string;
-   card_3_title: string;
-   card_3_description: string;
-   card_4_title: string;
-   card_4_description: string;  
    aboutRef:  React.RefObject<HTMLDivElement>; 
 
 }
 const About = ( props: IAboutProps) => {
 
-    
+    const { language, setLanguage } = useContext(LanguageContext);
+
     return (
 
         <>
@@ -30,27 +23,19 @@ const About = ( props: IAboutProps) => {
 
             <div className={`${styles.aboutContainer}`}>
             <div className={`${styles.aboutTextContainer}`}>
-                <h1>{props.aboutInfo1}</h1>
+                <h1>{`${`${(language === "pt" && `${multiLang.pt.aboutInfo1}`) || (language === "en"  && `${multiLang.en.aboutInfo1}`) ||( language === "es" && `${multiLang.es.aboutInfo1}`)}`}`}</h1>
                 <p>
-                    {props.aboutInfo2}
+                    {`${`${(language === "pt" && `${multiLang.pt.aboutInfo2}`) || (language === "en"  && `${multiLang.en.aboutInfo2}`) ||( language === "es" && `${multiLang.es.aboutInfo2}`)}`}`}
                     <br />
                     <br />
-                     {props.aboutInfo3}
+                     {`${`${(language === "pt" && `${multiLang.pt.aboutInfo3}`) || (language === "en"  && `${multiLang.en.aboutInfo3}`) ||( language === "es" && `${multiLang.es.aboutInfo3}`)}`}`}
                     <br />
                     <br />
-                    {props.aboutInfo4}
+                    {`${`${(language === "pt" && `${multiLang.pt.aboutInfo4}`) || (language === "en"  && `${multiLang.en.aboutInfo4}`) ||( language === "es" && `${multiLang.es.aboutInfo1}`)}`}`}
                    </p>
             </div>
            </div>
-           <AboutServices card_1_title={props.card_1_title} 
-                                   card_1_description={props.card_1_description} 
-                                   card_2_title={props.card_2_title} 
-                                   card_2_description={props.card_2_description}
-                                   card_3_title={props.card_3_title}
-                                   card_3_description={props.card_3_description}
-                                   card_4_title={props.card_4_title}
-                                   card_4_description={props.card_4_description}
-                                    />
+           <AboutServices/>
 
             </div>
         

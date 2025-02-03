@@ -1,45 +1,36 @@
 import styles from './AboutServices.module.css'
 import AboutServiceCard from './AboutServiceCard';
+import { useContext } from 'react';
+import { LanguageContext } from '../Context/LanguageContext';
+import  multiLang  from '../multiLang.json';
 
-interface IAboutServicesProps {
+const AboutServices = () => {
 
-  card_1_title: string;
-  card_1_description: string;
-  card_2_title: string;
-  card_2_description: string;
-  card_3_title: string;
-  card_3_description: string;
-  card_4_title: string;
-  card_4_description: string;
-}
-
-const AboutServices = (props: IAboutServicesProps) => {
+  const { language, setLanguage } = useContext(LanguageContext);
 
   return (
     <>
       <div className={`${styles.about_services_component}`}>
-
         <AboutServiceCard
           imageUrl={`./assets/Acessoria comercial internacional.jpg`}
           imagePosition='left'
-          title={props.card_1_title}
-          description={props.card_1_description} />
+          title={`${(language === "pt" && `${multiLang.pt.card_1_title}`) || (language === "en"  && `${multiLang.en.card_1_title}`) ||( language === "es" && `${multiLang.es.card_1_title}`)}`}
+          description={`${(language === "pt" && `${multiLang.pt.card_1_description}`) || (language === "en"  && `${multiLang.en.card_1_description}`) ||( language === "es" && `${multiLang.es.card_1_description}`)}`} />
         <AboutServiceCard
           imageUrl={`./assets/Análise Aduaneira.jpg`}
           imagePosition='right'
-          title={props.card_2_title}
-          description={props.card_2_description} />
+          title={`${(language === "pt" && `${multiLang.pt.card_2_title}`) || (language === "en"  && `${multiLang.en.card_2_title}`) ||( language === "es" && `${multiLang.es.card_2_title}`)}`}
+          description={`${(language === "pt" && `${multiLang.pt.card_2_description}`) || (language === "en"  && `${multiLang.en.card_2_description}`) ||( language === "es" && `${multiLang.es.card_2_description}`)}`} />
         <AboutServiceCard
           imageUrl={`./assets/Importação e Exportação.jpg`}
           imagePosition='left'
-          title={props.card_3_title}
-          description={props.card_3_description} />
+          title={`${(language === "pt" && `${multiLang.pt.card_3_title}`) || (language === "en"  && `${multiLang.en.card_3_title}`) ||( language === "es" && `${multiLang.es.card_3_title}`)}`}
+          description={`${(language === "pt" && `${multiLang.pt.card_3_description}`) || (language === "en"  && `${multiLang.en.card_3_description}`) ||( language === "es" && `${multiLang.es.card_3_description}`)}`} />
         <AboutServiceCard
           imageUrl={`./assets/Laboratório de Qualidade.jpg`}
           imagePosition='right'
-          title={props.card_4_title}
-          description={props.card_4_description} />
-
+          title={`${(language === "pt" && `${multiLang.pt.card_4_title}`) || (language === "en"  && `${multiLang.en.card_4_title}`) ||( language === "es" && `${multiLang.es.card_4_title}`)}`}
+          description={`${(language === "pt" && `${multiLang.pt.card_4_description}`) || (language === "en"  && `${multiLang.en.card_4_description}`) ||( language === "es" && `${multiLang.es.card_4_description}`)}`} />
       </div>
     </>
   );

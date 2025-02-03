@@ -1,15 +1,15 @@
 import styles from './Banner.module.css';
 import slides from '../slides.json'
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
+import { LanguageContext } from '../Context/LanguageContext';
+import  multiLang  from '../multiLang.json';
 
-interface IBannerProps {
-  bannerInfo1: string;
-  bannerInfo2: string;
-}
 
-const Banner = (props: IBannerProps) => {
+const Banner = () => {
 
   const [currentIndex, setCurrentIndex] = useState(0);
+  const { language, setLanguage } = useContext(LanguageContext);
+  
 
   useEffect (() => {
     const autoPlay = setTimeout(() => {
@@ -36,8 +36,8 @@ const Banner = (props: IBannerProps) => {
         ( index  === currentIndex  && <div key={index} className={`${styles.bannerImage}`} style={{backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${slide.url})`}}>
 
          <div className={`${styles.bannerText}`}>
-              <h1> {props.bannerInfo1}</h1>
-              <h3>{props.bannerInfo2}</h3>
+              <h1>   {`${`${(language === "pt" && `${multiLang.pt.bannerInfo1}`) || (language === "en"  && `${multiLang.en.bannerInfo1}`) ||( language === "es" && `${multiLang.es.bannerInfo1}`)}`}`}</h1>
+              <h3>   {`${`${(language === "pt" && `${multiLang.pt.bannerInfo2}`) || (language === "en"  && `${multiLang.en.bannerInfo2}`) ||( language === "es" && `${multiLang.es.bannerInfo2}`)}`}`}</h3>
     
               </div>  
 
