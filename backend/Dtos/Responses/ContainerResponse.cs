@@ -1,5 +1,7 @@
 
 
+using backend.Models;
+
 public class ContainerResponse {
     public int id  { get; set; }
 
@@ -10,5 +12,8 @@ public class ContainerResponse {
     public float  capacidadePeso { get; set; }
 
     public float  capacidadeVolume { get; set; }
+
+    
+    public List <Product> products { get; set; }
 
 }

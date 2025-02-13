@@ -7,7 +7,10 @@ public interface IPortRepository {
     public Task<List<PortMarker>> GetAllAsync();
     public Task<List<PortMarker>> GetAllPortsByState();
 
+    public Task<int> GetAllPortsAir();
     public Task<int> GetAllPortsAirByState(int stateId);
+
+    public Task<int> GetAllPortsSea();
     public Task<int> GetAllPortsSeaByState(int stateId);
 
     public Task<List<PortMarker>> GetAllPortsById(int id);

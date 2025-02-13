@@ -55,7 +55,12 @@ public class PortService : IPortService
             var markers = await _portRepository.GetPortByState(stateId);
 
             return _mapper.Map<List <PortMarkerResponse>>(markers);
+    }
 
+    public Task<int> GetAllPortsAir()
+    {
+
+       return _portRepository.GetAllPortsAir();
 
     }
 
@@ -63,6 +68,14 @@ public class PortService : IPortService
     {
         return _portRepository.GetAllPortsAirByState(stateId);
     }
+    public Task<int> GetAllPortsSea()
+    {
+      
+       return _portRepository.GetAllPortsSea();
+    }
+
+
+   
     public Task<int> GetAllPortsSeaByState(int stateId) 
 
     {

@@ -1,11 +1,15 @@
 import styles from './Navbar.module.css'
 import { useContext, useEffect, useRef, useState } from 'react'
-import { LanguageContext } from '../Context/LanguageContext';
-import LanguageSelector from './LanguageSelector';
-import  multiLang  from '../multiLang.json';
+import LangaugeLink from './LanguageLink';
 
 interface INavbarProps {
   scrollToSection: (elementRef: React.RefObject<HTMLDivElement>) => void
+
+  home: string;
+  about: string;
+  container: string;
+  contact: string;
+  brazilPorts: string;
 
   homeRef: React.RefObject<HTMLDivElement>;
   aboutRef: React.RefObject<HTMLDivElement>;
@@ -24,16 +28,14 @@ interface NavItems {
 
 const Navbar = (props: INavbarProps) => {
 
-  const { language, setLanguage } = useContext(LanguageContext);
-
   const navItems: NavItems[] = [
 
-    { id: 1,  ref: props.homeRef , name: `${(language === "pt" && `${multiLang.pt.home}`) || (language === "en"  && `${multiLang.en.home}`) ||( language === "es" && `${multiLang.es.home}`)}` },
-    { id: 2, ref: props.aboutRef, name: `${(language === "pt" && `${multiLang.pt.about}`) || (language === "en"  && `${multiLang.en.about}`) ||( language === "es" && `${multiLang.es.about}`)}` },
+    { id: 1,  ref: props.homeRef , name: `${props.home}` },
+    { id: 2, ref: props.aboutRef, name: `${props.about}` },
     { id: 3,  ref: props.incotermsRef, name: 'Incoterms' },
-    {id: 4, ref: props.conteinersRef, name: `${(language === "pt" && `${multiLang.pt.container}`) || (language === "en"  && `${multiLang.en.container}`) ||( language === "es" && `${multiLang.es.container}`)}` },
-    {id: 5,  ref: props.mapRef, name: "Portos do Brasil",},
-    {id: 6, ref: props.contactRef, name: `${(language === "pt" && `${multiLang.pt.contact}`) || (language === "en"  && `${multiLang.en.contact}`) ||( language === "es" && `${multiLang.es.contact}`)}` },
+    {id: 4, ref: props.conteinersRef, name: `${props.container}` },
+    {id: 5,  ref: props.mapRef, name: `${props.brazilPorts}`,},
+    {id: 6, ref: props.contactRef, name: `${props.contact}` },
 
   ]
 
@@ -135,7 +137,7 @@ const Navbar = (props: INavbarProps) => {
       </div>
 
       <div className={`${styles.navLogoContainer}`}>
-        <img src={`logo.png`} alt="" height={40} />
+        <img  src={`logo.png`} alt="" height={40} />
       </div>
       <ul className={mobileMenu ? '' : `${styles.hideMobileMenu}`}>
 
@@ -144,9 +146,10 @@ const Navbar = (props: INavbarProps) => {
             <a className={activeLink === index + 1 ? `${styles.activeLink}` : ""} onClick={() => handleLinkClick(index + 1)}>{navItem.name}</a>
           </li>
         ))}
-        <li>
-          <LanguageSelector setLanguage={setLanguage}/>
-        </li>
+
+         <LangaugeLink to='/'> <img src={`./assets/brazil-flag.png`} width={35} height={35} /> </LangaugeLink>
+         <LangaugeLink to='/en'>  <img src={`./assets/english-flag.png`} width={35} height={35} /></LangaugeLink>
+         <LangaugeLink to='/es'> <img src={`./assets/spanish-flag.png`} width={35} height={35} /> </LangaugeLink>
       </ul>
     </nav>
   );

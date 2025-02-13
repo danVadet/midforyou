@@ -6,19 +6,47 @@ import DeleteProductModal from './DeleteProductModal';
 import { Product } from '../models/Product';
 import { Container } from '../models/Container';
 import Message from './Message';
-import  multiLang  from '../multiLang.json';
 
-import { LanguageContext } from '../Context/LanguageContext';
 
 interface IContainerProps {
-    conteinersRef: React.RefObject<HTMLDivElement>
+    conteinersRef: React.RefObject<HTMLDivElement>,
+    loadCalculator: string;
+    enterName: string;
+    nameRequiredContainer: string;
+    enterQuantity: string;
+    quantityRequiredContainer: string;
+    enterLength: string;
+    lengthRequiredContainer: string;
+    enterWidth: string;
+    widthRequiredContainer: string;
+    enterHeight: string;
+    heightRequiredContainer: string;
+    enterPeso: string;
+    pesoRequiredContainer: string;
+    buttonAdd: string;
+    searchProduct: string;
+    productNotAdded: string;
+    productQuantity: string;
+    productUniPeso: string;
+    productUniVolume: string;
+    productTotalPeso: string;
+    productTotalVolume: string;
+    pesoTotal: string;
+    volumeTotal: string;
+    selectContainer: string;
+    pesoCapicity: string;
+    cubCapacicity: string;
+    totalCargoPeso: string;
+    totalCargoVolume: string;
 }
 
 interface IValues {
     nome: string;
     quantidade: string;
+    length: string,
+    width: string,
+    height: string;
     peso: string;
-    volume: string;
 }
 
 interface IErrors extends Partial<IValues> { }
@@ -39,6 +67,9 @@ const Conteiner = (props: IContainerProps) => {
         id: 0,
         nome: "",
         quantidade: 0,
+        length: 0,
+        width: 0,
+        height: 0,
         peso: 0,
         volume: 0,
         pesoTotal: 0,
@@ -66,13 +97,13 @@ const Conteiner = (props: IContainerProps) => {
     const [pctPeso, setPctPeso] = useState(0)
     const [progressPeso, setProgressPeso] = useState(0)
 
-    const { language, setLanguage } = useContext(LanguageContext);
-
 
     const handleChange = (e: React.FormEvent) => {
         const target = e.target as HTMLInputElement;
         setProduct({ ...product, [target.name]: target.value })
     }
+    
+  
     const handleChangeSelectContainer = async (e: React.ChangeEvent<HTMLSelectElement>) => {
         const value = e.target.value;
 
@@ -95,6 +126,7 @@ const Conteiner = (props: IContainerProps) => {
 
                 setPctPeso(responsePeso.data);
 
+
                 setProgressPeso(val => {
                     const newVal = val + 10
                     return newVal > 100 ? 100 : parseInt(responsePeso.data);
@@ -114,23 +146,35 @@ const Conteiner = (props: IContainerProps) => {
         setSearchProduct(value);
     }
     const validate = (product: Product) => {
-        const errors: { nome?: string; quantidade?: string; peso?: string; volume?: string; } = {};
+        const errors: { nome?: string; quantidade?: string;  length?: string; width?: string; height?: string;   peso?: string; } = {};
 
         if (!product.nome) {
-            errors.nome = `${(language === "pt" && `${multiLang.pt.nameRequiredContainer}`) || (language === "en"  && `${multiLang.en.nameRequiredContainer}`) ||( language === "es" && `${multiLang.es.nameRequiredContainer}`)}`;
+            errors.nome = `${props.nameRequiredContainer}`;
         }
 
         if (!product.quantidade) {
-            errors.quantidade = `${(language === "pt" && `${multiLang.pt.quantityRequiredContainer}`) || (language === "en"  && `${multiLang.en.quantityRequiredContainer}`) ||( language === "es" && `${multiLang.es.quantityRequiredContainer}`)}`
+            errors.quantidade = `${props.quantityRequiredContainer}`
+        }
+
+        if(!product.length) {
+            errors.length = `${props.lengthRequiredContainer}`
+        }
+
+       if(!product.width) {
+        errors.width = `${props.widthRequiredContainer}`
+
+        }
+
+
+        if (!product.height) {
+            errors.height = `${props.heightRequiredContainer}`
         }
 
         if (!product.peso) {
-            errors.peso = `${(language === "pt" && `${multiLang.pt.pesoRequiredContainer}`) || (language === "en"  && `${multiLang.en.pesoRequiredContainer}`) ||( language === "es" && `${multiLang.es.pesoRequiredContainer}`)}`;
+            errors.peso = `${props.pesoRequiredContainer}`;
         }
 
-        if (!product.volume) {
-            errors.volume = `${(language === "pt" && `${multiLang.pt.volumeRequiredContainer}`) || (language === "en"  && `${multiLang.en.volumeRequiredContainer}`) ||( language === "es" && `${multiLang.es.volumeRequiredContainer}`)}`
-        }
+       
 
         return errors;
     }
@@ -143,11 +187,14 @@ const Conteiner = (props: IContainerProps) => {
             const response = await axios.post(`http://localhost:5077/products/addProduct`, {
                 nome: product.nome,
                 quantidade: product.quantidade,
+                length: product.length,
+                width: product.width,
+                height: product.height,
                 peso: product.peso,
                 volume: product.volume,
             });
             console.log(response.data);
-            setProduct({ id: 0, nome: "", quantidade: 0, peso: 0, volume: 0, pesoTotal: 0, volumeTotal: 0 })
+            setProduct({ id: 0, nome: "", quantidade: 0, length: 0, width: 0, height: 0, peso: 0, volume: 0, pesoTotal: 0, volumeTotal: 0 })
             setErrors({});
             getProducts();
             getSumPesoTotal();
@@ -179,7 +226,9 @@ const Conteiner = (props: IContainerProps) => {
         const response = await axios.get(`http://localhost:5077/products/${id}`);
         console.log(response.data);
         setCurrentProduct(response.data);
+        setContainer(container)
         if (!openDeleteModal) {
+
             setOpenDeleteModal(true);
         } else {
             showDeleteMessage();
@@ -253,28 +302,35 @@ const Conteiner = (props: IContainerProps) => {
         <section ref={props.conteinersRef}>
             <div className={`${styles.conteinerComponent}`}>
                 <div className={`${styles.container}`}>
-                    <h1>{`${(language === "pt" && `${multiLang.pt.loadCalculator}`) || (language === "en"  && `${multiLang.en.loadCalculator}`) ||( language === "es" && `${multiLang.es.loadCalculator}`)}`}</h1>
+                    <h1>{props.loadCalculator}</h1>
 
                     <form onSubmit={(e) => handleSubmit(e)} className={`${styles.formContainer}`}>
-                        <input type="text" name="nome" value={product.nome || ""} className={product.nome ? "" : `${errors.nome && `${styles.invalid}`}`} placeholder={`${(language === "pt" && `${multiLang.pt.enterName}`) || (language === "en"  && `${multiLang.en.enterName}`) ||( language === "es" && `${multiLang.es.enterName}`)}`} onChange={(e) => handleChange(e)} />
+                        <input type="text" name="nome" value={product.nome || ""} className={product.nome ? "" : `${errors.nome && `${styles.invalid}`}`} placeholder={`${props.enterName}`} onChange={(e) => handleChange(e)} />
                         {product.nome ? "" : errors.nome && <p className={styles.nameError}>{`${errors.nome}`}</p>}
 
-                        <input type="number" name="quantidade" value={product.quantidade || ""} className={product.quantidade ? "" : `${errors.quantidade && `${styles.invalid}`}`} placeholder={`${(language === "pt" && `${multiLang.pt.enterQuantity}`) || (language === "en"  && `${multiLang.en.enterQuantity}`) ||( language === "es" && `${multiLang.es.enterQuantity}`)}`} onChange={(e) => handleChange(e)} />
+                        <input type="number" name="quantidade" value={product.quantidade || ""} className={product.quantidade ? "" : `${errors.quantidade && `${styles.invalid}`}`}  placeholder={`${props.enterQuantity}`} onChange={(e) => handleChange(e)} />
                         {product.quantidade ? "" : errors.quantidade && <p className={styles.quantityError}>{`${errors.quantidade}`}</p>}
 
-                        <input type="number" name="peso" value={product.peso || ""} className={product.peso ? "" : `${errors.peso && `${styles.invalid}`}`} placeholder={`${(language === "pt" && `${multiLang.pt.enterPeso}`) || (language === "en"  && `${multiLang.en.enterPeso}`) ||( language === "es" && `${multiLang.es.enterPeso}`)}`} onChange={(e) => handleChange(e)} />
+                        <input type="number" name="length" value={product.length || ""} className={product.length ? "" : `${errors.quantidade && `${styles.invalid}`}`} placeholder={`${props.enterLength}`} onChange={(e) => handleChange(e)} />
+                        {product.length ? "" : errors.length && <p className={styles.quantityError}>{`${errors.length}`}</p>}
+                         
+                        <input type="number" name="width" value={product.width || ""} className={product.width ? "" : `${errors.quantidade && `${styles.invalid}`}`} placeholder={`${props.enterWidth}`} onChange={(e) => handleChange(e)} />
+                        {product.width ? "" : errors.width && <p className={styles.quantityError}>{`${errors.width}`}</p>}
+
+                        <input type="number" name="height" value={product.height || ""} className={product.height ? "" : `${errors.quantidade && `${styles.invalid}`}`}  placeholder={`${props.enterHeight}`} onChange={(e) => handleChange(e)} />
+                        {product.height ? "" : errors.height && <p className={styles.quantityError}>{`${errors.height}`}</p>}
+
+                       
+                        <input type="number" name="peso" value={product.peso || ""} className={product.peso ? "" : `${errors.peso && `${styles.invalid}`}`}  placeholder={`${props.enterPeso}`} onChange={(e) => handleChange(e)} />
                         {product.peso ? "" : errors.peso && <p className={styles.pesoError}>{`${errors.peso}`}</p>}
 
-                        <input type="number" name="volume" value={product.volume || ""} className={product.volume ? "" : `${errors.volume && `${styles.invalid}`}`} placeholder={`${(language === "pt" && `${multiLang.pt.enterVolume}`) || (language === "en"  && `${multiLang.en.enterVolume}`) ||( language === "es" && `${multiLang.es.enterVolume}`)}`} onChange={(e) => handleChange(e)} />
-                        {product.volume ? "" : errors.volume && <p className={styles.volumeError}>{`${errors.volume}`}</p>}
-
-                        <button>{`${(language === "pt" && `${multiLang.pt.buttonAdd}`) || (language === "en"  && `${multiLang.en.buttonAdd}`) ||( language === "es" && `${multiLang.es.buttonAdd}`)}`}</button>
+                        <button>{props.buttonAdd}</button>
                     </form>
 
                     <div className={`${styles.calculadoraContent}`}>
                         <div className={`${styles.left}`}>
                             <div className={`${styles.searchContent}`}>
-                                <input type="text" value={searchProduct} onChange={(e) => handleChangeSearch(e)} placeholder={`${(language === "pt" && `${multiLang.pt.searchProduct}`) || (language === "en"  && `${multiLang.en.searchProduct}`) ||( language === "es" && `${multiLang.es.searchProduct}`)}`} />
+                                <input type="text" value={searchProduct} onChange={(e) => handleChangeSearch(e)} placeholder={`${props.searchProduct}`} />
                             </div>
                             {submitMessage && <Message type='sucess' message='Produto adicionado com sucesso' />}
                             {editMessage && <Message type='sucess' message='Produto atualizado com sucesso' />}
@@ -283,21 +339,26 @@ const Conteiner = (props: IContainerProps) => {
 
                             <div className={`${styles.listProducts}`}>
 
-                                {products.length === 0 ? (<div>{`${(language === "pt" && `${multiLang.pt.productNotAdded}`) || (language === "en"  && `${multiLang.en.productNotAdded}`) ||( language === "es" && `${multiLang.es.productNotAdded}`)}`}</div>) : (
+                                {products.length === 0 ? (<div>{`${props.productNotAdded}`}</div>) : (
                                     products.map((product, index) => {
 
                                         return (
                                             <div className={`${styles.content}`} key={index}>
                                                 <div>{product.nome}</div>
+                                                <div className={`${styles.infoProduct}`}>
+                                                <div>Comprimento: {product.length}m</div>
+                                                    <div>Lagura:{product.width}m</div>
+                                                    <div>Altura:{product.height}m</div>
+                                                 </div>
 
                                                 <div className={`${styles.infoProduct}`}>
-                                                    <div>{`${(language === "pt" && `${multiLang.pt.productUniPeso}`) || (language === "en"  && `${multiLang.en.productUniPeso}`) ||( language === "es" && `${multiLang.es.productUniPeso}`)}: ${product.peso} kg`}</div>
-                                                    <div>{`${(language === "pt" && `${multiLang.pt.productUniVolume}`) || (language === "en"  && `${multiLang.en.productUniVolume}`) ||( language === "es" && `${multiLang.es.productUniVolume}`)}: ${product.volume} m³`}</div>
+                                                    <div>{`${props.productUniPeso}: ${product.peso} kg`}</div>
+                                                    <div>{`${props.productUniVolume}: ${product.volume} m³`}</div>
                                                 </div>
-                                                <div>{`${(language === "pt" && `${multiLang.pt.productQuantity}`) || (language === "en"  && `${multiLang.en.productQuantity}`) ||( language === "es" && `${multiLang.es.productQuantity}`)}: ${product.quantidade}`}</div>
+                                                <div>{`${props.productQuantity}: ${product.quantidade}`}</div>
                                                 <div className={`${styles.infoTotalProduct}`}>
-                                                    <div>{`${(language === "pt" && `${multiLang.pt.productTotalPeso}`) || (language === "en"  && `${multiLang.en.productTotalPeso}`) ||( language === "es" && `${multiLang.es.productTotalPeso}`)}: ${product.pesoTotal} kg`}</div>
-                                                    <div>{`${(language === "pt" && `${multiLang.pt.productTotalVolume}`) || (language === "en"  && `${multiLang.en.productTotalVolume}`) ||( language === "es" && `${multiLang.es.productTotalVolume}`)}: ${product.volumeTotal} m³`}</div>
+                                                    <div>{`${props.productTotalPeso}: ${product.pesoTotal} kg`}</div>
+                                                    <div>{`${props.productTotalVolume}: ${product.volumeTotal} m³`}</div>
                                                 </div>
 
                                                 {openEditModal && <EditProductModal
@@ -328,33 +389,32 @@ const Conteiner = (props: IContainerProps) => {
                             </div>
 
                             <div className={`${styles.totalContainer}`}>
-                                <h3>{`${(language === "pt" && `${multiLang.pt.pesoTotal}`) || (language === "en"  && `${multiLang.en.pesoTotal}`) ||( language === "es" && `${multiLang.es.pesoTotal}`)}: ${sumPesoTotal} kg`}</h3>
-                                <h3>{`${(language === "pt" && `${multiLang.pt.volumeTotal}`) || (language === "en"  && `${multiLang.en.volumeTotal}`) ||( language === "es" && `${multiLang.es.volumeTotal}`)}: ${sumVolumeTotal} m³`}</h3>
+                                <h3>{`${props.pesoTotal}: ${sumPesoTotal} kg`}</h3>
+                                <h3>{`${props.volumeTotal}: ${sumVolumeTotal} m³`}</h3>
                             </div>
                         </div>
 
                         {<> <div className={`${styles.right}`}>
                             <div className={`${styles.info_container}`}>
                                 <select onChange={(e) => handleChangeSelectContainer(e)}>
-                                    <option hidden>{`${(language === "pt" && `${multiLang.pt.selectContainer}`) || (language === "en"  && `${multiLang.en.selectContainer}`) ||( language === "es" && `${multiLang.es.selectContainer}`)}`}</option>
+                                    <option hidden>{props.selectContainer}</option>
                                     {containers.map((container, index) => (
                                         <option value={container.id} key={index}>{container.name}</option>
                                     ))}
                                 </select>
 
                                 <h2>{container.name}</h2>
-                                <h2>{container.capacidadePeso ? `${(language === "pt" && `${multiLang.pt.pesoCapacity}`) || (language === "en"  && `${multiLang.en.pesoCapacity}`) ||( language === "es" && `${multiLang.es.pesoCapacity}`)}: ${container.capacidadePeso} kg` : `${(language === "pt" && `${multiLang.pt.pesoCapacity}`) || (language === "en"  && `${multiLang.en.pesoCapacity}`) ||( language === "es" && `${multiLang.es.pesoCapacity}`)}: 0  kg`}</h2>
-                                <h2>{container.capacidadeVolume ? `${(language === "pt" && `${multiLang.pt.cubCapacity}`) || (language === "en"  && `${multiLang.en.cubCapacity}`) ||( language === "es" && `${multiLang.es.cubCapacity}`)}: ${container.capacidadeVolume} m³` : `${(language === "pt" && `${multiLang.pt.cubCapacity}`) || (language === "en"  && `${multiLang.en.cubCapacity}`) ||( language === "es" && `${multiLang.es.cubCapacity}`)}: 0 m³`}</h2>
+                                <h3>{`${props.pesoCapicity}: ${container.capacidadePeso} kg`}</h3>
+                                <h3>{`${props.cubCapacicity}: ${container.capacidadeVolume} m³`}</h3>
                                 <img className={`${styles.containerImage}`} src={container.image ? `${container.image}` : `./assets/containerPlaceholder.png`} alt="" />
-
-
+                               
                                 {pctPeso <= 100 && pctVolume <= 100 ?
                                     <>
 
                                         <div style={{ textAlign: 'center' }}>
                                             <div style={{ display: 'flex', alignItems: 'center', gap: '8px', margin: '5px' }}>
                                                 <img src={`./assets/weight.png`} alt="" width={40} height={40} />
-                                                <h2>Peso total da carga</h2>
+                                                <h2>{props.totalCargoPeso}</h2>
 
 
                                             </div>
@@ -364,7 +424,7 @@ const Conteiner = (props: IContainerProps) => {
                                             <p>{pctPeso}%</p>
                                             <div style={{ display: 'flex', alignItems: 'center', gap: '8px', margin: '5px' }}>
                                                 <img src={`./assets/package.png`} width={40} height={40} alt="" />
-                                                <h2>Volume total da carga</h2>
+                                                <h2>{props.totalCargoVolume}</h2>
 
 
                                             </div>

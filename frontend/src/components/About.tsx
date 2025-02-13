@@ -3,11 +3,17 @@ import styles from './About.module.css'
 import AboutServices from './AboutServices';
 import { LanguageContext } from '../Context/LanguageContext';
 import  multiLang  from '../multiLang.json';
+import { IServices } from '../models/IServices';
 
 
 interface IAboutProps {
     
    aboutRef:  React.RefObject<HTMLDivElement>; 
+   aboutInfo1: string;
+   aboutInfo2: string;
+   aboutInfo3: string;
+   aboutInfo4: string;
+   services: IServices []
 
 }
 const About = ( props: IAboutProps) => {
@@ -23,19 +29,19 @@ const About = ( props: IAboutProps) => {
 
             <div className={`${styles.aboutContainer}`}>
             <div className={`${styles.aboutTextContainer}`}>
-                <h1>{`${`${(language === "pt" && `${multiLang.pt.aboutInfo1}`) || (language === "en"  && `${multiLang.en.aboutInfo1}`) ||( language === "es" && `${multiLang.es.aboutInfo1}`)}`}`}</h1>
+                <h1>{props.aboutInfo1}</h1>
                 <p>
-                    {`${`${(language === "pt" && `${multiLang.pt.aboutInfo2}`) || (language === "en"  && `${multiLang.en.aboutInfo2}`) ||( language === "es" && `${multiLang.es.aboutInfo2}`)}`}`}
+                    {props.aboutInfo2}
                     <br />
                     <br />
-                     {`${`${(language === "pt" && `${multiLang.pt.aboutInfo3}`) || (language === "en"  && `${multiLang.en.aboutInfo3}`) ||( language === "es" && `${multiLang.es.aboutInfo3}`)}`}`}
+                    {props.aboutInfo3}
                     <br />
                     <br />
-                    {`${`${(language === "pt" && `${multiLang.pt.aboutInfo4}`) || (language === "en"  && `${multiLang.en.aboutInfo4}`) ||( language === "es" && `${multiLang.es.aboutInfo1}`)}`}`}
+                    {props.aboutInfo4}
                    </p>
             </div>
            </div>
-           <AboutServices/>
+           <AboutServices services={props.services}/>
 
             </div>
         

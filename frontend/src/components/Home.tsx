@@ -5,6 +5,10 @@ import Tax from "./Tax";
 
 interface IHomeProps {
 
+    bannerInfo1: string;
+    bannerInfo2: string;
+    lang: string;
+
     homeRef: React.RefObject<HTMLDivElement>;
 }
 
@@ -13,8 +17,8 @@ const Home = (props: IHomeProps) => {
 
     return (
         <section ref={props.homeRef}>
-                   <Tax></Tax>
-                   <Banner></Banner>
+                   <Tax  lang={props.lang}/>
+                   <Banner bannerInfo1={props.bannerInfo1} bannerInfo2={props.bannerInfo2} />
         </section>
     )
 

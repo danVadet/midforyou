@@ -51,6 +51,16 @@ public class MarkerController : ControllerBase
       
         return Ok(markers);
         }
+
+    [HttpGet("markers/ports/air")]
+    public async Task<ActionResult<int>> getAllPortsAir()
+    {
+        var count = await _portService.GetAllPortsAir();
+
+      
+        return Ok(count);
+        }
+
         
          [HttpGet("markers/ports/{stateId}/air")]
     public async Task<ActionResult<int>> getAllPortsAirByState(int stateId)
@@ -60,6 +70,16 @@ public class MarkerController : ControllerBase
       
         return Ok(count);
         }
+        
+    [HttpGet("markers/ports/sea")]
+    public async Task<ActionResult<int>> getAllPortsSea()
+    {
+        var count = await _portService.GetAllPortsSea();
+
+      
+        return Ok(count);
+        }
+
 
          [HttpGet("markers/ports/{stateId}/sea")]
     public async Task<ActionResult<int>> getAllPortsBySea(int stateId)
@@ -69,6 +89,8 @@ public class MarkerController : ControllerBase
       
         return Ok(count);
         }
+
+    
         
          
     [HttpGet("markers/{stateId}/ports")]

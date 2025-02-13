@@ -21,6 +21,14 @@ public class ProductService : IProductService
     }
     public async Task CreateAsync(ProductRequest productRequest)
     {
+
+        var volume = productRequest.length * productRequest.width * productRequest.height;
+        var pesoTotal = productRequest.peso * productRequest.quantidade;
+        var volumeTotal = volume * productRequest.quantidade;
+
+        productRequest.volume = volume;
+        productRequest.pesoTotal = pesoTotal;
+        productRequest.volumeTotal =  volumeTotal;
         
       Product product  = _mapper.Map<Product>(productRequest);
       await  _productRepository.CreateAsync(product);
@@ -37,18 +45,19 @@ public class ProductService : IProductService
 
         Product currentProduct = await _productRepository.GetByIdAsync(id);
 
+            var volume = productRequest.length * productRequest.width * productRequest.height;
             var pesoTotal = productRequest.peso * productRequest.quantidade;
-            var volumeTotal = productRequest.volume * productRequest.quantidade;
+            var volumeTotal = volume * productRequest.quantidade;
             
-            productRequest.pesoTotal = pesoTotal;
-            productRequest.volumeTotal = volumeTotal;
-
             currentProduct.nome = productRequest.nome;
             currentProduct.quantidade = productRequest.quantidade;
             currentProduct.peso = productRequest.peso;
-            currentProduct.volume =  productRequest.volume;
-            currentProduct.pesoTotal =  productRequest.pesoTotal;
-            currentProduct.volumeTotal = productRequest.volumeTotal;
+            currentProduct.length = productRequest.length;
+            currentProduct.width = productRequest.width;
+            currentProduct.height = productRequest.height;
+            currentProduct.volume =  volume;
+            currentProduct.pesoTotal =  pesoTotal;
+            currentProduct.volumeTotal = volumeTotal;
             
         await _productRepository.UpdateAsync(currentProduct);
        

@@ -14,6 +14,7 @@ const AboutServiceCard = (props: IAboutServiceProps) => {
         <>
             <AboutServiceFadeContent>
                 <div className={`${styles.about_service_card_component}`}>
+
                     {props.imagePosition === 'left' &&
                         <div className={`${styles.about_service_card_wrapper_left}`}>
                             <div className={`${styles.image}`} >
@@ -27,6 +28,8 @@ const AboutServiceCard = (props: IAboutServiceProps) => {
                             </div>
                         </div>
                     }
+
+
 
                     {props.imagePosition === 'right' &&
                         <div className={`${styles.about_service_card_wrapper_right}`}>

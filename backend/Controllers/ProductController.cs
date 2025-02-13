@@ -22,7 +22,7 @@ public class ProductController : ControllerBase
         List <ProductResponse>  products = await _productService.GetAllAsync();
 
           if(!string.IsNullOrEmpty(search)) {
-            products = products.Where(p => p.nome.Contains(search)).ToList();
+            products = products.Where(p => p.nome.ToLower().StartsWith(search.ToLower())).ToList();
             return Ok(products);
         } else {
               return Ok(products);
@@ -52,11 +52,6 @@ public class ProductController : ControllerBase
     [HttpPost("products/addProduct")]
     public async Task<ActionResult> addProduct([FromBody] ProductRequest productRequest)
     {
-        var pesoTotal = productRequest.peso * productRequest.quantidade;
-        var volumeTotal = productRequest.volume * productRequest.quantidade;
-
-         productRequest.pesoTotal = pesoTotal;
-         productRequest.volumeTotal =  volumeTotal;
 
         if (productRequest == null){
             return BadRequest();
@@ -95,6 +90,7 @@ public class ProductController : ControllerBase
     public async Task<ActionResult> updateProduct(int id, [FromBody] ProductRequest productRequest)
     {
         ProductResponse productCurrent = await _productService.GetByIdAsync(id);
+
 
         if (productCurrent == null) {
             return NotFound("Product not found");

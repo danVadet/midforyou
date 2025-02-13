@@ -5,6 +5,12 @@ public class ProductRequest  {
 
     public int quantidade {get; set; }
 
+    public float length {get; set; }
+
+    public float width { get; set; }
+
+    public float height { get; set; }
+
     public float peso { get; set; }
 
     public float volume { get; set; }

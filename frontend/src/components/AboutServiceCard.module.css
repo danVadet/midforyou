@@ -75,20 +75,10 @@
     .about_service_card_component {
         padding: 1rem;
     }
-
     .about_service_card_wrapper_left {
-        flex-direction: column;
-        gap: 30px;
-        border: 1px solid #f5f5f5;
-        border-radius: 5px;
+        gap: 0;
     }
-
-    .about_service_card_wrapper_right {
-        flex-direction: column;
-        gap: 30px;
-        border: 1px solid #f5f5f5;
-        border-radius: 5px;
-    }
+    
 
     .informations_container {
        padding: 1rem;
@@ -96,13 +86,47 @@
 
     .title {
         text-align: center;
+        font-size: 20px;
     }
 
     .description {
         text-align: center;
+        font-size: 14px;
     }
 
-    .image {
-        display: none;
-    }
 }
+@media (max-width: 425px) {
+
+    .about_service_card_component {
+        padding: 1rem;
+    }
+    .about_service_card_wrapper_left {
+        gap: 0;
+    }
+    
+
+    .informations_container {
+       padding: 1rem;
+    }
+
+    .title {
+        text-align: center;
+        font-size: 20px;
+    }
+
+    .description {
+        text-align: center;
+        font-size: 18px;
+    }
+    .image {
+        width: 200px;
+        height: 180px;
+    }
+    .image img {
+        width: 200px;
+        height: 180px;
+
+    }
+
+}
+

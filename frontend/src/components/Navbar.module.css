@@ -43,7 +43,7 @@ nav ul li a::before {
 nav ul li a:hover::before {
     transform: scale(1, 1);
 }
-.activeLink, .activeLink:hover {
+.activeLink {
     color: rgb(3, 0, 199);
 }
 

@@ -8,12 +8,18 @@ import FormatCurrencyName from '../Library/FormatCurrencyName';
 import TaxModal from './TaxModal';
 import { Link, useLocation, useParams } from 'react-router-dom';
 
-const Tax = () => {
+interface   ITax {
+    lang: string;
+}
+
+
+const Tax = (props: ITax) => {
     
     const [openTaxModal, setOpenTaxModal] = useState(false);
     const [taxes, setTaxes] = useState<ITaxModel[]>([]);
     let [currentTax, setCurrentTax] = useState<ITaxModel>();
     const [loading, setLoading] = useState(true);
+
 
     const location = useLocation();
 
@@ -46,26 +52,8 @@ const Tax = () => {
             getTaxes();
 
             }, 1000); 
-
-
             return () => clearInterval(interval);
-
-
-
-            
-
-
-            
-        
-    }, 
-    
-   
-        
-    
-    
-    
-    
-    []);
+    }, []);
 
     return (
         <>
@@ -77,7 +65,7 @@ const Tax = () => {
                     { taxes.map((tax, index) => (
 
 <div key={index} className={`${styles.tax_unitComponent}`}>
-    <a href={`${tax.currencyCode}`} onClick={() => window.onbeforeunload = null } className={`${styles.s}`}>
+    <Link to={`${props.lang}/${tax.currencyCode}`} state={{previousLocation: location}} onClick={() => window.onbeforeunload = null } className={`${styles.s}`}>
         <div className={`${styles.currencyContainer}`}>
 
             <div className={`${styles.currency}`}>
@@ -93,8 +81,7 @@ const Tax = () => {
             </div>
         </div>
 
-    </a>
-    {openTaxModal && <TaxModal  currentTax={currentTax}  />}
+    </Link>
 
 </div>
 ))}

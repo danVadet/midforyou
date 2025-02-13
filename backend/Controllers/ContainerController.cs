@@ -59,10 +59,6 @@ public class ContainerController : ControllerBase
         Container container = await _applicationDbContext.Containers.FindAsync(id);
          List <Product> products = await  _applicationDbContext.Products.ToListAsync();
 
-        container.products = products;
-
-        _applicationDbContext.Containers.Add(container);
-
         var sumVolumeTotal = products.Sum(product => product.volumeTotal);
         var sumPesoTotal = products.Sum(product => product.pesoTotal);
 

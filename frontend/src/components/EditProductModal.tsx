@@ -14,10 +14,14 @@ interface IEditProductModalProps {
 
 const EditProductModal = (props : IEditProductModalProps) => {
 
+
     const [product, setProduct] = useState<Product>({
         id: props.currentProduct?.id || 0,
         nome: props.currentProduct?.nome || "",
         quantidade: props.currentProduct?.quantidade || 0,
+        length: props.currentProduct?.length || 0,
+        width: props.currentProduct?.width || 0,
+        height: props.currentProduct?.height || 0,
         peso: props.currentProduct?.peso || 0,
         volume: props.currentProduct?.volume || 0,
         pesoTotal: props.currentProduct?.pesoTotal || 0,
@@ -40,7 +44,9 @@ const EditProductModal = (props : IEditProductModalProps) => {
                 nome: product.nome,
                 quantidade: product.quantidade,
                 peso: product.peso,
-                volume: product.volume
+                length: product.length,
+                width: product.width,
+                height: product.height
             });
             
             console.log(response.data);
@@ -67,8 +73,12 @@ const EditProductModal = (props : IEditProductModalProps) => {
                     <input type="number" name="quantidade" value={product.quantidade} onChange={(e) => handleChange(e)} />
                     <label>Peso</label>
                     <input type="number" name="peso" value={product.peso} onChange={(e) => handleChange(e)} />
-                    <label>Volume</label>
-                    <input type="number" name="volume" value={product.volume} onChange={(e) => handleChange(e)} />
+                    <label>Comprimento</label>
+                    <input type="number" name="length" value={product.length} onChange={(e) => handleChange(e)} />
+                    <label>Lagura</label>
+                    <input type="number" name="width" value={product.width} onChange={(e) => handleChange(e)} />
+                    <label>Altura</label>
+                    <input type="number" name="height" value={product.height} onChange={(e) => handleChange(e)} />
                     <button>Atualizar o produto</button>
                 </form>
 

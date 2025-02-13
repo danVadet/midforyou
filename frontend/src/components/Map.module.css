@@ -1,10 +1,8 @@
 
-.mapContainer {
-   padding-top: 210px;
-}
+
 select {
     margin: 8px;
-    padding: 15px;
+    padding: 8px;
     border-radius: 5px;
     border: 0;
     outline: 0;
@@ -15,11 +13,9 @@ select:focus {
     border: 1.5px solid rgb(0, 175, 239);
 }
 .searchContent {
-    position: relative;
+    margin: 0 8px;
     border: 1px solid rgb(204, 204, 204);
     box-shadow: rgba(0, 0, 0, 0.12) 0px 2px 32px 0px;
-    margin: 40px;
-    padding: 8px;
     border-radius: 5px;
 }
 .portMapLabel {
@@ -29,35 +25,16 @@ select:focus {
      margin: 0 0 20px 0;
 }
 .mapContainer {
-    position: relative;
-    width: 90vw;
     height: 90vh; 
-    border-radius: 5px;
-    margin: 10px 100px
-}
-
-.airplane {
-    width: 280px;
-    position: absolute;
-    right: 10%;
-    bottom: 30px;
-}
-
-.ship {
-    width: 280px;
-    position: absolute;
-    left: 10%;
-    bottom: 20px;
+    margin: 10px 0;
 }
 .countInfo {
-    position: absolute;
-    right: 5%;
-    top: 1.5%;
+    margin: 0 8px;
     display: flex;
     gap: 5px;
-    padding: 5px;
-    border: 1px solid rgb(0, 0, 0);
-    background-color: rgba(255, 255, 255, 0.5);
+    padding:  30px;
+    border: 1px solid rgb(204, 204, 204);
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 2px 32px 0px;
     border-radius: 5px;
 }
 
@@ -72,4 +49,18 @@ select:focus {
 }
 .localContent {
     font-size: 18px;
+}
+
+@media screen and (max-width: 768px) {
+    .mapContainer {
+        height: 90vh; 
+        border-radius: 5px;
+        margin: 0;
+    }
+    .portImageContainer {
+        width: 280px;
+        height: 100px;
+        border-radius: 5px;
+    }
+
 }

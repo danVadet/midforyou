@@ -59,16 +59,32 @@ public class PortRepository : IPortRepository
 
       return  markers;
     }
+    public async Task<int> GetAllPortsAir()
+    {
+      
+        var markers = await _applicationDbContext.PortMarkers.Where(p => p.portType == PortType.AIR).ToListAsync();
+        return markers.Count();
+    }
      
-    
-        public async Task<int> GetAllPortsAirByState(int stateId)
+    public async Task<int> GetAllPortsAirByState(int stateId)
     {
 
-         var markers = await _applicationDbContext.PortMarkers.Where(p => p.portType == PortType.AIR && p.stateId == stateId).ToListAsync();
+        var markers = await _applicationDbContext.PortMarkers.Where(p => p.portType == PortType.AIR && p.stateId == stateId).ToListAsync();
         return markers.Count();
         
     }
-       public async Task<int> GetAllPortsSeaByState(int stateId)
+
+    
+    public async Task<int> GetAllPortsSea()
+    {
+        
+        var markers = await _applicationDbContext.PortMarkers.Where(p => p.portType == PortType.WATER).ToListAsync();
+        return markers.Count();
+     
+    }
+
+    
+    public async Task<int> GetAllPortsSeaByState(int stateId)
     {
 
          var markers = await _applicationDbContext.PortMarkers.Where(p => p.portType == PortType.WATER && p.stateId == stateId).ToListAsync();

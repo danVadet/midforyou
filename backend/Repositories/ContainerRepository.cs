@@ -34,6 +34,11 @@ public class ContainerRepository : IContainerRepository
     public async Task<Container> GetByIdAsync(int id)
     {
         Container container = await _applicationDbContext.Containers.FindAsync(id);
+        List <Product> products = await  _applicationDbContext.Products.ToListAsync();
+
+        container.products = products;
+
+        _applicationDbContext.Containers.Add(container);
         return container;
 
 

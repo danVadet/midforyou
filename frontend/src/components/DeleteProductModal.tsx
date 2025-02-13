@@ -2,6 +2,7 @@
 import axios from 'axios'
 import styles from './DeleteProductModal.module.css'
 import { Product } from '../models/Product'
+import { useState } from 'react';
 
 interface IDeleteProductModalProps {
     setShowDeleteMessage(): void;
@@ -14,8 +15,10 @@ interface IDeleteProductModalProps {
 
 }
 const DeleteProductModal = (props: IDeleteProductModalProps) => {
+
     
     const confirmDelete = async () => { 
+        
 
         const response = await axios.delete(`http://localhost:5077/products/${props.productCurrent?.id}`);
         console.log(response.data);  

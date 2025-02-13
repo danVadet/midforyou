@@ -10,10 +10,8 @@ import ITaxKeys from "../models/ITaxKeys";
 
 ChartJS.register(LineElement, CategoryScale, LinearScale, PointElement, Tooltip, Filler);
 
-interface ITaxModalProps {
-    currentTax?: ITaxModel
-}
-const TaxModal = (props: ITaxModalProps) => {
+
+const TaxModal = () => {
     const navigate = useNavigate();
 
 
@@ -226,6 +224,7 @@ const TaxModal = (props: ITaxModalProps) => {
                     </a>
 
                     <div className={`${styles.taxInfo}`}>
+
                     <p className={`${styles.taxInfo_title}`} >  {currentTax?.name && FormatCurrencyName({ key: currentTax?.name })}    </p>
                         <div className={`${styles.taxInfo_titles}`}>
                             <p>COMPRA</p>
@@ -248,7 +247,7 @@ const TaxModal = (props: ITaxModalProps) => {
 
                     <div className={`${styles.filterPeriod}`}>
                         <h5>FILTRAR PERÍODO</h5>
-                        <button onClick={() => setDays(0)} className={`${styles.selectPeriod}`}>  Hoje</button>
+                        <button onClick={() => setDays(1)} className={`${styles.selectPeriod}`}> 1 dia</button>
                         <button onClick={() => setDays(7)} className={`${styles.selectPeriod}`}>  1 semana</button>
                         <button onClick={() => setDays(30)} className={`${styles.selectPeriod}`}>  1 mês</button>
                         <button onClick={() => setDays(90)} className={`${styles.selectPeriod}`}>  3 meses </button>
