@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import IncotermsWrapper from "./Incoterms2.style";
 import { Incoterm } from "../models/Incoterm";
 import { IconIcoterm } from "../models/IconIcoterm";
-import TooltipIncoterm from "./TooltipIncoterm";
+import { TooltipIncoterm } from "./TooltipIncoterm";
 import styles from "./Incoterms.module.css";
 
 interface IProps {
@@ -17,7 +17,7 @@ interface IProps {
   moreDetails: string;
 }
 
-const Incoterms = (props: IProps) => {
+export const Incoterms = (props: IProps) => {
 
   const [selectedIncoterm, setSelectedIncoterm] = useState<Incoterm | undefined>({
                 id: props.incoterms[0].id,
@@ -183,13 +183,7 @@ const Incoterms = (props: IProps) => {
   </div>
 </IncotermsWrapper>
 
-
       </section>
-
-      
- 
      )
 
 }
-
-export default Incoterms;

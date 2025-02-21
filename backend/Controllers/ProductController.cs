@@ -33,8 +33,17 @@ public class ProductController : ControllerBase
     public async Task<ActionResult> getProductById(int id)
     {
         ProductResponse product = await _productService.GetByIdAsync(id);
-       return Ok(product);
+        return Ok(product);
     }
+
+    [HttpGet("totalQuantity")]
+    public async Task<ActionResult> getTotalQuantity()
+    {
+        List <ProductResponse>  products = await _productService.GetAllAsync();
+        var totalQuantity = products.Sum(product => product.quantidade);
+        return Ok(totalQuantity);
+    }
+
     [HttpGet("sumPesoTotal")]
     public async Task<ActionResult> getSumPesoTotal()
     {

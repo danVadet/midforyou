@@ -1,8 +1,7 @@
 import { useContext } from 'react';
 import styles from './About.module.css'
-import AboutServices from './AboutServices';
+import { AboutServices } from './AboutServices';
 import { LanguageContext } from '../Context/LanguageContext';
-import  multiLang  from '../multiLang.json';
 import { IServices } from '../models/IServices';
 
 
@@ -16,17 +15,13 @@ interface IAboutProps {
    services: IServices []
 
 }
-const About = ( props: IAboutProps) => {
+export const About = ( props: IAboutProps) => {
 
     const { language, setLanguage } = useContext(LanguageContext);
 
     return (
-
-        <>
-
         <section ref={props.aboutRef}>
             <div className={`${styles.aboutComponent}`}>
-
             <div className={`${styles.aboutContainer}`}>
             <div className={`${styles.aboutTextContainer}`}>
                 <h1>{props.aboutInfo1}</h1>
@@ -48,10 +43,6 @@ const About = ( props: IAboutProps) => {
 
 
         </section>
-        </>
-
     );
 
 }
-
-export default About;

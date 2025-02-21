@@ -2,7 +2,7 @@
 
 select {
     margin: 8px;
-    padding: 8px;
+    padding: 5px;
     border-radius: 5px;
     border: 0;
     outline: 0;
@@ -29,13 +29,10 @@ select:focus {
     margin: 10px 0;
 }
 .countInfo {
-    margin: 0 8px;
     display: flex;
+    align-items: center;
+    justify-content: center;
     gap: 5px;
-    padding:  30px;
-    border: 1px solid rgb(204, 204, 204);
-    box-shadow: rgba(0, 0, 0, 0.12) 0px 2px 32px 0px;
-    border-radius: 5px;
 }
 
 .portImageContainer {

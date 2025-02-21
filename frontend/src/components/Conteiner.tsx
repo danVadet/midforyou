@@ -1,11 +1,11 @@
 import styles from './Conteiner.module.css'
-import { useContext, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import axios from 'axios';
-import EditProductModal from './EditProductModal';
-import DeleteProductModal from './DeleteProductModal';
+import { EditProductModal } from './EditProductModal';
+import  { DeleteProductModal } from './DeleteProductModal';
 import { Product } from '../models/Product';
 import { Container } from '../models/Container';
-import Message from './Message';
+import { Message } from './Message';
 
 
 interface IContainerProps {
@@ -51,13 +51,15 @@ interface IValues {
 
 interface IErrors extends Partial<IValues> { }
 
-const Conteiner = (props: IContainerProps) => {
+export const Conteiner = (props: IContainerProps) => {
 
     const [submitMessage, setSubmitMessage] = useState(false);
     const [products, setProducts] = useState<Product[]>([]);
     const [containers, setContainers] = useState<Container[]>([]);
     const [sumPesoTotal, setSumPesoTotal] = useState(0);
     const [sumVolumeTotal, setSumVolumeTotal] = useState(0);
+    const [totalQuantity, setTotalQuantity] = useState(0);
+
     const [openEditModal, setOpenEditModal] = useState(false);
     const [editMessage, setEditMessage] = useState(false);
     const [openDeleteModal, setOpenDeleteModal] = useState(false);
@@ -79,7 +81,18 @@ const Conteiner = (props: IContainerProps) => {
     const [errors, setErrors] = useState<IErrors>({});
     const [searchProduct, setSearchProduct] = useState('');
     const [unsavedProduct, setUnsavedProduct] = useState(false);
-    const [currentProduct, setCurrentProduct] = useState<Product>();
+    const [currentProduct, setCurrentProduct] = useState<Product>({
+        id: 0,
+        nome: "",
+        quantidade: 0,
+        length: 0,
+        width: 0,
+        height: 0,
+        peso: 0,
+        volume: 0,
+        pesoTotal: 0,
+        volumeTotal: 0,
+    });
     const [container, setContainer] = useState<Container>({
         id: 0,
         name: "",
@@ -89,7 +102,6 @@ const Conteiner = (props: IContainerProps) => {
         products: []
 
     });
-    const [showContainerMessage, setShowContainerMessage] = useState<boolean>(false);
 
     const [pctVolume, setPctVolume] = useState(0)
     const [progressVolume, setProgressVolume] = useState(0)
@@ -116,7 +128,6 @@ const Conteiner = (props: IContainerProps) => {
                 const responseVolume = await axios.get(`http://localhost:5077/containers/capacity/${value}`);
 
                 setPctVolume(responseVolume.data);
-
                 setProgressVolume(val => {
                     const newVal = val + 10
                     return newVal > 100 ? 100 : parseInt(responseVolume.data);
@@ -125,16 +136,10 @@ const Conteiner = (props: IContainerProps) => {
                 const responsePeso = await axios.get(`http://localhost:5077/containers/capacityPeso/${value}`);
 
                 setPctPeso(responsePeso.data);
-
-
                 setProgressPeso(val => {
                     const newVal = val + 10
                     return newVal > 100 ? 100 : parseInt(responsePeso.data);
                 })
-                setShowContainerMessage(true);
-                setTimeout(() => {
-                    setShowContainerMessage(false);
-                }, 1000);
 
             }
         } catch (error) {
@@ -165,7 +170,6 @@ const Conteiner = (props: IContainerProps) => {
 
         }
 
-
         if (!product.height) {
             errors.height = `${props.heightRequiredContainer}`
         }
@@ -173,8 +177,6 @@ const Conteiner = (props: IContainerProps) => {
         if (!product.peso) {
             errors.peso = `${props.pesoRequiredContainer}`;
         }
-
-       
 
         return errors;
     }
@@ -193,10 +195,29 @@ const Conteiner = (props: IContainerProps) => {
                 peso: product.peso,
                 volume: product.volume,
             });
-            console.log(response.data);
+
+            if(container.id > 0) {
+                const responseVolume = await axios.get(`http://localhost:5077/containers/capacity/${container.id}`);
+
+                setPctVolume(responseVolume.data);
+                setProgressVolume(val => {
+                    const newVal = val + 10
+                    return newVal > 100 ? 100 : parseInt(responseVolume.data);
+                })
+    
+                const responsePeso = await axios.get(`http://localhost:5077/containers/capacityPeso/${container.id}`);
+    
+                setPctPeso(responsePeso.data);
+                setProgressPeso(val => {
+                    const newVal = val + 10
+                    return newVal > 100 ? 100 : parseInt(responsePeso.data);
+                })
+            }
+        
             setProduct({ id: 0, nome: "", quantidade: 0, length: 0, width: 0, height: 0, peso: 0, volume: 0, pesoTotal: 0, volumeTotal: 0 })
             setErrors({});
             getProducts();
+            getTotalQuantity();
             getSumPesoTotal();
             getSumVolumeTotal();
 
@@ -210,11 +231,13 @@ const Conteiner = (props: IContainerProps) => {
         const response = await axios.get(`http://localhost:5077/products/${id}`);
         console.log(response.data);
         setCurrentProduct(response.data);
+      
         if (!openEditModal) {
             setOpenEditModal(true);
         } else {
             showEditMessage();
         }
+
     }
     const showEditMessage = () => {
         setEditMessage(true);
@@ -224,14 +247,13 @@ const Conteiner = (props: IContainerProps) => {
     }
     const handleDeleteProduct = async (id: number) => {
         const response = await axios.get(`http://localhost:5077/products/${id}`);
-        console.log(response.data);
         setCurrentProduct(response.data);
-        setContainer(container)
-        if (!openDeleteModal) {
 
+        if (!openDeleteModal) {
             setOpenDeleteModal(true);
         } else {
             showDeleteMessage();
+
         }
     }
     const showDeleteMessage = () => {
@@ -250,6 +272,14 @@ const Conteiner = (props: IContainerProps) => {
                 const response = await axios.get(`http://localhost:5077/products`);
                 setProducts(response.data);
             }
+        } catch (error) {
+            console.log(error);
+        }
+    }
+    const getTotalQuantity = async () => {
+        try {
+            const response = await axios.get(`http://localhost:5077/totalQuantity`);
+            setTotalQuantity(response.data);
         } catch (error) {
             console.log(error);
         }
@@ -291,6 +321,7 @@ const Conteiner = (props: IContainerProps) => {
             deleteAllProducts();
         } else {
             getProducts();
+            getTotalQuantity();
             getSumPesoTotal();
             getSumVolumeTotal();
             getContainers();
@@ -308,9 +339,6 @@ const Conteiner = (props: IContainerProps) => {
                         <input type="text" name="nome" value={product.nome || ""} className={product.nome ? "" : `${errors.nome && `${styles.invalid}`}`} placeholder={`${props.enterName}`} onChange={(e) => handleChange(e)} />
                         {product.nome ? "" : errors.nome && <p className={styles.nameError}>{`${errors.nome}`}</p>}
 
-                        <input type="number" name="quantidade" value={product.quantidade || ""} className={product.quantidade ? "" : `${errors.quantidade && `${styles.invalid}`}`}  placeholder={`${props.enterQuantity}`} onChange={(e) => handleChange(e)} />
-                        {product.quantidade ? "" : errors.quantidade && <p className={styles.quantityError}>{`${errors.quantidade}`}</p>}
-
                         <input type="number" name="length" value={product.length || ""} className={product.length ? "" : `${errors.quantidade && `${styles.invalid}`}`} placeholder={`${props.enterLength}`} onChange={(e) => handleChange(e)} />
                         {product.length ? "" : errors.length && <p className={styles.quantityError}>{`${errors.length}`}</p>}
                          
@@ -324,6 +352,9 @@ const Conteiner = (props: IContainerProps) => {
                         <input type="number" name="peso" value={product.peso || ""} className={product.peso ? "" : `${errors.peso && `${styles.invalid}`}`}  placeholder={`${props.enterPeso}`} onChange={(e) => handleChange(e)} />
                         {product.peso ? "" : errors.peso && <p className={styles.pesoError}>{`${errors.peso}`}</p>}
 
+                        <input type="number" name="quantidade" value={product.quantidade || ""} className={product.quantidade ? "" : `${errors.quantidade && `${styles.invalid}`}`}  placeholder={`${props.enterQuantity}`} onChange={(e) => handleChange(e)} />
+                        {product.quantidade ? "" : errors.quantidade && <p className={styles.quantityError}>{`${errors.quantidade}`}</p>}
+
                         <button>{props.buttonAdd}</button>
                     </form>
 
@@ -336,7 +367,6 @@ const Conteiner = (props: IContainerProps) => {
                             {editMessage && <Message type='sucess' message='Produto atualizado com sucesso' />}
                             {deleteMessage && <Message type='sucess' message='Produto excluído com sucesso' />}
 
-
                             <div className={`${styles.listProducts}`}>
 
                                 {products.length === 0 ? (<div>{`${props.productNotAdded}`}</div>) : (
@@ -345,24 +375,17 @@ const Conteiner = (props: IContainerProps) => {
                                         return (
                                             <div className={`${styles.content}`} key={index}>
                                                 <div>{product.nome}</div>
-                                                <div className={`${styles.infoProduct}`}>
-                                                <div>Comprimento: {product.length}m</div>
-                                                    <div>Lagura:{product.width}m</div>
-                                                    <div>Altura:{product.height}m</div>
-                                                 </div>
-
-                                                <div className={`${styles.infoProduct}`}>
-                                                    <div>{`${props.productUniPeso}: ${product.peso} kg`}</div>
-                                                    <div>{`${props.productUniVolume}: ${product.volume} m³`}</div>
-                                                </div>
-                                                <div>{`${props.productQuantity}: ${product.quantidade}`}</div>
-                                                <div className={`${styles.infoTotalProduct}`}>
-                                                    <div>{`${props.productTotalPeso}: ${product.pesoTotal} kg`}</div>
-                                                    <div>{`${props.productTotalVolume}: ${product.volumeTotal} m³`}</div>
-                                                </div>
-
+                                                <div> <strong>Comprimento</strong><p>{product.length} m</p></div>
+                                                    <div><strong> Lagura</strong> <p> {product.width} m </p></div>
+                                                    <div><strong>Altura</strong><p> {product.height} m</p></div>
+                                                    <div><strong>{props.productUniPeso}</strong> <p>{product.peso} kg</p></div>
+                                                    <div><strong>{props.productQuantity}</strong><p>{product.quantidade}</p></div>
+                                                    <div><strong>{props.productTotalPeso}</strong><p>{product.pesoTotal} kg</p></div>
+                                                    <div><strong>{props.productUniVolume}</strong><p>{product.volume} m³</p></div>
+                                                    <div><strong>{props.productTotalVolume}</strong><p>{product.volumeTotal} m³</p></div>
+                                               
                                                 {openEditModal && <EditProductModal
-                                                    closeModal={() => setOpenEditModal(false)} getProducts={getProducts} getSumPesoTotal={getSumPesoTotal} getSumVolumeTotal={getSumVolumeTotal} currentProduct={currentProduct} setShowEditMessage={showEditMessage} />}
+                                                    closeModal={() => setOpenEditModal(false)} getProducts={getProducts}  getTotalQuantity={getTotalQuantity} getSumPesoTotal={getSumPesoTotal} getSumVolumeTotal={getSumVolumeTotal} currentProduct={currentProduct} setShowEditMessage={showEditMessage} setPctPeso={setPctPeso} setProgressPeso={setProgressPeso} setPctVolume={setPctVolume} setProgressVolume={setProgressVolume} containerType={container} />}
                                                 <button className={`${styles.buttonEdit}`} onClick={() => handleEditProduct(product.id)}>
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0,0,256,256">
                                                         <g fill="rgb(255, 255, 255)" >
@@ -373,7 +396,7 @@ const Conteiner = (props: IContainerProps) => {
                                                     </svg>
                                                 </button>
                                                 {openDeleteModal && <DeleteProductModal
-                                                    closeModal={() => setOpenDeleteModal(false)} message='Deseja excluir esse produto' getProducts={getProducts} getSumPesoTotal={getSumPesoTotal} getSumVolumeTotal={getSumVolumeTotal} productCurrent={currentProduct} setShowDeleteMessage={showDeleteMessage} />}
+                                                    closeModal={() => setOpenDeleteModal(false)} message='Deseja excluir esse produto' getProducts={getProducts} getTotalQuantity={getTotalQuantity} getSumPesoTotal={getSumPesoTotal} getSumVolumeTotal={getSumVolumeTotal} productCurrent={currentProduct} setShowDeleteMessage={showDeleteMessage} setPctPeso={setPctPeso} setProgressPeso={setProgressPeso} setPctVolume={setPctVolume} setProgressVolume={setProgressVolume} containerType={container} />}
                                                 <button className={`${styles.buttonDelete}`} onClick={() => handleDeleteProduct(product.id)}>
                                                     <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="30" height="30" viewBox="0,0,256,256">
                                                         <g fill="rgb(255, 255, 255)">
@@ -385,12 +408,19 @@ const Conteiner = (props: IContainerProps) => {
                                         );
 
                                     }))}
+                            </div>
 
+                            <div className={`${styles.totalContainer}`}>
+                                <h3>{`Quantidade total de cada produto: ${totalQuantity}`}</h3>
                             </div>
 
                             <div className={`${styles.totalContainer}`}>
                                 <h3>{`${props.pesoTotal}: ${sumPesoTotal} kg`}</h3>
+
+                            </div>
+                            <div className={`${styles.totalContainer}`}>
                                 <h3>{`${props.volumeTotal}: ${sumVolumeTotal} m³`}</h3>
+
                             </div>
                         </div>
 
@@ -403,7 +433,7 @@ const Conteiner = (props: IContainerProps) => {
                                     ))}
                                 </select>
 
-                                <h2>{container.name}</h2>
+                                <h3>{container.name}</h3>
                                 <h3>{`${props.pesoCapicity}: ${container.capacidadePeso} kg`}</h3>
                                 <h3>{`${props.cubCapacicity}: ${container.capacidadeVolume} m³`}</h3>
                                 <img className={`${styles.containerImage}`} src={container.image ? `${container.image}` : `./assets/containerPlaceholder.png`} alt="" />
@@ -413,29 +443,24 @@ const Conteiner = (props: IContainerProps) => {
 
                                         <div style={{ textAlign: 'center' }}>
                                             <div style={{ display: 'flex', alignItems: 'center', gap: '8px', margin: '5px' }}>
-                                                <img src={`./assets/weight.png`} alt="" width={40} height={40} />
-                                                <h2>{props.totalCargoPeso}</h2>
-
-
+                                                <img src={`./assets/weight.png`} alt="" width={35} height={35} />
+                                                <h3>{props.totalCargoPeso}</h3>
                                             </div>
                                             <div style={{ width: '400px', border: '2px solid', borderRadius: '10px' }}>
-                                                <div style={{ height: "20px", background: `${progressPeso >= 80 ? 'rgb(252,140,4)' : 'rgb(49, 161, 113)'}`, borderRadius: '10px', width: `${progressPeso}%`, transition: 'width 0.3s ease-in-out' }}></div>
+                                                <div style={{ height: "15px", background: `${progressPeso >= 80 ? 'rgb(252,140,4)' : 'rgb(49, 161, 113)'}`, borderRadius: '10px', width: `${progressPeso}%`, transition: 'width 0.3s ease-in-out' }}></div>
                                             </div>
                                             <p>{pctPeso}%</p>
                                             <div style={{ display: 'flex', alignItems: 'center', gap: '8px', margin: '5px' }}>
-                                                <img src={`./assets/package.png`} width={40} height={40} alt="" />
-                                                <h2>{props.totalCargoVolume}</h2>
-
-
+                                                <img src={`./assets/package.png`} width={35} height={35} alt="" />
+                                                <h3>{props.totalCargoVolume}</h3>
                                             </div>
 
                                             <div style={{ width: '400px', border: '2px solid', borderRadius: '10px' }}>
-                                                <div style={{ height: "20px", background: `${progressVolume >= 80 ? 'rgb(252,140,4)' : 'rgb(49, 161, 113)'}`, borderRadius: '10px', width: `${progressVolume}%`, transition: 'width 0.3s ease-in-out' }}></div>
+                                                <div style={{ height: "15px", background: `${progressVolume >= 80 ? 'rgb(252,140,4)' : 'rgb(49, 161, 113)'}`, borderRadius: '10px', width: `${progressVolume}%`, transition: 'width 0.3s ease-in-out' }}></div>
                                             </div>
                                             <p>{pctVolume}%</p>
-
                                         </div>
-                                    </> : showContainerMessage && < Message type='error' message='A carga máxima não cabe' />}
+                                    </> : < Message type='error' message='A carga máxima não cabe' />}
                             </div>
                         </div>
                         </>
@@ -443,9 +468,6 @@ const Conteiner = (props: IContainerProps) => {
                     </div>
                 </div>
             </div>
-
         </section>
     );
 }
-
-export default Conteiner;

@@ -2,30 +2,37 @@ import { useState } from "react";
 import styles from './EditProductModal.module.css'
 import axios from "axios";
 import { Product } from "../models/Product";
+import { Container } from "../models/Container";
 
 interface IEditProductModalProps {
     setShowEditMessage(): void;
+    setPctPeso(pctPeso: number): void;
+    setProgressPeso(progress: React.SetStateAction<number>):void;
+    setPctVolume(pctVolume: number): void;
+    setProgressVolume(progress: React.SetStateAction<number>):void;
     closeModal(): void;
     getProducts(): void;
+    getTotalQuantity(): void;
     getSumPesoTotal(): void;
     getSumVolumeTotal(): void;
-    currentProduct?: Product
+    currentProduct: Product
+    containerType: Container
 } 
 
-const EditProductModal = (props : IEditProductModalProps) => {
+export const EditProductModal = (props : IEditProductModalProps) => {
 
 
     const [product, setProduct] = useState<Product>({
-        id: props.currentProduct?.id || 0,
-        nome: props.currentProduct?.nome || "",
-        quantidade: props.currentProduct?.quantidade || 0,
-        length: props.currentProduct?.length || 0,
-        width: props.currentProduct?.width || 0,
-        height: props.currentProduct?.height || 0,
-        peso: props.currentProduct?.peso || 0,
-        volume: props.currentProduct?.volume || 0,
-        pesoTotal: props.currentProduct?.pesoTotal || 0,
-        volumeTotal: props.currentProduct?.volumeTotal || 0,
+        id: props.currentProduct.id || 0,
+        nome: props.currentProduct.nome || "",
+        quantidade: props.currentProduct.quantidade || 0,
+        length: props.currentProduct.length || 0,
+        width: props.currentProduct.width || 0,
+        height: props.currentProduct.height || 0,
+        peso: props.currentProduct.peso || 0,
+        volume: props.currentProduct.volume || 0,
+        pesoTotal: props.currentProduct.pesoTotal || 0,
+        volumeTotal: props.currentProduct.volumeTotal || 0,
     })
     const handleChange = (e: React.FormEvent) => {
         const target = e.target as HTMLInputElement;
@@ -40,7 +47,7 @@ const EditProductModal = (props : IEditProductModalProps) => {
             props.getProducts();
 
         } else {
-            const response = await axios.put(`http://localhost:5077/products/${props.currentProduct?.id}`, {
+            const response = await axios.put(`http://localhost:5077/products/${props.currentProduct.id}`, {
                 nome: product.nome,
                 quantidade: product.quantidade,
                 peso: product.peso,
@@ -49,10 +56,31 @@ const EditProductModal = (props : IEditProductModalProps) => {
                 height: product.height
             });
             
+            if(props.containerType.id > 0) {
+                const responsePeso = await axios.get(`http://localhost:5077/containers/capacityPeso/${props.containerType.id}`);
+
+            props.setPctPeso(responsePeso.data);
+            props.setProgressPeso(val => {
+                const newVal = val + 10
+                return newVal > 100 ? 100 : parseInt(responsePeso.data);
+            })
+            const responseVolume = await axios.get(`http://localhost:5077/containers/capacity/${props.containerType.id}`);
+            props.setPctVolume(responseVolume.data);
+
+            props.setProgressVolume( val => {
+                const newVal = val + 10
+                return newVal > 100 ? 100 : parseInt(responseVolume.data);
+            })
+
+            }
+            
+
+            
             console.log(response.data);
             props.closeModal();
             props.setShowEditMessage();
             props.getProducts();
+            props.getTotalQuantity();
             props.getSumPesoTotal();
             props.getSumVolumeTotal();
         }
@@ -69,25 +97,20 @@ const EditProductModal = (props : IEditProductModalProps) => {
             <form onSubmit={(e) => handleSubmit(e)} className={`${styles.formContainer}`}>
                     <label>Nome</label>
                     <input type="text" name="nome" value={product.nome} onChange={(e) => handleChange(e)} />
-                    <label>Quantidade</label>
-                    <input type="number" name="quantidade" value={product.quantidade} onChange={(e) => handleChange(e)} />
-                    <label>Peso</label>
-                    <input type="number" name="peso" value={product.peso} onChange={(e) => handleChange(e)} />
                     <label>Comprimento</label>
                     <input type="number" name="length" value={product.length} onChange={(e) => handleChange(e)} />
                     <label>Lagura</label>
                     <input type="number" name="width" value={product.width} onChange={(e) => handleChange(e)} />
                     <label>Altura</label>
                     <input type="number" name="height" value={product.height} onChange={(e) => handleChange(e)} />
+                    <label>Peso</label>
+                    <input type="number" name="peso" value={product.peso} onChange={(e) => handleChange(e)} />
+                    <label>Quantidade</label>
+                    <input type="number" name="quantidade" value={product.quantidade} onChange={(e) => handleChange(e)} />
                     <button>Atualizar o produto</button>
                 </form>
-
-
                 
             </div>
-        </div>
-        
+        </div>       
     )
 }
-
-export default EditProductModal;

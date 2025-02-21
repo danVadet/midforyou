@@ -1,12 +1,12 @@
-import Conteiner from '../components/Conteiner';
-import Contact from '../components/Contact';
-import About from '../components/About';
-import Incoterms from '../components/Incoterms';
-import Navbar from '../components/Navbar';
-import Footer from '../components/Footer';
-import Home from '../components/Home';
-import Map from '../components/Map';
-import { useRef, useState } from 'react';
+import { Conteiner } from '../components/Conteiner';
+import { Contact } from '../components/Contact';
+import { About } from '../components/About';
+import { Incoterms } from '../components/Incoterms';
+import { Navbar } from '../components/Navbar';
+import { Footer } from '../components/Footer';
+import { Home } from '../components/Home';
+import { Map } from '../components/Map';
+import { useRef } from 'react';
 import { Incoterm } from '../models/Incoterm';
 import { IServices } from '../models/IServices';
 import { IconIcoterm } from '../models/IconIcoterm';
@@ -82,9 +82,8 @@ interface IMainProps {
 }
 
 
-const  Main = (props: IMainProps) => {
+export const  Main = (props: IMainProps) => {
 
-  
   const homeRef = useRef<HTMLDivElement>(null);
   const aboutRef = useRef<HTMLDivElement>(null);
   const conteinersRef = useRef<HTMLDivElement>(null);
@@ -143,7 +142,7 @@ const  Main = (props: IMainProps) => {
         enterName={props.enterName}
         nameRequiredContainer={props.nameRequiredContainer}
         enterQuantity={props.enterQuantity}
-        quantityRequiredContainer={props.enterQuantity}
+        quantityRequiredContainer={props.quantityRequiredContainer}
         enterLength={props.enterLength}
         lengthRequiredContainer={props.lengthRequiredContainer}
         enterWidth={props.enterWidth}
@@ -198,5 +197,3 @@ const  Main = (props: IMainProps) => {
     </>
   );
 }
-
-export default Main;

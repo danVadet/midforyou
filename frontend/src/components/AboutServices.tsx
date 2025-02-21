@@ -1,5 +1,5 @@
 import styles from './AboutServices.module.css'
-import AboutServiceCard from './AboutServiceCard';
+import  {AboutServiceCard } from './AboutServiceCard';
 import { useContext } from 'react';
 import { LanguageContext } from '../Context/LanguageContext';
 import { IServices } from '../models/IServices';
@@ -10,7 +10,7 @@ interface IAboutServicesProps {
 
 }
 
-const AboutServices = (props: IAboutServicesProps ) => {
+export const AboutServices = (props: IAboutServicesProps ) => {
 
   return (
     <>
@@ -31,5 +31,3 @@ const AboutServices = (props: IAboutServicesProps ) => {
   );
 
 }
-
-export default AboutServices;

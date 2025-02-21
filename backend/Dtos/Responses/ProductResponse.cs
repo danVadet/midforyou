@@ -1,4 +1,6 @@
 
+using System.ComponentModel;
+
 public class ProductResponse {
 
      public int id  { get; set; }
@@ -20,5 +22,9 @@ public class ProductResponse {
     public float volumeTotal { get; set; }
 
     public float pesoTotal { get; set; }
+    public Container container { get; set; }
+
+    
+    public int? containerId { get; set; }
 
 }

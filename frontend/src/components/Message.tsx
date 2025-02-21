@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from 'react'
 import styles from './Message.module.css'
 
@@ -8,7 +7,7 @@ interface MessageProps {
     type: string
 }
 
-const Message = (props: MessageProps) => {
+export const Message = (props: MessageProps) => {
 
     const [visible,  setVisible] = useState(false);
 
@@ -30,5 +29,3 @@ const Message = (props: MessageProps) => {
 
     )
 }
-
-export default Message;

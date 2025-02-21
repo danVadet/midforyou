@@ -9,7 +9,7 @@ interface IBannerProps {
 }
 
 
-const Banner = (props: IBannerProps) => {
+export const Banner = (props: IBannerProps) => {
 
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -63,4 +63,3 @@ const Banner = (props: IBannerProps) => {
     </div>
   );
 }
-export default Banner;

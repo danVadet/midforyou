@@ -19,6 +19,9 @@ public class ProductRequest  {
 
     public float pesoTotal { get; set; }
 
+    
+
+
 
 
 

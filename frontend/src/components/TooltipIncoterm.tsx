@@ -6,7 +6,7 @@ interface ITooltipIncotermProps {
     disabled: boolean;
   } 
   
-  const TooltipIncoterm = ( props: ITooltipIncotermProps) => {
+  export const TooltipIncoterm = ( props: ITooltipIncotermProps) => {
     return (
         <div>
             <div className={`${styles.container}`}>
@@ -18,5 +18,3 @@ interface ITooltipIncotermProps {
       
     );
   };
-  
-  export default TooltipIncoterm;

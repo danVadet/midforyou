@@ -49,7 +49,7 @@
 .nameError {
     color: rgb(240, 19, 11);
     position: absolute;
-    left: 440px;
+    left: 240px;
     bottom: 4px;
 }
 .quantityError {
@@ -89,8 +89,8 @@
    
 }
 .info_container {
-    margin: 10px;
-    padding: 15px;
+    margin: 8px;
+    padding: 12px;
     background-color:  rgb(0, 175, 239);
     color: rgb(255, 255, 255);
     border-radius: 10px;
@@ -98,18 +98,19 @@
 
 .info_container  .containerImage {
   margin: 8px;
-  width: 400px;
-  height: 300px;
+  width: 300px;
+  height: 250px;
   border-radius: 10px;
 }
 .info_container select {
     margin: 8px;
-    padding: 15px;
+    padding: 12px;
     border-radius: 5px;
     border: 0;
     outline: 0;
-    border: 1px solid  rgb(0, 146, 199);
+    border: 1px solid  rgb(255, 255, 255);
     background-color:  rgb(0, 175, 239);
+    color: rgb(255, 255, 255);
     width: 100%;
 
 }
@@ -117,6 +118,7 @@
     margin: 8px;
     padding: 10px;
     background:  rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
 
 }
 
@@ -165,26 +167,16 @@
     border: 1px solid rgb(204, 204, 204);
     box-shadow: rgba(0, 0, 0, 0.12) 0px 2px 32px 0px;
     margin: 8px;
-    padding: 10px;
+    padding: 12px;
     display: flex;
     align-items: center;
     justify-content: space-around;
     border-radius: 5px;
+    gap: 10px;
+}
 
-}
-.listProducts .infoProduct {
-    display: flex;
-    flex-direction: column;
-    margin: 5px;
-}
-.listProducts .infoTotalProduct {
-    display: flex;
-    flex-direction: column;
-    margin: 5px;
-}
 .listProducts .buttonEdit {
-    margin: 5px;
-    padding: 10px;
+    padding: 0.5rem;
     border-radius: 5px;
     background-color:  rgb(0, 175, 239);
     color: rgb(255, 255, 255);
@@ -192,88 +184,17 @@
 }
 
 .listProducts .buttonDelete {
-    margin: 5px;
-    padding: 10px;
+    padding: 0.5rem;
     border-radius: 5px;
     background-color: rgb(217, 83, 79);
     color: rgb(255, 255, 255);
     border: 0;
-
 }
+
 .totalContainer {
     border: 1px solid rgb(204, 204, 204);
     box-shadow: rgba(0, 0, 0, 0.12) 0px 2px 32px 0px;
     margin: 10px;
     padding: 10px;
     border-radius: 5px;
-   
 }
-.containerMessage {
-    color: rgb(114, 28, 36);
-    background-color: rgb(248, 215, 218);
-    border-color: rgb(245, 198, 203);
-
-
-}
-.loader {
-   display: flex;
-   align-items: center;
-   justify-content: center;
- }
-/* SVG spinner icon animation */
- .spinner {
-   -webkit-animation: rotate 2s linear infinite;
-           animation: rotate 2s linear infinite;
-   width: 30px;
-   height: 30px;
- }
-
- .spinner .path {
-   stroke: rgb(0, 140, 196);
-   stroke-linecap: round;
-   -webkit-animation: dash 1.5s ease-in-out infinite;
-           animation: dash 1.5s ease-in-out infinite;
- }
- 
- @-webkit-keyframes rotate {
-   100% {
-     -webkit-transform: rotate(360deg);
-             transform: rotate(360deg);
-   }
- }
- 
- @keyframes rotate {
-   100% {
-     -webkit-transform: rotate(360deg);
-             transform: rotate(360deg);
-   }
- }
- @-webkit-keyframes dash {
-   0% {
-     stroke-dasharray: 1, 150;
-     stroke-dashoffset: 0;
-   }
-   50% {
-     stroke-dasharray: 90, 150;
-     stroke-dashoffset: -35;
-   }
-   100% {
-     stroke-dasharray: 90, 150;
-     stroke-dashoffset: -124;
-   }
- }
- @keyframes dash {
-   0% {
-     stroke-dasharray: 1, 150;
-     stroke-dashoffset: 0;
-   }
-   50% {
-     stroke-dasharray: 90, 150;
-     stroke-dashoffset: -35;
-   }
-   100% {
-     stroke-dasharray: 90, 150;
-     stroke-dashoffset: -124;
-   }
- }
- 

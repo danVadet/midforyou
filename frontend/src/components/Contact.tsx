@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 import styles from './Contact.module.css'
 import { Visitor } from '../models/Visitor';
 import axios from 'axios';
-import Message from './Message';
+import { Message } from './Message';
 import  multiLang  from '../multiLang.json';
 import { LanguageContext } from '../Context/LanguageContext';
 
@@ -40,7 +40,7 @@ interface IValues {
   mensagem: string;
 }
 
-const Contact = (props: IContactProps) => {
+ export const Contact = (props: IContactProps) => {
 
   const [visitor, setVisitor] = useState<Visitor>({
     id: 0,
@@ -238,9 +238,5 @@ const Contact = (props: IContactProps) => {
       </div>
 
     </section>
-
-
   );
 }
-
-export default Contact;

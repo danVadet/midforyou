@@ -6,7 +6,7 @@ interface AboutServiceFadeContentProps {
   children?: JSX.Element;
 }
 
-const AboutServiceFadeContent = (props: AboutServiceFadeContentProps) => {
+export const AboutServiceFadeContent = (props: AboutServiceFadeContentProps) => {
 
   const fadeRef = useRef<any>(null);
 
@@ -30,5 +30,3 @@ const AboutServiceFadeContent = (props: AboutServiceFadeContentProps) => {
     </div>
   );
 }
-
-export default AboutServiceFadeContent;

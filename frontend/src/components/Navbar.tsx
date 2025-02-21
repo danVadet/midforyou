@@ -1,6 +1,6 @@
+import LangaugeLink from './LanguageLink';
 import styles from './Navbar.module.css'
 import { useContext, useEffect, useRef, useState } from 'react'
-import LangaugeLink from './LanguageLink';
 
 interface INavbarProps {
   scrollToSection: (elementRef: React.RefObject<HTMLDivElement>) => void
@@ -26,7 +26,7 @@ interface NavItems {
 }
 
 
-const Navbar = (props: INavbarProps) => {
+export  const Navbar = (props: INavbarProps) => {
 
   const navItems: NavItems[] = [
 
@@ -153,7 +153,4 @@ const Navbar = (props: INavbarProps) => {
       </ul>
     </nav>
   );
-
 }
-
-export default Navbar;

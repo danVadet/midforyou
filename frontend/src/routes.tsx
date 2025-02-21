@@ -1,7 +1,7 @@
 import {Route, BrowserRouter as Router, Routes, useLocation } from 'react-router-dom';
-import Main from './pages/Main';
+import { Main } from './pages/Main';
 import  multiLang  from './multiLang.json';
-import TaxModal from './components/TaxModal';
+import { TaxModal } from './components/TaxModal';
 import { useState } from 'react';
 
 const RoutesProvider = () => {

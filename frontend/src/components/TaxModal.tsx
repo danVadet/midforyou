@@ -11,7 +11,7 @@ import ITaxKeys from "../models/ITaxKeys";
 ChartJS.register(LineElement, CategoryScale, LinearScale, PointElement, Tooltip, Filler);
 
 
-const TaxModal = () => {
+export const TaxModal = () => {
     const navigate = useNavigate();
 
 
@@ -22,14 +22,8 @@ const TaxModal = () => {
     let [currentTax, setCurrentTax] = useState<ITaxModel>();
     let { code } = useParams();
 
-
-
-
-   
- 
-
-        useEffect(() => {            
-            const interval = setInterval(() => {
+    useEffect(() => {            
+        const interval = setInterval(() => {
                getData();
    
                }, 1000); 
@@ -333,5 +327,3 @@ const TaxModal = () => {
         </div>
     );
 }
-
-export default TaxModal;

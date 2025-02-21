@@ -5,7 +5,7 @@ import { ITaxModel } from '../models/ITaxModel';
 import ITaxKeys from '../models/ITaxKeys';
 import FormatCurrencySymbol from '../Library/FormatCurrencySymbol';
 import FormatCurrencyName from '../Library/FormatCurrencyName';
-import TaxModal from './TaxModal';
+
 import { Link, useLocation, useParams } from 'react-router-dom';
 
 interface   ITax {
@@ -13,7 +13,7 @@ interface   ITax {
 }
 
 
-const Tax = (props: ITax) => {
+export const Tax = (props: ITax) => {
     
     const [openTaxModal, setOpenTaxModal] = useState(false);
     const [taxes, setTaxes] = useState<ITaxModel[]>([]);
@@ -95,4 +95,3 @@ const Tax = (props: ITax) => {
     )
 }
 
-export default Tax;
