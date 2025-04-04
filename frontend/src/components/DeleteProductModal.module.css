@@ -1,0 +1,37 @@
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+}
+.modalContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgb(255, 255, 255);
+    padding: 50px;
+    border-radius: 20px;
+
+}
+.modalButtonContainer {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    gap: 4px;
+}
+.modalButtonContainer button {
+    background:  rgb(5, 155, 255);
+    color: rgb(255, 255, 255);
+    border: 0;
+    padding: 10px;
+    border-radius: 5px;
+
+}

@@ -1,23 +1,20 @@
 
 import React from 'react';
 
-import { BrowserRouter as Router } from 'react-router-dom';
-import Home from './pages/Home';
-import Navbar from './components/Navbar';
-import Footer from './components/Footer';
+import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
+import { Main } from './pages/Main';
+import { LanguageProvider } from './contexts/LanguageContext';
+import multiLang from "./multiLang.json";
 
-const RoutesProvider = () => {
+export const RoutesProvider = () => {
+
     return (
-    
-        <Router>
-            <Navbar></Navbar>
-            <Home></Home>
-            <Footer></Footer>
-            
-        
-        </Router>
-
+            <LanguageProvider>
+                <Routes>
+                    <Route path="/en" element={<Main services={multiLang.en.services} />} />
+                    <Route path="/es" element={<Main services={multiLang.es.services} />} />
+                    <Route path="/" element={<Main services={multiLang.pt.services} />} />
+                </Routes>
+            </LanguageProvider>
     )
 }
-
-export default RoutesProvider;

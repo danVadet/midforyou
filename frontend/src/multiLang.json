@@ -1,0 +1,116 @@
+{
+    "en" : {
+
+        "services" : [
+            {
+                "id" : 1,
+                "imageUrl" : "../assets/Acessoria comercial internacional.jpg",
+                "imagePosition" : "left",
+                "title" : "International commercial advice",
+                "description" : "Prospecting suppliers, sending and receiving samples for quality verification, international negotiation, inspection of the production of goods and monitoring the loading of products in the container. All this is done to ensure customer satisfaction and the quality of products sold internationally."
+            },
+
+            {
+                "id" : 2,
+                "imageUrl" : "../assets/Análise Aduaneira.jpg",
+                "imagePosition" : "right",
+                "title" : "Customs Analysis",
+                "description" : "Market analysis and feasibility of the operation, assessment of administrative and tax treatment according to NCM/SH, and provision of support for certification with the approving agencies, such as INMETRO, ANVISA, MAPA, among others. These processes are essential to ensure that the operation is carried out properly and legally, minimizing risks and maximizing financial results."
+
+            }, 
+            {
+                "id" : 3,
+                "imageUrl" : "../assets/Importação e Exportação.jpg",
+                "imagePosition" : "left",
+                "title" : "Import and Export",
+                "description" : "Document analysis, management of nationalization of foreign goods, development of own brand (OEM) and packaging, forecasting of import/export costs, closing of exchange and international insurance, monitoring of customs clearance and national and international logistics management. All these services aim to ensure that import and export operations are carried out efficiently and profitably, with the minimum possible risks and costs."
+
+            },
+            {
+                "id" : 4,
+                "imageUrl" : "../assets/Laboratório de Qualidade.jpg",
+                "imagePosition" : "right",
+                "title" : "Quality Laboratory",
+                "description" : "Sample analysis, metrological checking of products, 2D and 3D drawings, reverse engineering and quality control. These services are essential to assess product characteristics, identify possible faults, make improvements and ensure that quality standards comply with current standards and regulations."
+            }
+        ]
+
+    },
+
+    "es" : {
+
+        "services" : [
+            {
+                "id" : 1,
+                "imageUrl" : "../assets/Acessoria comercial internacional.jpg",
+                "imagePosition" : "left",
+                "title" : "Asesoría comercial internacional",
+                "description" : "Prospección de proveedores, envío y recepción de muestras para verificación de calidad, negociación internacional, inspección de producción de mercancías y seguimiento de la carga de productos en el contenedor. Todo esto se hace para garantizar la satisfacción del cliente y la calidad de los productos vendidos a nivel internacional."
+            },
+
+            {
+                "id" : 2,
+                "imageUrl" : "../assets/Análise Aduaneira.jpg",
+                "imagePosition" : "right",
+                "title" : "Análisis Aduanero",
+                "description" : "Análisis de mercado y viabilidad de operación, evaluación del tratamiento administrativo y tributario según NCM/SH, y prestación de apoyo para la certificación ante órganos aprobadores, como INMETRO, ANVISA, MAPA, entre otros. Estos procesos son esenciales para asegurar que la operación se realice de forma adecuada y legal, minimizando riesgos y maximizando los resultados financieros."
+
+            }, 
+            {
+                "id" : 3,
+                "imageUrl" : "../assets/Importação e Exportação.jpg",
+                "imagePosition" : "left",
+                "title" : "Importación y Exportación",
+                "description" : "Análisis de documentos, gestión de nacionalización de mercancías extranjeras, desarrollo de marca propia (OEM) y embalajes, previsión de costos de importación/exportación, cierre de cambios y seguros internacionales, seguimiento de despachos aduaneros y gestión logística nacional e internacional. Todos estos servicios tienen como objetivo garantizar que las operaciones de importación y exportación se realicen de forma eficiente y rentable, con los mínimos riesgos y costes posibles."
+
+            },
+            {
+                "id" : 4,
+                "imageUrl" : "../assets/Laboratório de Qualidade.jpg",
+                "imagePosition" : "right",
+                "title" : "Laboratorio de Calidad",
+                "description" : "Análisis de muestras, verificación metrológica de productos, planos 2D y 3D, ingeniería inversa y control de calidad. Estos servicios son esenciales para evaluar las características del producto, identificar posibles fallos, realizar mejoras y garantizar que los estándares de calidad cumplan con las normas y regulaciones vigentes."
+            }
+
+        ]
+
+    },
+
+    "pt" : {
+        "services" : [
+            {
+                "id" : 1,
+                "imageUrl" : "../assets/Acessoria comercial internacional.jpg",
+                "imagePosition" : "left",
+                "title" : "Acessoria comercial internacional",
+                "description" : "Prospecção de fornecedores, envio e recebimento de amostras para verificação de qualidade, negociação internacional, fiscalização de produção das mercadorias e o acompanhamento da carga dos produtos no contêiner. Tudo isso é feito visando para garantir a satisfação dos clientes e a qualidade dos produtos comercializados de forma internacional."
+            },
+
+            {
+                "id" : 2,
+                "imageUrl" : "../assets/Análise Aduaneira.jpg",
+                "imagePosition" : "right",
+                "title" : "Análise Aduaneira",
+                "description" : "Análise de mercado e viabilidade da operação, avaliação do tratamento administrativo e tributário conforme NCM/SH, e prestação de suporte para a certificação junto aos órgãos anuentes, como INMETRO, ANVISA, MAPA, entre outros. Esses processos são essenciais para assegurar que a operação seja realizada de forma adequada e legal, minimizando riscos e maximizando os resultados financeiros."
+
+            }, 
+            {
+                "id" : 3,
+                "imageUrl" : "../assets/Importação e Exportação.jpg",
+                "imagePosition" : "left",
+                "title" : "Importação e Exportação",
+                "description" : "Análise documental, gestão de nacionalização de mercadorias estrangeiras, desenvolvimento de marca própria (OEM) e de embalagens, previsão de custos para importação/exportação, fechamento de câmbio e seguro internacional, acompanhamento do desembaraço aduaneiro e gestão logística nacional e internacional. Todos esses serviços visam garantir que as operações de importação e exportação sejam realizadas de forma eficiente e lucrativa, com um mínimo de riscos e custos possíveis."
+
+            },
+            {
+                "id" : 4,
+                "imageUrl" : "../assets/Laboratório de Qualidade.jpg",
+                "imagePosition" : "right",
+                "title" : "Laboratório de Qualidade",
+                "description" : "Análise de amostras, conferência metrológica dos produtos, desenhos 2D e 3D, engenharia reversa e controle de qualidade. Esses serviços são essenciais para avaliar as características dos produtos, identificar possíveis falhas, realizar melhorias e garantir que os padrões de qualidade estejam em conformidade com as normas e regulamentações vigentes."
+            }
+
+        ]
+
+    }
+}
