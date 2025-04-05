@@ -5,7 +5,7 @@ public class Product
 
  public int id { get; set; }
 
- public string name { get; set; }
+ public required string name { get; set; }
 
  public float length { get; set; }
 
