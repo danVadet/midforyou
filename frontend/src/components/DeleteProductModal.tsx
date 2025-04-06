@@ -1,6 +1,5 @@
-
-import axios from 'axios'
-import styles from './DeleteProductModal.module.css'
+import { axios } from 'axios'
+import { styles } from './DeleteProductModal.module.css'
 import { IProduct } from '../models/IProduct'
 
 interface IDeleteProductModalProps {

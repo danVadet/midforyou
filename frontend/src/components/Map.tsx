@@ -5,7 +5,7 @@ import { IState } from "../models/IState";
 import { PortType } from "../models/Enums/PortType";
 import { SHIP_SVG } from "./SHIP_SVG";
 import { PLANE_SVG } from "./PLANE_SVG";
-import axios from "axios";
+import { axios } from "axios";
 import { MapControl } from "./MapControl";
 import { CounterAirPort } from "./CounterAirPort";
 import { CounterWaterPort } from "./CounterWaterPort";

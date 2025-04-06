@@ -1,6 +1,6 @@
-import styles from './Conteiner.module.css'
+import { styles } from './Conteiner.module.css'
 import { FormEvent, useEffect, useState } from 'react'
-import axios from 'axios';
+import { axios } from 'axios';
 import { DeleteProductModal } from './DeleteProductModal';
 import { IProduct } from '../models/IProduct';
 import { IContainer } from '../models/IContainer';
