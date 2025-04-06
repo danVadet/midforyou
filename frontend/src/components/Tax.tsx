@@ -12,16 +12,20 @@ const  Tax = () => {
     let [currentTax, setCurrentTax] = useState<ITax>();
 
     const getTaxes = async () => {
-        const response = await axios.get('http://economia.awesomeapi.com.br/json/last/USD-BRL,EUR-BRL,CNY-BRL,GBP-BRL,ARS-BRL');
+        try {
+            const response = await axios.get('http://economia.awesomeapi.com.br/json/last/USD-BRL,EUR-BRL,CNY-BRL,GBP-BRL,ARS-BRL');
 
-        const quotes = response.data;
-        const taxesArray: ITax[] = [];
+            const quotes = response.data;
+            const taxesArray: ITax[] = [];
 
-        Object.keys(quotes).map((key) => {
-            taxesArray.push({ name: key as ITaxKeys, currencyCode: `${quotes[key].code}-BRL`, bid: quotes[key].bid, ask: quotes[key].ask, variation: quotes[key].pctChange, high: quotes[key].high, low: quotes[key].low, date: quotes[key].timestamp });
-        });
-        
-        setTaxes(taxesArray);
+            Object.keys(quotes).map((key) => {
+                taxesArray.push({ name: key as ITaxKeys, currencyCode: `${quotes[key].code}-BRL`, bid: quotes[key].bid, ask: quotes[key].ask, variation: quotes[key].pctChange, high: quotes[key].high, low: quotes[key].low, date: quotes[key].timestamp });
+            });
+            
+            setTaxes(taxesArray);
+        } catch (error) {
+            console.log(`getTaxes erro: ${error}`);
+        }
     }
 
     useEffect(() => {
