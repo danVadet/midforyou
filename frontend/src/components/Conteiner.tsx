@@ -69,7 +69,7 @@ export const Conteiner = () => {
     const [pctVolume, setPctVolume] = useState<number>(0);
 
     const onClickDeleteProduct = async (id: number) => {
-        const response = await axios.get(`http://localhost:5262/products/${id}`);
+        const response = await axios.get('http://localhost:5262/products/${id}');
         console.log(response.data);
         setCurrentProduct(response.data);
         if (!openDeleteModal) {
@@ -126,7 +126,7 @@ export const Conteiner = () => {
 
     const onChangeSelectContainer = async (e: React.ChangeEvent<HTMLSelectElement>) => {
         const value = e.target.value;
-        const response = await axios.get(`http://localhost:5262/containers/capacity/${value}`);
+        const response = await axios.get('http://localhost:5262/containers/capacity/${value}');
         setLoading(true);
 
         setTimeout(() => {
@@ -146,7 +146,7 @@ export const Conteiner = () => {
             return setErrors(errors);
         } else {
 
-            const response = await axios.post(`http://localhost:5262/products/addProduct`, {
+            const response = await axios.post('http://localhost:5262/products/addProduct', {
                 name: product.name,
                 length: product.length,
                 width: product.width,
@@ -171,7 +171,7 @@ export const Conteiner = () => {
         }
     }
     const onClickEditProduct = async (id: number) => {
-        const response = await axios.get(`http://localhost:5262/products/${id}`);
+        const response = await axios.get('http://localhost:5262/products/${id}');
         console.log(response.data);
         setCurrentProduct(response.data);
 
@@ -194,11 +194,11 @@ export const Conteiner = () => {
         try {
 
             if (searchProduct) {
-                const response = await axios.get(`http://localhost:5262/products?search=${searchProduct}`);
+                const response = await axios.get('http://localhost:5262/products?search=${searchProduct}');
                 setProducts(response.data);
                 console.log(response.data);
             } else {
-                const response = await axios.get(`http://localhost:5262/products`);
+                const response = await axios.get('http://localhost:5262/products');
                 setProducts(response.data);
                 console.log(response.data);
             }
@@ -208,7 +208,7 @@ export const Conteiner = () => {
     }
 
     const deleteAllProducts = async () => {
-        const response = await axios.delete(`http://localhost:5262/products`);
+        const response = await axios.delete('http://localhost:5262/products');
         console.log(response.data);
         window.onbeforeunload = () => true;
         setUnsavedProduct(true);
@@ -216,7 +216,7 @@ export const Conteiner = () => {
     const getSumTotalWeight = async () => {
 
         try {
-            const response = await axios.get(`http://localhost:5262/sumTotalWeight`);
+            const response = await axios.get('http://localhost:5262/sumTotalWeight');
             console.log(response.data);
             setSumTotalWeight(response.data);
         } catch (error) {
@@ -225,7 +225,7 @@ export const Conteiner = () => {
     }
     const getContainers = async () => {
         try {
-            const response = await axios.get(`http://localhost:5262/containers`);
+            const response = await axios.get('http://localhost:5262/containers');
             console.log(response.data);
             setContainers(response.data);
         } catch (error) {
@@ -236,7 +236,7 @@ export const Conteiner = () => {
     const getSumTotalVolume = async () => {
 
         try {
-            const response = await axios.get(`http://localhost:5262/sumTotalVolume`);
+            const response = await axios.get('http://localhost:5262/sumTotalVolume');
             setSumTotalVolume(response.data);
             console.log(response.data);
         } catch (error) {
@@ -246,7 +246,7 @@ export const Conteiner = () => {
     const getContainer = async (id: number) => {
 
         try {
-            const response = await axios.get(`http://localhost:5262/containers/capacity/${id}`);
+            const response = await axios.get('http://localhost:5262/containers/capacity/${id}');
             setSelectedContainer(response.data.container);
             setPctWeight(response.data.pctWeight);
             setPctVolume(response.data.pctVolume);

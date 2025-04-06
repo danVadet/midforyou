@@ -27,7 +27,7 @@ const handleChange = (e: React.FormEvent) => {
 }
 const handleSubmit = async (e: React.FormEvent) => {
   e.preventDefault();
-  const response = await axios.post(`http://localhost:5077/visitor/sendEmail`, {
+  const response = await axios.post('http://localhost:5077/visitor/sendEmail', {
       nome: visitor.nome,
       telefone: visitor.telefone,
       email: visitor.email,
