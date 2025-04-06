@@ -208,10 +208,14 @@ export const Conteiner = () => {
     }
 
     const deleteAllProducts = async () => {
-        const response = await axios.delete('http://localhost:5262/products');
-        console.log(response.data);
-        window.onbeforeunload = () => true;
-        setUnsavedProduct(true);
+        try {
+            const response = await axios.delete('http://localhost:5262/products');
+            console.log(response.data);
+            window.onbeforeunload = () => true;
+            setUnsavedProduct(true);
+        } catch (error) {
+            console.log(error);
+        }
     }
     const getSumTotalWeight = async () => {
 
