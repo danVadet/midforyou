@@ -39,7 +39,7 @@ export const Map = () => {
 
     const getStates = async () => {
         try {
-            const response = await axios.get(´${url_backend}/states``);
+            const response = await axios.get(`${url_backend}/states`);
             setStates(response.data);
         } catch (error) {
             console.log(`getStates erro: ${error}`);
