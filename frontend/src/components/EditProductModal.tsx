@@ -35,7 +35,7 @@ export const EditProductModal = (props: IEditProductModalProps) => {
   const updateProduct = async (e: FormEvent) => {
       e.preventDefault();
 
-      const response = await axios.put('http://localhost:5262/products/${props.currentProduct?.id}', {
+      const response = await axios.put(`http://localhost:5262/products/${props.currentProduct?.id}`, {
           name: product.name,
           length: product.length,
           width: product.width,
@@ -44,6 +44,7 @@ export const EditProductModal = (props: IEditProductModalProps) => {
           quantity: product.quantity
 
       });
+      console.log(response.data);  
 
       props.closeModal();
       props.getProducts();

@@ -21,7 +21,7 @@ export const DeleteProductModal = (props: IDeleteProductModalProps) => {
     
     const confirmDelete = async () => { 
 
-        const response = await axios.delete('http://localhost:5262/products/${props.productCurrent?.id}');
+        const response = await axios.delete(`http://localhost:5262/products/${props.productCurrent?.id}`);
         console.log(response.data);  
 
         props.closeModal();

@@ -41,13 +41,13 @@ export const Map = () => {
     const getPortMarkers = async () => {
 
         if (selectedState?.id) {
-            const response = await axios.get('http://localhost:5262/markers/state/${selectedState.id}');
+            const response = await axios.get(`http://localhost:5262/markers/state/${selectedState.id}`);
             setPortMarkers(response.data);
 
-            const responseAir = await axios.get('http://localhost:5262/markers/air/state/${selectedState.id}');
+            const responseAir = await axios.get(`http://localhost:5262/markers/air/state/${selectedState.id}`);
             setCountAirPorts(responseAir.data);
 
-            const responseWater = await axios.get('http://localhost:5262/markers/water/state/${selectedState.id}');
+            const responseWater = await axios.get(`http://localhost:5262/markers/water/state/${selectedState.id}`);
             setCountWaterPorts(responseWater.data);
 
         } else {
@@ -67,7 +67,7 @@ export const Map = () => {
         const selectedStateById = e.target.value
         setZoom(5);
         if(selectedStateById) {
-            const response = await axios.get('http://localhost:5262/states/${selectedStateById}');
+            const response = await axios.get(`http://localhost:5262/states/${selectedStateById}`);
             console.log(response.data)
             setSelectedState(response.data)
             
@@ -99,7 +99,7 @@ export const Map = () => {
         const selectedPortMarkerById = e.target.value;
         setZoom(5);
         if(selectedPortMarkerById) {
-            const response = await axios.get('http://localhost:5262/markers/${selectedPortMarkerById}');
+            const response = await axios.get(`http://localhost:5262/markers/${selectedPortMarkerById}`);
 
 
     
@@ -131,7 +131,7 @@ export const Map = () => {
 
     const onClickMarker = async (id: number) => {
 
-        const response = await axios.get('http://localhost:5262/markers/${id}');
+        const response = await axios.get(`http://localhost:5262/markers/${id}`);
         setZoom(5);
         setTimeout(() => {
             const targetZoom = 10;
