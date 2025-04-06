@@ -72,5 +72,5 @@ jobs:
         with:
           app-name: 'mid4u2'
           slot-name: 'Production'
-          package: release.zip
+          package: .
           
