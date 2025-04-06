@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
-import { styles } from './Tax.module.css'
+import styles from './Tax.module.css'
 import { ITax } from '../models/ITax';
-import { axios } from 'axios';
+import axios from 'axios';
 import { ITaxKeys } from '../models/ITaxKeys';
 import { FormatCurrencySymbol } from '../Librarys/FormatCurrencySymbol';
 import { FormatCurrencyName } from '../Librarys/FormatCurrencyName';

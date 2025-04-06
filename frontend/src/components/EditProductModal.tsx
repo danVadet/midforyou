@@ -1,7 +1,7 @@
-import { styles } from './EditProductModal.module.css'
+import styles from './EditProductModal.module.css'
 import { FormEvent, useState } from "react";
 import { IProduct } from "../models/IProduct";
-import { axios } from 'axios';
+import axios from 'axios';
 
 interface IEditProductModalProps {
     currentProduct?: IProduct
