@@ -27,7 +27,7 @@ const handleChange = (e: React.FormEvent) => {
 }
 const handleSubmit = async (e: React.FormEvent) => {
   e.preventDefault();
-  const response = await axios.post(`http://localhost:5077/visitor/sendEmail`, {
+  const response = await axios.post('http://localhost:5077/visitor/sendEmail', {
       nome: visitor.nome,
       telefone: visitor.telefone,
       email: visitor.email,
@@ -43,12 +43,12 @@ const handleSubmit = async (e: React.FormEvent) => {
 
 }
   return (
-    <div className={`${styles.contato}`} >
+    <div className={'${styles.contato}'} >
 
       <h1>Entre em contato</h1>
 
 
-      <div>   <form onSubmit={(e) => handleSubmit(e)}  className={`${styles.formContainer}`}>
+      <div>   <form onSubmit={(e) => handleSubmit(e)}  className={'${styles.formContainer}'}>
                     <label>Nome completo</label>
                     <input type="text" name="nome"  value={visitor.nome} onChange={(e) => handleChange(e)} />
                     <label>Telefone</label>

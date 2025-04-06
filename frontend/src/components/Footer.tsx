@@ -5,8 +5,8 @@ import styles from './Footer.module.css'
 const Footer = () => {
     return (
         <footer>
-            <div className={`${styles.content}`}>
-                <div className={`${styles.info}`}>
+            <div className={'${styles.content}'}>
+                <div className={'${styles.info}'}>
 
                     <h3>
                         CNPJ: 10.501.613/0001-66 | CEP: 58.900-000 |
@@ -16,12 +16,12 @@ const Footer = () => {
 
                 </div>
 
-                <div className={`${styles.mediaSocial}`}>
+                <div className={'${styles.mediaSocial}'}>
 
                     <a href="https://www.facebook.com/mid4ubrasil/" target="_blank" rel="noreferrer noopener">
 
 
-                        <div className={`${styles.facebookIcon}`}>
+                        <div className={'${styles.facebookIcon}'}>
                             <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="30" height="30" viewBox="0,0,256,256">
                                 <g fill="rgb(0, 175, 239)" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none">
                                     <g transform="scale(8.53333,8.53333)">
@@ -33,7 +33,7 @@ const Footer = () => {
                         </div>
                     </a>
                     <a href="https://www.instagram.com/midforyoubr/"  target="_blank" rel="noreferrer noopener">
-                        <div className={`${styles.instagramIcon}`}>
+                        <div className={'${styles.instagramIcon}'}>
                             <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="30" height="30" viewBox="0,0,256,256">
                                 <g fill="rgb(0, 175, 239)" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none">
                                     <g transform="scale(5.12,5.12)">
@@ -45,7 +45,7 @@ const Footer = () => {
 
                     </a>
                     <a href="https://www.linkedin.com/company/mid4u/"   target="_blank" rel="noreferrer noopener">
-                        <div className={`${styles.linkedinIcon}`}>
+                        <div className={'${styles.linkedinIcon}'}>
 
                             <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="30" height="30" viewBox="0,0,256,256">
                                 <g fill="rgb(0, 175, 239)" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none">

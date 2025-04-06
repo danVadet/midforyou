@@ -9,10 +9,10 @@ const Navbar = () => {
 
     return (
         <nav>
-            <div className={`${styles.navLogoContainer}`}>
+            <div className={'${styles.navLogoContainer}'}>
                 <img src={"../assets/logo.png"} alt="" height={40} />
             </div>
-            <ul className={mobileMenu ? '' : `${styles.hideMobileMenu}`}>
+            <ul className={mobileMenu ? '' : '${styles.hideMobileMenu}'}>
                 <li>
                     <Link to="/"> Início </Link>
                 </li>
@@ -43,7 +43,7 @@ const Navbar = () => {
                 </i>
                 :
                 // icon menu bar
-                <i onClick={() => setMobileMenu(true)} className={`${styles.menuIcon}`}>
+                <i onClick={() => setMobileMenu(true)} className={'${styles.menuIcon}'}>
                     <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="30" height="30" viewBox="0,0,256,256">
                         <g fill="rgb(0, 175, 239)" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none">
                             <g transform="scale(5.12,5.12)"><path d="M0,7.5v5h50v-5zM0,22.5v5h50v-5zM0,37.5v5h50v-5z"></path>

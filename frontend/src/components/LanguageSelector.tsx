@@ -7,9 +7,9 @@ export const LanguageSelector  = () => {
 
     return (
         <>
-         <li className={language === "pt" ? `${styles.activeLang}` : ""}><a href="/">Português</a></li>
-         <li  className={language === "en" ? `${styles.activeLang}` : ""}><a href="/en">Inglês</a></li>
-         <li  className={language === "es" ? `${styles.activeLang}` : ""}><a href="/es">Espanhol</a></li>
+         <li className={language === "pt" ? '${styles.activeLang}' : ""}><a href="/">Português</a></li>
+         <li  className={language === "en" ? '${styles.activeLang}' : ""}><a href="/en">Inglês</a></li>
+         <li  className={language === "es" ? '${styles.activeLang}' : ""}><a href="/es">Espanhol</a></li>
         </>
     )
 }

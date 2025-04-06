@@ -17,7 +17,7 @@ export const AboutServices = (props: IAboutServicesProps) => {
     return (
 
         <>
-            <div className={`${styles.about_services_component}`}>
+            <div className={'${styles.about_services_component}'}>
 
                 {props.services.map((service, index) => (
                      <AboutServiceCard
