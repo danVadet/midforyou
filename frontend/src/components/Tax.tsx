@@ -12,7 +12,7 @@ const  Tax = () => {
     let [currentTax, setCurrentTax] = useState<ITax>();
 
     const getTaxes = async () => {
-        const response = await axios.get(`http://economia.awesomeapi.com.br/json/last/USD-BRL,EUR-BRL,CNY-BRL,GBP-BRL,ARS-BRL`);
+        const response = await axios.get('http://economia.awesomeapi.com.br/json/last/USD-BRL,EUR-BRL,CNY-BRL,GBP-BRL,ARS-BRL');
 
         const quotes = response.data;
         const taxesArray: ITax[] = [];
