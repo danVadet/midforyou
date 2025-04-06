@@ -56,6 +56,9 @@ jobs:
         with:
           name: react-app
 
+      - name: Unzip artifact for deployment
+        run: unzip release.zip
+      
       - name: Login to Azure
         uses: azure/login@v2
         with:
@@ -69,5 +72,5 @@ jobs:
         with:
           app-name: 'mid4u2'
           slot-name: 'Production'
-          package: release.zip
+          package: .
           
