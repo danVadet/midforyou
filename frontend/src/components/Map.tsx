@@ -10,6 +10,9 @@ import { MapControl } from "./MapControl";
 import { CounterAirPort } from "./CounterAirPort";
 import { CounterWaterPort } from "./CounterWaterPort";
 
+//const url_backend = 'http://localhost:5262'
+const url_backend = 'https://mid4u-gsakgyhbexfeezgf.centralus-01.azurewebsites.net:5262'
+
 export const Map = () => {
 
     const { isLoaded } = useJsApiLoader({
@@ -36,33 +39,36 @@ export const Map = () => {
 
     const getStates = async () => {
         try {
-            const response = await axios.get('http://localhost:5262/states');
+            const response = await axios.get(´${url_backend}/states``);
             setStates(response.data);
         } catch (error) {
             console.log(`getStates erro: ${error}`);
         }
     }
     const getPortMarkers = async () => {
+        try {
+            if (selectedState?.id) {
+                const response = await axios.get(`${url_backend}/markers/state/${selectedState.id}`);
+                setPortMarkers(response.data);
 
-        if (selectedState?.id) {
-            const response = await axios.get(`http://localhost:5262/markers/state/${selectedState.id}`);
-            setPortMarkers(response.data);
+                const responseAir = await axios.get(`${url_backend}/markers/air/state/${selectedState.id}`);
+                setCountAirPorts(responseAir.data);
 
-            const responseAir = await axios.get(`http://localhost:5262/markers/air/state/${selectedState.id}`);
-            setCountAirPorts(responseAir.data);
+                const responseWater = await axios.get(`${url_backend}/markers/water/state/${selectedState.id}`);
+                setCountWaterPorts(responseWater.data);
 
-            const responseWater = await axios.get(`http://localhost:5262/markers/water/state/${selectedState.id}`);
-            setCountWaterPorts(responseWater.data);
+            } else {
+                const response = await axios.get(`${url_backend}/markers`);
+                setPortMarkers(response.data);
 
-        } else {
-            const response = await axios.get('http://localhost:5262/markers');
-            setPortMarkers(response.data);
+                const responseAir = await axios.get(`${url_backend}/markers/air`);
+                setCountAirPorts(responseAir.data);
 
-            const responseAir = await axios.get('http://localhost:5262/markers/air');
-            setCountAirPorts(responseAir.data);
-
-            const responseWater = await axios.get('http://localhost:5262/markers/water');
-            setCountWaterPorts(responseWater.data);
+                const responseWater = await axios.get(`${url_backend}/markers/water`);
+                setCountWaterPorts(responseWater.data);
+            }
+        } catch (error) {
+            console.log(`getPortMarkers erro: ${error}`);
         }
     }
 
@@ -71,7 +77,7 @@ export const Map = () => {
         const selectedStateById = e.target.value
         setZoom(5);
         if(selectedStateById) {
-            const response = await axios.get(`http://localhost:5262/states/${selectedStateById}`);
+            const response = await axios.get(`${url_backend}/states/${selectedStateById}`);
             console.log(response.data)
             setSelectedState(response.data)
             
@@ -103,7 +109,7 @@ export const Map = () => {
         const selectedPortMarkerById = e.target.value;
         setZoom(5);
         if(selectedPortMarkerById) {
-            const response = await axios.get(`http://localhost:5262/markers/${selectedPortMarkerById}`);
+            const response = await axios.get(`${url_backend}/markers/${selectedPortMarkerById}`);
 
 
     
@@ -135,7 +141,7 @@ export const Map = () => {
 
     const onClickMarker = async (id: number) => {
 
-        const response = await axios.get(`http://localhost:5262/markers/${id}`);
+        const response = await axios.get(`${url_backend}/markers/${id}`);
         setZoom(5);
         setTimeout(() => {
             const targetZoom = 10;
