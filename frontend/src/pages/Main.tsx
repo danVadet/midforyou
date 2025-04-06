@@ -20,10 +20,10 @@ export interface IMainProps {
     <>
       <Navbar></Navbar>
        <Tax></Tax>
-       <div className={'${styles.brandImageComponent}'}>
-       <div className={'${styles.brandImageComponent_gradient}'} />
-      <div className={'${styles.brandImageComponent_textContainer}'}>
-        <div className={'${styles.brandImageComponent_text}'}>
+       <div className={`${styles.brandImageComponent}`}>
+       <div className={`${styles.brandImageComponent_gradient}`} />
+      <div className={`${styles.brandImageComponent_textContainer}`}>
+        <div className={`${styles.brandImageComponent_text}`}>
           <h1> Torne sua experiência com o comércio exterior mais eficiente e segura.</h1>
           <span>Somos o meio para você importar e exportar com segurança!</span>
         </div>

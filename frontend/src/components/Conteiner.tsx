@@ -69,7 +69,7 @@ export const Conteiner = () => {
     const [pctVolume, setPctVolume] = useState<number>(0);
 
     const onClickDeleteProduct = async (id: number) => {
-        const response = await axios.get('http://localhost:5262/products/${id}');
+        const response = await axios.get(`http://localhost:5262/products/${id}`);
         console.log(response.data);
         setCurrentProduct(response.data);
         if (!openDeleteModal) {
@@ -126,7 +126,7 @@ export const Conteiner = () => {
 
     const onChangeSelectContainer = async (e: React.ChangeEvent<HTMLSelectElement>) => {
         const value = e.target.value;
-        const response = await axios.get('http://localhost:5262/containers/capacity/${value}');
+        const response = await axios.get(`http://localhost:5262/containers/capacity/${value}`);
         setLoading(true);
 
         setTimeout(() => {
@@ -146,7 +146,7 @@ export const Conteiner = () => {
             return setErrors(errors);
         } else {
 
-            const response = await axios.post('http://localhost:5262/products/addProduct', {
+            const response = await axios.post(`http://localhost:5262/products/addProduct`, {
                 name: product.name,
                 length: product.length,
                 width: product.width,
@@ -171,7 +171,7 @@ export const Conteiner = () => {
         }
     }
     const onClickEditProduct = async (id: number) => {
-        const response = await axios.get('http://localhost:5262/products/${id}');
+        const response = await axios.get(`http://localhost:5262/products/${id}`);
         console.log(response.data);
         setCurrentProduct(response.data);
 
@@ -194,11 +194,11 @@ export const Conteiner = () => {
         try {
 
             if (searchProduct) {
-                const response = await axios.get('http://localhost:5262/products?search=${searchProduct}');
+                const response = await axios.get(`http://localhost:5262/products?search=${searchProduct}`);
                 setProducts(response.data);
                 console.log(response.data);
             } else {
-                const response = await axios.get('http://localhost:5262/products');
+                const response = await axios.get(`http://localhost:5262/products`);
                 setProducts(response.data);
                 console.log(response.data);
             }
@@ -208,7 +208,7 @@ export const Conteiner = () => {
     }
 
     const deleteAllProducts = async () => {
-        const response = await axios.delete('http://localhost:5262/products');
+        const response = await axios.delete(`http://localhost:5262/products`);
         console.log(response.data);
         window.onbeforeunload = () => true;
         setUnsavedProduct(true);
@@ -216,7 +216,7 @@ export const Conteiner = () => {
     const getSumTotalWeight = async () => {
 
         try {
-            const response = await axios.get('http://localhost:5262/sumTotalWeight');
+            const response = await axios.get(`http://localhost:5262/sumTotalWeight`);
             console.log(response.data);
             setSumTotalWeight(response.data);
         } catch (error) {
@@ -225,7 +225,7 @@ export const Conteiner = () => {
     }
     const getContainers = async () => {
         try {
-            const response = await axios.get('http://localhost:5262/containers');
+            const response = await axios.get(`http://localhost:5262/containers`);
             console.log(response.data);
             setContainers(response.data);
         } catch (error) {
@@ -236,7 +236,7 @@ export const Conteiner = () => {
     const getSumTotalVolume = async () => {
 
         try {
-            const response = await axios.get('http://localhost:5262/sumTotalVolume');
+            const response = await axios.get(`http://localhost:5262/sumTotalVolume`);
             setSumTotalVolume(response.data);
             console.log(response.data);
         } catch (error) {
@@ -246,7 +246,7 @@ export const Conteiner = () => {
     const getContainer = async (id: number) => {
 
         try {
-            const response = await axios.get('http://localhost:5262/containers/capacity/${id}');
+            const response = await axios.get(`http://localhost:5262/containers/capacity/${id}`);
             setSelectedContainer(response.data.container);
             setPctWeight(response.data.pctWeight);
             setPctVolume(response.data.pctVolume);
@@ -268,29 +268,29 @@ export const Conteiner = () => {
 
     return (
         <>
-            <div className={'${styles.container}'}>
+            <div className={`${styles.container}`}>
                 <h1>Calculadora de Carga</h1>
 
-                <form onSubmit={(e) => onSubmit(e)} className={'${styles.formContainer}'}>
+                <form onSubmit={(e) => onSubmit(e)} className={`${styles.formContainer}`}>
                     <input type="text" name="name" value={product.name || ""} placeholder="Digite o nome..." onChange={(e) => onChange(e)} />
-                    {product.name ? "" : errors.name && <p className={styles.nameError}>{'${errors.name}'}</p>}
+                    {product.name ? "" : errors.name && <p className={styles.nameError}>{`${errors.name}`}</p>}
                     <input type="number" name="length" value={product.length || ""} placeholder="Digite o comprimento..." onChange={(e) => onChange(e)} />
-                    {product.length ? "" : errors.length && <p className={styles.lengthError}>{'${errors.length}'}</p>}
+                    {product.length ? "" : errors.length && <p className={styles.lengthError}>{`${errors.length}`}</p>}
                     <input type="number" name="width" value={product.width || ""} placeholder="Digite a lagura..." onChange={(e) => onChange(e)} />
-                    {product.width ? "" : errors.width && <p className={styles.widthError}>{'${errors.width}'}</p>}
+                    {product.width ? "" : errors.width && <p className={styles.widthError}>{`${errors.width}`}</p>}
                     <input type="number" name="height" value={product.height || ""} placeholder="Digite a altura..." onChange={(e) => onChange(e)} />
-                    {product.height ? "" : errors.height && <p className={styles.heightError}>{'${errors.height}'}</p>}
+                    {product.height ? "" : errors.height && <p className={styles.heightError}>{`${errors.height}`}</p>}
                     <input type="number" name="weight" value={product.weight || ""} placeholder="Digite o peso..." onChange={(e) => onChange(e)} />
-                    {product.weight ? "" : errors.weight && <p className={styles.weightError}>{'${errors.weight}'}</p>}
+                    {product.weight ? "" : errors.weight && <p className={styles.weightError}>{`${errors.weight}`}</p>}
                     <input type="number" name="quantity" value={product.quantity || ""} placeholder="Digite a quantidade..." onChange={(e) => onChange(e)} />
-                    {product.quantity ? "" : errors.quantity && <p className={styles.quantityError}>{'${errors.quantity}'}</p>}
+                    {product.quantity ? "" : errors.quantity && <p className={styles.quantityError}>{`${errors.quantity}`}</p>}
 
                     <button>Adicionar novo produto</button>
                 </form>
 
-                <div className={'${styles.search}'}>
+                <div className={`${styles.search}`}>
                     <input type="text" name="search" value={searchProduct} placeholder="Pesquisa o produto adicionado..." onChange={(e) => onChangeSearch(e)} />
-                    <i className={'${styles.iconSearch}'}>
+                    <i className={`${styles.iconSearch}`}>
                             <svg fill="rgb(0, 175, 239)" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="30" height="30" stroke="rgb(0, 175, 239)"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M27 24.57l-5.647-5.648a8.895 8.895 0 0 0 1.522-4.984C22.875 9.01 18.867 5 13.938 5 9.01 5 5 9.01 5 13.938c0 4.929 4.01 8.938 8.938 8.938a8.887 8.887 0 0 0 4.984-1.522L24.568 27 27 24.57zm-13.062-4.445a6.194 6.194 0 0 1-6.188-6.188 6.195 6.195 0 0 1 6.188-6.188 6.195 6.195 0 0 1 6.188 6.188 6.195 6.195 0 0 1-6.188 6.188z"></path></g></svg>
                     </i>
                 </div>
@@ -299,10 +299,10 @@ export const Conteiner = () => {
                 {editMessage && <Message type='sucess' message='Produto atualizado com sucesso' />}
                 {deleteMessage && <Message type='sucess' message='Produto excluído com sucesso' />}
 
-                <ul className={'${styles.products}'}>
+                <ul className={`${styles.products}`}>
                     {products.length === 0 ? (<tr><td>Produto não adicionado</td></tr>) : (
                         products.map((product, index) => (
-                            <li className={'${styles.product_item}'} key={index}>
+                            <li className={`${styles.product_item}`} key={index}>
                                 <div><label>Nome </label>  <p>{product.name} </p> </div>
                                 <div><label>Comprimento</label> <p>{product.length} m</p> </div>
                                 <div><label>Lagura</label> <p>{product.width} m</p> </div>
@@ -314,7 +314,7 @@ export const Conteiner = () => {
 
                                 {openEditModal && <EditProductModal
                                     closeModal={() => setOpenEditModal(false)} getProducts={getProducts} getSumTotalWeight={getSumTotalWeight} getSumTotalVolume={getSumTotalVolume} currentProduct={currentProduct} getContainer={() => getContainer(selectedContainer.id)} selectedContainerId={selectedContainer.id} setShowEditMessage={showEditMessage} />}
-                                <button className={'${styles.buttonEdit}'} onClick={() => onClickEditProduct(product.id)}>
+                                <button className={`${styles.buttonEdit}`} onClick={() => onClickEditProduct(product.id)}>
                                     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0,0,256,256">
                                         <g fill="rgb(255, 255, 255)" >
                                             <g transform="scale(5.12,5.12)">
@@ -326,7 +326,7 @@ export const Conteiner = () => {
 
                                 {openDeleteModal && <DeleteProductModal
                                     closeModal={() => setOpenDeleteModal(false)} message='Deseja excluir esse produto' getProducts={getProducts} productCurrent={currentProduct} getSumTotalVolume={getSumTotalVolume} getSumTotalWeight={getSumTotalWeight} getContainer={() => getContainer(selectedContainer.id)} selectedContainerId={selectedContainer.id} setShowDeleteMessage={showDeleteMessage} />}
-                                <button className={'${styles.buttonDelete}'} onClick={() => onClickDeleteProduct(product.id)}>
+                                <button className={`${styles.buttonDelete}`} onClick={() => onClickDeleteProduct(product.id)}>
                                     <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="30" height="30" viewBox="0,0,256,256">
                                         <g fill="rgb(255, 255, 255)" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none">
                                             <g transform="scale(2.56,2.56)">
@@ -341,16 +341,16 @@ export const Conteiner = () => {
                 </ul>
 
                 <div>
-                    <h3>{'Peso total de  todos os produtos: ${sumTotalWeight} kg'}</h3>
+                    <h3>{`Peso total de  todos os produtos: ${sumTotalWeight} kg`}</h3>
                 </div>
 
                 <div>
-                    <h3>{'Volume total de  todos os produtos: ${sumTotalVolume} m³'}</h3>
+                    <h3>{`Volume total de  todos os produtos: ${sumTotalVolume} m³`}</h3>
                 </div>
 
-                <div className={'${styles.containerInfo}'}>
+                <div className={`${styles.containerInfo}`}>
 
-                    <div className={'${styles.selectedContainer}'}>
+                    <div className={`${styles.selectedContainer}`}>
                         <select onChange={(e) => onChangeSelectContainer(e)}>
                             <option hidden>Selecionar o tipo de container</option>
                             {containers.map((container, index) => (
@@ -359,11 +359,11 @@ export const Conteiner = () => {
                             ))}
                         </select>
 
-                        {!loading ? <div> <img className={'${styles.imageContainer}'} src={selectedContainer.image ? '${selectedContainer.image}' : './assets/containerPlaceholder.png'} alt="" /> </div> : 
-                          <div className={'${styles.imageLoader}'}>
-                            <img className={'${styles.imageContainer}'} src={'./assets/containerPlaceholder.png'} alt="" />
-                            <div className={'${styles.loader}'}>
-                            <span className={'${styles.spinner}'}></span>
+                        {!loading ? <div> <img className={`${styles.imageContainer}`} src={selectedContainer.image ? `${selectedContainer.image}` : `./assets/containerPlaceholder.png`} alt="" /> </div> : 
+                          <div className={`${styles.imageLoader}`}>
+                            <img className={`${styles.imageContainer}`} src={`./assets/containerPlaceholder.png`} alt="" />
+                            <div className={`${styles.loader}`}>
+                            <span className={`${styles.spinner}`}></span>
                             </div>
                         </div>}
 
@@ -375,15 +375,15 @@ export const Conteiner = () => {
                         {pctWeight <= 100 && pctVolume <= 100 ?
                             <>
 
-                                <div className={'${styles.containerCargoTotalWeight}'}>
-                                    <div className={'${styles.labelCargoTotalWeight}'}>
-                                        <img src={'./assets/weight.png'} alt="" />
+                                <div className={`${styles.containerCargoTotalWeight}`}>
+                                    <div className={`${styles.labelCargoTotalWeight}`}>
+                                        <img src={`./assets/weight.png`} alt="" />
                                         <h2>Peso total da carga</h2>
                                     </div>
                                     <ProgressBar progressPercent={pctWeight} />
 
 
-                                    <div className={'${styles.labelCapacityWeight}'}>
+                                    <div className={`${styles.labelCapacityWeight}`}>
                                         <div>
                                             <h2>{sumTotalWeight} kg</h2>
                                         </div>
@@ -392,14 +392,14 @@ export const Conteiner = () => {
                                     </div>
                                 </div>
 
-                                <div className={'${styles.containerCargoTotalVolume}'}>
-                                    <div className={'${styles.labelCargoTotalVolume}'}>
-                                        <img src={'./assets/package.png'} alt="" />
+                                <div className={`${styles.containerCargoTotalVolume}`}>
+                                    <div className={`${styles.labelCargoTotalVolume}`}>
+                                        <img src={`./assets/package.png`} alt="" />
                                         <h2>Volume total da carga</h2>
                                     </div>
 
                                       <ProgressBar progressPercent={pctVolume} />
-                                    <div className={'${styles.labelCapacityVolume}'}>
+                                    <div className={`${styles.labelCapacityVolume}`}>
                                         <h2>{sumTotalVolume} m³</h2>
                                         <span>max<h4>{selectedContainer.capacityVolume} m³</h4></span>
                                     </div>

@@ -35,7 +35,7 @@ export const EditProductModal = (props: IEditProductModalProps) => {
   const updateProduct = async (e: FormEvent) => {
       e.preventDefault();
 
-      const response = await axios.put('http://localhost:5262/products/${props.currentProduct?.id}', {
+      const response = await axios.put(`http://localhost:5262/products/${props.currentProduct?.id}`, {
           name: product.name,
           length: product.length,
           width: product.width,
@@ -55,9 +55,9 @@ export const EditProductModal = (props: IEditProductModalProps) => {
 
   return (
       <>
-          <div className={'${styles.modal}'}>
-              <div className={'${styles.modalContainer}'}>
-                  <form onSubmit={(e) => updateProduct(e)} className={'${styles.formContainer}'}>
+          <div className={`${styles.modal}`}>
+              <div className={`${styles.modalContainer}`}>
+                  <form onSubmit={(e) => updateProduct(e)} className={`${styles.formContainer}`}>
                      <div>
                      <input type="text" name="name" value={product.name || ""} placeholder="Digite o nome..." onChange={(e) => onChange(e)} />
                      </div>

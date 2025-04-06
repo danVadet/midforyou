@@ -21,7 +21,7 @@ export const DeleteProductModal = (props: IDeleteProductModalProps) => {
     
     const confirmDelete = async () => { 
 
-        const response = await axios.delete('http://localhost:5262/products/${props.productCurrent?.id}');
+        const response = await axios.delete(`http://localhost:5262/products/${props.productCurrent?.id}`);
         console.log(response.data);  
 
         props.closeModal();
@@ -34,10 +34,10 @@ export const DeleteProductModal = (props: IDeleteProductModalProps) => {
     }
     return (
         <>
-            <div className={'${styles.modal}'}>
-                <div className={'${styles.modalContainer}'}>
+            <div className={`${styles.modal}`}>
+                <div className={`${styles.modalContainer}`}>
                     <h2>{props.message}</h2>
-                    <div className={'${styles.modalButtonContainer}'}>
+                    <div className={`${styles.modalButtonContainer}`}>
                         <button onClick={() => confirmDelete()}>Sim</button>
                         <button onClick={props.closeModal}>Não</button>
                     </div>

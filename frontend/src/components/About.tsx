@@ -18,8 +18,8 @@ const About = (props: IAboutProps) => {
 
         <>
 
-           <div className={'${styles.aboutComponentContainer}'}>
-            <div className={'${styles.aboutTextContainer}'}>
+           <div className={`${styles.aboutComponentContainer}`}>
+            <div className={`${styles.aboutTextContainer}`}>
                 <h1>Desde a prospecção de fornecedores até a nacionalização da mercadoria.</h1>
                 <p>
                     As Trading Companies são empresas especializadas em Comércio Exterior que facilitam processos de importação e exportação entre diferentes países, intermediando a negociação entre fornecedor e cliente de forma segura e contribuindo para a comercialização internacional de produtos de mercados variados.

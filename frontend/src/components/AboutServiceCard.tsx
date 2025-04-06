@@ -11,17 +11,17 @@ export interface IAboutServiceCardProps {
 export const AboutServiceCard = (props: IAboutServiceCardProps) => {
 
     return (
-        <div className={'${styles.about_service_card_component}'}>
+        <div className={`${styles.about_service_card_component}`}>
             {
                 props.imagePosition === 'left' &&
-                <div className={'${styles.about_service_card_wrapper_left}'}>
-                    <div className={'${styles.image}'}>
+                <div className={`${styles.about_service_card_wrapper_left}`}>
+                    <div className={`${styles.image}`}>
                         <img src={props.imageUrl} alt={props.title} />
                     </div>
-                    <div className={'${styles.informations_container}'}>
-                        <h1 className={'${styles.title}'}>{props.title}</h1>
-                        <div className={'${styles.description_container}'}>
-                            <span className={'${styles.description}'}>{props.description}</span>
+                    <div className={`${styles.informations_container}`}>
+                        <h1 className={`${styles.title}`}>{props.title}</h1>
+                        <div className={`${styles.description_container}`}>
+                            <span className={`${styles.description}`}>{props.description}</span>
                         </div>
                     </div>
                 </div>
@@ -29,14 +29,14 @@ export const AboutServiceCard = (props: IAboutServiceCardProps) => {
 
             {
                 props.imagePosition === 'right' &&
-                <div className={'${styles.about_service_card_wrapper_right}'}>
-                    <div className={'${styles.informations_container}'}>
-                        <h1 className={'${styles.title}'}>{props.title}</h1>
-                        <div  className={'${styles.description_container}'}>
-                            <span className={'${styles.description}'}>{props.description}</span>
+                <div className={`${styles.about_service_card_wrapper_right}`}>
+                    <div className={`${styles.informations_container}`}>
+                        <h1 className={`${styles.title}`}>{props.title}</h1>
+                        <div  className={`${styles.description_container}`}>
+                            <span className={`${styles.description}`}>{props.description}</span>
                         </div>
                     </div>
-                    <div  className={'${styles.image}'}>
+                    <div  className={`${styles.image}`}>
                         <img src={props.imageUrl} alt={props.title} />
                     </div>
                 </div>

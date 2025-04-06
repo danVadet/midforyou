@@ -17,7 +17,7 @@ export const Message = (props: IMessageProps) => {
     return (
       <>
     
-      <div className={'${styles.message} ${styles[props.type]}'}>{props.message}</div>
+      <div className={`${styles.message} ${styles[props.type]}`}>{props.message}</div>
       </>
 
     )
