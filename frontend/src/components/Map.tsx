@@ -35,8 +35,12 @@ export const Map = () => {
     const [countWaterPorts, setCountWaterPorts] = useState<number>(0);
 
     const getStates = async () => {
-        const response = await axios.get('http://localhost:5262/states');
-        setStates(response.data);
+        try {
+            const response = await axios.get('http://localhost:5262/states');
+            setStates(response.data);
+        } catch (error) {
+            console.log(`getStates erro: ${error}`);
+        }
     }
     const getPortMarkers = async () => {
 
