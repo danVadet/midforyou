@@ -19,13 +19,6 @@ export const Tax = () => {
 
             const quotes = response.data;
             const taxesArray: ITax[] = [];
-
-
-        Object.keys(quotes).map((key) => {
-            taxesArray.push({ name: key as ITaxKeys, currencyCode: `${quotes[key].code}-BRL`, bid: quotes[key].bid, ask: quotes[key].ask, variation: quotes[key].pctChange, high: quotes[key].high, low: quotes[key].low, date: quotes[key].timestamp });
-        });
-
-        setTaxes(taxesArray);
             Object.keys(quotes).map((key) => {
                 taxesArray.push({ name: key as ITaxKeys, currencyCode: `${quotes[key].code}-BRL`, bid: quotes[key].bid, ask: quotes[key].ask, variation: quotes[key].pctChange, high: quotes[key].high, low: quotes[key].low, date: quotes[key].timestamp });
             });

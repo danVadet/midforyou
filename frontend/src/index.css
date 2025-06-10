@@ -35,9 +35,21 @@ a {
   text-decoration: none;
 }
 
+
+section {
+  height: 160vh;
+}
+
+
+
+/* O site fora do ar /
+/*
+
 section {
   height: 220vh;
 }
+
+*/
 
 
 

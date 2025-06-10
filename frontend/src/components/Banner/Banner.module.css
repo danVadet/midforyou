@@ -1,3 +1,15 @@
+
+.slider  {
+    position: relative;
+    width: 100%;
+    height: 740px;
+    overflow: hidden;
+
+}
+
+/* O site fora do ar */
+
+/*
 .slider  {
     position: relative;
     width: 100%;
@@ -5,6 +17,7 @@
     overflow: hidden;
 
 }
+ */   
 .imageSlide {
     width: 100%;
     height: 100%;
@@ -18,6 +31,30 @@
     top: 0;
     background: rgba(0,0,0,0.3);
 }
+
+
+.bannerText {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 40%;
+    left: 5%;
+    color: white;
+ 
+}
+
+.bannerText h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+}
+
+.bannerText h3 {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+/* O site fora do ar */
+/*
 .bannerText {
     color: white;
     font-size: 2.5rem;
@@ -28,6 +65,7 @@
     width: 100%;
  
 }
+
 .arrow {
     position: absolute;
     top: 50%;
@@ -72,3 +110,4 @@
 .dot_active {
     background: rgba(0, 175, 239, 0.5);
 }
+*/
