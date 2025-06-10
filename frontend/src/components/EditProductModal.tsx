@@ -56,7 +56,8 @@ export const EditProductModal = (props: IEditProductModalProps) => {
           measureUnitId: props.selectedMeasureUnit.value
 
       });
-      console.log(response.data);
+      console.log(response.data)
+      console.log(response.data);  
 
       props.closeModal();
       props.getMeasureUnits();

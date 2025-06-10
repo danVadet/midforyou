@@ -1,4 +1,6 @@
 
+using backend.Domain;
+
 namespace backend.Models;
 
 public class Visitor

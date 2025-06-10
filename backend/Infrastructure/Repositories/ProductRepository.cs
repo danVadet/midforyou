@@ -1,6 +1,5 @@
 
 using backend.Domain;
-using backend.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace backend.Infrastructure.Repositories;

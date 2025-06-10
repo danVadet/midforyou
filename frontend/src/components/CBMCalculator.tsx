@@ -166,7 +166,7 @@ export const CBMCalculator = () => {
             return setErrors(errors);
         } else {
 
-            const response = await axios.post(`http://localhost:5262/containers/addProduct`, {
+            const response = await axios.post(`http://localhost:5262/products/addProduct`, {
                 name: product.name,
                 length: product.length,
                 width: product.width,
@@ -174,8 +174,7 @@ export const CBMCalculator = () => {
                 weight: product.weight,
                 quantity: product.quantity,
                 measureUnit: selectedMeasureUnit.name,
-                measureUnitId: selectedMeasureUnit.value,
-                containerId: selectedContainer.id,
+                measureUnitId: selectedMeasureUnit.value
             });
             console.log(response.data);
 

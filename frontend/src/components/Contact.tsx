@@ -40,7 +40,8 @@ export const Contact = () => {
     nome: "",
     sigla: ""
 
-  });
+});
+
   const [selectedCity, setSelectedCity] = useState<ICity>({
     id: 0,
     nome: ""

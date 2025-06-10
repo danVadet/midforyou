@@ -1,7 +1,7 @@
 
 
+using backend.Domain;
 using backend.Infrastructure;
-using backend.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -35,8 +35,8 @@ public class PortStateController : ControllerBase
     [HttpPost("states/addState")]
     public async Task<ActionResult> addProduct([FromBody] PortState portState)
     {
-        
-        _appDbContext.PortState.Add(portState);
+
+        _appDbContext.Add(portState);
 
         await _appDbContext.SaveChangesAsync();
 

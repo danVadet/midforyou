@@ -1,5 +1,6 @@
 
-namespace backend.Models;
+
+namespace backend.Domain;
 
 public class PortState
 {
