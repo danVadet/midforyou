@@ -1,17 +1,24 @@
 import styles from './EditProductModal.module.css'
-import { FormEvent, useState } from "react";
+import { ChangeEvent, FormEvent, useState } from "react";
 import { IProduct } from "../models/IProduct";
 import axios from 'axios';
+import { IMeasureUnit } from '../models/IMeasureUnit';
 
 interface IEditProductModalProps {
     currentProduct?: IProduct
     selectedContainerId: number;
+    measureUnits: IMeasureUnit[];
+    selectedMeasureUnit: IMeasureUnit,
     closeModal(): void
-    getProducts(): void
+    getProducts(): void;
+    onChangeSelectMeasureUnit(e: ChangeEvent<HTMLSelectElement>): void;
     getSumTotalWeight(): void;
     getSumTotalVolume(): void;
+    getSumTotalQuantity(): void;
     getContainer(id: number): void;
     setShowEditMessage(): void;
+    getMeasureUnits(): void;
+
 }
 
 export const EditProductModal = (props: IEditProductModalProps) => {
@@ -26,6 +33,9 @@ export const EditProductModal = (props: IEditProductModalProps) => {
       quantity: props.currentProduct?.quantity || 0,
       weightTotal: props.currentProduct?.weightTotal || 0,
       volumeTotal: props.currentProduct?.volumeTotal || 0,
+      measureUnit: props.currentProduct?.measureUnit || "",
+      measureUnitId: 0,
+      containerId: 0
   })
   const onChange = (e: FormEvent) => {
       const target = e.target as HTMLInputElement;
@@ -41,12 +51,17 @@ export const EditProductModal = (props: IEditProductModalProps) => {
           width: product.width,
           height: product.height,
           weight: product.weight,
-          quantity: product.quantity
+          quantity: product.quantity,
+          measureUnit: props.selectedMeasureUnit.name,
+          measureUnitId: props.selectedMeasureUnit.value
 
       });
+      console.log(response.data);
 
       props.closeModal();
+      props.getMeasureUnits();
       props.getProducts();
+      props.getSumTotalQuantity();
       props.getSumTotalWeight();
       props.getSumTotalVolume();
       props.getContainer(props.selectedContainerId);
@@ -58,6 +73,15 @@ export const EditProductModal = (props: IEditProductModalProps) => {
           <div className={`${styles.modal}`}>
               <div className={`${styles.modalContainer}`}>
                   <form onSubmit={(e) => updateProduct(e)} className={`${styles.formContainer}`}>
+                     <div>
+                        <select onChange={(e) => props.onChangeSelectMeasureUnit(e)}>
+                        <option hidden>{props.selectedMeasureUnit.name}</option>
+                        {props.measureUnits.map((measureUnit, index) => (
+                            <option key={index} value={measureUnit.value}>{measureUnit.name}</option>
+
+                        ))}
+                    </select>
+                     </div>
                      <div>
                      <input type="text" name="name" value={product.name || ""} placeholder="Digite o nome..." onChange={(e) => onChange(e)} />
                      </div>

@@ -1,16 +1,23 @@
 import { GoogleMap, InfoWindowF, MarkerF, useJsApiLoader } from "@react-google-maps/api";
-import { ChangeEvent, useEffect, useState } from "react";
+import { ChangeEvent, useContext, useEffect, useState } from "react";
 import { IPortMarker } from "../models/IPortMarker";
-import { IState } from "../models/IState";
-import { PortType } from "../models/Enums/PortType";
+import { IPortState } from "../models/IPortState";
+import { PortType } from "../models/enums/PortType";
 import { SHIP_SVG } from "./SHIP_SVG";
 import { PLANE_SVG } from "./PLANE_SVG";
-import axios from "axios";
 import { MapControl } from "./MapControl";
 import { CounterAirPort } from "./CounterAirPort";
 import { CounterWaterPort } from "./CounterWaterPort";
+import { useNav } from "../hooks/useNav";
+import { LanguageContext } from "../contexts/LanguageContext";
+import styles from "./Map.module.css";
+import multiLang from "../multiLang.json"
+import axios from "axios";
 
 export const Map = () => {
+
+    const { language } = useContext(LanguageContext);
+    const portsBrazilRef = useNav(`${(language === "pt" && multiLang.pt.navItem.brazilPorts) || (language === "en" && multiLang.en.navItem.brazilPorts) || (language === "es" && multiLang.es.navItem.brazilPorts)}`)
 
     const { isLoaded } = useJsApiLoader({
         id: 'google-map-script',
@@ -20,16 +27,14 @@ export const Map = () => {
         lat: -14.240,
         lng: -53.180
     });
-    
 
     const [zoom, setZoom] = useState<number>(5);
-    
 
     const [portMarkers, setPortMarkers] = useState<IPortMarker[]>([]);
     const [selectedPortMarker, setSelectedPortMarker] = useState<IPortMarker | null>();
 
-    const [states, setStates] = useState<IState[]>([]);
-    const [selectedState, setSelectedState] = useState<IState | null >();
+    const [states, setStates] = useState<IPortMarker[]>([]);
+    const [selectedState, setSelectedState] = useState<IPortState | null>();
 
     const [countAirPorts, setCountAirPorts] = useState<number>(0);
     const [countWaterPorts, setCountWaterPorts] = useState<number>(0);
@@ -66,18 +71,18 @@ export const Map = () => {
 
         const selectedStateById = e.target.value
         setZoom(5);
-        if(selectedStateById) {
+        if (selectedStateById) {
             const response = await axios.get(`http://localhost:5262/states/${selectedStateById}`);
             console.log(response.data)
             setSelectedState(response.data)
-            
+
             setTimeout(() => {
-                const targetZoom = 10;
-                const currentZoom = 5;
-                const zoomStep = (targetZoom - currentZoom) / 10;
-    
+                const targetZoom = 6.5;
+                const currentZoom = 3.5
+                const zoomStep = (targetZoom - currentZoom) / 6.5;
+
                 setCenter({ lat: response.data.lat, lng: response.data.lng });
-    
+
                 let currentZoomLevel = currentZoom;
                 const zoomInterval = setInterval(() => {
                     currentZoomLevel += zoomStep;
@@ -89,27 +94,25 @@ export const Map = () => {
                 }, 50);
             }, 500);
         } else {
-            setCenter({lat: -14.240, lng: -53.180})
+            setCenter({ lat: -14.240, lng: -53.180 })
             setSelectedState(null);
-            setSelectedPortMarker(null);  
+            setSelectedPortMarker(null);
         }
     }
 
     const onSelectChangePortMarker = async (e: ChangeEvent<HTMLSelectElement>) => {
         const selectedPortMarkerById = e.target.value;
+        const response = await axios.get(`http://localhost:5262/markers/${selectedPortMarkerById}`);
         setZoom(5);
-        if(selectedPortMarkerById) {
-            const response = await axios.get(`http://localhost:5262/markers/${selectedPortMarkerById}`);
 
-
-    
+        if (selectedPortMarkerById) {
             setTimeout(() => {
-                const targetZoom = 10;
+                const targetZoom = 15;
                 const currentZoom = 5;
-                const zoomStep = (targetZoom - currentZoom) / 10;
-    
+                const zoomStep = (targetZoom - currentZoom) / 15;
+
                 setCenter({ lat: response.data.lat, lng: response.data.lng });
-    
+
                 let currentZoomLevel = currentZoom;
                 const zoomInterval = setInterval(() => {
                     currentZoomLevel += zoomStep;
@@ -120,38 +123,35 @@ export const Map = () => {
                     setZoom(currentZoomLevel);
                 }, 50);
             }, 500);
-    
             setSelectedPortMarker(response.data);
 
+
+        } else if (selectedState) {
+            const response = await axios.get(`http://localhost:5262/markers/state/${selectedState?.id}`);
+
+            setTimeout(() => {
+                const targetZoom = 6.5;
+                const currentZoom = 3.5
+                const zoomStep = (targetZoom - currentZoom) / 6.5;
+
+                setCenter({ lat: response.data.lat, lng: response.data.lng });
+
+                let currentZoomLevel = currentZoom;
+                const zoomInterval = setInterval(() => {
+                    currentZoomLevel += zoomStep;
+                    if (currentZoomLevel >= targetZoom) {
+                        clearInterval(zoomInterval);
+                        currentZoomLevel = targetZoom;
+                    }
+                    setZoom(currentZoomLevel);
+                }, 50);
+            }, 500);
+            setSelectedPortMarker(response.data);
         } else {
-            setCenter({   lat: -14.240, lng: -53.180})
-            setSelectedPortMarker(null);  
+            setCenter({ lat: -14.240, lng: -53.180 })
+            setSelectedState(null);
+            setSelectedPortMarker(null);
         }
-    }
-
-    const onClickMarker = async (id: number) => {
-
-        const response = await axios.get(`http://localhost:5262/markers/${id}`);
-        setZoom(5);
-        setTimeout(() => {
-            const targetZoom = 10;
-            const currentZoom = 5;
-            const zoomStep = (targetZoom - currentZoom) / 10;
-
-            setCenter({ lat: response.data.lat, lng: response.data.lng });
-
-            let currentZoomLevel = currentZoom;
-            const zoomInterval = setInterval(() => {
-                currentZoomLevel += zoomStep;
-                if (currentZoomLevel >= targetZoom) {
-                    clearInterval(zoomInterval);
-                    currentZoomLevel = targetZoom;
-                }
-                setZoom(currentZoomLevel);
-            }, 50);
-        }, 500);
-
-        setSelectedPortMarker(response.data);
     }
 
     useEffect(() => {
@@ -161,77 +161,90 @@ export const Map = () => {
     }, [selectedState])
 
     return (
-        <>
-           <h2>Portos do Brasil </h2>
+        <section ref={portsBrazilRef} id={`${(language === "pt" && multiLang.pt.navItem.brazilPorts.toLowerCase()) || (language === "en" && multiLang.en.navItem.brazilPorts.toLowerCase()) || (language === "es" && multiLang.es.navItem.brazilPorts.toLowerCase())}Section`}>
+            <h2>Portos do Brasil </h2>
             {isLoaded && (
                 <GoogleMap
-                    mapContainerStyle={{width: "100%", height: "850px", borderRadius: "10px" }}
+                    mapContainerStyle={{ width: "100%", height: "850px", borderRadius: "10px" }}
                     center={center}
-                    zoom={zoom}>
-
+                    zoom={zoom}               
+                    >
                     <MapControl position="RIGHT_TOP">
-                        <div style={{backgroundColor: "rgba(255, 255, 255, 0.5)", padding: '2px', margin: '2px', borderRadius: '5px', borderColor: 'red'}}>
-                        <h2>{selectedState?.label ? selectedState?.label : "Brasil"} </h2>
-                        <div style={{display: "flex", gap: "8px", alignItems: "center", justifyContent: "center"}}>
+                            <h2>{selectedState?.label ? selectedState?.label : "Brasil"} </h2>
+                            <div style={{ display: "flex", gap: "8px", alignItems: "center", justifyContent: "center" }}>
 
-                           <CounterAirPort targetNumber={countAirPorts}/>
-                           <CounterWaterPort targetNumber={countWaterPorts}/>
-                        </div>
-                        <select onChange={(e) => onSelectChangeState(e)}>
-                            <option hidden>Estados do Brasil</option>
-                            <option value="">Todos os estados</option>
-                            {states.map((state, index) => (
-                                <option key={index} value={state.id}>{state.label}</option>
-                            ))}
+                                <CounterAirPort targetNumber={countAirPorts} />
+                                <CounterWaterPort targetNumber={countWaterPorts} />
+                            </div>
 
-                        </select>
-                        <select  name="port" id="port" value={selectedPortMarker?.id} onChange={(e) => onSelectChangePortMarker(e)}>
-                        <option value="">Todos os portos</option>
-                            {portMarkers.map((portMarker, index) => (
-                                <option key={index} value={portMarker.id}>{portMarker.label}</option>
-                            ))}
-                        </select>
+                            <div style={{ display: "flex", gap: "5px", alignItems: "center", justifyContent: "center" }}>
+                                <select onChange={(e) => onSelectChangeState(e)}>
 
-                        </div>
-                       
+                                    <option value="">Todos os estados do Brasil</option>
+
+                                    {states.map((state, index) => (
+                                        <option key={index} value={state.id}>{state.label}</option>
+                                    ))}
+
+                                </select>
+                                 <select key={selectedPortMarker?.id} value={selectedPortMarker?.id} onChange={(e) => onSelectChangePortMarker(e)}>
+
+                                    {selectedState ? <option value="">{`Todos os portos do estado ${selectedState?.label}`} </option> : <option value="">{`Todos os portos do Brasil`} </option>} 
+
+                                    {portMarkers.map((portMarker, index) => (
+                                        <option key={index} value={portMarker.id}>{portMarker.label}</option>
+                                    ))}
+                                </select>
+                            </div>
                     </MapControl>
 
                     {portMarkers.map((portMarker, index) => (
-                        (portMarker.portType === PortType.WATER ? <MarkerF key={index}
+                        (portMarker.portType === PortType.WATER ? 
+                        
+                        <MarkerF 
+                            key={index}
+                            cursor={"default"}
                             position={{ lat: portMarker.lat, lng: portMarker.lng }}
                             label={{
                                 text: portMarker.label,
-                                className: 'map-marker-label',
+                                className: `${styles.map_marker_label}`,
                                 color: 'rgb(0, 0 ,0)',
                                 fontSize: '10px',
                                 fontWeight: '600',
                             }} icon={{
                                 path: SHIP_SVG,
                                 strokeColor: 'rgb(255, 255, 255)',
-                                strokeWeight: 2,
+                                strokeWeight: 1,
                                 fillColor: `${portMarker.color}`,
                                 fillOpacity: 1,
                                 scale: 0.7,
-                            }} onClick={() => onClickMarker(portMarker.id)}>
+                            }}>
 
                             {selectedPortMarker?.id === portMarker.id &&
-                                <InfoWindowF position={{ lat: portMarker.lat, lng: portMarker.lng }}>
+                                <InfoWindowF position={{ lat: portMarker.lat, lng: portMarker.lng }} onCloseClick={() => setSelectedPortMarker(portMarker)}>
 
                                     <>
-                                        <img src={portMarker.image} style={{ borderRadius: '5px', width: '480px', height: '320px' }} alt={portMarker.label} />
+                                        <img src={portMarker.image} style={{ borderRadius: '5px', width: '380px', height: '220px' }} alt={portMarker.label} />
                                         <p>{portMarker.label}</p>
+                                        <p>
+                                            <svg viewBox="0 0 24 24" fill="none" height="25" width="25" xmlns="http://www.w3.org/2000/svg"> <circle cx="12" cy="10" r="3" stroke="#00afef" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></circle> <path d="M19 9.75C19 15.375 12 21 12 21C12 21 5 15.375 5 9.75C5 6.02208 8.13401 3 12 3C15.866 3 19 6.02208 19 9.75Z" stroke="#00afef" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                                            {portMarker.address}
+                                        </p>
+
                                     </>
 
                                 </InfoWindowF>}
                         </MarkerF>
 
-                            : <MarkerF key={index}
+                            : <MarkerF 
+                                key={index} 
+                                cursor={"default"}
                                 position={{ lat: portMarker.lat, lng: portMarker.lng }}
 
                                 label={{
                                     text: portMarker.label,
-                                    className: 'map-marker-label',
-                                    color:'rgb(0, 0 ,0)',
+                                    className: `${styles.map_marker_label}`,
+                                    color: 'rgb(0, 0 ,0)',
                                     fontSize: '10px',
                                     fontWeight: '600',
                                 }}
@@ -239,28 +252,31 @@ export const Map = () => {
                                 icon={{
                                     path: PLANE_SVG,
                                     strokeColor: 'rgb(255, 255, 255)',
-                                    strokeWeight: 2,
+                                    strokeWeight: 1,
                                     fillColor: `${portMarker.color}`,
                                     fillOpacity: 1,
                                     scale: 0.7,
-                                }} onClick={() => onClickMarker(portMarker.id)}>
+                                }}>
 
                                 {selectedPortMarker?.id === portMarker.id &&
-                                    <InfoWindowF position={{ lat: portMarker.lat, lng: portMarker.lng }}>
+                                    <InfoWindowF position={{ lat: portMarker.lat, lng: portMarker.lng }} onCloseClick={() => setSelectedPortMarker(portMarker)}>
 
                                         <>
-                                            <img src={portMarker.image} style={{ borderRadius: '5px', width: '480px', height: '320px' }} alt={portMarker.label} />
+                                            <img src={portMarker.image} style={{ borderRadius: '5px', width: '380px', height: '220px' }} alt={portMarker.label} />
                                             <p>{portMarker.label}</p>
+                                            <p>
+                                                <svg viewBox="0 0 24 24" fill="none" height="25" width="25" xmlns="http://www.w3.org/2000/svg"> <circle cx="12" cy="10" r="3" stroke="#00afef" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></circle> <path d="M19 9.75C19 15.375 12 21 12 21C12 21 5 15.375 5 9.75C5 6.02208 8.13401 3 12 3C15.866 3 19 6.02208 19 9.75Z" stroke="#00afef" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                                                {portMarker.address}
+                                            </p>
+
                                         </>
 
                                     </InfoWindowF>}
-
 
                             </MarkerF>)
                     ))}
                 </GoogleMap>
             )}
-        </>
+        </section>
     )
-
 }

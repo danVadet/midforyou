@@ -1,3 +1,5 @@
+
+
 .contato {
     margin: 5%;
     padding: 10px 20px;
@@ -10,13 +12,14 @@
     margin: 8px 0;
     padding: 10px;
     box-shadow: rgba(0, 0, 0, 0.12) 0px 2px 32px 0px;
+    display: flex;
+    flex-direction: column;
 }
 
 
 .formContainer input {
     margin: 8px;
     padding: 10px;
-    width: 41%;
     border-radius: 5px;
     border: 1px solid rgb(204, 204, 204);
     outline: 0;
@@ -25,22 +28,28 @@
 .formContainer textarea {
     margin: 8px;
     padding: 30px;
-    width: 20%;
     height: auto;
     border-radius: 5px;
     border: 1px solid rgb(204, 204, 204);
     outline: 0;
+    resize: none;
 }
 
 .formContainer button {
     margin: 20px;
     padding: 10px;
-    width: 50%;
     border: 0;
     border-radius: 5px;
     background: rgb(0, 175, 239);
     color: rgb(255, 255, 255);
 
+}
+.formContainer .invalid {
+    border: 1px solid rgb(213, 21, 11);
+    background: url("../../public/assets/error.svg") no-repeat right;
+}
+.formError {
+    color: rgb(213, 21, 11)
 }
 
 @media (max-width: 840px) {

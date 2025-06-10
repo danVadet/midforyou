@@ -1,7 +1,10 @@
 * {
   margin: 0;
   padding: 0;
-  box-sizing: border-box
+  box-sizing: border-box;
+  font-family: "Kanit", sans-serif;
+  font-weight: 100;
+  font-style: normal;
 }
 ::-webkit-scrollbar {
   width: 0.62rem;
@@ -25,3 +28,16 @@ input[type=number]::-webkit-outer-spin-button {
     -webkit-appearance: none;
     margin: 0; 
 }
+ul {
+  list-style: none;
+}
+a {
+  text-decoration: none;
+}
+
+section {
+  height: 220vh;
+}
+
+
+

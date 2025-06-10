@@ -1,5 +1,3 @@
-
-using backend.Data;
 using backend.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -9,114 +7,110 @@ namespace backend.Controllers;
 [Controller]
 public class ProductController : ControllerBase
 {
-    private readonly AppDbContext _appDbContext;
-    public ProductController(AppDbContext appDbContext)
+    private readonly IProductService _productService;
+
+    public ProductController(IProductService productService)
     {
-        _appDbContext = appDbContext;
+        _productService = productService;
 
     }
 
     [HttpGet("products")]
-    public async Task<ActionResult> getAllProducts([FromQuery] string search)
+    public async Task<IActionResult> getAllProducts([FromQuery] string search)
     {
 
-        var products = await _appDbContext.Products.ToListAsync();
+        List <ProductResponse> products = await _productService.GetAllAsync();
+        
 
-        if(!String.IsNullOrEmpty(search)) {
-            products = await _appDbContext.Products.Where(product =>product.name.ToLower().StartsWith(search.ToLower())).ToListAsync();
+        if (!String.IsNullOrEmpty(search))
+        {
+            products = await _productService.GetAllBySearch(search);
+
             return Ok(products);
         }
         return Ok(products);
     }
 
-    [HttpGet("products/{id}")]
-    public async Task<ActionResult> getProduct(int id)
+     [HttpGet("measureUnits")]
+    public  List<DropdownListItem> getAllMeasureUnits()
     {
-        var product = await _appDbContext.Products.FindAsync(id);
+
+        List<DropdownListItem> values = EnumHelper.ConvertEnumToDropDownSource<MeasureUnit>();
+        return values;
+    }
+
+    [HttpGet("measureUnits/{id}")]
+    public DropdownListItem getMeasureUnitById(int id)
+    {
+        List<DropdownListItem> values = EnumHelper.ConvertEnumToDropDownSource<MeasureUnit>();
+        var enumValue = values.Find(v => v.value == id);
+        return enumValue;   
+    }
+
+    [HttpGet("products/{id}")]
+    public async Task<IActionResult> getProduct(int id)
+    {
+        ProductResponse product = await _productService.GetByIdAsync(id);
         return Ok(product);
     }
      [HttpDelete("products")]
-    public async Task<ActionResult> deleteAllProducts()
+    public async Task<IActionResult> deleteAllProducts()
     {
 
-        var products = await _appDbContext.Products.ToListAsync();
+        List <ProductResponse> products = await _productService.GetAllAsync();
 
         foreach (var Item in products) 
-    { 
-        //Remove
-        _appDbContext.Products.Remove(Item); 
+    {
+        await _productService.DeleteAsync(Item.id);
     }
-    _appDbContext.SaveChanges();
     return Ok("All products are deleted");
- //imp
+ //
     }
 
     [HttpGet("sumTotalWeight")]
-    public async Task<ActionResult> getTotalWeight()
+    public async Task<IActionResult> getTotalWeight()
     {
-        var products = await _appDbContext.Products.ToListAsync();
+        List<ProductResponse> products = await _productService.GetAllAsync();
+        
         var sumWeightTotal = products.Sum(product => product.weightTotal);
         return Ok(sumWeightTotal);
     }
     [HttpGet("sumTotalVolume")]
     public async Task<ActionResult> getSumTotalVolume()
     {
-        var products = await _appDbContext.Products.ToListAsync();
-        var sumVolumeTotal = products.Sum(product => product.volumeTotal);
+        List<ProductResponse> products = await _productService.GetAllAsync();
+        List<ProductResponse> productsByMeasureUnit = products.FindAll(p => p.measureUnit == "m");
+
+        var sumVolumeTotal = productsByMeasureUnit.Sum(product => product.volumeTotal);
         return Ok(sumVolumeTotal);
+       
+    }
+
+    [HttpGet("sumTotalQuantity")]
+    public async Task<IActionResult> getTotalQuantity()
+    {
+        List<ProductResponse> products = await _productService.GetAllAsync();
+        var quantityTotal = products.Sum(product => product.quantity);
+        return Ok(quantityTotal);
     }
     [HttpPost("products/addProduct")]
-    public async Task<ActionResult> addProduct([FromBody] Product product)
+    public async Task<IActionResult> addProduct([FromBody] CreateProductRequest createProductRequest)
     {
-        product.weightTotal = product.weight * product.quantity;
-        product.volume =  product.length * product.width * product.height;
-        product.volumeTotal = product.volume * product.quantity;
 
-        if (product == null){
-            return BadRequest();
-        }
-
-        _appDbContext.Products.Add(product);
-        await _appDbContext.SaveChangesAsync();
-
-        return Created("Product created successfully", product);
+        await _productService.CreateAsync(createProductRequest);
+        return Created("Product created successfully", createProductRequest);
     }
     [HttpDelete("products/{id}")]
-    public async Task<ActionResult> deleteProduct(int id)
+    public async Task<IActionResult> deleteProduct(int id)
     {
-        Product product = await _appDbContext.Products.FindAsync(id);
-        _appDbContext.Products.Remove(product);
-        await _appDbContext.SaveChangesAsync();
+        ProductResponse product = await _productService.DeleteAsync(id);
         return Ok(product);
     }
     [HttpPut("products/{id}")]
-    public async Task<ActionResult> updateProduct(int id, [FromBody] Product product)
+    public async Task<IActionResult> updateProduct(int id, [FromBody] UpdateProductRequest updateProductRequest)
     {
 
-        var productCurrent = await _appDbContext.Products.FindAsync(id);
-
-        if (productCurrent == null)
-        {
-            return NotFound();
-
-        }
-
-        var weightTotal = product.weight * product.quantity;
-        var volumeTotal = product.length * product.width * product.height * product.quantity;
-
-        product.weightTotal = weightTotal;
-        product.volumeTotal = volumeTotal;
-
-        productCurrent.name = product.name;
-        productCurrent.length = product.length;
-        productCurrent.width = product.width;
-        productCurrent.height = product.height;
-        productCurrent.weight = product.weight;
-        productCurrent.quantity = product.quantity;
-        productCurrent.weightTotal =  product.weightTotal;
-        productCurrent.volumeTotal = product.volumeTotal;
-        _appDbContext.Update(productCurrent);
-        await _appDbContext.SaveChangesAsync();
+        await _productService.UpdateAsync(id, updateProductRequest);
         return Ok("Product updated successfully");
     }
 

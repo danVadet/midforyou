@@ -1,3 +1,5 @@
+import { IContainer } from "./IContainer";
+
 export interface IProduct  {
     id: number;
     name: string;
@@ -9,4 +11,7 @@ export interface IProduct  {
     quantity: number;
     weightTotal: number;
     volumeTotal:  number;
+    measureUnit: string;
+    measureUnitId: number;
+    containerId: number;
 }

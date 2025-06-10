@@ -1,5 +1,5 @@
-import { PortType } from "./Enums/PortType";
-import { IState } from "./IState";
+import { PortType } from "./enums/PortType";
+import { IPortState } from "./IPortState";
 
 export interface IPortMarker {
     id: number;
@@ -11,7 +11,7 @@ export interface IPortMarker {
     lat: number;
     lng: number;
     stateId: number;
-    state: IState;
+    state: IPortState;
 
 
 }

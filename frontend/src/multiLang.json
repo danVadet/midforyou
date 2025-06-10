@@ -1,10 +1,43 @@
 {
     "en" : {
+        "navItem" : {
+            "home" : "Home",
+            "services" : "Services",
+            "incoterms" : "Incoterms",
+            "cbmCalculator" : "CBM calculator",
+            "brazilPorts" : "Brazil Ports",
+            "contact" : "Contact"
+        },
+
+        "navLangs" : [
+           {
+            "id" : 1,
+            "imageUrl" : "../assets/langauges/brazil-flag.png",
+            "name" : "Portuguese",
+            "link" : "/",
+            "lang" : "pt"
+           },
+           {
+            "id" : 2,
+            "imageUrl" : "../assets/langauges/english-flag.png",
+            "name" : "English",
+            "link" : "/en",
+            "lang" : "en"
+           },
+           {
+            "id" : 3,
+            "imageUrl" : "../assets/langauges/spaish-flag.png",
+            "name" : "Espanhõl",
+            "link" : "/es",
+            "lang" : "es"
+           }
+           
+        ],
 
         "services" : [
             {
                 "id" : 1,
-                "imageUrl" : "../assets/Acessoria comercial internacional.jpg",
+                "imageUrl" : "../assets/services/Acessoria comercial internacional.jpg",
                 "imagePosition" : "left",
                 "title" : "International commercial advice",
                 "description" : "Prospecting suppliers, sending and receiving samples for quality verification, international negotiation, inspection of the production of goods and monitoring the loading of products in the container. All this is done to ensure customer satisfaction and the quality of products sold internationally."
@@ -12,7 +45,7 @@
 
             {
                 "id" : 2,
-                "imageUrl" : "../assets/Análise Aduaneira.jpg",
+                "imageUrl" : "../assets/services/Análise Aduaneira.jpg",
                 "imagePosition" : "right",
                 "title" : "Customs Analysis",
                 "description" : "Market analysis and feasibility of the operation, assessment of administrative and tax treatment according to NCM/SH, and provision of support for certification with the approving agencies, such as INMETRO, ANVISA, MAPA, among others. These processes are essential to ensure that the operation is carried out properly and legally, minimizing risks and maximizing financial results."
@@ -20,7 +53,7 @@
             }, 
             {
                 "id" : 3,
-                "imageUrl" : "../assets/Importação e Exportação.jpg",
+                "imageUrl" : "../assets/services/Importação e Exportação.jpg",
                 "imagePosition" : "left",
                 "title" : "Import and Export",
                 "description" : "Document analysis, management of nationalization of foreign goods, development of own brand (OEM) and packaging, forecasting of import/export costs, closing of exchange and international insurance, monitoring of customs clearance and national and international logistics management. All these services aim to ensure that import and export operations are carried out efficiently and profitably, with the minimum possible risks and costs."
@@ -28,21 +61,230 @@
             },
             {
                 "id" : 4,
-                "imageUrl" : "../assets/Laboratório de Qualidade.jpg",
+                "imageUrl" : "../assets/services/Laboratório de Qualidade.jpg",
                 "imagePosition" : "right",
                 "title" : "Quality Laboratory",
                 "description" : "Sample analysis, metrological checking of products, 2D and 3D drawings, reverse engineering and quality control. These services are essential to assess product characteristics, identify possible faults, make improvements and ensure that quality standards comply with current standards and regulations."
             }
-        ]
+        ],
+
+        "incotermIcons" : [
+            {
+                "id" : 0,
+                "icon" : "../assets/incoterms/00.svg",
+                "name" : "SELLER"
+            },
+
+            {
+                "id" : 1,
+                "icon" : "../assets/incoterms/01.svg",
+                "name" : "TRANSPORT"
+            },
+
+            {
+                "id" : 2,
+                "icon" : "../assets/incoterms/02.svg",
+                "name" : "PORT PLACE"
+            },
+            {
+                "id" : 3,
+                "icon" : "../assets/incoterms/03.svg",
+                "name" : "ON BOARD"
+            },
+
+            {
+                "id" : 4,
+                "icon" : "../assets/incoterms/04.svg",
+                "name" : "PORT"
+            },
+
+            {
+                "id" : 5,
+                "icon" : "../assets/incoterms/05.svg",
+                "name" : "ON ARRIVED"
+            },
+            {
+                "id" : 6,
+                "icon" : "../assets/incoterms/06.svg",
+                "name" : "DESTINATION PLACE"
+            },
+            {
+                "id" : 7,
+                "icon" : "../assets/incoterms/07.svg",
+                "name" : "TRANSPORT"
+            },
+            {
+                "id" : 8,
+                "icon" : "../assets/incoterms/08.svg",
+                "name" : "BUYER"
+            }
+        ],
+
+        "sellerLabel" : "SELLER",
+        "buyerLabel" : "BUYER",
+        "riskTransferLabel" : "RISK TRANSFER",
+
+
+        "incoterms" : [
+            {
+                "id" : 0,
+                "name": "Ex Works",
+                "acronym": "EXW",
+                "costStage": 0,
+                "freightDetails": "Seller responsibility",
+                "modal": "Any modal",
+                "moreDetails": "Ex Works (EXW) places the maximum responsibility on the buyer, including all transportation costs, risks and import and rxport clearence. The seller is only responsible for making the goods aviable at his premises or other named place (factory, warehouse, etc.). The buyer bears all costs and risks involved in bringing the goods to the desired destination."
+
+            },
+            {
+                "id" : 1,
+                "name": "Free Carrier",
+                "acronym": "FCA",
+                "costStage": 1,
+                "freightDetails": "Freight handler",
+                "modal": "Any modal",
+                "moreDetails": "Free Carrier (FCA) means that the seller delivers the goods, cleared for export, to the buyer's collecting velhicle. The buyer is responsible for all risks and costs after this point, including unloading at its premises."
+            },
+
+            {
+                "id" : 2,
+                "name": "Free Alongside Ship",
+                "acronym": "FAS",
+                "costStage": 2,
+                "freightDetails": "A bordo do navio",
+                "modal":  "Waterway",
+                "moreDetails": "Free Alongside Ship (FAS) requires the seller to deliver the goods alongside the buyer's named vessel at the named port of shipment. The seller must release the goods for export. The buyer bears all costs and risks of loss or damage from that time."
+            }, 
+
+            {
+                "id" : 3,
+                "name": "Free On Board",
+                "acronym": "FOB",
+                "costStage": 2,
+                "freightDetails": "On board ship",
+                "modal": "Waterway",
+                "moreDetails": "Free On Board (FOB) means that the seller delivers the goods, cleared for export, on board the buyer's named vessel at the named port of shipment. The seller is responsible for all costs and risks until the goods are loaded onto the vessel."
+            }, 
+
+            {
+                "id": 4,
+                "name": "Cost and Freight",
+                "acronym": "CFR",
+                "costStage": 4,
+                "freightDetails": "Port of destination",
+                "modal": "Waterway",
+                "moreDetails": "Cost and Freight (CFR) requires the seller to deliver the goods on board the vessel or at a named port of destiantion. The seller must clear the goods for export, while the buyer is responsible for all costs and risks from that point onwards."
+            },
+
+            {
+                "id": 5,
+                "name": "Cost, Insurance and Freight",
+                "acronym": "CIF",
+                "costStage": 4,
+                "freightDetails": "Port of destination",
+                "modal": "Waterway",
+                "moreDetails": "Cost, Insurance and Freight (CIF) places additional responsibility on the seller to obtain insurance against the risk of loss or damage to the buyer during carriage. The seller delivers the goods on board the vessel or a at a named port of destination, with the buyer bearing all costs and risks from that point onwards. "
+            },
+
+            {
+                "id": 6,
+                "name": "Carriage Paid To",
+                "acronym": "CPT",
+                "costStage": 5,
+                "freightDetails": "Destination",
+                "modal": "Any modal",
+                "moreDetails": "Carriage Paid To (CPT) means  that the seller delivers the goods to a carrier or other person nominated by the seller at an agreed place, and the seller must contract for and pay the carriage costs necessary to bring the goods to the named place of destination."
+            },
+
+            {
+                "id": 7,
+                "name": "Carriage and Insurance Paid To",
+                "acronym": "CIP",
+                "costStage": 5,
+                "freightDetails": "Destination",
+                "modal": "Any modal",
+                "moreDetails": "Carriage and Insurance Paid To (CIP) requires the seller to deliver the goods to a carrier or the other person nominated by the seller at an agreed place and the seller must contract for and pay the carriage costs necessary to bring the goods to the named place of destination. In addition, the seller must obtain insurance against the risk of loss or damage to the buyer during carriage."
+            },
+            {
+                "id": 8,
+                "name": "Delivered at Place",
+                "acronym": "DAP",
+                "costStage": 7,
+                "freightDetails": "Local do destino",
+                "modal": "Any modal",
+                "moreDetails": "Delivered at Place (DAP) means that the seller delivers the goods, cleared for import, to the buyer at the named place of destination. The "
+            },
+
+            {
+                "id": 9,
+                "name": "Delivered at Place Unloaded",
+                "acronym": "DPU",
+                "costStage": 7,
+                "freightDetails": "Destination",
+                "modal": "Any modal",
+                "moreDetails": "Delivered at Place Unloaded (DPU) means that the seller delivers the goods, cleared for import, to the buyer at the named place of destination. The seller is responsible for all costs and risks associated with transporting the goods to that place, including, duties, taxes and other charges."
+            },
+
+            {
+                "id": 10,
+                "name": "Delivered Duty Paid",
+                "acronym": "DDP",
+                "costStage": 7,
+               "freightDetails": "Destination",
+               "modal": "Any modal",
+               "moreDetails": "Delivered Duty Paid (DDP) means that the seller is responsible for all costs and risks associated with delivering the goods to the named place of destination, including payment of import duties and taxes. The seller is obliged to make delivery of the goods at the named place of destination "
+            }
+        ],
+
+        "freight" : "Frete",
+        "modal" : "Modal",
+        "moreDetails" : "More details"
 
     },
 
     "es" : {
 
+        "navItem" : {
+            "home" : "Comenzar",
+            "services" : "Servicios",
+            "incoterms" : "Incoterms",
+            "cbmCalculator" : "Calculadora CBM",
+            "brazilPorts" : "Puertos de Brasil",
+            "contact" : "Contacto"
+        },
+
+        "navLangs" : [
+            {
+             "id" : 1,
+             "imageUrl" : "../assets/langauges/brazil-flag.png",
+             "name" : "Portugués",
+             "link" : "/",
+             "lang" : "pt"
+
+            },
+            {
+             "id" : 2,
+             "imageUrl" : "../assets/langauges/english-flag.png",
+             "name" : "Inglés",
+             "link" : "/en",
+             "lang" : "en"
+
+            },
+            {
+             "id" : 3,
+             "imageUrl" : "../assets/langauges/spaish-flag.png",
+             "name" : "Español",
+             "link" : "/es",
+             "lang" : "es"
+
+            }
+            
+         ],
+
         "services" : [
             {
                 "id" : 1,
-                "imageUrl" : "../assets/Acessoria comercial internacional.jpg",
+                "imageUrl" : "../assets/services/Acessoria comercial internacional.jpg",
                 "imagePosition" : "left",
                 "title" : "Asesoría comercial internacional",
                 "description" : "Prospección de proveedores, envío y recepción de muestras para verificación de calidad, negociación internacional, inspección de producción de mercancías y seguimiento de la carga de productos en el contenedor. Todo esto se hace para garantizar la satisfacción del cliente y la calidad de los productos vendidos a nivel internacional."
@@ -50,7 +292,7 @@
 
             {
                 "id" : 2,
-                "imageUrl" : "../assets/Análise Aduaneira.jpg",
+                "imageUrl" : "../assets/services/Análise Aduaneira.jpg",
                 "imagePosition" : "right",
                 "title" : "Análisis Aduanero",
                 "description" : "Análisis de mercado y viabilidad de operación, evaluación del tratamiento administrativo y tributario según NCM/SH, y prestación de apoyo para la certificación ante órganos aprobadores, como INMETRO, ANVISA, MAPA, entre otros. Estos procesos son esenciales para asegurar que la operación se realice de forma adecuada y legal, minimizando riesgos y maximizando los resultados financieros."
@@ -58,7 +300,7 @@
             }, 
             {
                 "id" : 3,
-                "imageUrl" : "../assets/Importação e Exportação.jpg",
+                "imageUrl" : "../assets/services/Importação e Exportação.jpg",
                 "imagePosition" : "left",
                 "title" : "Importación y Exportación",
                 "description" : "Análisis de documentos, gestión de nacionalización de mercancías extranjeras, desarrollo de marca propia (OEM) y embalajes, previsión de costos de importación/exportación, cierre de cambios y seguros internacionales, seguimiento de despachos aduaneros y gestión logística nacional e internacional. Todos estos servicios tienen como objetivo garantizar que las operaciones de importación y exportación se realicen de forma eficiente y rentable, con los mínimos riesgos y costes posibles."
@@ -66,21 +308,189 @@
             },
             {
                 "id" : 4,
-                "imageUrl" : "../assets/Laboratório de Qualidade.jpg",
+                "imageUrl" : "../assets/services/Laboratório de Qualidade.jpg",
                 "imagePosition" : "right",
                 "title" : "Laboratorio de Calidad",
                 "description" : "Análisis de muestras, verificación metrológica de productos, planos 2D y 3D, ingeniería inversa y control de calidad. Estos servicios son esenciales para evaluar las características del producto, identificar posibles fallos, realizar mejoras y garantizar que los estándares de calidad cumplan con las normas y regulaciones vigentes."
             }
 
+        ],
+
+        "freight" : "Frete",
+        "modal" : "Modal",
+        "moreDetails" : "More details",
+
+        "sellerLabel" : "FÁBRICA",
+        "buyerLabel" : "CLIENTE",
+        "riskTransferLabel" : "TRANSFERENCIA DE RIESGO",
+
+        
+        "incotermIcons" : [
+            {
+                "id" : 0,
+                "icon" : "../assets/incoterms/00.svg",
+                "name" : "Fábrica"
+            }
+
+        ],
+
+        "incoterms" : [
+            {
+                "id" : 0,
+                "name": "Ex Works - Salida de la fábrica",
+                "acronym": "EXW",
+                "costStage": 0,
+                "freightDetails": "Responsabilidade da fábrica",
+                "modal": "Cualquier modal",
+                "moreDetails": "Ex Works (EXW) coloca la máxima responsabilidad en el comprador, incluidos todos los costos de transporte, los riesgos y el despacho de importación y exportación. El vendedor sólo es responsable de poner la mercancía a disposición en sus instalaciones o en otro lugar convenido (fábrica, almacén, etc.). El comprador asume todos los costes y riesgos implicados en llevar la mercancía al destino deseado."
+
+            },
+            {
+                "id" : 1,
+                "name": "Free Carrier - Libre transportador",
+                "acronym": "FCA",
+                "costStage": 1,
+                "freightDetails": "Transportador de carga",
+                "modal": "Cualquier modal",
+                "moreDetails": "Free Carrier (FCA) significa que el vendedor entrega la mercancía, liberada para la exportación, al transportista designado por el comprador en el lugar designado. El vendedor es responsable de cargar la mercancía en el vehículo de recogida del comprador. El comprador es responsable de todos los riesgos y costos posteriores a este punto, incluida la descarga en sus instalaciones."
+            },
+
+            {
+                "id" : 2,
+                "name": "Free Alongside Ship - Libre al costado del barco",
+                "acronym": "FAS",
+                "costStage": 2,
+                "freightDetails": "A bordo del barco",
+                "modal": "Acuático",
+                "moreDetails": "Free Alongside Ship (FAS) exige que el vendedor entregue la mercancía al costado del buque designado por el comprador en el puerto de embarque convenido. El vendedor debe liberar la mercancía para la exportación. El comprador asume todos los costes y riesgos de pérdida o daño a partir de ese momento."
+            }, 
+
+            {
+                "id" : 3,
+                "name": "Free On Board - Libre a bordo",
+                "acronym": "FOB",
+                "costStage": 2,
+                "freightDetails": "A bordo del barco",
+                "modal": "Acuático",
+                "moreDetails": "Libre a Bordo (FOB) significa que el vendedor entrega las mercancías, liberadas para la exportación, a bordo del buque designado por el comprador en el puerto de embarque designado. El vendedor es responsable de todos los costos y riesgos hasta que la mercancía se carga en el barco."
+            }, 
+
+            {
+                "id": 4,
+                "name": "Cost and Freight - Costo y flete",
+                "acronym": "CFR",
+                "costStage": 4,
+                "freightDetails": "Puerto de destino",
+                "modal": "Acuático",
+                "moreDetails": "Cost and Freight (CFR) requiere que el vendedor entregue las mercancías a bordo del buque o en un puerto de destino designado. El vendedor debe despachar las mercancías para la exportación, mientras que el comprador es responsable de todos los costos y riesgos a partir de ese momento."
+            },
+
+            {
+                "id": 5,
+                "name": "Cost, Insurance and Freight - Costo, seguro y flete",
+                "acronym": "CIF",
+                "costStage": 4,
+                "freightDetails": "Puetro de destino",
+                "modal": "Acuático",
+                "moreDetails": "Cost, Insurance and Freight (CIF) implica una responsabilidad adicional para el vendedor de obtener un seguro contra el riesgo de pérdida o daño al comprador durante el tránsito. El vendedor entrega la mercancía a bordo del buque o en el puerto de destino convenido, asumiendo el comprador todos los costes y riesgos desde ese momento."
+            },
+
+            {
+                "id": 6,
+                "name": "Carriage Paid To - Transporte pago hasta",
+                "acronym": "CPT",
+                "costStage": 5,
+                "freightDetails": "Destino",
+                "modal": "Cualquier modal",
+                "moreDetails": "Carriage Paid To  (CPT) significa que el vendedor entrega las mercancías a un transportista u otra persona designada por el vendedor en un lugar acordado, y el vendedor debe contratar y pagar los costos de transporte necesarios para llevar las mercancías al lugar de destino designado."
+            },
+
+            {
+                "id": 7,
+                "name": "Carriage and Insurance Paid To - Transporte y seguro pagos hasta",
+                "acronym": "CIP",
+                "costStage": 5,
+                "freightDetails": "Destino",
+                "modal": "Cualquier modal",
+                "moreDetails": "Carriage and Insurance Paid To (CIP) requiere que el vendedor entregue los bienes a un transportista u otra persona designada por el vendedor en un lugar acordado, y el vendedor debe organizar y pagar los costos de transporte necesarios para llevar los bienes al lugar de destino designado. Además, el vendedor debe obtener un seguro contra el riesgo de pérdida o daño del comprador durante el transporte."
+            },
+            {
+                "id": 8,
+                "name": "Delivered at Place - Entregado en el lugar",
+                "acronym": "DAP",
+                "costStage": 7,
+                "freightDetails": "Lugar de destino",
+                "modal": "Cualquier modal",
+                "moreDetails": "Delivered at Place (DAP) significa que el vendedor entrega la mercancía, liberada para la importación, al comprador en el lugar de destino convenido. El vendedor asume todos los riesgos y costos asociados con el transporte de la mercancía a ese lugar, incluidos honorarios, impuestos y otros cargos."
+            },
+
+            {
+                "id": 9,
+                "name": "Delivered at Place Unloaded - Entregado en el lugar descargado.",
+                "acronym": "DPU",
+                "costStage": 7,
+                "freightDetails": "Destino",
+                "modal": "Cualquier modal",
+                "moreDetails": "Delivered at Place Unloaded (DPU) significa que el vendedor entrega las mercancías, despachadas para la importación, al comprador en el lugar de destino convenido. El vendedor es responsable de todos los costos y riesgos asociados con el transporte de las mercancías a ese lugar, incluidos aranceles, impuestos y otros cargos."
+            },
+
+            {
+                "id": 10,
+                "name": "Delivered Duty Paid - Entregado con derechos pagados",
+                "acronym": "DDP",
+                "costStage": 7,
+               "freightDetails": "Destino",
+               "modal": "Cualquier modal",
+               "moreDetails": "Delivered Duty Paid (DDP) significa que el vendedor es responsable de todos los gastos y riesgos asociados con la entrega de las mercancías en el lugar de destino convenido, incluido el pago de derechos e impuestos de importación. El vendedor está obligado a entregar la mercancía en el lugar de destino convenido."
+            }
         ]
 
     },
 
     "pt" : {
+
+        "navItem" : {
+            "home" : "Início",
+            "services" : "Serviços",
+            "incoterms" : "Incoterms",
+            "cbmCalculator" : "Calculadora CBM",
+            "brazilPorts" : "Portos do Brasil",
+            "contact" : "Contato"
+        },
+
+        "navLangs" : [
+            {
+             "id" : 1,
+             "imageUrl" : "../assets/langauges/brazil-flag.png",
+             "name" : "Português",
+             "link" : "/",
+             "lang" : "pt"
+
+            },
+            {
+             "id" : 2,
+             "imageUrl" : "../assets/langauges/english-flag.png",
+             "name" : "Inglês",
+             "link" : "/en",
+             "lang" : "en"
+
+            },
+            {
+             "id" : 3,
+             "imageUrl" : "../assets/langauges/spaish-flag.png",
+             "name" : "Espanhol",
+             "link" : "/es",
+             "lang" : "es"
+ 
+
+            }
+            
+         ],
+ 
         "services" : [
             {
                 "id" : 1,
-                "imageUrl" : "../assets/Acessoria comercial internacional.jpg",
+                "imageUrl" : "../assets/services/Acessoria comercial internacional.jpg",
                 "imagePosition" : "left",
                 "title" : "Acessoria comercial internacional",
                 "description" : "Prospecção de fornecedores, envio e recebimento de amostras para verificação de qualidade, negociação internacional, fiscalização de produção das mercadorias e o acompanhamento da carga dos produtos no contêiner. Tudo isso é feito visando para garantir a satisfação dos clientes e a qualidade dos produtos comercializados de forma internacional."
@@ -88,7 +498,7 @@
 
             {
                 "id" : 2,
-                "imageUrl" : "../assets/Análise Aduaneira.jpg",
+                "imageUrl" : "../assets/services/Análise Aduaneira.jpg",
                 "imagePosition" : "right",
                 "title" : "Análise Aduaneira",
                 "description" : "Análise de mercado e viabilidade da operação, avaliação do tratamento administrativo e tributário conforme NCM/SH, e prestação de suporte para a certificação junto aos órgãos anuentes, como INMETRO, ANVISA, MAPA, entre outros. Esses processos são essenciais para assegurar que a operação seja realizada de forma adequada e legal, minimizando riscos e maximizando os resultados financeiros."
@@ -96,7 +506,7 @@
             }, 
             {
                 "id" : 3,
-                "imageUrl" : "../assets/Importação e Exportação.jpg",
+                "imageUrl" : "../assets/services/Importação e Exportação.jpg",
                 "imagePosition" : "left",
                 "title" : "Importação e Exportação",
                 "description" : "Análise documental, gestão de nacionalização de mercadorias estrangeiras, desenvolvimento de marca própria (OEM) e de embalagens, previsão de custos para importação/exportação, fechamento de câmbio e seguro internacional, acompanhamento do desembaraço aduaneiro e gestão logística nacional e internacional. Todos esses serviços visam garantir que as operações de importação e exportação sejam realizadas de forma eficiente e lucrativa, com um mínimo de riscos e custos possíveis."
@@ -104,13 +514,181 @@
             },
             {
                 "id" : 4,
-                "imageUrl" : "../assets/Laboratório de Qualidade.jpg",
+                "imageUrl" : "../assets/services/Laboratório de Qualidade.jpg",
                 "imagePosition" : "right",
                 "title" : "Laboratório de Qualidade",
                 "description" : "Análise de amostras, conferência metrológica dos produtos, desenhos 2D e 3D, engenharia reversa e controle de qualidade. Esses serviços são essenciais para avaliar as características dos produtos, identificar possíveis falhas, realizar melhorias e garantir que os padrões de qualidade estejam em conformidade com as normas e regulamentações vigentes."
             }
+        ],
 
-        ]
+        "incotermIcons" : [
+            {
+                "id" : 0,
+                "icon" : "../assets/incoterms/00.svg",
+                "name" : "FÁBRICA"
+            },
 
+            {
+                "id" : 1,
+                "icon" : "../assets/incoterms/01.svg",
+                "name" : "TRANSPORTE"
+            },
+
+            {
+                "id" : 2,
+                "icon" : "../assets/incoterms/02.svg",
+                "name" : "NO PORTO"
+            },
+            {
+                "id" : 3,
+                "icon" : "../assets/incoterms/03.svg",
+                "name" : "A BORDO"
+            },
+
+            {
+                "id" : 4,
+                "icon" : "../assets/incoterms/04.svg",
+                "name" : "PORTO"
+            },
+
+            {
+                "id" : 5,
+                "icon" : "../assets/incoterms/05.svg",
+                "name" : "A CHEGADA"
+            },
+            {
+                "id" : 6,
+                "icon" : "../assets/incoterms/06.svg",
+                "name" : "NO DESTINO"
+            },
+            {
+                "id" : 7,
+                "icon" : "../assets/incoterms/07.svg",
+                "name" : "TRANSPORTE"
+            },
+            {
+                "id" : 8,
+                "icon" : "../assets/incoterms/08.svg",
+                "name" : "CLIENTE"
+            }
+        ],
+
+        "sellerLabel" : "FÁBRICA",
+        "buyerLabel" : "CLIENTE",
+        "riskTransferLabel" : "TRANSFERÊNCIA DE RISCO",
+
+        "incoterms" : [
+            {
+                "id" : 0,
+                "name": "Ex Works - Saída da fábrica",
+                "acronym": "EXW",
+                "costStage": 0,
+                "freightDetails": "Responsabilidade da fábrica",
+                "modal": "Qualquer modal",
+                "moreDetails": "Ex Works (EXW) coloca a máxima responsabilidade sobre o comprador, incluindo todos os custos de transporte, riscos e libertação de importação e exportação. O vendedor é apenas responsável por disponibilizar as mercadorias em suas instalações ou outro local nomeado (fábrica, armazém, etc.). O comprador arca com todos os custos e riscos envolidos em levar as mercadorias até o destino desejado."
+
+            },
+            {
+                "id" : 1,
+                "name": "Free Carrier - Livre no transportador",
+                "acronym": "FCA",
+                "costStage": 1,
+                "freightDetails": "Transportador de carga",
+                "modal": "Qualquer modal",
+                "moreDetails": "Free Carrier (FCA) significa que o vendedor entrega as mercadorias, liberadas para exportação, ao transportador nomeado pelo comprador no local nomeado. O vendedor é responsável por carregar as mercadorias no veículo coletor do comprador. O comprador é responsável por todos os riscos e custos após este ponto, incluindo o descarregamento em suas instalações."
+            },
+
+            {
+                "id" : 2,
+                "name": "Free Alongside Ship - Livre ao lado do navio",
+                "acronym": "FAS",
+                "costStage": 2,
+                "freightDetails": "A bordo do navio",
+                "modal": "Aquavário",
+                "moreDetails": "Free Alongside Ship (FAS) requer que o vendedor entregue as mercadorias ao lado do navio nomeado pelo comprador no porto nomeado de embarque. O vendedor deve liberar as mercadorias para exportação. O comprador arca com todos os custos e riscos de perda ou dano a partir desse momento."
+            }, 
+
+            {
+                "id" : 3,
+                "name": "Free On Board - Livre a bordo",
+                "acronym": "FOB",
+                "costStage": 2,
+                "freightDetails": "A bordo do navio",
+                "modal": "Aquavário",
+                "moreDetails": "Free On Board (FOB) significa que o vendedor entrega as mercadorias, liberadas para exportação, a bordo do navio nomeado pelo comprador no porto nomeado de embarque. O vendedor é responsável por todos os custos e riscos até que as mercadorias sejam carregadas no navio."
+            }, 
+
+            {
+                "id": 4,
+                "name": "Cost and Freight - Custo e frete",
+                "acronym": "CFR",
+                "costStage": 4,
+                "freightDetails": "Porto de destino",
+                "modal": "Aquaviário",
+                "moreDetails": "Cost and Freight (CFR) requer que o vendedor entregue as mercadorias a bordo do navio ou a um porto de destino nomeado. O vendedor deve liberar as mercadorias para exportação, enquanto o comprador é responsável por todos os custos e riscos a partir desse ponto."
+            },
+
+            {
+                "id": 5,
+                "name": "Cost, Insurance and Freight - Custo, seguro e frete",
+                "acronym": "CIF",
+                "costStage": 4,
+                "freightDetails": "Porto de destino",
+                "modal": "Aquaviário",
+                "moreDetails": "Cost, Insurance and Freight (CIF) coloca responsabilidade adicional sobre o vendedor para obter seguro contra o risco de perda ou dano ao comprador durante o transporte. O vendedor entrega as mercadorias a bordo do navio ou a um porto de destino nomeado, com o comprador arrependendo todos os custos e riscos a partir desse momento."
+            },
+
+            {
+                "id": 6,
+                "name": "Carriage Paid To - Transporte pago até",
+                "acronym": "CPT",
+                "costStage": 5,
+                "freightDetails": "Destino",
+                "modal": "Qualquer modal",
+                "moreDetails": "Carriage Paid To (CPT) significa que o vendedor entrega as mercadorias a um transportador ou outra pessoa nomeada pelo vendedor em um local acordado, e o vendedor deve contratar e pagar os custos de transporte necessários para levar as mercadorias ao local nomeado de destino."
+            },
+
+            {
+                "id": 7,
+                "name": "Carriage and Insurance Paid To - Transporte e seguro pagos até",
+                "acronym": "CIP",
+                "costStage": 5,
+                "freightDetails": "Destino",
+                "modal": "Qualquer modal",
+                "moreDetails": "Carriage and Insurance Paid To (CIP) requer que o vendedor entregue as mercadorias a um transportador ou outra pessoa nomeada pelo vendedor em um local acordado, e o vendedor deve contratar e pagar os custos de transporte necessários para levar as mercadorias ao local nomeado de destino. Além disso, o vendedor deve obter seguro contra o risco de perda ou dano ao comprador durante o transporte."
+            },
+            {
+                "id": 8,
+                "name": "Delivered at Place - Entregue no local",
+                "acronym": "DAP",
+                "costStage": 7,
+                "freightDetails": "Local do destino",
+                "modal": "Qualquer modal",
+                "moreDetails": "Delivered at Place (DAP) significa que o vendedor entrega as mercadorias, liberadas para importação, ao comprador no local nomeado de destino. O vendedor arca com todos os riscos e custos associados ao transporte das mercadorias até esse local, incluindo taxas, impostos e outras cobranças."
+            },
+
+            {
+                "id": 9,
+                "name": "Delivered at Place Unloaded - Entregue no local desembarcado",
+                "acronym": "DPU",
+                "costStage": 7,
+                "freightDetails": "Destino",
+                "modal": "Qualquer modal",
+                "moreDetails": "Delivered at Place Unloaded (DPU) significa que o vendedor entrega as mercadorias, liberadas para importação, ao comprador no local nomeado de destino. O vendedor é responsável por todos os custos e riscos associados ao transporte das mercadorias até esse local, incluindo taxas, impostos e outras cobranças."
+            },
+
+            {
+                "id": 10,
+                "name": "Delivered Duty Paid - Entregue com direitos pagos",
+                "acronym": "DDP",
+                "costStage": 7,
+               "freightDetails": "Destino",
+               "modal": "Qualquer modal",
+               "moreDetails": "Delivered Duty Paid (DDP) significa que o vendedor é responsável por todas as despesas e riscos associados à entrega das mercadorias ao local nomeado de destino, incluindo o pagamento de impostos e taxas de importação. O vendedor é obrigado a fazer a entrega das mercadorias no local nomeado de destino."
+            }
+        ],
+        "freight" : "Frete",
+        "modal" : "Modal",
+        "moreDetails" : "Mais detalhes"
     }
 }

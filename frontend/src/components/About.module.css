@@ -1,35 +1,18 @@
-.aboutComponentContainer {
-    align-items: flex-start;
-    gap: 64px;
-    align-self: stretch;
-    padding-bottom: 64px;
-}
 
+.aboutComponentContainer {
+    margin: 5rem 0;
+}
 
 .aboutTextContainer h1 {
 
     margin: 0 0 32px 0;
     color: #2F2F2F;
-    font-family: 'Roboto', 'Lexend', sans-serif;
     font-size: 48px;
-    font-style: normal;
-    font-weight: 500;
     line-height: normal;
-
-
 
 }
 .aboutTextContainer p {
         color: #5E5E5E;
-        font-family: "Roboto", "Lexend", "Sora";
         font-size: 20px;
-        font-style: normal;
-        font-weight: 400;
         line-height: normal;
 }
-
-@media (max-width: 720px) {
-       
-    
-}
-

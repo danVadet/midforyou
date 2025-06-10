@@ -11,6 +11,7 @@ interface IDeleteProductModalProps {
     getProducts(): void
     getSumTotalWeight(): void;
     getSumTotalVolume(): void;
+    getSumTotalQuantity(): void;
     getContainer(id: number): void;
     setShowDeleteMessage(): void;
 }
@@ -26,6 +27,7 @@ export const DeleteProductModal = (props: IDeleteProductModalProps) => {
 
         props.closeModal();
         props.getProducts();
+        props.getSumTotalQuantity();
         props.getSumTotalWeight();
         props.getSumTotalVolume();
         props.getContainer(props.selectedContainerId);

@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
-using backend.Data;
+using backend.Infrastructure;
 
 #nullable disable
 
@@ -16,10 +16,27 @@ namespace backend.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "9.0.2")
+                .HasAnnotation("ProductVersion", "9.0.4")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
+
+            modelBuilder.Entity("City", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("id"));
+
+                    b.Property<string>("nome")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("id");
+
+                    b.ToTable("City");
+                });
 
             modelBuilder.Entity("backend.Models.Container", b =>
                 {
@@ -78,17 +95,40 @@ namespace backend.Migrations
                     b.Property<float>("lng")
                         .HasColumnType("real");
 
-                    b.Property<int>("portType")
+                    b.Property<int>("portStateId")
                         .HasColumnType("integer");
 
-                    b.Property<int>("stateId")
+                    b.Property<int>("portType")
                         .HasColumnType("integer");
 
                     b.HasKey("id");
 
-                    b.HasIndex("stateId");
+                    b.HasIndex("portStateId");
 
                     b.ToTable("PortMarkers");
+                });
+
+            modelBuilder.Entity("backend.Models.PortState", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("id"));
+
+                    b.Property<string>("label")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<float>("lat")
+                        .HasColumnType("real");
+
+                    b.Property<float>("lng")
+                        .HasColumnType("real");
+
+                    b.HasKey("id");
+
+                    b.ToTable("PortState");
                 });
 
             modelBuilder.Entity("backend.Models.Product", b =>
@@ -99,7 +139,7 @@ namespace backend.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("id"));
 
-                    b.Property<int?>("Containerid")
+                    b.Property<int>("containerId")
                         .HasColumnType("integer");
 
                     b.Property<float>("height")
@@ -107,6 +147,13 @@ namespace backend.Migrations
 
                     b.Property<float>("length")
                         .HasColumnType("real");
+
+                    b.Property<string>("measureUnit")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int>("measureUnitId")
+                        .HasColumnType("integer");
 
                     b.Property<string>("name")
                         .IsRequired()
@@ -132,50 +179,126 @@ namespace backend.Migrations
 
                     b.HasKey("id");
 
-                    b.HasIndex("Containerid");
+                    b.HasIndex("containerId");
 
                     b.ToTable("Products");
                 });
 
             modelBuilder.Entity("backend.Models.State", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("id"));
 
-                    b.Property<string>("Label")
+                    b.Property<string>("nome")
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<float>("Lat")
-                        .HasColumnType("real");
+                    b.Property<string>("sigla")
+                        .IsRequired()
+                        .HasColumnType("text");
 
-                    b.Property<float>("Lng")
-                        .HasColumnType("real");
+                    b.HasKey("id");
 
-                    b.HasKey("Id");
+                    b.ToTable("State");
+                });
 
-                    b.ToTable("States");
+            modelBuilder.Entity("backend.Models.Visitor", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("id"));
+
+                    b.Property<int>("cityid")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("companyCNPJ")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("companyName")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("email")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("fullName")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("message")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("phoneNumber")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("ramoAtividade")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int>("stateid")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("subject")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("id");
+
+                    b.HasIndex("cityid");
+
+                    b.HasIndex("stateid");
+
+                    b.ToTable("Visitors");
                 });
 
             modelBuilder.Entity("backend.Models.PortMarker", b =>
                 {
-                    b.HasOne("backend.Models.State", "state")
+                    b.HasOne("backend.Models.PortState", "portState")
                         .WithMany()
-                        .HasForeignKey("stateId")
+                        .HasForeignKey("portStateId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("state");
+                    b.Navigation("portState");
                 });
 
             modelBuilder.Entity("backend.Models.Product", b =>
                 {
-                    b.HasOne("backend.Models.Container", null)
+                    b.HasOne("backend.Models.Container", "container")
                         .WithMany("products")
-                        .HasForeignKey("Containerid");
+                        .HasForeignKey("containerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("container");
+                });
+
+            modelBuilder.Entity("backend.Models.Visitor", b =>
+                {
+                    b.HasOne("City", "city")
+                        .WithMany()
+                        .HasForeignKey("cityid")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("backend.Models.State", "state")
+                        .WithMany()
+                        .HasForeignKey("stateid")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("city");
+
+                    b.Navigation("state");
                 });
 
             modelBuilder.Entity("backend.Models.Container", b =>

@@ -1,7 +1,22 @@
-.map-marker-label {
-    background: rgb(255, 255,  255);
-    border-radius: 5px;
-    padding: 0 4px;
-    margin: 0 0 20px 0;
 
+.map_marker_label {
+    background: rgb(255, 255, 255);
+    border-radius: 500px;
+    padding: 0 4px;
+    margin-bottom: 20px;
+  }
+
+select {
+  font-size: 14px;
+  height: 30px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  outline: none;
+  cursor: pointer;
+}
+select:focus {
+  border-color: #007bff;
+}
+p {
+  font-size: 14px;
 }

@@ -1,4 +1,5 @@
 import styles from './AboutServiceCard.module.css';
+import { AboutServiceFadeContent } from './AboutServiceFadeContent';
 
 export interface IAboutServiceCardProps {
 
@@ -11,6 +12,8 @@ export interface IAboutServiceCardProps {
 export const AboutServiceCard = (props: IAboutServiceCardProps) => {
 
     return (
+        <>
+          <AboutServiceFadeContent>
         <div className={`${styles.about_service_card_component}`}>
             {
                 props.imagePosition === 'left' &&
@@ -43,6 +46,12 @@ export const AboutServiceCard = (props: IAboutServiceCardProps) => {
             }
 
         </div>
+        
+        </AboutServiceFadeContent>
+        </>
+
+       
+        
     )
 
 }

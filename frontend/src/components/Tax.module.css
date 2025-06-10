@@ -2,14 +2,15 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color:  rgb(2 103 177);
+    width: 100%;
+    height: 12%;
+    background:  rgb(2, 103, 177);
 }
 .tax_collectionComponent .taxWrapper  {
     display: flex;
     align-items: center;
     justify-content: space-around;
     width: 100%;
-    padding: 80px;
 }
 
 .tax_unitComponent{
@@ -17,17 +18,13 @@
     gap: 1rem;
 }
 .tax_unitComponent .currency {
-    font-size: 20px;
+    font-size: 30px;
     color: rgb(255, 255, 255);
 
 }
-.text {
-    display: flex;
-      flex-direction: column;
-      gap: .25rem;
-}
+
 .tax_unitComponent .text .name {
-    font-size: 10px;
+    font-size: 18px;
     color: rgb(255, 255, 255);
     margin:  0 20px;
 
@@ -37,19 +34,25 @@
     gap: 20px;
     color: rgb(255, 255, 255);
 }
-.tax-unit-component .text .valueContainer .value {
+.tax_unitComponent .text .valueContainer .value {
     font-size: 20px;
+
 }
+.tax_unitComponent .text .valueContainer .value:hover {
+    color: rgb(0, 175, 239);
+
+}
+
+
 .tax_unitComponent .text  .valueContainer .variation {
-    font-size: 15px;
+    font-size: 16px;
     border-radius: 10px;
 }
 .success {
 
-    background-color: rgb(32 198 52)
+    background: rgb(32, 198, 52)
 }
 .danger {
-    background-color: rgb(213 21 11)
+    background: rgb(213, 21, 11)
 
 }
-

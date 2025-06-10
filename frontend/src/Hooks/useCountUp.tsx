@@ -1,10 +1,11 @@
 import { useEffect, useRef, useState } from "react";
-import { useInView } from "./useInView";
+import { useInCountUpView } from "./useInCountUpView";
+
 
 export const useCountUp = (end: number, start: number = 0, duration: number = 2000) => {
   
   const [count, setCount] = useState(start);
-  const {ref, isInView} = useInView();
+  const {ref, isInView} = useInCountUpView();
 
   useEffect(() => {
     let startTimestamp: number | null = null;

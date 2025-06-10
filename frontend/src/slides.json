@@ -1,0 +1,19 @@
+
+[
+
+    {
+        "id" : 1,
+        "url" : "../assets/slides/slide1.jpg"
+    },
+
+
+    {
+        "id" : 2,
+        "url" : "../assets/slides/slide2.jpg"
+    },
+
+    {
+        "id" : 3,
+        "url" : "../assets/slides/slide3.jpg"
+     }
+]

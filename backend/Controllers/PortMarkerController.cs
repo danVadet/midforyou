@@ -1,4 +1,4 @@
-using backend.Data;
+using backend.Infrastructure;
 using backend.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -9,11 +9,12 @@ namespace backend.Controllers;
 public class  PortsMarkersController : ControllerBase
 {
     private readonly AppDbContext _appDbContext;
-    private readonly IHostEnvironment _hostEnvironment;
-    public PortsMarkersController(AppDbContext appDbContext, IHostEnvironment hostEnvironment)
+    private readonly IWebHostEnvironment _webHostEnviroment;
+
+    public PortsMarkersController(AppDbContext appDbContext, IWebHostEnvironment webHostEnvironment)
     {
         _appDbContext = appDbContext;
-        _hostEnvironment = hostEnvironment;
+        _webHostEnviroment = webHostEnvironment;
 
     }
 
@@ -21,17 +22,17 @@ public class  PortsMarkersController : ControllerBase
     public async Task<ActionResult> getAllPorts()
     {
 
-        var portMarkers = await _appDbContext.PortMarkers.Include( portMarkers=> portMarkers.state).ToListAsync();
+        var portMarkers = await _appDbContext.PortMarkers.Include( portMarkers=> portMarkers.portState).ToListAsync();
         return Ok(portMarkers);
 
     }
 
-    [HttpGet("markers/state/{stateId}")]
-    public async Task<ActionResult> getAllPortsByState(int stateId)
+    [HttpGet("markers/state/{portStateId}")]
+    public async Task<ActionResult> getAllPortsByState(int portStateId)
     
     {
 
-        var portMarkers = await _appDbContext.PortMarkers.Include( portMarkers=> portMarkers.state).Where(portMarker => portMarker.stateId == stateId).ToListAsync();;
+        var portMarkers = await _appDbContext.PortMarkers.Include( portMarkers=> portMarkers.portState).Where(portMarker => portMarker.portStateId == portStateId).ToListAsync();;
         return Ok(portMarkers);
     }
 
@@ -39,7 +40,7 @@ public class  PortsMarkersController : ControllerBase
     public async Task<ActionResult> getAllAirPorts()
     
     {
-        var portMarkers = await _appDbContext.PortMarkers.Include( portMarkers=> portMarkers.state).Where(portMarker => portMarker.portType.Equals(PortType.AIR)).ToListAsync();;
+        var portMarkers = await _appDbContext.PortMarkers.Include( portMarkers=> portMarkers.portState).Where(portMarker => portMarker.portType.Equals(PortType.AIR)).ToListAsync();;
         return Ok(portMarkers.Count());
     }
 
@@ -47,7 +48,7 @@ public class  PortsMarkersController : ControllerBase
     public async Task<ActionResult> getAllWaterPorts()
     
     {
-        var portMarkers = await _appDbContext.PortMarkers.Include( portMarkers=> portMarkers.state).Where(portMarker => portMarker.portType.Equals(PortType.WATER)).ToListAsync();;
+        var portMarkers = await _appDbContext.PortMarkers.Include( portMarkers=> portMarkers.portState).Where(portMarker => portMarker.portType.Equals(PortType.WATER)).ToListAsync();;
         return Ok(portMarkers.Count());
     }
 
@@ -56,7 +57,7 @@ public class  PortsMarkersController : ControllerBase
     
     {
 
-        var portMarkers = await _appDbContext.PortMarkers.Include( portMarkers=> portMarkers.state).Where(portMarker => portMarker.portType.Equals(PortType.AIR) && portMarker.stateId == stateId).ToListAsync();;
+        var portMarkers = await _appDbContext.PortMarkers.Include( portMarkers=> portMarkers.portState).Where(portMarker => portMarker.portType.Equals(PortType.AIR) && portMarker.portStateId == stateId).ToListAsync();;
         return Ok(portMarkers.Count());
     
     }
@@ -66,7 +67,7 @@ public class  PortsMarkersController : ControllerBase
     
     {
 
-        var portMarkers = await _appDbContext.PortMarkers.Include( portMarkers=> portMarkers.state).Where(portMarker => portMarker.portType.Equals(PortType.WATER) && portMarker.stateId == stateId).ToListAsync();;
+        var portMarkers = await _appDbContext.PortMarkers.Include( portMarkers=> portMarkers.portState).Where(portMarker => portMarker.portType.Equals(PortType.WATER) && portMarker.portStateId == stateId).ToListAsync();;
         return Ok(portMarkers.Count());
     }
 
@@ -77,21 +78,29 @@ public class  PortsMarkersController : ControllerBase
         return Ok(portMarker);
     }
     [HttpPost("markers/addPort")]
-    public async Task<ActionResult> addProduct(PortMarker portMarker, IFormFile pic)
+    public async Task<ActionResult> addPortMarker(PortMarker portMarker, IFormFile pic)
     {
 
-        State state = await _appDbContext.States.FindAsync(portMarker.stateId);
-        portMarker.state = state;
-        var uploadImage = Path.Combine(_hostEnvironment.ContentRootPath, $"Images/PortMarkers/{state.Label}", pic.FileName);
+        PortState portState = await _appDbContext.PortState.FindAsync(portMarker.portStateId);
+        portMarker.portState = portState;
+        var uploadImage = Path.Combine(_webHostEnviroment.WebRootPath, $"Images/PortMarkers/{portState.label}", pic.FileName);
         using (var stream = new FileStream(uploadImage, FileMode.Create)) {
             await pic.CopyToAsync(stream);
         }
 
-        portMarker.image = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}/Images/PortMarkers/{state.Label}/{pic.FileName}";
+        portMarker.image = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}/Images/PortMarkers/{portState.label}/{pic.FileName}";
 
         _appDbContext.PortMarkers.Add(portMarker);
         await _appDbContext.SaveChangesAsync();
 
         return Created("Port created successfully", portMarker);
+    }
+    [HttpDelete("markers/{id}")]
+    public async Task<ActionResult> deletePort(int id)
+    {
+        PortMarker portMarker = await _appDbContext.PortMarkers.FindAsync(id);
+        _appDbContext.PortMarkers.Remove(portMarker);
+        await _appDbContext.SaveChangesAsync();
+        return Ok(portMarker);
     }
 }
