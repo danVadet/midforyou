@@ -1,4 +1,4 @@
-import { useNav } from "../hooks/useNav";
+import { useNav } from "../Hooks/useNav";
 import { Tax } from "./Tax";
 import { Banner } from "./Banner/Banner";
 import { useContext } from "react";

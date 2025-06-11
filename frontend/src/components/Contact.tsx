@@ -4,7 +4,7 @@ import styles from './Contact.module.css'
 import { IVisitor } from '../models/IVisitor';
 import axios from 'axios';
 import { Message } from './Message';
-import { useNav } from '../hooks/useNav';
+import { useNav } from '../Hooks/useNav';
 import { LanguageContext } from '../contexts/LanguageContext';
 import multiLang from "../multiLang.json"
 import { ICity } from '../models/ICity';

@@ -3,8 +3,8 @@ import styles from './Tax.module.css'
 import { ITax } from '../models/ITax';
 import axios from 'axios';
 import { ITaxKeys } from '../models/ITaxKeys';
-import { FormatCurrencySymbol } from '../librarys/FormatCurrencySymbol';
-import { FormatCurrencyName } from '../librarys/FormatCurrencyName';
+import { FormatCurrencySymbol } from '../Librarys/FormatCurrencySymbol';
+import { FormatCurrencyName } from '../Librarys/FormatCurrencyName';
 import { Link, useLocation } from 'react-router-dom';
 
 export const Tax = () => {

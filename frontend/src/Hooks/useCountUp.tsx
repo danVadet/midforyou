@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { useInCountUpView } from "./useInCountUpView";
+import { useInCountUpView } from "../Hooks/useInCountUpView";
 
 
 export const useCountUp = (end: number, start: number = 0, duration: number = 2000) => {

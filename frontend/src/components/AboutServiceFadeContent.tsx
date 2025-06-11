@@ -1,6 +1,6 @@
 import { ReactNode} from "react";
 import styles from "./AboutServiceFadeContent.module.css";
-import { useFadeContent } from "../hooks/useFadeContent";
+import { useFadeContent } from "../Hooks/useFadeContent";
 
 interface AboutServiceFadeContentProps {
 

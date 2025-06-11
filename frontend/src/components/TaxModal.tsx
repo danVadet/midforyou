@@ -6,7 +6,7 @@ import { ITaxKeys } from "../models/ITaxKeys";
 import { Line } from 'react-chartjs-2';
 import { Chart as ChartJS, LineElement, CategoryScale, LinearScale, PointElement, Tooltip, Filler } from 'chart.js'
 import styles from "./TaxModal.module.css";
-import { FormatCurrencyName } from "../librarys/FormatCurrencyName";
+import { FormatCurrencyName } from "../Librarys/FormatCurrencyName";
 
 ChartJS.register(LineElement, CategoryScale, LinearScale, PointElement, Tooltip, Filler);
 

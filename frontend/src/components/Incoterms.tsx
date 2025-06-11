@@ -5,7 +5,7 @@ import { LanguageContext } from "../contexts/LanguageContext";
 import  multiLang  from '../multiLang.json';
 import { TooltipIncoterm } from "./TooltipIncoterm";
 import { IIncotermIcon } from "../models/IIncotermIcon";
-import { useNav } from "../hooks/useNav";
+import { useNav } from "../Hooks/useNav";
 
 export interface IIncotermsProps {
 

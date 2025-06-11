@@ -2,13 +2,13 @@ import { GoogleMap, InfoWindowF, MarkerF, useJsApiLoader } from "@react-google-m
 import { ChangeEvent, useContext, useEffect, useState } from "react";
 import { IPortMarker } from "../models/IPortMarker";
 import { IPortState } from "../models/IPortState";
-import { PortType } from "../models/enums/PortType";
+import { PortType } from "../models/Enums/PortType";
 import { SHIP_SVG } from "./SHIP_SVG";
 import { PLANE_SVG } from "./PLANE_SVG";
 import { MapControl } from "./MapControl";
 import { CounterAirPort } from "./CounterAirPort";
 import { CounterWaterPort } from "./CounterWaterPort";
-import { useNav } from "../hooks/useNav";
+import { useNav } from "../Hooks/useNav";
 import { LanguageContext } from "../contexts/LanguageContext";
 import styles from "./Map.module.css";
 import multiLang from "../multiLang.json"

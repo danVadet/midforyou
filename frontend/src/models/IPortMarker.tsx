@@ -1,4 +1,4 @@
-import { PortType } from "./enums/PortType";
+import { PortType } from "./Enums/PortType";
 import { IPortState } from "./IPortState";
 
 export interface IPortMarker {

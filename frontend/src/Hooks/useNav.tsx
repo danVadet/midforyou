@@ -1,6 +1,6 @@
 import { useContext, useEffect } from "react";
 import { NavContext } from "../contexts/NavContext";
-import { useInNavView } from "./useInNavView";
+import { useInNavView } from "../Hooks/useInNavView";
 
 
 export const useNav = (navLinkId: string) => {

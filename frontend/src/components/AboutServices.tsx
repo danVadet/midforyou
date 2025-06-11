@@ -1,6 +1,6 @@
 import { AboutServiceCard } from "./AboutServiceCard";
 import { IServices } from "../models/IServices";
-import { useNav } from "../hooks/useNav";
+import { useNav } from "../Hooks/useNav";
 import { useContext } from "react";
 import { LanguageContext } from "../contexts/LanguageContext";
 import multiLang from "../multiLang.json"

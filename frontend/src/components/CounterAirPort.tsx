@@ -1,4 +1,4 @@
-import { useCountUp } from "../hooks/useCountUp";
+import { useCountUp } from "../Hooks/useCountUp";
 import { PLANE_SVG } from "./PLANE_SVG";
 
 interface ICounterAirPortProps {
