@@ -22,15 +22,6 @@ jobs:
         with:
           submodules: true
           lfs: false
-           
-      - name: Login to Azure
-        uses: azure/login@v2
-        with:
-          auth-type: IDENTITY
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_F071CB4569974815825EC0102B65A4CA }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_C178B06058AD437585DEBE9E8CA9D182 }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_3E2D4B27B2C7478F9EBF95C6DC20C4D8 }}
-    
       - name: Build And Deploy
         id: builddeploy
         uses: Azure/static-web-apps-deploy@v1
