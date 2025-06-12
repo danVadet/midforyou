@@ -14,8 +14,8 @@ export const SliderContent = (props: ISliderContentProps) => {
        <img className={`${styles.imageSlide}`} src={`../assets/slides/slide1.jpg`} alt="" />
                     <div className={`${styles.containerBackground}`}>
                         <div className={`${styles.bannerText}`}>
-                            <h1>Torne sua experiência com o comércio exterior mais eficiente e segura.</h1>
-                            <h3>Somos o meio para você importar e exportar com segurança! </h3>
+                            <h1>Torne sua experiência com  <br /> o comércio exterior mais <br /> eficiente e segura.</h1>
+                            <p>Somos o meio para você importar  <br /> e exportar com segurança! </p>
 
                         </div>
 
