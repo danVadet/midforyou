@@ -55,3 +55,36 @@
     background: rgb(213, 21, 11)
 
 }
+
+/* TABLET */
+
+@media (max-width: 991px) and (min-width: 768px) {
+
+    .tax_collectionComponent {
+        
+        height: 15%;
+    }
+    
+}
+
+/* MOBILE */
+
+@media (max-width: 767px) {
+
+    .tax_collectionComponent {
+        
+        width: 232%;
+        height: 10%;
+    }
+
+    .tax_unitComponent .text .valueContainer .value {
+      font-size: 18px;
+
+   }
+
+    .tax_collectionComponent .taxWrapper  {
+      
+        margin: 0 1rem;
+    }
+
+}

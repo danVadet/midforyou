@@ -24,7 +24,6 @@
 
 .title {
     color: #2f2f2f;
-    text-align: justify;
     font-size: 36px;
     line-height: normal;
     margin: 0px;
@@ -61,4 +60,21 @@
         border-radius: 8px;
         z-index: 1;
       }
+
+    @media (max-width: 767px) {
+
+    .description {
+       font-size: 20px;
+    } 
+
+    .about_service_card_wrapper_left {
+        width: 232%;
+    
+    }
+
+    .about_service_card_wrapper_right {
+    width: 232%;
+}
+
+}
       

@@ -86,3 +86,12 @@ footer .linkedinIcon svg {
     fill: rgb(0, 175, 239);
 
 }
+
+@media (max-width: 767px) {
+
+    footer {
+        
+        width: 232%;
+    }
+    
+}

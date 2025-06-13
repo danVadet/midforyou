@@ -41,6 +41,29 @@ section {
 }
 
 
+
+/* TABLET */
+
+@media (max-width: 991px) and (min-width: 768px) {
+
+   
+    section {
+      height: 250vh;
+    }
+    
+}
+
+
+  @media (max-width: 767px) {
+
+    section {
+    height: 270vh;
+    }
+  }
+
+
+
+
 /* O site fora do ar /
 /*
 

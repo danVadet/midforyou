@@ -35,6 +35,8 @@ header ul li a {
 .header .activeClass {
     color: blue;
   }
+
+  
   @media  (max-width: 768px) {
     .hamburger {
       display: block;

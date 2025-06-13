@@ -18,3 +18,21 @@
         font-size: 20px;
         line-height: normal;
 }
+
+  @media (max-width: 767px) {
+
+    .aboutComponentContainer {
+      width: 200%;
+    }
+
+    
+
+   
+
+    .aboutTextContainer p {
+
+        font-size: 28px;
+   }
+
+
+  }
