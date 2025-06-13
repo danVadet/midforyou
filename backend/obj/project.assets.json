@@ -3191,11 +3191,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\PROJETOS\\MIDFORYOU\\midforyou\\backend\\backend.csproj",
+      "projectUniqueName": "D:\\PROJETOS\\MIDFORYOU\\midforyou\\midforyou\\backend\\backend.csproj",
       "projectName": "backend",
-      "projectPath": "D:\\PROJETOS\\MIDFORYOU\\midforyou\\backend\\backend.csproj",
+      "projectPath": "D:\\PROJETOS\\MIDFORYOU\\midforyou\\midforyou\\backend\\backend.csproj",
       "packagesPath": "C:\\Users\\CLIENTE\\.nuget\\packages\\",
-      "outputPath": "D:\\PROJETOS\\MIDFORYOU\\midforyou\\backend\\obj\\",
+      "outputPath": "D:\\PROJETOS\\MIDFORYOU\\midforyou\\midforyou\\backend\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\CLIENTE\\AppData\\Roaming\\NuGet\\NuGet.Config"

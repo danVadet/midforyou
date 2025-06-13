@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "aDPov2iaoqU=",
+  "dgSpecHash": "lDe2PvZl7PA=",
   "success": true,
-  "projectFilePath": "D:\\PROJETOS\\MIDFORYOU\\midforyou\\backend\\backend.csproj",
+  "projectFilePath": "D:\\PROJETOS\\MIDFORYOU\\midforyou\\midforyou\\backend\\backend.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\CLIENTE\\.nuget\\packages\\automapper\\14.0.0\\automapper.14.0.0.nupkg.sha512",
     "C:\\Users\\CLIENTE\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
