@@ -29,6 +29,8 @@ export interface IMainProps {
       <Navbar navLangs={props.navLangs} />
       <Home/>
       <About services={props.services} />
+      <Map />
+
       <Footer />
     </>
 
@@ -41,7 +43,6 @@ export interface IMainProps {
       <Home/>
       <Incoterms incoterms={props.incoterms} incotermsIcons={props.incotermIcons} />
       <CBMCalculator />
-      <Map />
       <Contact />
       <Footer />
     </>
