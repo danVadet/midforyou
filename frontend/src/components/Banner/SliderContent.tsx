@@ -1,4 +1,7 @@
-import styles from "./Banner.module.css"
+import { useContext } from "react";
+import styles from "./Banner.module.css";
+import { LanguageContext } from "../../contexts/LanguageContext";
+import multiLang from "../../multiLang.json";
 
 export interface ISliderContentProps {
     slides: Array<any>;
@@ -6,6 +9,9 @@ export interface ISliderContentProps {
 }
 
 export const SliderContent = (props: ISliderContentProps) => {
+
+     const { language } = useContext(LanguageContext);
+
     return (
 
          // O site no ar
@@ -14,8 +20,15 @@ export const SliderContent = (props: ISliderContentProps) => {
        <img className={`${styles.imageSlide}`} src={`../assets/slides/slide1.jpg`} alt="" />
                     <div className={`${styles.containerBackground}`}>
                         <div className={`${styles.bannerText}`}>
-                            <h1>Torne sua experiência com  <br /> o comércio exterior mais <br /> eficiente e segura.</h1>
-                            <p>Somos o meio para você importar  <br /> e exportar com segurança! </p>
+                            <h1> {((language === "pt" && multiLang.pt.bannerText1) || (language === "en" && multiLang.en.bannerText1) || (language === "es" && multiLang.es.bannerText1))}  <br /> 
+                                 {((language === "pt" && multiLang.pt.bannerText2) || (language === "en" && multiLang.en.bannerText2) || (language === "es" && multiLang.es.bannerText2))}   <br /> 
+                                 {((language === "pt" && multiLang.pt.bannerText3) || (language === "en" && multiLang.en.bannerText3) || (language === "es" && multiLang.es.bannerText3))}
+                                 
+                            </h1>
+                            <p>
+                                {((language === "pt" && multiLang.pt.bannerText4) || (language === "en" && multiLang.en.bannerText4) || (language === "es" && multiLang.es.bannerText4))}  <br /> 
+                                
+                                {((language === "pt" && multiLang.pt.bannerText5) || (language === "en" && multiLang.en.bannerText5) || (language === "es" && multiLang.es.bannerText5))} </p>
 
                         </div>
 

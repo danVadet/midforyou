@@ -18,15 +18,15 @@ export const Home = () => {
             <Banner />
                    <div className={`${styles.aboutComponentContainer}`}>
                             <div className={`${styles.aboutTextContainer}`}>
-                                <h1>Desde a prospecção de fornecedores até a nacionalização da mercadoria.</h1>
+                                <h1>{((language === "pt" && multiLang.pt.aboutText1) || (language === "en" && multiLang.en.aboutText1) || (language === "es" && multiLang.es.aboutText1))}</h1>
                                 <p>
-                                    As Trading Companies são empresas especializadas em Comércio Exterior que facilitam processos de importação e exportação entre diferentes países, intermediando a negociação entre fornecedor e cliente de forma segura e contribuindo para a comercialização internacional de produtos de mercados variados.
+                                    {((language === "pt" && multiLang.pt.aboutText2) || (language === "en" && multiLang.en.aboutText2) || (language === "es" && multiLang.es.aboutText2))}
                                     <br />
                                     <br />
-                                    A Mid4u é uma Trading Company com sede em Cajazeiras, no Sertão do Estado da Paraíba, atuando no Comércio Exterior desde o ano de 2017, com especialidade em importação, exportação e intermediação comercial internacional.
+                                    {((language === "pt" && multiLang.pt.aboutText3) || (language === "en" && multiLang.en.aboutText3) || (language === "es" && multiLang.es.aboutText3))}                                    
                                     <br />
                                     <br />
-                                    Possuímos Benefício Fiscal de ICMS, concedido através de Termo de Acordo de Regime Especial (TARE), pela Secretaria da Fazenda do Estado da Paraíba. Da prospecção de fornecedores até a nacionalização da mercadoria, a Mid4u cuida do seu processo de importação e exportação com transparência e segurança.
+                                    {((language === "pt" && multiLang.pt.aboutText4) || (language === "en" && multiLang.en.aboutText4) || (language === "es" && multiLang.es.aboutText4))}
                                 </p>
                             </div>
                         </div>

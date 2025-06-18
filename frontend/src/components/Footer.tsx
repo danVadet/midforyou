@@ -1,6 +1,13 @@
+import { useContext } from 'react';
 import styles from './Footer.module.css'
+import { LanguageContext } from '../contexts/LanguageContext';
+
+import multiLang from "../multiLang.json"
 
 export const Footer = () => {
+
+    const { language } = useContext(LanguageContext);
+    
     return (
         <footer>
             <div className={`${styles.content}`}>
@@ -15,7 +22,7 @@ export const Footer = () => {
                 </div>
 
                 <div className={`${styles.containerMediaSocial}`}>
-                      <h3>Siga nossas redes sociais</h3>
+                      <h3>{((language === "pt" && multiLang.pt.footerText1) || (language === "en" && multiLang.en.footerText1) || (language === "es" && multiLang.es.footerText1)  )}</h3>
 
                     <div className={`${styles.mediaSocial}`}>
 

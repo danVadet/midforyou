@@ -1,5 +1,6 @@
 {
     "en" : {
+
         "navItem" : {
             "home" : "Home",
             "services" : "Services",
@@ -33,6 +34,18 @@
            }
            
         ],
+
+        "bannerText1" : "Make your experience with",
+        "bannerText2" : "foreign trade more",
+        "bannerText3" : "efficient and safe.",
+        "bannerText4" : "We are the means for you to import" ,
+        "bannerText5": "and export safely!",
+
+        "aboutText1" : "From prospecting suppliers to nationalizing the merchandise.",
+        "aboutText2" : "Trading Companies are companies specialized in Foreign Trade that facilitate import and export processes between different countries, mediating negotiations between suppliers and customers in a secure manner and contributing to the international commercialization of products from different markets.",
+        "aboutText3" : "Mid For You is a Trading Company based in Cajazeiras, in the backlands of the State of Paraíba, operating in Foreign Trade since 2017, specializing in import, export and international commercial intermediation.",
+        "aboutText4" : "We have ICMS Tax Benefit, granted through a Special Regime Agreement Term (TARE), by the State of Paraíba Treasury Department. From prospecting suppliers to nationalizing the goods, Mid For You takes care of your import and export process with transparency and securi",
+
 
         "services" : [
             {
@@ -238,7 +251,8 @@
 
         "freight" : "Frete",
         "modal" : "Modal",
-        "moreDetails" : "More details"
+        "moreDetails" : "More details",
+        "footerText1" : "Follow our social networks"
 
     },
 
@@ -280,6 +294,17 @@
             }
             
          ],
+
+        "bannerText1" : "Haz que tu experiencia con",
+        "bannerText2" : "el comercio exterior más",
+        "bannerText3" : "eficiente y segura.",
+        "bannerText4" : "¡Somos el medio para que importes" ,
+        "bannerText5": "y exportes con seguridad!",
+
+        "aboutText1" : "Desde la prospección de proveedores hasta la nacionalización de la mercancía.",
+        "aboutText2" : "Las Trading Companies son empresas especializadas en Comercio Exterior que facilitan los procesos de importación y exportación entre diferentes países, mediando las negociaciones entre proveedores y clientes de forma segura y contribuyendo a la comercialización internacional de productos de diferentes mercados.",
+        "aboutText3" : "Mid For You es una Trading Company con sede en Cajazeiras, sertón del Estado de Paraíba, que actúa en Comercio Exterior desde 2017, especializándose en importación, exportación e intermediación comercial internacional.",
+        "aboutText4" : "Contamos con el beneficio fiscal ICMS, otorgado mediante un Término de Acuerdo de Régimen Especial (TARE) por la Secretaría de Hacienda del Estado de Paraíba. Desde la búsqueda de proveedores hasta la nacionalización de las mercancías, Mid For You gestiona su proceso de importación y exportación con transparencia y seguridad.",
 
         "services" : [
             {
@@ -443,11 +468,13 @@
                "modal": "Cualquier modal",
                "moreDetails": "Delivered Duty Paid (DDP) significa que el vendedor es responsable de todos los gastos y riesgos asociados con la entrega de las mercancías en el lugar de destino convenido, incluido el pago de derechos e impuestos de importación. El vendedor está obligado a entregar la mercancía en el lugar de destino convenido."
             }
-        ]
+        ],
+        "footerText1" : "Sigue nuestras redes sociales"
 
     },
 
     "pt" : {
+
 
         "navItem" : {
             "home" : "Início",
@@ -486,6 +513,18 @@
             }
             
          ],
+
+
+        "bannerText1" : "Torne sua experiência com",
+        "bannerText2" : "o comércio exterior mais",
+        "bannerText3" : "eficiente e  segura",
+        "bannerText4" : "Somos o meio para você importar" ,
+        "bannerText5": "e exportar com segurança!",
+
+        "aboutText1" : "Desde a prospecção de fornecedores até a nacionalização da mercadoria.",
+        "aboutText2" : "As Trading Companies são empresas especializadas em Comércio Exterior que facilitam processos de importação e exportação entre diferentes países, intermediando a negociação entre fornecedor e cliente de forma segura e contribuindo para a comercialização internacional de produtos de mercados variados.",
+        "aboutText3" : "A Mid4u é uma Trading Company com sede em Cajazeiras, no Sertão do Estado da Paraíba, atuando no Comércio Exterior desde o ano de 2017, com especialidade em importação, exportação e intermediação comercial internacional.",
+        "aboutText4" : "Possuímos Benefício Fiscal de ICMS, concedido através de Termo de Acordo de Regime Especial (TARE), pela Secretaria da Fazenda do Estado da Paraíba. Da prospecção de fornecedores até a nacionalização da mercadoria, a Mid4u cuida do seu processo de importação e exportação com transparência e segurança.",
  
         "services" : [
             {
@@ -689,6 +728,8 @@
         ],
         "freight" : "Frete",
         "modal" : "Modal",
-        "moreDetails" : "Mais detalhes"
+        "moreDetails" : "Mais detalhes",
+
+        "footerText1" : "Siga nossas redes socais"
     }
 }
