@@ -57,10 +57,8 @@
 }
 
 
-/* MOBILE */
 
-@media (max-width: 480px) {
-
+@media (max-width: 576px) {
 
     .tax_collectionComponent {
         height: 10%;
@@ -75,15 +73,15 @@
 
 .tax_unitComponent{
     display: flex;
-    gap: 0;
+    gap: 10px;
 }
 .tax_unitComponent .currency {
-    font-size: 25px;
+    font-size: 20px;
 
 }
 
 .tax_unitComponent .text .name {
-    font-size: 14px;
+    font-size: 12px;
     margin:  0;
 
 }
@@ -93,7 +91,7 @@
     color: rgb(255, 255, 255);
 }
 .tax_unitComponent .text .valueContainer .value {
-    font-size: 15px;
+    font-size: 12px;
 
 }
 .tax_unitComponent .text .valueContainer .value:hover {
@@ -111,47 +109,52 @@
 }
 
 
-@media (min-width: 481px) and (max-width: 767px) {
-   
+
+@media (max-width: 768px) {
+
     .tax_collectionComponent {
-    display: flex;
-    width: 100%;
-    height: 12%;
-    background:  rgb(2, 103, 177);
-}
-.tax_collectionComponent .taxWrapper  {
+        height: 10%;
+    }
+
+   .tax_collectionComponent .taxWrapper  {
     display: flex;
     align-items: center;
-    justify-content: space-around;
     width: 100%;
     padding: 5rem 0 0 0;
 }
 
 .tax_unitComponent{
     display: flex;
-    gap: 1rem;
+    gap: 10px;
 }
 .tax_unitComponent .currency {
-    font-size: 25px;
+    font-size: 20px;
+
 }
 
 .tax_unitComponent .text .name {
-    font-size: 18px;
-
+    font-size: 12px;
+    margin:  0;
 
 }
 .tax_unitComponent .valueContainer {
     display: flex;
-    gap: 20px;
+    gap: 5px;
     color: rgb(255, 255, 255);
 }
 .tax_unitComponent .text .valueContainer .value {
-    font-size: 14px;
+    font-size: 12px;
+
+}
+.tax_unitComponent .text .valueContainer .value:hover {
+    color: rgb(0, 175, 239);
 
 }
 
+
 .tax_unitComponent .text  .valueContainer .variation {
-    font-size: 14px;
+    font-size: 12px;
+    border-radius: 10px;
     height: 20px;
 }
 

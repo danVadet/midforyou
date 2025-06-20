@@ -112,9 +112,28 @@
 }
 */
 
-/* Media Query for Mobile Devices */
 
-@media (max-width: 480px) {
+
+
+@media (max-width: 576px) {
+
+    .slider {
+    height: 480px;
+
+   }
+
+    .bannerText h1 {
+        font-size: 30px;
+    }
+
+    .bannerText p {
+        font-size: 15px;
+    }
+}
+
+
+
+@media (max-width: 768px) {
 
     .slider {
     height: 600px;
@@ -130,18 +149,4 @@
     }
 }
 
- /* Media Query for low resolution  Tablets, Ipads */
- @media (min-width: 481px) and (max-width: 767px) {
-    .slider {
-        height: 580px;
 
-    }
-
-    .bannerText h1 {
-        font-size: 2rem;
-    }
-
-    .bannerText p {
-        font-size: 1.5rem;
-    }
-}

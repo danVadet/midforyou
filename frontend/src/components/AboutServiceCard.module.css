@@ -61,10 +61,10 @@
         z-index: 1;
       }
 
-    @media (max-width: 480px) {
+    @media (max-width: 576px) {
 
     .description {
-        font-size: 18px;
+        font-size: 15px;
     } 
 
     .about_service_card_wrapper_left {
@@ -79,6 +79,13 @@
         align-items: center;
         flex-direction: column;
     }
+
 }
 
-      
+     @media (max-width: 768px) {
+
+    .description {
+        font-size: 15px;
+    } 
+}
+    
