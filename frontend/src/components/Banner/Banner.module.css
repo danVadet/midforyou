@@ -112,27 +112,36 @@
 }
 */
 
+/* Media Query for Mobile Devices */
 
-
-@media (max-width: 767px) {
+@media (max-width: 480px) {
 
     .slider {
-        width: 232%;
-        height: 640px;
+    height: 600px;
 
-    }
-
-    .imageSlide {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
+   }
 
     .bannerText h1 {
-        font-size: 2.5rem;
+        font-size: 2rem;
     }
 
     .bannerText p {
+        font-size: 1.5rem;
+    }
+}
+
+ /* Media Query for low resolution  Tablets, Ipads */
+ @media (min-width: 481px) and (max-width: 767px) {
+    .slider {
+        height: 580px;
+
+    }
+
+    .bannerText h1 {
         font-size: 2rem;
+    }
+
+    .bannerText p {
+        font-size: 1.5rem;
     }
 }

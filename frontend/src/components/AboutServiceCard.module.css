@@ -61,20 +61,24 @@
         z-index: 1;
       }
 
-    @media (max-width: 767px) {
+    @media (max-width: 480px) {
 
     .description {
-       font-size: 20px;
+        font-size: 18px;
     } 
 
     .about_service_card_wrapper_left {
-        width: 232%;
-    
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      
     }
 
     .about_service_card_wrapper_right {
-    width: 232%;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+    }
 }
 
-}
       

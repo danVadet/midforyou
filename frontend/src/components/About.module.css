@@ -19,20 +19,18 @@
         line-height: normal;
 }
 
-  @media (max-width: 767px) {
 
-    .aboutComponentContainer {
-      width: 200%;
-    }
+    @media (max-width: 480px) {
 
-    
+        .aboutTextContainer h1 {
 
-   
+ 
+    font-size: 28px;
 
-    .aboutTextContainer p {
-
-        font-size: 28px;
-   }
+}
+.aboutTextContainer p {
+        font-size: 15px;
+}
 
 
-  }
+}

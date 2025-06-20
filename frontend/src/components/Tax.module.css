@@ -56,35 +56,103 @@
 
 }
 
-/* TABLET */
-
-@media (max-width: 991px) and (min-width: 768px) {
-
-    .tax_collectionComponent {
-        
-        height: 15%;
-    }
-    
-}
 
 /* MOBILE */
 
-@media (max-width: 767px) {
+@media (max-width: 480px) {
+
 
     .tax_collectionComponent {
-        
-        width: 232%;
         height: 10%;
     }
 
-    .tax_unitComponent .text .valueContainer .value {
-      font-size: 18px;
+   .tax_collectionComponent .taxWrapper  {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 5rem 0 0 0;
+}
 
-   }
+.tax_unitComponent{
+    display: flex;
+    gap: 0;
+}
+.tax_unitComponent .currency {
+    font-size: 25px;
 
-    .tax_collectionComponent .taxWrapper  {
-      
-        margin: 0 1rem;
-    }
+}
+
+.tax_unitComponent .text .name {
+    font-size: 14px;
+    margin:  0;
+
+}
+.tax_unitComponent .valueContainer {
+    display: flex;
+    gap: 5px;
+    color: rgb(255, 255, 255);
+}
+.tax_unitComponent .text .valueContainer .value {
+    font-size: 15px;
+
+}
+.tax_unitComponent .text .valueContainer .value:hover {
+    color: rgb(0, 175, 239);
+
+}
+
+
+.tax_unitComponent .text  .valueContainer .variation {
+    font-size: 12px;
+    border-radius: 10px;
+    height: 20px;
+}
+
+}
+
+
+@media (min-width: 481px) and (max-width: 767px) {
+   
+    .tax_collectionComponent {
+    display: flex;
+    width: 100%;
+    height: 12%;
+    background:  rgb(2, 103, 177);
+}
+.tax_collectionComponent .taxWrapper  {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+    padding: 5rem 0 0 0;
+}
+
+.tax_unitComponent{
+    display: flex;
+    gap: 1rem;
+}
+.tax_unitComponent .currency {
+    font-size: 25px;
+}
+
+.tax_unitComponent .text .name {
+    font-size: 18px;
+
+
+}
+.tax_unitComponent .valueContainer {
+    display: flex;
+    gap: 20px;
+    color: rgb(255, 255, 255);
+}
+.tax_unitComponent .text .valueContainer .value {
+    font-size: 14px;
+
+}
+
+.tax_unitComponent .text  .valueContainer .variation {
+    font-size: 14px;
+    height: 20px;
+}
 
 }

@@ -87,11 +87,15 @@ footer .linkedinIcon svg {
 
 }
 
-@media (max-width: 767px) {
+@media (max-width: 480px) {
 
-    footer {
+    footer  .content {
+
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
         
-        width: 232%;
+    
     }
     
 }
