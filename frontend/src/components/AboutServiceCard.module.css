@@ -61,13 +61,10 @@
         z-index: 1;
       }
 
-    @media (max-width: 576px) {
+    @media (max-width: 767px) {
 
-    .description {
-        font-size: 15px;
-    } 
 
-    .about_service_card_wrapper_left {
+     .about_service_card_wrapper_left {
       display: flex;
       align-items: center;
       flex-direction: column;
@@ -78,14 +75,31 @@
         display: flex;
         align-items: center;
         flex-direction: column;
+        margin: 20px 0;
+
     }
-
-}
-
-     @media (max-width: 768px) {
 
     .description {
         font-size: 15px;
     } 
+}
+
+
+@media (min-width: 768px) and (max-width: 991px) {
+
+    .description {
+        font-size: 25px;
+    } 
+
+
+}
+
+@media (min-width: 992px) and (max-width: 1400px) {
+
+    .description  {
+        font-size: 30px;
+
+    }
+
 }
     

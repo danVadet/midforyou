@@ -2,9 +2,10 @@
     display: flex;
     width: 100%;
     height: 12%;
-    background:  rgb(2, 103, 177);
+    background: rgb(2, 103, 177);
 }
-.tax_collectionComponent .taxWrapper  {
+
+.tax_collectionComponent .taxWrapper {
     display: flex;
     align-items: center;
     justify-content: space-around;
@@ -12,10 +13,11 @@
     padding: 5rem 0 0 0;
 }
 
-.tax_unitComponent{
+.tax_unitComponent {
     display: flex;
     gap: 1rem;
 }
+
 .tax_unitComponent .currency {
     font-size: 30px;
     color: rgb(255, 255, 255);
@@ -25,137 +27,104 @@
 .tax_unitComponent .text .name {
     font-size: 18px;
     color: rgb(255, 255, 255);
-    margin:  0 20px;
+    margin: 0 20px;
 
 }
+
 .tax_unitComponent .valueContainer {
     display: flex;
     gap: 20px;
     color: rgb(255, 255, 255);
 }
+
 .tax_unitComponent .text .valueContainer .value {
     font-size: 20px;
 
 }
+
 .tax_unitComponent .text .valueContainer .value:hover {
     color: rgb(0, 175, 239);
 
 }
 
 
-.tax_unitComponent .text  .valueContainer .variation {
+.tax_unitComponent .text .valueContainer .variation {
     font-size: 16px;
     border-radius: 10px;
 }
+
 .success {
 
     background: rgb(32, 198, 52)
 }
+
 .danger {
     background: rgb(213, 21, 11)
+}
+
+@media (max-width: 767px) {
+
+    .tax_collectionComponent {
+        height: 8%;
+    }
+
+    .tax_collectionComponent .taxWrapper {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        padding: 5rem 0 0 0;
+    }
+
+    .tax_unitComponent {
+        display: flex;
+        gap: 10px;
+    }
+
+    .tax_unitComponent .currency {
+        font-size: 15px;
+
+    }
+
+    .tax_unitComponent .text .name {
+        font-size: 10px;
+        margin: 0;
+
+    }
+
+    .tax_unitComponent .valueContainer {
+        display: flex;
+        gap: 2px;
+        color: rgb(255, 255, 255);
+    }
+
+    .tax_unitComponent .text .valueContainer .value {
+        font-size: 8px;
+
+    }
+
+    .tax_unitComponent .text .valueContainer .value:hover {
+        color: rgb(0, 175, 239);
+
+    }
+
+
+    .tax_unitComponent .text .valueContainer .variation {
+        font-size: 8px;
+        border-radius: 10px;
+        height: 10px;
+    }
 
 }
 
+@media (min-width: 768px) and (max-width: 991px) {
 
-
-@media (max-width: 576px) {
-
-    .tax_collectionComponent {
+     .tax_collectionComponent {
         height: 10%;
     }
 
-   .tax_collectionComponent .taxWrapper  {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    padding: 5rem 0 0 0;
-}
-
-.tax_unitComponent{
-    display: flex;
-    gap: 10px;
-}
-.tax_unitComponent .currency {
-    font-size: 20px;
-
-}
-
-.tax_unitComponent .text .name {
-    font-size: 12px;
-    margin:  0;
-
-}
-.tax_unitComponent .valueContainer {
-    display: flex;
-    gap: 5px;
-    color: rgb(255, 255, 255);
-}
-.tax_unitComponent .text .valueContainer .value {
-    font-size: 12px;
-
-}
-.tax_unitComponent .text .valueContainer .value:hover {
-    color: rgb(0, 175, 239);
-
-}
-
-
-.tax_unitComponent .text  .valueContainer .variation {
-    font-size: 12px;
-    border-radius: 10px;
-    height: 20px;
-}
-
-}
-
-
-
-@media (max-width: 768px) {
-
-    .tax_collectionComponent {
-        height: 10%;
+    .tax_unitComponent .text .valueContainer .variation {
+        height: 20px;
     }
 
-   .tax_collectionComponent .taxWrapper  {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    padding: 5rem 0 0 0;
-}
-
-.tax_unitComponent{
-    display: flex;
-    gap: 10px;
-}
-.tax_unitComponent .currency {
-    font-size: 20px;
-
-}
-
-.tax_unitComponent .text .name {
-    font-size: 12px;
-    margin:  0;
-
-}
-.tax_unitComponent .valueContainer {
-    display: flex;
-    gap: 5px;
-    color: rgb(255, 255, 255);
-}
-.tax_unitComponent .text .valueContainer .value {
-    font-size: 12px;
-
-}
-.tax_unitComponent .text .valueContainer .value:hover {
-    color: rgb(0, 175, 239);
-
-}
-
-
-.tax_unitComponent .text  .valueContainer .variation {
-    font-size: 12px;
-    border-radius: 10px;
-    height: 20px;
-}
 
 }

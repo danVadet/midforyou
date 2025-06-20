@@ -90,6 +90,7 @@ footer .linkedinIcon svg {
 @media (max-width: 576px) {
 
     footer  .content {
+        
 
         display: flex;
         flex-direction: column;

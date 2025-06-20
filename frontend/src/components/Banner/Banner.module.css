@@ -41,6 +41,7 @@
     left: 5%;
     text-align: left;
     color: white;
+    animation: fadeIn 2s ease-in-out;
 
 }
 
@@ -52,6 +53,22 @@
 .bannerText p {
     font-size: 1.5rem;
 }
+
+
+ 
+ @keyframes fadeIn {
+     0% {
+         opacity: 0%;
+         transform: translateX(-20%);
+
+     }
+ 
+     100% {
+         opacity: 100%;
+         transform: translateX(0%);
+
+     }
+ }
 
 /* O site fora do ar */
 /*
@@ -113,40 +130,21 @@
 */
 
 
-
-
-@media (max-width: 576px) {
+@media (max-width: 767px) {
 
     .slider {
-    height: 480px;
+    height: 300px;
 
    }
 
     .bannerText h1 {
-        font-size: 30px;
-    }
-
-    .bannerText p {
-        font-size: 15px;
-    }
-}
-
-
-
-@media (max-width: 768px) {
-
-    .slider {
-    height: 600px;
-
-   }
-
-    .bannerText h1 {
-        font-size: 2rem;
-    }
-
-    .bannerText p {
         font-size: 1.5rem;
     }
+
+    .bannerText p {
+        font-size: 1rem;
+    }
 }
+
 
 
