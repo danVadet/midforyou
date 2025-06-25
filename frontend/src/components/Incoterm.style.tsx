@@ -6,49 +6,118 @@ export const IncotermsWrapper = styled.div`
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    
-    .title-mini {
-      color: #4ca3b6;
-      font-size: 16px;
-      letter-spacing: 5.28px;
-      text-align: start;
-      text-transform: uppercase;
-    }
+  
     .gary {
+        
         border: 1px solid  #d9d9d9;;
-        height: 120px;
+        height: 100px;
         position: absolute;
-        top: 100px;
+        top: 90px;
 
-       @media (max-width: 1400px) {
+       @media (max-width: 767px) {
+        height: 80px;
         top: 40px;
       }
+      
+       /* Tablets - Portrait */
+       @media (min-width: 768px) and (max-width: 991px) {
+
+            height: 100px;
+            top: 50px;          
+        }
+
+              /* Tablets - Landscape */
+        @media (min-width: 992px) and (max-width: 1199px) {
+
+             height: 100px;
+            top: 50px; 
+        
+        }
+
     }
 
     .transferRisk {
         position: absolute;
-        top: 120px  
-    }
+        top: 90px;
 
-    .title-big {
-      color: #fff;
-      font-size: 32px;
 
-      @media (min-width: 992px) {
-        font-size: 64px;
+          @media (max-width: 767px) {
+          top: 45px;
+        } 
+      
+
+        /* Tablets - Portrait */
+        @media (min-width: 768px) and (max-width: 991px) {
+
+        top: 60px;
+          
+        }
+
+
+      /* Tablets - Landscape */
+        @media (min-width: 992px) and (max-width: 1199px) {
+
+          top: 65px;
+        
+        }
+
+        /* Small Laptops */
+      @media (min-width: 1200px) and (max-width: 1439px) {
+
+          top: 65px;
+        
       }
     }
 
-    h1 {
-      margin: 0;
+    .transferRisk svg {
+
+          fill: rgb(255, 140, 0);
+          width: 30px;
+          height: 60px;
+
+          @media (max-width: 767px) {
+
+          width: 20px;
+          height: 40px;
+          
+        } 
+      
+
+        /* Tablets - Portrait */
+        @media (min-width: 768px) and (max-width: 991px) {
+
+        top: 60px;
+          
+        }
+
+
+      /* Tablets - Landscape */
+        @media (min-width: 992px) and (max-width: 1199px) {
+
+          top: 65px;
+        
+        }
+
+        /* Small Laptops */
+      @media (min-width: 1200px) and (max-width: 1439px) {
+
+          top: 65px;
+        
+      }
     }
 
-    .padding-0 {
-      padding: 0 !important;
-    }
+    .title {
+      text-align: left;
+      margin: 40px;
+      font-size: 48px;
 
-    .text-align-right {
-      text-align: right;
+
+        @media (max-width: 991px) {
+        text-align: center;
+
+        font-size: 32px;
+          
+        }
     }
 
     .more-details {
@@ -79,7 +148,7 @@ export const IncotermsWrapper = styled.div`
 
         border-radius: 10px;
 
-        background: #fff;
+        background: rgb(255, 255, 255);
         --number-of-incoterms: 9;
       }
 
@@ -112,6 +181,8 @@ export const IncotermsWrapper = styled.div`
         display: grid;
       }
 
+      
+
       .stage-line,
       .incoterm-line {
         grid-template-columns: 1fr 3fr;
@@ -137,7 +208,6 @@ export const IncotermsWrapper = styled.div`
             .stage {
               min-width: 11%;
               display: flex;
-              align-items: center;
               flex-direction: column;
               align-items: center;
               gap: 1rem;
@@ -146,6 +216,7 @@ export const IncotermsWrapper = styled.div`
               @media (max-width: 1400px) {
                 &.blank {
                   display: none;
+                  
                 }
               }
 
@@ -153,6 +224,10 @@ export const IncotermsWrapper = styled.div`
                 max-height: 40px;
                 max-width: 100%;
                 flex-grow: 1;
+
+                
+
+
               }
 
               .stage__div__name {
@@ -219,7 +294,7 @@ export const IncotermsWrapper = styled.div`
         .incoterm-stages {
           display: flex;
           flex-direction: column;
-          background-color: white;
+          background-color: rgb(255, 255, 255);
           gap: 1rem;
 
           .bar-captions.mobile {
@@ -267,21 +342,28 @@ export const IncotermsWrapper = styled.div`
               --fracion: calc(100% / 20);
               &.size__0 {
                 width: calc(calc(100% / 19) * 2);
-                
+
                 @media (max-width: 1400px) {
-                  width: calc(calc(100% / 18) * 1);
+                     width: calc(calc(100% / 18) * 6.5);
+
+  
                 }
+                
               }
               &.size__1 {
                 width: calc(calc(100% / 19) * 4);
-                @media (max-width: 1400px) {
-                  width: calc(calc(100% / 18) * 3);
+
+                  @media (max-width: 1400px) {
+                   width: calc(calc(100% / 18) * 8);  
+                
                 }
+                
               }
               &.size__2 {
                 width: calc(calc(100% / 19) * 6);
-                @media (max-width: 1400px) {
-                  width: calc(calc(100% / 18) * 5);
+                 @media (max-width: 1400px) {
+                   width: calc(calc(100% / 18) * 9.5);  
+                
                 }
               }
               &.size__3 {
@@ -292,14 +374,16 @@ export const IncotermsWrapper = styled.div`
               }
               &.size__4 {
                 width: calc(calc(100% / 19) * 10);
-                @media (max-width: 1400px) {
-                  width: calc(calc(100% / 18) * 9);
+                 @media (max-width: 1400px) {
+                   width: calc(calc(100% / 18) * 12.7);  
+                
                 }
               }
               &.size__5 {
                 width: calc(calc(100% / 19) * 12.5);
                 @media (max-width: 1400px) {
-                  width: calc(calc(100% / 18) * 11);
+                   width: calc(calc(100% / 18) * 14);  
+                
                 }
               }
               &.size__6 {
@@ -311,7 +395,8 @@ export const IncotermsWrapper = styled.div`
               &.size__7 {
                 width: calc(calc(100% / 19) * 16);
                 @media (max-width: 1400px) {
-                  width: calc(calc(100% / 18) * 15);
+                   width: calc(calc(100% / 18) * 17);  
+                
                 }
               }
               &.size__8 {
@@ -340,6 +425,12 @@ export const IncotermsWrapper = styled.div`
         gap: 1rem;
         margin: 2rem 0 0 10rem;
 
+        @media (max-width: 767px) {
+          font-size: 15px;
+        }
+
+
+
         @media (min-width: 1400px) {
           display: grid;
           grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -350,24 +441,25 @@ export const IncotermsWrapper = styled.div`
         }
 
         .second-column {
-          grid-column: span 2;
+    
 
-          @media (min-width: 992px) {
-            grid-column: span 1 !important;
+          @media (max-width: 767px) {
+            font-size: 12px;
           }
         }
 
         .captions {
           display: flex;
           justify-content: space-between;
-          flex-direction: row;
-          gap: 0;
+          gap: 30px;
 
-          @media (max-width: 992px) {
+          @media (max-width: 767px) {
             flex-direction: column;
-            justify-content: start;
+            justify-content: center;
             gap: 1rem;
+            font-size: 15px;
           }
+
 
           .captions__cost,
           .captions__risk,
@@ -394,7 +486,7 @@ export const IncotermsWrapper = styled.div`
 
         .first-column {
           display: flex;
-          flex-direction: column;
+          flex-direction: row;
           gap: 1rem;
         }
       }

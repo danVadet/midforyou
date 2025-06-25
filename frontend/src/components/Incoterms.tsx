@@ -37,8 +37,13 @@ export const Incoterms = (props: IIncotermsProps) => {
     return (
       <section ref={incotermsRef} id={`${(language === "pt" && multiLang.pt.navItem.incoterms.toLowerCase()) || (language === "en" &&  multiLang.en.navItem.incoterms.toLowerCase()) || (language === "es" &&  multiLang.es.navItem.incoterms.toLowerCase())}Section`}>
         <IncotermsWrapper className="incoterms-component">
-     <h1>Incoterms</h1>
    <div className="inconterms-informations">
+
+    
+      <div className="title">
+          <h1>INCOTERMS</h1>
+        
+      </div>
 
  
      <div className="incoterms-container container">
@@ -93,39 +98,39 @@ export const Incoterms = (props: IIncotermsProps) => {
                     <div className="transferRisk">
 
                       {
-                      (selectedIncoterm?.acronym === "EXW" && incotermIcon.icon === `../assets/incoterms/00.svg` &&    <svg fill="rgb(255, 140, 0)" width="30px" height="60px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      (selectedIncoterm?.acronym === "EXW" && incotermIcon.icon === `../assets/incoterms/00.svg` &&    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path d="M22.7,17.5l-8.1-14c-0.8-1.4-2.7-1.9-4.1-1.1C10,2.7,9.6,3.1,9.4,3.5l-8.1,14c-0.8,1.4-0.3,3.3,1.1,4.1c0.5,0.3,1,0.4,1.5,0.4h16.1c1.7,0,3-1.4,3-3C23.1,18.4,22.9,17.9,22.7,17.5z M12,18c-0.6,0-1-0.4-1-1s0.4-1,1-1s1,0.4,1,1S12.6,18,12,18z M13,13c0,0.6-0.4,1-1,1s-1-0.4-1-1V9c0-0.6,0.4-1,1-1s1,0.4,1,1V13z"></path>
                   </svg>)
-                  || (selectedIncoterm?.acronym === "FCA" && incotermIcon.icon === `../assets/incoterms/01.svg` &&    <svg fill="rgb(255, 140, 0)" width="30px" height="60px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  || (selectedIncoterm?.acronym === "FCA" && incotermIcon.icon === `../assets/incoterms/01.svg` &&    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                   <path d="M22.7,17.5l-8.1-14c-0.8-1.4-2.7-1.9-4.1-1.1C10,2.7,9.6,3.1,9.4,3.5l-8.1,14c-0.8,1.4-0.3,3.3,1.1,4.1c0.5,0.3,1,0.4,1.5,0.4h16.1c1.7,0,3-1.4,3-3C23.1,18.4,22.9,17.9,22.7,17.5z M12,18c-0.6,0-1-0.4-1-1s0.4-1,1-1s1,0.4,1,1S12.6,18,12,18z M13,13c0,0.6-0.4,1-1,1s-1-0.4-1-1V9c0-0.6,0.4-1,1-1s1,0.4,1,1V13z"></path>
                 </svg>) 
-                ||    (selectedIncoterm?.acronym === "FAS" && incotermIcon.icon === `../assets/incoterms/02.svg` &&    <svg fill="rgb(255, 140, 0)" width="30px" height="60px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                ||    (selectedIncoterm?.acronym === "FAS" && incotermIcon.icon === `../assets/incoterms/02.svg` &&    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path d="M22.7,17.5l-8.1-14c-0.8-1.4-2.7-1.9-4.1-1.1C10,2.7,9.6,3.1,9.4,3.5l-8.1,14c-0.8,1.4-0.3,3.3,1.1,4.1c0.5,0.3,1,0.4,1.5,0.4h16.1c1.7,0,3-1.4,3-3C23.1,18.4,22.9,17.9,22.7,17.5z M12,18c-0.6,0-1-0.4-1-1s0.4-1,1-1s1,0.4,1,1S12.6,18,12,18z M13,13c0,0.6-0.4,1-1,1s-1-0.4-1-1V9c0-0.6,0.4-1,1-1s1,0.4,1,1V13z"></path>
               </svg>)
 
-                || (selectedIncoterm?.acronym === "FOB" && incotermIcon.icon === `../assets/incoterms/03.svg` &&    <svg fill="rgb(255, 140, 0)" width="30px" height="60px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                || (selectedIncoterm?.acronym === "FOB" && incotermIcon.icon === `../assets/incoterms/03.svg` &&    <svg  viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path d="M22.7,17.5l-8.1-14c-0.8-1.4-2.7-1.9-4.1-1.1C10,2.7,9.6,3.1,9.4,3.5l-8.1,14c-0.8,1.4-0.3,3.3,1.1,4.1c0.5,0.3,1,0.4,1.5,0.4h16.1c1.7,0,3-1.4,3-3C23.1,18.4,22.9,17.9,22.7,17.5z M12,18c-0.6,0-1-0.4-1-1s0.4-1,1-1s1,0.4,1,1S12.6,18,12,18z M13,13c0,0.6-0.4,1-1,1s-1-0.4-1-1V9c0-0.6,0.4-1,1-1s1,0.4,1,1V13z"></path>
               </svg>)
 
-                || (selectedIncoterm?.acronym === "CFR" && incotermIcon.icon === `../assets/incoterms/03.svg` &&    <svg fill="rgb(255, 140, 0)" width="30px" height="60px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                || (selectedIncoterm?.acronym === "CFR" && incotermIcon.icon === `../assets/incoterms/03.svg` &&    <svg  viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                   <path d="M22.7,17.5l-8.1-14c-0.8-1.4-2.7-1.9-4.1-1.1C10,2.7,9.6,3.1,9.4,3.5l-8.1,14c-0.8,1.4-0.3,3.3,1.1,4.1c0.5,0.3,1,0.4,1.5,0.4h16.1c1.7,0,3-1.4,3-3C23.1,18.4,22.9,17.9,22.7,17.5z M12,18c-0.6,0-1-0.4-1-1s0.4-1,1-1s1,0.4,1,1S12.6,18,12,18z M13,13c0,0.6-0.4,1-1,1s-1-0.4-1-1V9c0-0.6,0.4-1,1-1s1,0.4,1,1V13z"></path>
                 </svg>)
-                || (selectedIncoterm?.acronym === "CIF" && incotermIcon.icon === `../assets/incoterms/03.svg` &&    <svg fill="rgb(255, 140, 0)" width="30px" height="60px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                || (selectedIncoterm?.acronym === "CIF" && incotermIcon.icon === `../assets/incoterms/03.svg` &&    <svg  viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                   <path d="M22.7,17.5l-8.1-14c-0.8-1.4-2.7-1.9-4.1-1.1C10,2.7,9.6,3.1,9.4,3.5l-8.1,14c-0.8,1.4-0.3,3.3,1.1,4.1c0.5,0.3,1,0.4,1.5,0.4h16.1c1.7,0,3-1.4,3-3C23.1,18.4,22.9,17.9,22.7,17.5z M12,18c-0.6,0-1-0.4-1-1s0.4-1,1-1s1,0.4,1,1S12.6,18,12,18z M13,13c0,0.6-0.4,1-1,1s-1-0.4-1-1V9c0-0.6,0.4-1,1-1s1,0.4,1,1V13z"></path>
                 </svg>)
-                || (selectedIncoterm?.acronym === "CPT" && incotermIcon.icon === `../assets/incoterms/01.svg` &&    <svg fill="rgb(255, 140, 0)" width="30px" height="60px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                || (selectedIncoterm?.acronym === "CPT" && incotermIcon.icon === `../assets/incoterms/01.svg` &&    <svg  viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path d="M22.7,17.5l-8.1-14c-0.8-1.4-2.7-1.9-4.1-1.1C10,2.7,9.6,3.1,9.4,3.5l-8.1,14c-0.8,1.4-0.3,3.3,1.1,4.1c0.5,0.3,1,0.4,1.5,0.4h16.1c1.7,0,3-1.4,3-3C23.1,18.4,22.9,17.9,22.7,17.5z M12,18c-0.6,0-1-0.4-1-1s0.4-1,1-1s1,0.4,1,1S12.6,18,12,18z M13,13c0,0.6-0.4,1-1,1s-1-0.4-1-1V9c0-0.6,0.4-1,1-1s1,0.4,1,1V13z"></path>
                   </svg>) 
-                || (selectedIncoterm?.acronym === "CIP" && incotermIcon.icon === `../assets/incoterms/01.svg` &&    <svg fill="rgb(255, 140, 0)" width="30px" height="60px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                || (selectedIncoterm?.acronym === "CIP" && incotermIcon.icon === `../assets/incoterms/01.svg` &&    <svg  viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                   <path d="M22.7,17.5l-8.1-14c-0.8-1.4-2.7-1.9-4.1-1.1C10,2.7,9.6,3.1,9.4,3.5l-8.1,14c-0.8,1.4-0.3,3.3,1.1,4.1c0.5,0.3,1,0.4,1.5,0.4h16.1c1.7,0,3-1.4,3-3C23.1,18.4,22.9,17.9,22.7,17.5z M12,18c-0.6,0-1-0.4-1-1s0.4-1,1-1s1,0.4,1,1S12.6,18,12,18z M13,13c0,0.6-0.4,1-1,1s-1-0.4-1-1V9c0-0.6,0.4-1,1-1s1,0.4,1,1V13z"></path>
                 </svg>) 
-                || (selectedIncoterm?.acronym === "DAP" && incotermIcon.icon === `../assets/incoterms/07.svg` &&    <svg fill="rgb(255, 140, 0)" width="30px" height="60px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                || (selectedIncoterm?.acronym === "DAP" && incotermIcon.icon === `../assets/incoterms/07.svg` &&    <svg  viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                   <path d="M22.7,17.5l-8.1-14c-0.8-1.4-2.7-1.9-4.1-1.1C10,2.7,9.6,3.1,9.4,3.5l-8.1,14c-0.8,1.4-0.3,3.3,1.1,4.1c0.5,0.3,1,0.4,1.5,0.4h16.1c1.7,0,3-1.4,3-3C23.1,18.4,22.9,17.9,22.7,17.5z M12,18c-0.6,0-1-0.4-1-1s0.4-1,1-1s1,0.4,1,1S12.6,18,12,18z M13,13c0,0.6-0.4,1-1,1s-1-0.4-1-1V9c0-0.6,0.4-1,1-1s1,0.4,1,1V13z"></path>
                 </svg>) 
-                 || (selectedIncoterm?.acronym === "DPU" && incotermIcon.icon === `../assets/incoterms/06.svg` &&    <svg fill="rgb(255, 140, 0)" width="30px" height="60px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                 || (selectedIncoterm?.acronym === "DPU" && incotermIcon.icon === `../assets/incoterms/06.svg` &&    <svg  viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                   <path d="M22.7,17.5l-8.1-14c-0.8-1.4-2.7-1.9-4.1-1.1C10,2.7,9.6,3.1,9.4,3.5l-8.1,14c-0.8,1.4-0.3,3.3,1.1,4.1c0.5,0.3,1,0.4,1.5,0.4h16.1c1.7,0,3-1.4,3-3C23.1,18.4,22.9,17.9,22.7,17.5z M12,18c-0.6,0-1-0.4-1-1s0.4-1,1-1s1,0.4,1,1S12.6,18,12,18z M13,13c0,0.6-0.4,1-1,1s-1-0.4-1-1V9c0-0.6,0.4-1,1-1s1,0.4,1,1V13z"></path>
                 </svg>) 
-                  || (selectedIncoterm?.acronym === "DDP" && incotermIcon.icon === `../assets/incoterms/07.svg` &&    <svg fill="rgb(255, 140, 0)" width="30px" height="60px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  || (selectedIncoterm?.acronym === "DDP" && incotermIcon.icon === `../assets/incoterms/07.svg` &&    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path d="M22.7,17.5l-8.1-14c-0.8-1.4-2.7-1.9-4.1-1.1C10,2.7,9.6,3.1,9.4,3.5l-8.1,14c-0.8,1.4-0.3,3.3,1.1,4.1c0.5,0.3,1,0.4,1.5,0.4h16.1c1.7,0,3-1.4,3-3C23.1,18.4,22.9,17.9,22.7,17.5z M12,18c-0.6,0-1-0.4-1-1s0.4-1,1-1s1,0.4,1,1S12.6,18,12,18z M13,13c0,0.6-0.4,1-1,1s-1-0.4-1-1V9c0-0.6,0.4-1,1-1s1,0.4,1,1V13z"></path>
                   </svg>)
               }
@@ -149,8 +154,9 @@ export const Incoterms = (props: IIncotermsProps) => {
                <option value={incoterm.id} key={index}>{incoterm.acronym}</option>
              ))}
            </select>
+
  
-         <div className="incoterm-stages container">
+         <div className="incoterm-stages">
  
            <div className="incoterm-stage incoterm-stage__cost">
              <div className={`factory-bar size__${selectedIncoterm?.costStage}`}>
@@ -165,22 +171,22 @@ export const Incoterms = (props: IIncotermsProps) => {
  
        <div className="detail-line grid-line container">
          <div className="first-column">
-           <span className="detail freight-details">
+           <p className="detail freight-details">
              <strong>{(language === "pt" ? `${multiLang.pt.freight}` : language === "en" ? `${multiLang.en.freight}` : `${multiLang.es.freight}`)}:&nbsp;</strong>
              {selectedIncoterm?.freightDetails}
-           </span>
-           <span className="detail risk-details">
+           </p>
+           <p className="detail risk-details">
              <strong>{((language === "pt" ? `${multiLang.pt.modal}` : language === "en" ? `${multiLang.en.modal}` : `${multiLang.es.modal}`))}:&nbsp;</strong>
              {selectedIncoterm?.modal}
-           </span>
+           </p>
         
          </div>
         
          <div className="second-column">
-           <span className="detail more-details">
+           <p className="detail more-details">
              <strong>{(language === "pt" ? `${multiLang.pt.moreDetails}` : language === "en" ? `${multiLang.en.moreDetails}` : `${multiLang.es.moreDetails}`)}:&nbsp;</strong>
              {selectedIncoterm?.moreDetails}
-           </span>
+           </p>
          </div>
        </div>
      </div>
