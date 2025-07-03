@@ -1,4 +1,3 @@
-import { IContainer } from "./IContainer";
 
 export interface IProduct  {
     id: number;
@@ -13,5 +12,5 @@ export interface IProduct  {
     volumeTotal:  number;
     measureUnit: string;
     measureUnitId: number;
-    containerId: number;
+  
 }

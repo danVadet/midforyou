@@ -35,7 +35,6 @@ export const EditProductModal = (props: IEditProductModalProps) => {
       volumeTotal: props.currentProduct?.volumeTotal || 0,
       measureUnit: props.currentProduct?.measureUnit || "",
       measureUnitId: 0,
-      containerId: 0
   })
   const onChange = (e: FormEvent) => {
       const target = e.target as HTMLInputElement;

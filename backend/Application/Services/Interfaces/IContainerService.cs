@@ -13,7 +13,6 @@ public interface IContainerService
     Task<ContainerResponse> GetByIdAsync(int id);
 
     Task<object> verifityCapacityAsync(int id);
-    Task CreateProductAsync(CreateProductRequest createProductRequest);
 
 
 

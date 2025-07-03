@@ -24,7 +24,4 @@ public class CreateProductRequest
 
     public int measureUnitId { get; set; }
 
-
-    public int containerId { get; set; }
-   
 }

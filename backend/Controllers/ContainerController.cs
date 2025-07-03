@@ -26,14 +26,7 @@ public class ContainerController : ControllerBase
         return Created("Container created successfully", createContainerRequest);
     }
 
-    [HttpPost("containers/addProduct")]
-    public async Task<ActionResult> AddProduct([FromBody] CreateProductRequest createProductRequest)
-    {
-         await _containerService.CreateProductAsync(createProductRequest);
-        return Created("Container created successfully", createProductRequest);
-
-    }
-
+    
     [HttpGet("containers/capacity/{id}")]
     public async Task<ActionResult<object>> capacityWeightContainer(int id)
     {

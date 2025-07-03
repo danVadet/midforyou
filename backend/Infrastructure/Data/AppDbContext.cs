@@ -28,13 +28,7 @@ public class AppDbContext : DbContext
 
     public DbSet<City> City { get; set; }
 
-      protected override void OnModelCreating(ModelBuilder modelBuilder)
-    {
-        modelBuilder.Entity<Container>()
-            .HasMany(c => c.products)
-            .WithOne(p => p.container)
-            .HasForeignKey(p => p.containerId);
-    }
+     
 
 
 

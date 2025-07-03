@@ -27,11 +27,6 @@ public class Product
     public float weightTotal { get; set; }
 
     public int measureUnitId { get; set; }
-
-
-    public int containerId { get; set; }
-    
-    public required Container container { get; set; }
     
 
     

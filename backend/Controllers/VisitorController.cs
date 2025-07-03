@@ -24,7 +24,6 @@ public class VisitorController : ControllerBase
         MailMessage mailMessage = new MailMessage();
         mailMessage.From = new MailAddress("danielvieiramelolima@gmail.com");
         mailMessage.To.Add(visitor.email);
-        mailMessage.Subject = visitor.subject;
         mailMessage.IsBodyHtml = true;
         StringBuilder mailBody = new StringBuilder();
         mailBody.AppendFormat("<h1>Visitor Registered</h1>");

@@ -10,6 +10,7 @@ import { Link, useLocation } from 'react-router-dom';
 export const Tax = () => {
 
     const [taxes, setTaxes] = useState<ITax[]>([]);
+  
     
     const location = useLocation();
 

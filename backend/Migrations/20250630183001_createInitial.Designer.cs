@@ -11,7 +11,7 @@ using backend.Infrastructure;
 namespace backend.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250610111256_createInitial")]
+    [Migration("20250630183001_createInitial")]
     partial class createInitial
     {
         /// <inheritdoc />
@@ -41,7 +41,7 @@ namespace backend.Migrations
                     b.ToTable("City");
                 });
 
-            modelBuilder.Entity("backend.Models.Container", b =>
+            modelBuilder.Entity("backend.Domain.Container", b =>
                 {
                     b.Property<int>("id")
                         .ValueGeneratedOnAdd()
@@ -68,7 +68,7 @@ namespace backend.Migrations
                     b.ToTable("Containers");
                 });
 
-            modelBuilder.Entity("backend.Models.PortMarker", b =>
+            modelBuilder.Entity("backend.Domain.PortMarker", b =>
                 {
                     b.Property<int>("id")
                         .ValueGeneratedOnAdd()
@@ -111,7 +111,7 @@ namespace backend.Migrations
                     b.ToTable("PortMarkers");
                 });
 
-            modelBuilder.Entity("backend.Models.PortState", b =>
+            modelBuilder.Entity("backend.Domain.PortState", b =>
                 {
                     b.Property<int>("id")
                         .ValueGeneratedOnAdd()
@@ -134,7 +134,7 @@ namespace backend.Migrations
                     b.ToTable("PortState");
                 });
 
-            modelBuilder.Entity("backend.Models.Product", b =>
+            modelBuilder.Entity("backend.Domain.Product", b =>
                 {
                     b.Property<int>("id")
                         .ValueGeneratedOnAdd()
@@ -142,7 +142,7 @@ namespace backend.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("id"));
 
-                    b.Property<int>("containerId")
+                    b.Property<int?>("Containerid")
                         .HasColumnType("integer");
 
                     b.Property<float>("height")
@@ -182,12 +182,12 @@ namespace backend.Migrations
 
                     b.HasKey("id");
 
-                    b.HasIndex("containerId");
+                    b.HasIndex("Containerid");
 
                     b.ToTable("Products");
                 });
 
-            modelBuilder.Entity("backend.Models.State", b =>
+            modelBuilder.Entity("backend.Domain.State", b =>
                 {
                     b.Property<int>("id")
                         .ValueGeneratedOnAdd()
@@ -250,10 +250,6 @@ namespace backend.Migrations
                     b.Property<int>("stateid")
                         .HasColumnType("integer");
 
-                    b.Property<string>("subject")
-                        .IsRequired()
-                        .HasColumnType("text");
-
                     b.HasKey("id");
 
                     b.HasIndex("cityid");
@@ -263,9 +259,9 @@ namespace backend.Migrations
                     b.ToTable("Visitors");
                 });
 
-            modelBuilder.Entity("backend.Models.PortMarker", b =>
+            modelBuilder.Entity("backend.Domain.PortMarker", b =>
                 {
-                    b.HasOne("backend.Models.PortState", "portState")
+                    b.HasOne("backend.Domain.PortState", "portState")
                         .WithMany()
                         .HasForeignKey("portStateId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -274,15 +270,11 @@ namespace backend.Migrations
                     b.Navigation("portState");
                 });
 
-            modelBuilder.Entity("backend.Models.Product", b =>
+            modelBuilder.Entity("backend.Domain.Product", b =>
                 {
-                    b.HasOne("backend.Models.Container", "container")
+                    b.HasOne("backend.Domain.Container", null)
                         .WithMany("products")
-                        .HasForeignKey("containerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("container");
+                        .HasForeignKey("Containerid");
                 });
 
             modelBuilder.Entity("backend.Models.Visitor", b =>
@@ -293,7 +285,7 @@ namespace backend.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("backend.Models.State", "state")
+                    b.HasOne("backend.Domain.State", "state")
                         .WithMany()
                         .HasForeignKey("stateid")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -304,7 +296,7 @@ namespace backend.Migrations
                     b.Navigation("state");
                 });
 
-            modelBuilder.Entity("backend.Models.Container", b =>
+            modelBuilder.Entity("backend.Domain.Container", b =>
                 {
                     b.Navigation("products");
                 });

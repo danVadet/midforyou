@@ -42,8 +42,14 @@ section {
 
 
 
+ @media (max-width: 480px) {
 
-  @media (max-width: 767px) {
+    section {
+      height: 280vh;
+    }
+  }
+
+  @media (min-width: 481px) and (max-width: 767px) {
 
     section {
       height: 280vh;

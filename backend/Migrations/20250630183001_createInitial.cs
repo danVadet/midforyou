@@ -86,17 +86,16 @@ namespace backend.Migrations
                     volumeTotal = table.Column<float>(type: "real", nullable: false),
                     weightTotal = table.Column<float>(type: "real", nullable: false),
                     measureUnitId = table.Column<int>(type: "integer", nullable: false),
-                    containerId = table.Column<int>(type: "integer", nullable: false)
+                    Containerid = table.Column<int>(type: "integer", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Products", x => x.id);
                     table.ForeignKey(
-                        name: "FK_Products_Containers_containerId",
-                        column: x => x.containerId,
+                        name: "FK_Products_Containers_Containerid",
+                        column: x => x.Containerid,
                         principalTable: "Containers",
-                        principalColumn: "id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "id");
                 });
 
             migrationBuilder.CreateTable(
@@ -139,7 +138,6 @@ namespace backend.Migrations
                     ramoAtividade = table.Column<string>(type: "text", nullable: false),
                     stateid = table.Column<int>(type: "integer", nullable: false),
                     cityid = table.Column<int>(type: "integer", nullable: false),
-                    subject = table.Column<string>(type: "text", nullable: false),
                     message = table.Column<string>(type: "text", nullable: false)
                 },
                 constraints: table =>
@@ -165,9 +163,9 @@ namespace backend.Migrations
                 column: "portStateId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Products_containerId",
+                name: "IX_Products_Containerid",
                 table: "Products",
-                column: "containerId");
+                column: "Containerid");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Visitors_cityid",

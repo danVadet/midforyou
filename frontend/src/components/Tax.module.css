@@ -62,7 +62,61 @@
     background: rgb(213, 21, 11)
 }
 
-@media (max-width: 767px) {
+@media(max-width: 480px){
+
+    .tax_collectionComponent {
+        height: 8%;
+    }
+
+    .tax_collectionComponent .taxWrapper {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        padding: 5rem 0 0 0;
+    }
+
+    .tax_unitComponent {
+        display: flex;
+        gap: 10px;
+    }
+
+    .tax_unitComponent .currency {
+        font-size: 15px;
+
+    }
+
+    .tax_unitComponent .text .name {
+        font-size: 10px;
+        margin: 0;
+
+    }
+
+    .tax_unitComponent .valueContainer {
+        display: flex;
+        gap: 2px;
+        color: rgb(255, 255, 255);
+    }
+
+    .tax_unitComponent .text .valueContainer .value {
+        font-size: 8px;
+
+    }
+
+    .tax_unitComponent .text .valueContainer .value:hover {
+        color: rgb(0, 175, 239);
+
+    }
+
+
+    .tax_unitComponent .text .valueContainer .variation {
+        font-size: 8px;
+        border-radius: 10px;
+        height: 15px;
+    }
+    
+}
+
+@media (min-width: 481px) and  (max-width: 767px) {
 
     .tax_collectionComponent {
         height: 8%;

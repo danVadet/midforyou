@@ -15,6 +15,6 @@ public class Visitor
     public required string ramoAtividade { get; set; }
     public required State state { get; set; }
     public required City city { get; set; }
-    public required string subject { get; set;  }
+    
     public required string message { get; set; }
 }

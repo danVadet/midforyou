@@ -1,6 +1,8 @@
 import { styled } from "styled-components";
 
 export const IncotermsWrapper = styled.div`
+
+
   &.incoterms-component {
     display: flex;
     align-items: center;
@@ -9,7 +11,7 @@ export const IncotermsWrapper = styled.div`
   
     .gary {
         
-        border: 1px solid  #d9d9d9;;
+        border: 1px solid  rgb(217, 217, 217);
         height: 100px;
         position: absolute;
         top: 90px;
@@ -38,11 +40,11 @@ export const IncotermsWrapper = styled.div`
 
     .transferRisk {
         position: absolute;
-        top: 90px;
+        top: 110px;
 
 
           @media (max-width: 767px) {
-          top: 45px;
+          top: 70px;
         } 
       
 
@@ -127,12 +129,11 @@ export const IncotermsWrapper = styled.div`
     .inconterms-informations {
       display: flex;
       flex-direction: column;
-      gap: 32px;
       width: 100%;
       box-shadow: rgba(0, 0, 0, 0.12) 0px 2px 32px 0px;
 
 
-      @media (max-width: 576px) {
+      @media (max-width: 992px) {
         padding: 1rem;
       }
 
@@ -149,23 +150,54 @@ export const IncotermsWrapper = styled.div`
         border-radius: 10px;
 
         background: rgb(255, 255, 255);
-        --number-of-incoterms: 9;
       }
+      
 
       .incoterm-dropdown.mobile {
         display: none;
         align-items: center;
         justify-content: center;
+        border-radius: 5px;
         gap: 1rem;
         padding: 1rem;
-        background-color: #d9d9d9;
-        width: fit-content;
+        background-color: rgb(217, 217, 217);
+        max-width: fit-content;
+        min-width: 300px;
+        height: 50px;
         cursor: pointer;
-        margin-left: 12px;
+        margin: 8px;
 
         @media (max-width: 1400px) {
           display: flex;
         }
+
+          
+        select {
+        width: 100%;
+        border-radius: 5px;
+        outline: none;
+        border: none;
+
+        option {
+
+         display: flex;
+      align-items: center;
+      padding: 10px;
+      border-top: 1px solid #444;
+      cursor: pointer;
+      transition-property: color, background;
+      transition-duration: 0.2s;
+      transition-timing-function: ease-out;
+         img {
+           width: 30px;
+         }
+        }
+
+       
+       
+       }
+
+        
 
         .incoterm-dropdown__details {
           display: flex;
@@ -201,9 +233,11 @@ export const IncotermsWrapper = styled.div`
             justify-content: space-between;
 
             @media (max-width: 1400px) {
+              margin: 0;
               grid-template-columns: repeat(9, 2fr);
               padding: 0 1rem;
             }
+
 
             .stage {
               min-width: 11%;
@@ -225,7 +259,9 @@ export const IncotermsWrapper = styled.div`
                 max-width: 100%;
                 flex-grow: 1;
 
-                
+                @media (max-width: 576px) {
+                      max-height: 15px;
+                }
 
 
               }
@@ -259,42 +295,39 @@ export const IncotermsWrapper = styled.div`
       }
 
       .incoterm-line {
-        .incoterm-dropdown {
+
+      
+        background: rgb(217, 217, 217);
+
+        .incoterm-dropdown  {
           display: flex;
           align-items: center;
           justify-content: center;
-          background-color: #eaeaea;
-          cursor: pointer;
-          border-radius: 5px;
-          width: 60%;
+        border-radius: 5px;
+        padding: 1rem;
+        background-color: rgb(232, 232, 232);
+        cursor: pointer;
+        margin: 8px;
+        border: 0;
+        outline: 0;
+
+
 
           @media (max-width: 1400px) {
             display: none;
           }
 
-          .incoterm-dropdown__details {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            flex-grow: 1;
+          
 
-            .incoterm-dropdown__acronym {
-              font-size: 2rem;
-              font-weight: bold;
-            }
-
-            .incoterm-dropdown__name {
-            }
-          }
-          .incoterm-dropdown__icon {
-          }
+       
         }
 
         .incoterm-stages {
           display: flex;
           flex-direction: column;
-          background-color: rgb(255, 255, 255);
+          padding: 1rem;
+          background-color: rgb(244, 244, 244);
+          border-radius: 5px;
           gap: 1rem;
 
           .bar-captions.mobile {
@@ -309,7 +342,7 @@ export const IncotermsWrapper = styled.div`
           .incoterm-stage {
             display: flex;
             width:  100%;
-            background-color: #e1e8fa;
+            background-color: rgb(225, 232, 250);
             border-radius: 0.25rem;
             overflow: hidden;
 
@@ -343,8 +376,8 @@ export const IncotermsWrapper = styled.div`
               &.size__0 {
                 width: calc(calc(100% / 19) * 2);
 
-                @media (max-width: 1400px) {
-                     width: calc(calc(100% / 18) * 6.5);
+                @media (max-width: 992px) {
+                     width: calc(calc(100% / 18) * 2);
 
   
                 }
@@ -353,56 +386,56 @@ export const IncotermsWrapper = styled.div`
               &.size__1 {
                 width: calc(calc(100% / 19) * 4);
 
-                  @media (max-width: 1400px) {
-                   width: calc(calc(100% / 18) * 8);  
+                  @media (max-width: 992px) {
+                   width: calc(calc(100% / 18) * 4);  
                 
                 }
                 
               }
               &.size__2 {
                 width: calc(calc(100% / 19) * 6);
-                 @media (max-width: 1400px) {
-                   width: calc(calc(100% / 18) * 9.5);  
+                 @media (max-width: 992px) {
+                   width: calc(calc(100% / 18) * 6);  
                 
                 }
               }
               &.size__3 {
                 width: calc(calc(100% / 19) * 8);
-                @media (max-width: 1400px) {
-                  width: calc(calc(100% / 18) * 7);
+                @media (max-width: 992px) {
+                  width: calc(calc(100% / 18) * 8);
                 }
               }
               &.size__4 {
                 width: calc(calc(100% / 19) * 10);
-                 @media (max-width: 1400px) {
-                   width: calc(calc(100% / 18) * 12.7);  
+                 @media (max-width: 992px) {
+                   width: calc(calc(100% / 18) * 10);  
                 
                 }
               }
               &.size__5 {
                 width: calc(calc(100% / 19) * 12.5);
-                @media (max-width: 1400px) {
-                   width: calc(calc(100% / 18) * 14);  
+                @media (max-width: 992px) {
+                   width: calc(calc(100% / 18) * 12.5);  
                 
                 }
               }
               &.size__6 {
                 width: calc(calc(100% / 19) * 14);
-                @media (max-width: 1400px) {
+                @media (max-width: 992px) {
                   width: calc(calc(100% / 18) * 13);
                 }
               }
               &.size__7 {
                 width: calc(calc(100% / 19) * 16);
-                @media (max-width: 1400px) {
-                   width: calc(calc(100% / 18) * 17);  
+                @media (max-width: 992px) {
+                   width: calc(calc(100% / 18) * 16);  
                 
                 }
               }
               &.size__8 {
                 width: calc(calc(100% / 19) * 18);
-                @media (max-width: 1400px) {
-                  width: calc(calc(100% / 18) * 17);
+                @media (max-width: 992px) {
+                  width: calc(calc(100% / 18) * 18);
                 }
               }
             }
@@ -413,7 +446,7 @@ export const IncotermsWrapper = styled.div`
           }
 
           .incoterm-stage__cost .factory-bar {
-            background-color: #008dc5;
+            background-color: rgb(0, 141, 197);
           }
           }
         }
@@ -421,11 +454,11 @@ export const IncotermsWrapper = styled.div`
 
       .detail-line {
         display: flex;
+        text-align: left;
         flex-direction: column;
         gap: 1rem;
-        margin: 2rem 0 0 10rem;
 
-        @media (max-width: 767px) {
+        @media (max-width: 992px) {
           font-size: 15px;
         }
 
@@ -440,27 +473,23 @@ export const IncotermsWrapper = styled.div`
           grid-template-columns: repeat(3, minmax(0, 1fr));
         }
 
-        .second-column {
-    
+       
 
-          @media (max-width: 767px) {
-            font-size: 12px;
-          }
-        }
+        
+
 
         .captions {
           display: flex;
-          justify-content: space-between;
-          gap: 30px;
+          justify-content: center;
+          align-items: center;
+          gap: 1rem;
 
-          @media (max-width: 767px) {
-            flex-direction: column;
-            justify-content: center;
-            gap: 1rem;
-            font-size: 15px;
+            @media (max-width: 992px) {
+            font-size: 12px;
           }
 
 
+    
           .captions__cost,
           .captions__risk,
           .captions__safety {
@@ -478,18 +507,24 @@ export const IncotermsWrapper = styled.div`
           }
 
           .captions__cost .square {
-            background-color: #008dc5;
+            background-color: rgb(0, 141, 197);
           }
           .captions__risk .square {
-            background-color:  #e1e8fa;;
+            background-color:  rgb(225, 232, 250)
           }
+
+          
 
         .first-column {
           display: flex;
-          flex-direction: row;
           gap: 1rem;
+
+           
+        
         }
+          
       }
+        
     }
       
     }

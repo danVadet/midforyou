@@ -2,6 +2,7 @@
     display: flex;
     flex-direction: column;
     margin: 60px;
+    text-align: left;
 }
 
 .aboutTextContainer h1 {
@@ -19,7 +20,9 @@
     line-height: normal;
 }
 
-@media (max-width: 767px) {
+
+
+@media (max-width: 480px) {
 
     .aboutTextContainer h1 {
         font-size: 32px;
@@ -28,33 +31,6 @@
 
     .aboutTextContainer p {
         font-size: 18px;
-    }
-
-}
-
-
-@media (min-width: 768px) and (max-width: 991px) {
-
-    .aboutTextContainer h1 {
-        font-size: 50px;
-
-    }
-
-    .aboutTextContainer p {
-        font-size: 25px;
-    }
-
-}
-
-@media (min-width: 992px) and (max-width: 1400px) {
-
-    .aboutTextContainer h1 {
-        font-size: 60px;
-
-    }
-
-    .aboutTextContainer p {
-        font-size: 30px;
     }
 
 }

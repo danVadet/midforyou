@@ -11,7 +11,6 @@ export interface IVisitor  {
     ramoAtividade: string;
     city: ICity;
     state: IState;
-    subject: string;
     message: string;
 
 }

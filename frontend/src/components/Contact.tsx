@@ -1,5 +1,4 @@
 import React, { ChangeEvent, FormEvent, useContext, useEffect, useState } from 'react';
-import logo from './logo.svg';
 import styles from './Contact.module.css'
 import { IVisitor } from '../models/IVisitor';
 import axios from 'axios';
@@ -21,7 +20,6 @@ interface IValues {
   companyCNPJ: string;
   ramoAtividade: string;
   city: string;
-  subject: string;
   message: string;
 }
 
@@ -40,7 +38,7 @@ export const Contact = () => {
     nome: "",
     sigla: ""
 
-});
+  });
 
   const [selectedCity, setSelectedCity] = useState<ICity>({
     id: 0,
@@ -65,7 +63,6 @@ export const Contact = () => {
       nome: "",
       sigla: ""
     },
-    subject: "",
     message: ""
 
   });
@@ -110,12 +107,10 @@ export const Contact = () => {
     if (!visitor.city) {
       errors.city = 'Cidade obrigatória';
     }
-    if (!visitor.subject) {
-      errors.subject = 'Assunto obrigatório';
-    }
+   
 
     if (!visitor.message) {
-      errors.message = 'Mensagem obrigatório';
+      errors.message = 'Mensagem obrigatória';
     }
 
     return errors;
@@ -138,13 +133,12 @@ export const Contact = () => {
         ramoAtividade: visitor.ramoAtividade,
         city: selectedCity,
         state: selectedState,
-        subject: visitor.subject,
         message: visitor.message
 
       });
       console.log(response.data);
 
-      setVisitor({ id: 0, fullName: "", phoneNumber: "", email: "", companyName: "", companyCNPJ: "", ramoAtividade: "", city: { id: 0, nome: "" }, state: { id: 0, nome: "", sigla: "" }, subject: "", message: "" });
+      setVisitor({ id: 0, fullName: "", phoneNumber: "", email: "", companyName: "", companyCNPJ: "", ramoAtividade: "", city: { id: 0, nome: "" }, state: { id: 0, nome: "", sigla: "" }, message: "" });
       setErrors({});
 
       setMessage(true);
@@ -185,33 +179,74 @@ export const Contact = () => {
 
   return (
 
-    <section ref={contactRef} id={`${(language === "pt" && multiLang.pt.navItem.contact.toLowerCase()) || (language === "en" && multiLang.en.navItem.contact.toLowerCase()) || (language === "es" && multiLang.es.navItem.contact.toLowerCase())}Section`}>
-      <div className={`${styles.contato}`} >
+    <section ref={contactRef} className={`${styles.contato}`} id={`${(language === "pt" && multiLang.pt.navItem.contact.toLowerCase()) || (language === "en" && multiLang.en.navItem.contact.toLowerCase()) || (language === "es" && multiLang.es.navItem.contact.toLowerCase())}Section`}>
 
-        <h1>Contato</h1>
-        <div>
-          {sentData ? <>{message && <Message type='sucess' message='Mensagem enviada com sucesso, e até em breve faremos contato.' />}</> : <form onSubmit={(e) => onSubmit(e)} className={`${styles.formContainer}`}>
+
+      {sentData ? <>{message && <Message type='sucess' message='Mensagem enviada com sucesso, e até em breve faremos contato.' />}</> : <form onSubmit={(e) => onSubmit(e)} className={`${styles.formContainer}`}>
+
+          <h1> Contato</h1>
+
+
+        <div className={`${styles.formInline}`}>
+
+          <div className={styles.formGroup}>
+
+            <input type="text" name="fullName" value={visitor.fullName} className={visitor.fullName ? `${styles.valid}` : `${errors.fullName && `${styles.invalid}`}`} onChange={(e) => handleChange(e)} />
             <label>Nome completo</label>
-            <input type="text" name="fullName" value={visitor.fullName} className={visitor.fullName ? "" : `${errors.fullName && `${styles.invalid}`}`} onChange={(e) => handleChange(e)} />
+
             {visitor.fullName ? "" : errors.fullName && <p className={styles.formError}>{`${errors.fullName}`}</p>}
+
+          </div>
+
+
+          <div className={styles.formGroup}>
+            <input type="text" name="phoneNumber" value={maskPhone(visitor.phoneNumber)} className={visitor.phoneNumber ? `${styles.valid}` : `${errors.phoneNumber && `${styles.invalid}`}`} onChange={(e) => handleChange(e)} />
             <label>Telefone</label>
-            <input type="text" name="phoneNumber" value={maskPhone(visitor.phoneNumber)} className={visitor.phoneNumber ? "" : `${errors.phoneNumber && `${styles.invalid}`}`} onChange={(e) => handleChange(e)} />
+
             {visitor.phoneNumber ? "" : errors.phoneNumber && <p className={styles.formError}>{`${errors.phoneNumber}`}</p>}
+
+
+          </div>
+
+          <div className={styles.formGroup}>
+
+            <input type="email" name="email" value={visitor.email} className={visitor.email ? `${styles.valid}` : `${errors.email && `${styles.invalid}`}`} onChange={(e) => handleChange(e)} />
             <label>Email</label>
-            <input type="email" name="email" value={visitor.email} className={visitor.email ? "" : `${errors.email && `${styles.invalid}`}`} onChange={(e) => handleChange(e)} />
+
             {visitor.email ? "" : errors.email && <p className={styles.formError}>{`${errors.email}`}</p>}
-            <label>Nome da empresa</label>
-            <input type="text" name="companyName" value={visitor.companyName} className={visitor.companyName ? "" : `${errors.companyName && `${styles.invalid}`}`} onChange={(e) => handleChange(e)} />
+
+
+          </div>
+
+          <div className={styles.formGroup}>
+
+            <input type="text" name="companyName" value={visitor.companyName} className={visitor.companyName ? `${styles.valid}` : `${errors.companyName && `${styles.invalid}`}`} onChange={(e) => handleChange(e)} />
             {visitor.companyName ? "" : errors.companyName && <p className={styles.formError}>{`${errors.companyName}`}</p>}
+            <label>Nome da empresa</label>
+
+          </div>
+
+
+          <div className={styles.formGroup}>
+
+
+            <input type="text" name="companyCNPJ" value={maskCNPJ(visitor.companyCNPJ)} className={visitor.companyCNPJ ? `${styles.valid}` : `${errors.companyCNPJ && `${styles.invalid}`}`} onChange={(e) => handleChange(e)} />
             <label>CNPJ da empresa</label>
-            <input type="text" name="companyCNPJ" value={maskCNPJ(visitor.companyCNPJ)} className={visitor.companyCNPJ ? "" : `${errors.companyCNPJ && `${styles.invalid}`}`} onChange={(e) => handleChange(e)} />
             {visitor.companyCNPJ ? "" : errors.companyCNPJ && <p className={styles.formError}>{`${errors.companyCNPJ}`}</p>}
 
+          </div>
+
+          <div className={styles.formGroup}>
+
+
+            <input type="text" name="ramoAtividade" value={visitor.ramoAtividade} className={visitor.ramoAtividade ? `${styles.valid}` : `${errors.ramoAtividade && `${styles.invalid}`}`} onChange={(e) => handleChange(e)} />
             <label>Ramo da atividade</label>
-            <input type="text" name="ramoAtividade" value={visitor.ramoAtividade} className={visitor.ramoAtividade ? "" : `${errors.ramoAtividade && `${styles.invalid}`}`} onChange={(e) => handleChange(e)} />
             {visitor.ramoAtividade ? "" : errors.ramoAtividade && <p className={styles.formError}>{`${errors.ramoAtividade}`}</p>}
 
-            <label>Estado</label>
+          </div>
+
+          <div className={styles.formGroup}>
+
             <select name="state" id="state" onChange={(e) => onSelectChangeState(e)}>
               <option value="">Seleciona o estado...</option>
 
@@ -221,7 +256,11 @@ export const Contact = () => {
             </select>
 
 
-            <label>Cidade</label>
+
+
+          </div>
+
+          <div className={styles.formGroup}>
             <select name="city" id="city" onChange={(e) => onSelectChangeCity(e)}>
               <option value="">Seleciona a cidade...</option>
 
@@ -230,20 +269,40 @@ export const Contact = () => {
               ))}
             </select>
 
-            <label>Assunto</label>
-            <input type="text" name="subject" value={visitor.subject} onChange={(e) => handleChange(e)} className={visitor.subject ? "" : `${errors.subject && `${styles.invalid}`}`} />
-            {visitor.subject ? "" : errors.subject && <p className={styles.formError}>{`${errors.subject}`}</p>}
 
-            <label>Mensagem</label>
-            <textarea name="message" value={visitor.message} className={visitor.message ? "" : `${errors.message && `${styles.invalid}`}`} onChange={(e) => handleChange(e)}>
-            </textarea>
-            {visitor.message ? "" : errors.message && <p className={styles.formError}>{`${errors.message}`}</p>}
 
-            <button>Enviar</button>
+          </div>
+        
 
-          </form>}
+        
+     
+          
+          
+
+       
         </div>
-      </div>
+
+            <div className={styles.formGroup}>
+
+            <textarea name="message" value={visitor.message} className={visitor.message ? `${styles.valid}` : `${errors.message && `${styles.invalid}`}`} onChange={(e) => handleChange(e)}>
+            </textarea>
+            <label>Mensagem</label>
+
+            {visitor.message ? "" : errors.message && <p id={`${styles.errorMessage}`} className={styles.formError}>{`${errors.message}`}</p>}
+
+
+          </div>
+
+
+
+
+
+
+
+
+        <button>Enviar</button>
+
+      </form>}
     </section>
   );
 }

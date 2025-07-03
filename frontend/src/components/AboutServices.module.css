@@ -1,5 +1,6 @@
 
 .about_services_component{
+    text-align: left;
     display: flex;
     flex-direction: column;
     margin: 60px;

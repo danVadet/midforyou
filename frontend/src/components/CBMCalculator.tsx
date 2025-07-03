@@ -55,7 +55,6 @@ export const CBMCalculator = () => {
         volumeTotal: 0,
         measureUnit: "",
         measureUnitId: 0,
-        containerId: 0
 
     });
 
@@ -174,13 +173,13 @@ export const CBMCalculator = () => {
                 weight: product.weight,
                 quantity: product.quantity,
                 measureUnit: selectedMeasureUnit.name,
-                measureUnitId: selectedMeasureUnit.value
+                measureUnitId: selectedMeasureUnit.value,
             });
             console.log(response.data);
 
             setProduct({
                 id: 0, name: "", length: 0, width: 0, height: 0, weight: 0, quantity: 0, volume: 0, volumeTotal: 0, weightTotal: 0, measureUnit: "",
-                measureUnitId: 0, containerId: 0
+                measureUnitId: 0
             });
             getProducts();
             getSumTotalWeight();
@@ -305,35 +304,70 @@ export const CBMCalculator = () => {
             getSumTotalVolume();
             getSumTotalQuantity();
             getContainers();
+            getContainer(1);
         }
     }, [searchProduct, unsavedProduct]);
 
     return (
-        <section ref={cbmCalculatorRef} className={styles.conteinersSection} id={`${(language === "pt" && multiLang.pt.navItem.cbmCalculator.toLowerCase()) || (language === "en" && multiLang.en.navItem.cbmCalculator.toLowerCase()) || (language === "es" && multiLang.es.navItem.cbmCalculator.toLowerCase())}Section`}>
-            <div className={`${styles.container}`}>
-                <h1>Calculadora CBM</h1>
+        <section ref={cbmCalculatorRef} id={`${(language === "pt" && multiLang.pt.navItem.cbmCalculator.toLowerCase()) || (language === "en" && multiLang.en.navItem.cbmCalculator.toLowerCase()) || (language === "es" && multiLang.es.navItem.cbmCalculator.toLowerCase())}Section`}>
+                  <h1>Calculadora CBM</h1>
 
-                <form onSubmit={(e) => onSubmit(e)} className={`${styles.formContainer}`}>
-                    <select onChange={(e) => onChangeSelectMeasureUnit(e)}>
-                        <option hidden>Selecionar a unidade de medida</option>
+            <div className={`${styles.container}`}>
+
+          
+
+                 <div>
+                        <form onSubmit={(e) => onSubmit(e)} className={`${styles.formContainer}`}>
+
+                                                <div className={`${styles.formGroup}`}>
+                        
+                    <input type="text" name="name" value={product.name || ""} className={product.name ? "" : `${errors.name && `${styles.invalid}`}`} placeholder="Digite o nome..." onChange={(e) => onChange(e)} />
+                    {product.name ? "" : errors.name && <p className={styles.formError}>{`${errors.name}`}</p>}
+
+
+                    </div>
+
+                  
+                   
+
+                     <select onChange={(e) => onChangeSelectMeasureUnit(e)}>
+                        <option hidden>Selecionar a unidade de medida...</option>
                         {measureUnits.map((measureUnit, index) => (
                             <option key={index} value={measureUnit.value}>{measureUnit.name}</option>
 
                         ))}
                     </select>
 
-                    <input type="text" name="name" value={product.name || ""} placeholder="Digite o nome..." onChange={(e) => onChange(e)} />
-                    {product.name ? "" : errors.name && <p className={styles.nameError}>{`${errors.name}`}</p>}
-                    <input type="number" name="length" value={product.length || ""} placeholder={selectedMeasureUnit.name ? `Digite o comprimento (${selectedMeasureUnit.name})` : `Digite o comprimento...`} onChange={(e) => onChange(e)} />
-                    {product.length ? "" : errors.length && <p className={styles.lengthError}>{`${errors.length}`}</p>}
-                    <input type="number" name="width" value={product.width || ""} placeholder={selectedMeasureUnit.name ? `Digite a lagura (${selectedMeasureUnit.name})` : `Digite a lagura...`} onChange={(e) => onChange(e)} />
-                    {product.width ? "" : errors.width && <p className={styles.widthError}>{`${errors.width}`}</p>}
-                    <input type="number" name="height" value={product.height || ""} placeholder={selectedMeasureUnit.name ? `Digite a altura (${selectedMeasureUnit.name})` : `Digite a altura...`} onChange={(e) => onChange(e)} />
-                    {product.height ? "" : errors.height && <p className={styles.heightError}>{`${errors.height}`}</p>}
-                    <input type="number" name="weight" value={product.weight || ""} placeholder="Digite o peso..." onChange={(e) => onChange(e)} />
-                    {product.weight ? "" : errors.weight && <p className={styles.weightError}>{`${errors.weight}`}</p>}
-                    <input type="number" name="quantity" value={product.quantity || ""} placeholder="Digite a quantidade..." onChange={(e) => onChange(e)} />
-                    {product.quantity ? "" : errors.quantity && <p className={styles.quantityError}>{`${errors.quantity}`}</p>}
+                      <div className={`${styles.formGroup}`}>
+                        
+                      <input type="number" name="length" value={product.length || ""} className={product.length ? "" : `${errors.length && `${styles.invalid}`}`} placeholder={selectedMeasureUnit.name ? `Digite o comprimento (${selectedMeasureUnit.name})` : `Digite o comprimento...`} onChange={(e) => onChange(e)} />
+                    {product.length ? "" : errors.length && <p className={styles.formError}>{`${errors.length}`}</p>}
+
+
+                    </div>
+                    <div className={`${styles.formGroup}`}>
+                          <input type="number" name="width" value={product.width || ""} className={product.width ? "" : `${errors.width && `${styles.invalid}`}`} placeholder={selectedMeasureUnit.name ? `Digite a lagura (${selectedMeasureUnit.name})` : `Digite a lagura...`} onChange={(e) => onChange(e)} />
+                    {product.width ? "" : errors.width && <p className={styles.formError}>{`${errors.width}`}</p>}
+
+                    </div>
+
+                    <div className={`${styles.formGroup}`}>
+                          <input type="number" name="height" value={product.height || ""} className={product.height ? "" : `${errors.height && `${styles.invalid}`}`}placeholder={selectedMeasureUnit.name ? `Digite a altura (${selectedMeasureUnit.name})` : `Digite a altura...`} onChange={(e) => onChange(e)} />
+                    {product.height ? "" : errors.height && <p className={styles.formError}>{`${errors.height}`}</p>}
+
+                    </div>
+
+                    <div className={`${styles.formGroup}`}>
+                            <input type="number" name="weight" value={product.weight || ""} className={product.weight ? "" : `${errors.weight && `${styles.invalid}`}`} placeholder="Digite o peso..." onChange={(e) => onChange(e)} />
+                    {product.weight ? "" : errors.weight && <p className={styles.formError}>{`${errors.weight}`}</p>}
+                    </div>
+
+                     <div className={`${styles.formGroup}`}>
+                           
+                    <input type="number" name="quantity" value={product.quantity || ""} className={product.quantity ? "" : `${errors.quantity && `${styles.invalid}`}`} placeholder="Digite a quantidade..." onChange={(e) => onChange(e)} />
+                    {product.quantity ? "" : errors.quantity && <p className={styles.formError}>{`${errors.quantity}`}</p>}
+
+                    </div>
 
                     <button className={`${styles.buttonAdd}`}>Adicionar novo produto</button>
                 </form>
@@ -351,10 +385,7 @@ export const CBMCalculator = () => {
                 <ul className={`${styles.products}`}>
                     {products.length === 0 ? (<li>Produto não adicionado</li>) : (products.map((product, index) => (
                         <li key={index} className={`${styles.product_item}`}>
-                            <div>
-                                <label>Unidade de medida</label>
-                                <p>{product.measureUnit}</p>
-                            </div>
+                           
                             <div>
                                 <label>Nome </label>
                                 <p>{product.name}</p>
@@ -420,6 +451,8 @@ export const CBMCalculator = () => {
 
                 </ul>
 
+               <div className={`${styles.totalContainer}`}>
+                
 
                 <div>
                     <h3>Quantidade total: {sumTotalQuantity}</h3>
@@ -433,24 +466,33 @@ export const CBMCalculator = () => {
                     <h3> Volume total de  todos os produtos: {sumTotalVolume} m³</h3>
                 </div>
 
-                <div className={`${styles.containerInfo}`}>
+               </div>
+
+
+
+                </div>
+
+                  <div className={`${styles.containerInfo}`}>
 
                     <div className={`${styles.selectedContainer}`}>
                         <select onChange={(e) => onChangeSelectContainer(e)}>
-                            <option hidden>Selecionar o tipo de container</option>
                             {containers.map((container, index) => (
                                 <option key={index} value={container.id}>{container.name}</option>
 
                             ))}
                         </select>
 
-                        {!loading ? <div> <img className={`${styles.imageContainer}`} src={selectedContainer.image ? `${selectedContainer.image}` : `./assets/containerPlaceholder.png`} alt="" /> </div> :
+
+                    
+
+                         {!loading ? <div> <img className={`${styles.imageContainer}`} src={selectedContainer.image ? `${selectedContainer.image}` : `./assets/containerPlaceholder.png`} alt="" /> </div> :
                             <div className={`${styles.imageLoader}`}>
                                 <img className={`${styles.imageContainer}`} src={`./assets/containerPlaceholder.png`} alt="" />
                                 <div className={`${styles.loader}`}>
                                     <span className={`${styles.spinner}`}></span>
                                 </div>
                             </div>}
+                        
 
 
                     </div>
