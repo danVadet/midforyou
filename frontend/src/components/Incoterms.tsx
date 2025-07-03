@@ -171,7 +171,7 @@ export const Incoterms = (props: IIncotermsProps) => {
              {(language === "pt" ? `${multiLang.pt.buyerLabel}` : language === "en" ? `${multiLang.en.buyerLabel}` : `${multiLang.es.buyerLabel}`)}
            </div>
            <div className="captions__safety">
-             <svg fill="rgb(255, 140, 0)" width="30px" height="25px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M22.7,17.5l-8.1-14c-0.8-1.4-2.7-1.9-4.1-1.1C10,2.7,9.6,3.1,9.4,3.5l-8.1,14c-0.8,1.4-0.3,3.3,1.1,4.1c0.5,0.3,1,0.4,1.5,0.4h16.1c1.7,0,3-1.4,3-3C23.1,18.4,22.9,17.9,22.7,17.5z M12,18c-0.6,0-1-0.4-1-1s0.4-1,1-1s1,0.4,1,1S12.6,18,12,18z M13,13c0,0.6-0.4,1-1,1s-1-0.4-1-1V9c0-0.6,0.4-1,1-1s1,0.4,1,1V13z"></path></svg>
+             <svg fill="rgb(255, 140, 0)" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M22.7,17.5l-8.1-14c-0.8-1.4-2.7-1.9-4.1-1.1C10,2.7,9.6,3.1,9.4,3.5l-8.1,14c-0.8,1.4-0.3,3.3,1.1,4.1c0.5,0.3,1,0.4,1.5,0.4h16.1c1.7,0,3-1.4,3-3C23.1,18.4,22.9,17.9,22.7,17.5z M12,18c-0.6,0-1-0.4-1-1s0.4-1,1-1s1,0.4,1,1S12.6,18,12,18z M13,13c0,0.6-0.4,1-1,1s-1-0.4-1-1V9c0-0.6,0.4-1,1-1s1,0.4,1,1V13z"></path></svg>
               {(language === "pt" ? `${multiLang.pt.riskTransferLabel}` : language === "en" ? `${multiLang.en.riskTransferLabel}` : `${multiLang.es.riskTransferLabel}`)}
            </div>
          </div>
@@ -184,7 +184,7 @@ export const Incoterms = (props: IIncotermsProps) => {
              <strong>{((language === "pt" ? `${multiLang.pt.modal}` : language === "en" ? `${multiLang.en.modal}` : `${multiLang.es.modal}`))}:&nbsp;</strong>
              {selectedIncoterm?.modal}
 
-              {(language === "pt" ? selectedIncoterm?.modal === "Aquavário" : language === "en" ? selectedIncoterm?.modal === "Waterway" : selectedIncoterm?.modal === "Acuático" ) ? <>
+              {(language === "pt" ? selectedIncoterm?.modal === "Aquaviário" : language === "en" ? selectedIncoterm?.modal === "Waterway" : selectedIncoterm?.modal === "Acuático" ) ? <>
                  <svg width="89" height="39" viewBox="0 0 89 49" fill="none" xmlns="http://www.w3.org/2000/svg">
 
 <mask id="mask3_956_448"  maskUnits="userSpaceOnUse" x="64" y="24" width="25" height="25">

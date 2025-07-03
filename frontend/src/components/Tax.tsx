@@ -55,10 +55,12 @@ export const Tax = () => {
                             </div>
                             <div className={`${styles.text}`}>
                                 <p className={`${styles.name}`}>{FormatCurrencyName({ key: tax.name })} </p>
+                                       <Link to={`${tax.currencyCode}`} state={{ previousLocation: location }}>
                                     <div className={`${styles.valueContainer}`} >
                                         <p className={`${styles.value}`}>R$ {parseFloat(`${tax.bid}`).toFixed(3)}</p>
                                         {tax.variation >= 0 ? <p className={`${styles.variation} ${styles.success}`}>+{parseFloat(`${tax.variation}`).toFixed(2)}%</p> : <p className={`${styles.variation} ${styles.danger}`}>{parseFloat(`${tax.variation}`).toFixed(2)}%</p>}
                                     </div>
+                                </Link>
                             </div>
                         </div>
                     ))}

@@ -497,6 +497,19 @@ export const IncotermsWrapper = styled.div`
             gap: 0.25rem;
             align-items: center;
           }
+          .captions__safety svg {
+             width: 30px; 
+             height: 25px; 
+
+               @media (max-width: 767px) {
+
+          width: 20px;
+          height: 40px;
+          
+        } 
+          
+          }
+           
 
           .square {
             width: 1rem;

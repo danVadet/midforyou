@@ -721,7 +721,7 @@
                 "acronym": "FAS",
                 "costStage": 2,
                 "freightDetails": "A bordo do navio",
-                "modal": "Aquavário",
+                "modal": "Aquaviário",
                 "moreDetails": "Free Alongside Ship (FAS) requer que o vendedor entregue as mercadorias ao lado do navio nomeado pelo comprador no porto nomeado de embarque. O vendedor deve liberar as mercadorias para exportação. O comprador arca com todos os custos e riscos de perda ou dano a partir desse momento."
             }, 
 
@@ -732,7 +732,7 @@
                 "acronym": "FOB",
                 "costStage": 2,
                 "freightDetails": "A bordo do navio",
-                "modal": "Aquavário",
+                "modal": "Aquaviário",
                 "moreDetails": "Free On Board (FOB) significa que o vendedor entrega as mercadorias, liberadas para exportação, a bordo do navio nomeado pelo comprador no porto nomeado de embarque. O vendedor é responsável por todos os custos e riscos até que as mercadorias sejam carregadas no navio."
             }, 
 
