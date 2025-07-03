@@ -30,6 +30,7 @@ export interface IMainProps {
       <Home/>
       <About services={props.services} />
       <Incoterms incoterms={props.incoterms} incotermsIcons={props.incotermIcons} />
+      <Map />
       <Contact />
       <Footer />
     </>

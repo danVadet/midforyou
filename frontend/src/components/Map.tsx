@@ -39,8 +39,10 @@ export const Map = () => {
     const [countAirPorts, setCountAirPorts] = useState<number>(0);
     const [countWaterPorts, setCountWaterPorts] = useState<number>(0);
 
+    const url = `https://mid4u2-back-bec5e5efc3b6hqde.brazilsouth-01.azurewebsites.net`;
+
     const getStates = async () => {
-        const response = await axios.get(`http://localhost:5262/states`);
+        const response = await axios.get(`${url}/states`);
         setStates(response.data);
     }
     const getPortMarkers = async () => {
