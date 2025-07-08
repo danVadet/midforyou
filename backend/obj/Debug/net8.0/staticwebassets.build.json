@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "E3rc7bfApf0MivVJ7136tIVivqQxemxUZ3a9LZFMU2s=",
+  "Hash": "2FTtMBfwKofSBNjpTW6dOFWI26AWQelYCCyT4PjSgJw=",
   "Source": "backend",
   "BasePath": "_content/backend",
   "Mode": "Default",
@@ -72,6 +72,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\site.css"
+    },
+    {
+      "Identity": "D:\\PROJETOS\\MIDFORYOU\\midforyou\\backend\\wwwroot\\database\\midforyou.db",
+      "SourceId": "backend",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\PROJETOS\\MIDFORYOU\\midforyou\\backend\\wwwroot\\",
+      "BasePath": "_content/backend",
+      "RelativePath": "database/midforyou.db",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\database\\midforyou.db"
     },
     {
       "Identity": "D:\\PROJETOS\\MIDFORYOU\\midforyou\\backend\\wwwroot\\favicon.ico",
@@ -205,6 +224,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Images\\PortMarkers\\Acre\\Aeroporto Internacional de Rio Branco.jpg"
+    },
+    {
+      "Identity": "D:\\PROJETOS\\MIDFORYOU\\midforyou\\backend\\wwwroot\\Images\\PortMarkers\\Aeroporto  de João Pessoa.jpg",
+      "SourceId": "backend",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\PROJETOS\\MIDFORYOU\\midforyou\\backend\\wwwroot\\",
+      "BasePath": "_content/backend",
+      "RelativePath": "Images/PortMarkers/Aeroporto  de João Pessoa.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Images\\PortMarkers\\Aeroporto  de João Pessoa.jpg"
     },
     {
       "Identity": "D:\\PROJETOS\\MIDFORYOU\\midforyou\\backend\\wwwroot\\Images\\PortMarkers\\Alagoas\\Aeroporto de Maceió.jpg",
@@ -2525,25 +2563,6 @@
       "OriginalItemSpec": "wwwroot\\Images\\PortMarkers\\Paraíba\\Aeroporto de Campina Grande.jpg"
     },
     {
-      "Identity": "D:\\PROJETOS\\MIDFORYOU\\midforyou\\backend\\wwwroot\\Images\\PortMarkers\\Paraíba\\Aeroporto Internacional de João Pessoa.jpg",
-      "SourceId": "backend",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\PROJETOS\\MIDFORYOU\\midforyou\\backend\\wwwroot\\",
-      "BasePath": "_content/backend",
-      "RelativePath": "Images/PortMarkers/Paraíba/Aeroporto Internacional de João Pessoa.jpg",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\Images\\PortMarkers\\Paraíba\\Aeroporto Internacional de João Pessoa.jpg"
-    },
-    {
       "Identity": "D:\\PROJETOS\\MIDFORYOU\\midforyou\\backend\\wwwroot\\Images\\PortMarkers\\Paraíba\\Porto de Cabedelo.jpg",
       "SourceId": "backend",
       "SourceType": "Discovered",
@@ -3017,6 +3036,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Images\\PortMarkers\\Piauí\\Porto de Luís Correia.jpg"
+    },
+    {
+      "Identity": "D:\\PROJETOS\\MIDFORYOU\\midforyou\\backend\\wwwroot\\Images\\PortMarkers\\Porto de Cabedelo.jpg",
+      "SourceId": "backend",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\PROJETOS\\MIDFORYOU\\midforyou\\backend\\wwwroot\\",
+      "BasePath": "_content/backend",
+      "RelativePath": "Images/PortMarkers/Porto de Cabedelo.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Images\\PortMarkers\\Porto de Cabedelo.jpg"
     },
     {
       "Identity": "D:\\PROJETOS\\MIDFORYOU\\midforyou\\backend\\wwwroot\\Images\\PortMarkers\\Porto de Santos.jpg",

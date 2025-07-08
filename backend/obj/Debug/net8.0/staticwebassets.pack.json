@@ -29,6 +29,10 @@
       "PackagePath": "staticwebassets\\Images\\PortMarkers\\Acre\\Aeroporto de Rio Branco.jpg"
     },
     {
+      "Id": "D:\\PROJETOS\\MIDFORYOU\\midforyou\\backend\\wwwroot\\Images\\PortMarkers\\Aeroporto  de João Pessoa.jpg",
+      "PackagePath": "staticwebassets\\Images\\PortMarkers\\Aeroporto  de João Pessoa.jpg"
+    },
+    {
       "Id": "D:\\PROJETOS\\MIDFORYOU\\midforyou\\backend\\wwwroot\\Images\\PortMarkers\\Alagoas\\Aeroporto Internacional de Maceió.jpg",
       "PackagePath": "staticwebassets\\Images\\PortMarkers\\Alagoas\\Aeroporto Internacional de Maceió.jpg"
     },
@@ -453,10 +457,6 @@
       "PackagePath": "staticwebassets\\Images\\PortMarkers\\Paraíba\\Aeroporto  de João Pessoa.jpg"
     },
     {
-      "Id": "D:\\PROJETOS\\MIDFORYOU\\midforyou\\backend\\wwwroot\\Images\\PortMarkers\\Paraíba\\Aeroporto Internacional de João Pessoa.jpg",
-      "PackagePath": "staticwebassets\\Images\\PortMarkers\\Paraíba\\Aeroporto Internacional de João Pessoa.jpg"
-    },
-    {
       "Id": "D:\\PROJETOS\\MIDFORYOU\\midforyou\\backend\\wwwroot\\Images\\PortMarkers\\Paraíba\\Aeroporto de Campina Grande.jpg",
       "PackagePath": "staticwebassets\\Images\\PortMarkers\\Paraíba\\Aeroporto de Campina Grande.jpg"
     },
@@ -619,6 +619,10 @@
     {
       "Id": "D:\\PROJETOS\\MIDFORYOU\\midforyou\\backend\\wwwroot\\Images\\PortMarkers\\Piauí\\Porto de Luís Correia.jpg",
       "PackagePath": "staticwebassets\\Images\\PortMarkers\\Piauí\\Porto de Luís Correia.jpg"
+    },
+    {
+      "Id": "D:\\PROJETOS\\MIDFORYOU\\midforyou\\backend\\wwwroot\\Images\\PortMarkers\\Porto de Cabedelo.jpg",
+      "PackagePath": "staticwebassets\\Images\\PortMarkers\\Porto de Cabedelo.jpg"
     },
     {
       "Id": "D:\\PROJETOS\\MIDFORYOU\\midforyou\\backend\\wwwroot\\Images\\PortMarkers\\Porto de Santos.jpg",
@@ -959,6 +963,10 @@
     {
       "Id": "D:\\PROJETOS\\MIDFORYOU\\midforyou\\backend\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
+    },
+    {
+      "Id": "D:\\PROJETOS\\MIDFORYOU\\midforyou\\backend\\wwwroot\\database\\midforyou.db",
+      "PackagePath": "staticwebassets\\database\\midforyou.db"
     },
     {
       "Id": "D:\\PROJETOS\\MIDFORYOU\\midforyou\\backend\\wwwroot\\favicon.ico",
