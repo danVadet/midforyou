@@ -124,7 +124,7 @@ export const Contact = () => {
     if (errors && Object.keys(errors).length > 0) {
       return setErrors(errors);
     } else {
-      const response = await axios.post(`http://localhost:5262/visitor/sendContact`, {
+      const response = await axios.post(`${process.env.REACT_APP_API_BASE_URL}/visitor/sendContact`, {
         fullName: visitor.fullName,
         phoneNumber: visitor.phoneNumber,
         email: visitor.email,

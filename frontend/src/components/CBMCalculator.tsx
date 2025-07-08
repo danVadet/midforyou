@@ -82,14 +82,14 @@ export const CBMCalculator = () => {
     const [pctVolume, setPctVolume] = useState<number>(0);
 
     const onClickDeleteProduct = async (id: number) => {
-        const response = await axios.get(`http://localhost:5262/products/${id}`);
+        const response = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/products/${id}`);
         console.log(response.data);
         setCurrentProduct(response.data);
         if (!openDeleteModal) {
             setOpenDeleteModal(true);
         } else {
             showDeleteMessage();
-        }
+        } 
     }
     const showDeleteMessage = () => {
         setDeleteMessage(true);
@@ -139,7 +139,7 @@ export const CBMCalculator = () => {
 
     const onChangeSelectContainer = async (e: ChangeEvent<HTMLSelectElement>) => {
         const value = e.target.value;
-        const response = await axios.get(`http://localhost:5262/containers/capacity/${value}`);
+        const response = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/containers/capacity/${value}`);
         setLoading(true);
 
         setTimeout(() => {
@@ -154,7 +154,7 @@ export const CBMCalculator = () => {
     }
     const onChangeSelectMeasureUnit = async (e: ChangeEvent<HTMLSelectElement>) => {
         const value = e.target.value;
-        const response = await axios.get(`http://localhost:5262/measureUnits/${value}`);
+        const response = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/measureUnits/${value}`);
         setSelectedMeasureUnit(response.data);
 
     }
@@ -165,7 +165,7 @@ export const CBMCalculator = () => {
             return setErrors(errors);
         } else {
 
-            const response = await axios.post(`http://localhost:5262/products/addProduct`, {
+            const response = await axios.post(`${process.env.REACT_APP_API_BASE_URL}/products/addProduct`, {
                 name: product.name,
                 length: product.length,
                 width: product.width,
@@ -195,7 +195,7 @@ export const CBMCalculator = () => {
         }
     }
     const onClickEditProduct = async (id: number) => {
-        const response = await axios.get(`http://localhost:5262/products/${id}`);
+        const response = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/products/${id}`);
         console.log(response.data);
         setCurrentProduct(response.data);
 
@@ -218,11 +218,11 @@ export const CBMCalculator = () => {
         try {
 
             if (searchProduct) {
-                const response = await axios.get(`http://localhost:5262/products?search=${searchProduct}`);
+                const response = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/products?search=${searchProduct}`);
                 selectedContainer.products = response.data;
                 setProducts(selectedContainer.products);
             } else {
-                const response = await axios.get(`http://localhost:5262/products`);
+                const response = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/products`);
                 selectedContainer.products = response.data;
                 setProducts(selectedContainer.products);
             }
@@ -233,7 +233,7 @@ export const CBMCalculator = () => {
 
     const deleteAllProducts = async () => {
 
-        await axios.delete(`http://localhost:5262/products`);
+        await axios.delete(`${process.env.REACT_APP_API_BASE_URL}/products`);
         window.onbeforeunload = () => true
         setUnsavedProduct(true);
     }
@@ -241,7 +241,7 @@ export const CBMCalculator = () => {
     const getSumTotalQuantity = async () => {
 
         try {
-            const response = await axios.get(`http://localhost:5262/sumTotalQuantity`);
+            const response = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/sumTotalQuantity`);
             setSumTotalQuantity(response.data);
 
         } catch (error) {
@@ -253,20 +253,20 @@ export const CBMCalculator = () => {
     const getSumTotalWeight = async () => {
 
         try {
-            const response = await axios.get(`http://localhost:5262/sumTotalWeight`);
+            const response = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/sumTotalWeight`);
             setSumTotalWeight(response.data);
         } catch (error) {
             console.log(error);
         }
     }
     const getMeasureUnits = async () => {
-        const response = await axios.get(`http://localhost:5262/measureUnits`);
+        const response = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/measureUnits`);
         setMeasureUnits(response.data);
     }
 
     const getContainers = async () => {
         try {
-            const response = await axios.get(`http://localhost:5262/containers`);
+            const response = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/containers`);
             setContainers(response.data);
         } catch (error) {
             console.log(error);
@@ -276,7 +276,7 @@ export const CBMCalculator = () => {
     const getSumTotalVolume = async () => {
 
         try {
-            const response = await axios.get(`http://localhost:5262/sumTotalVolume`);
+            const response = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/sumTotalVolume`);
             setSumTotalVolume(response.data);
         } catch (error) {
             console.log(error);
@@ -285,7 +285,7 @@ export const CBMCalculator = () => {
     const getContainer = async (id: number) => {
 
         try {
-            const response = await axios.get(`http://localhost:5262/containers/capacity/${id}`);
+            const response = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/containers/capacity/${id}`);
             setSelectedContainer(response.data.container);
             setPctWeight(response.data.pctWeight);
             setPctVolume(response.data.pctVolume);

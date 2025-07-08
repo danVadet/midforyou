@@ -44,7 +44,7 @@ export const EditProductModal = (props: IEditProductModalProps) => {
   const updateProduct = async (e: FormEvent) => {
       e.preventDefault();
 
-      const response = await axios.put(`http://localhost:5262/products/${props.currentProduct?.id}`, {
+      const response = await axios.put(`${process.env.REACT_APP_API_BASE_URL}/products/${props.currentProduct?.id}`, {
           name: product.name,
           length: product.length,
           width: product.width,

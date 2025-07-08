@@ -40,29 +40,29 @@ export const Map = () => {
     const [countWaterPorts, setCountWaterPorts] = useState<number>(0);
 
     const getStates = async () => {
-        const response = await axios.get(`${process.env.REACT_APP_API_BASE_URL_LOCALHOST}/states`);
+        const response = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/states`);
         setStates(response.data);
     }
     const getPortMarkers = async () => {
 
         if (selectedState?.id) {
-            const response = await axios.get(`http://localhost:5262/markers/state/${selectedState.id}`);
+            const response = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/markers/state/${selectedState.id}`);
             setPortMarkers(response.data);
 
-            const responseAir = await axios.get(`http://localhost:5262/markers/air/state/${selectedState.id}`);
+            const responseAir = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/markers/air/state/${selectedState.id}`);
             setCountAirPorts(responseAir.data);
 
-            const responseWater = await axios.get(`http://localhost:5262/markers/water/state/${selectedState.id}`);
+            const responseWater = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/markers/water/state/${selectedState.id}`);
             setCountWaterPorts(responseWater.data);
 
         } else {
-            const response = await axios.get(`http://localhost:5262/markers`);
+            const response = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/markers`);
             setPortMarkers(response.data);
 
-            const responseAir = await axios.get(`http://localhost:5262/markers/air`);
+            const responseAir = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/markers/air`);
             setCountAirPorts(responseAir.data);
 
-            const responseWater = await axios.get(`http://localhost:5262/markers/water`);
+            const responseWater = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/markers/water`);
             setCountWaterPorts(responseWater.data);
         }
     }
@@ -72,7 +72,7 @@ export const Map = () => {
         const selectedStateById = e.target.value
         setZoom(5);
         if (selectedStateById) {
-            const response = await axios.get(`http://localhost:5262/states/${selectedStateById}`);
+            const response = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/states/${selectedStateById}`);
             console.log(response.data)
             setSelectedState(response.data)
 
@@ -102,7 +102,7 @@ export const Map = () => {
 
     const onSelectChangePortMarker = async (e: ChangeEvent<HTMLSelectElement>) => {
         const selectedPortMarkerById = e.target.value;
-        const response = await axios.get(`http://localhost:5262/markers/${selectedPortMarkerById}`);
+        const response = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/markers/${selectedPortMarkerById}`);
         setZoom(5);
 
         if (selectedPortMarkerById) {
@@ -127,7 +127,7 @@ export const Map = () => {
 
 
         } else if (selectedState) {
-            const response = await axios.get(`http://localhost:5262/markers/state/${selectedState?.id}`);
+            const response = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/markers/state/${selectedState?.id}`);
 
             setTimeout(() => {
                 const targetZoom = 6.5;
