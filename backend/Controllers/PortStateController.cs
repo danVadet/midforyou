@@ -1,20 +1,14 @@
-
-
-using backend.Domain;
-using backend.Infrastructure;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-
 namespace backend.Controllers;
 
 
 [Controller]
 public class PortStateController : ControllerBase
 {
-    private readonly AppDbContext _appDbContext;
-    public PortStateController(AppDbContext appDbContext)
+    private readonly IPortStateService _portStateService;
+    public PortStateController(IPortStateService portStateService)
     {
-        _appDbContext = appDbContext;
+        _portStateService = portStateService;
 
     }
 
@@ -22,24 +16,22 @@ public class PortStateController : ControllerBase
     public async Task<ActionResult> getAllStates()
     {
 
-        var portStates = await _appDbContext.PortState.ToListAsync();
+        List <PortStateResponse> portStates = await  _portStateService.GetAllAsync();
         return Ok(portStates);
     }
 
     [HttpGet("states/{id}")]
-    public async Task<ActionResult> getProduct(int id)
+    public async Task<ActionResult> getStateById(int id)
     {
-        var state = await _appDbContext.PortState.FindAsync(id);
-        return Ok(state);
+        PortStateResponse portState = await _portStateService.GetByIdAsync(id);
+        return Ok(portState);
     }
     [HttpPost("states/addState")]
-    public async Task<ActionResult> addProduct([FromBody] PortState portState)
+    public async Task<ActionResult> addState([FromBody] CreatePortStateRequest createPortStateRequest)
     {
 
-        _appDbContext.Add(portState);
+       await _portStateService.CreateAsync(createPortStateRequest);
+        return Created("Port state created successfully", createPortStateRequest);
 
-        await _appDbContext.SaveChangesAsync();
-
-        return Created("State created successfully", portState);
     }
 }

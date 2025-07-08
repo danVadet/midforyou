@@ -621,6 +621,10 @@
       "PackagePath": "staticwebassets\\Images\\PortMarkers\\Piauí\\Porto de Luís Correia.jpg"
     },
     {
+      "Id": "D:\\PROJETOS\\MIDFORYOU\\midforyou\\backend\\wwwroot\\Images\\PortMarkers\\Porto de Santos.jpg",
+      "PackagePath": "staticwebassets\\Images\\PortMarkers\\Porto de Santos.jpg"
+    },
+    {
       "Id": "D:\\PROJETOS\\MIDFORYOU\\midforyou\\backend\\wwwroot\\Images\\PortMarkers\\Rio Grande do Norte\\Aeroporto Internacional de Natal.jpg",
       "PackagePath": "staticwebassets\\Images\\PortMarkers\\Rio Grande do Norte\\Aeroporto Internacional de Natal.jpg"
     },
@@ -907,10 +911,6 @@
     {
       "Id": "D:\\PROJETOS\\MIDFORYOU\\midforyou\\backend\\wwwroot\\Images\\PortMarkers\\São Paulo\\Aeroporto de Campinas.jpg",
       "PackagePath": "staticwebassets\\Images\\PortMarkers\\São Paulo\\Aeroporto de Campinas.jpg"
-    },
-    {
-      "Id": "D:\\PROJETOS\\MIDFORYOU\\midforyou\\backend\\wwwroot\\Images\\PortMarkers\\São Paulo\\Aeroporto de Guarulhos-São Paulo.jpg",
-      "PackagePath": "staticwebassets\\Images\\PortMarkers\\São Paulo\\Aeroporto de Guarulhos-São Paulo.jpg"
     },
     {
       "Id": "D:\\PROJETOS\\MIDFORYOU\\midforyou\\backend\\wwwroot\\Images\\PortMarkers\\São Paulo\\Aeroporto de São Paulo-Guarulhos.jpg",

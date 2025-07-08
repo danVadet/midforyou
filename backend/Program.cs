@@ -3,7 +3,6 @@ using backend.Infrastructure;
 using System.Text.Json.Serialization;
 using backend.Domain;
 using backend.Infrastructure.Repositories;
-using Newtonsoft.Json;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,7 +16,7 @@ builder.Services.AddHttpContextAccessor();
 
 builder.Services.AddDbContext<AppDbContext>(options =>
 {
-    options.UseNpgsql(builder.Configuration.GetConnectionString("DbConnection"));
+    options.UseSqlite(builder.Configuration.GetConnectionString("DbConnection"));
 
 });
 
@@ -28,15 +27,7 @@ builder.Services.AddControllers().AddJsonOptions(options =>
 
 
 });
-/*
-builder.Services.AddControllers().AddNewtonsoftJson(options =>
-{
 
-    //Return All result Not only first result Collection<Contact> 
-    options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
-
-});
-*/
 
 builder.Services.AddAutoMapper(typeof(DomainToDTOMappingProfile));
 
@@ -45,6 +36,10 @@ builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddScoped<IContainerRepository, ContainerRepository>();
 builder.Services.AddScoped<IContainerService, ContainerService>();
+builder.Services.AddScoped<IPortStateRepository, PortStateRepository>();
+builder.Services.AddScoped<IPortStateService, PortStateService>();
+builder.Services.AddScoped<IPortMarkerRepository, PortMarkerRepository>();
+builder.Services.AddScoped<IPortMarkerService, PortMarkerService>();
 
 
 
@@ -71,13 +66,6 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
-
-/*
-app.UseStaticFiles(new StaticFileOptions {
-    FileProvider = new PhysicalFileProvider(Path.Combine(builder.Environment.ContentRootPath, "Images")),
-    RequestPath = "/Images"
-});
-*/
 
 app.UseRouting();
 

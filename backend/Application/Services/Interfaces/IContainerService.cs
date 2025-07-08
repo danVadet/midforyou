@@ -1,9 +1,5 @@
 
 
-using backend.Models;
-using Microsoft.AspNetCore.Http.HttpResults;
-using Microsoft.AspNetCore.Mvc;
-
 public interface IContainerService
 {
 

@@ -1,23 +1,38 @@
 
 using AutoMapper;
+using backend.Domain;
 
 public class PortStateService : IPortStateService
 {
     private readonly IPortStateRepository _portStateRepository;
     private readonly IMapper _mapper;
 
-    public Task CreateAsync(CreatePortStateRequest createPortStateRequest)
+    public PortStateService(IPortStateRepository portStateRepository, IMapper mapper)
     {
-        throw new NotImplementedException();
+        _portStateRepository = portStateRepository;
+        _mapper = mapper;
     }
 
-    public Task<List<PortStateResponse>> GetAllAsync()
+    public async Task CreateAsync(CreatePortStateRequest createPortStateRequest)
     {
-        throw new NotImplementedException();
+
+      var portState = _mapper.Map<PortState>(createPortStateRequest);
+      await _portStateRepository.CreateAsync(portState);
+
     }
 
-    public Task<PortStateResponse> GetByIdAsync(int id)
+    public async Task<List<PortStateResponse>> GetAllAsync()
     {
-        throw new NotImplementedException();
+        List <PortState> portStates = await _portStateRepository.GetAllAsync();
+        return _mapper.Map<List<PortStateResponse>>(portStates);
+    }
+
+    public async Task<PortStateResponse> GetByIdAsync(int id)
+    {
+
+         PortState portState = await _portStateRepository.GetByIdAsync(id);
+        return _mapper.Map<PortStateResponse>(portState);
+    
+
     }
 } 

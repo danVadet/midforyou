@@ -39,10 +39,8 @@ export const Map = () => {
     const [countAirPorts, setCountAirPorts] = useState<number>(0);
     const [countWaterPorts, setCountWaterPorts] = useState<number>(0);
 
-    const url = `https://mid4u2-back-bec5e5efc3b6hqde.brazilsouth-01.azurewebsites.net`;
-
     const getStates = async () => {
-        const response = await axios.get(`${url}/states`);
+        const response = await axios.get(`${process.env.REACT_APP_API_BASE_URL_LOCALHOST}/states`);
         setStates(response.data);
     }
     const getPortMarkers = async () => {
@@ -180,7 +178,7 @@ export const Map = () => {
                             </div>
 
                             <div style={{ display: "flex", gap: "5px", alignItems: "center", justifyContent: "center" }}>
-                                <select onChange={(e) => onSelectChangeState(e)}>
+                                <select className={`${styles.selectState}`} onChange={(e) => onSelectChangeState(e)}>
 
                                     <option value="">Todos os estados do Brasil</option>
 
@@ -189,7 +187,7 @@ export const Map = () => {
                                     ))}
 
                                 </select>
-                                 <select key={selectedPortMarker?.id} value={selectedPortMarker?.id} onChange={(e) => onSelectChangePortMarker(e)}>
+                                 <select className={`${styles.selectPortMarker}`} key={selectedPortMarker?.id} value={selectedPortMarker?.id} onChange={(e) => onSelectChangePortMarker(e)}>
 
                                     {selectedState ? <option value="">{`Todos os portos do estado ${selectedState?.label}`} </option> : <option value="">{`Todos os portos do Brasil`} </option>} 
 

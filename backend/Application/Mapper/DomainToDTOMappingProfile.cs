@@ -4,8 +4,6 @@ using AutoMapper;
 using backend.Domain;
 using backend.Models;
 
-
-
 public class DomainToDTOMappingProfile : Profile
 {
 
@@ -14,7 +12,7 @@ public class DomainToDTOMappingProfile : Profile
     {
         CreateMap<CreateProductRequest, Product>();
         CreateMap<UpdateProductRequest, Product>();
-        CreateMap<backend.Domain.Product, ProductResponse>();
+        CreateMap<Product, ProductResponse>();
 
         CreateMap<CreateContainerRequest, Container>();
         CreateMap<Container, ContainerResponse>();

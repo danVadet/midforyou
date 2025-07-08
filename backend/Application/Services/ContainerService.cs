@@ -1,6 +1,5 @@
 using AutoMapper;
 using backend.Domain;
-using backend.Models;
 
 public class ContainerService : IContainerService
 {

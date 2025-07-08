@@ -2,7 +2,6 @@ import { styled } from "styled-components";
 
 export const IncotermsWrapper = styled.div`
 
-
   &.incoterms-component {
     display: flex;
     align-items: center;

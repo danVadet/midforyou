@@ -6,7 +6,7 @@
     margin-bottom: 20px;
   }
 
-select {
+.selectState, .selectPortMarker {
   font-size: 14px;
   height: 30px;
   border: 1px solid #ccc;
@@ -14,9 +14,17 @@ select {
   outline: none;
   cursor: pointer;
 }
-select:focus {
+.selectState, .selectPortMarker:focus {
   border-color: #007bff;
 }
 p {
   font-size: 14px;
+}
+
+@media (max-width: 767px){
+
+  .selectState, .selectPortMarker {
+  font-size: 12px;
+}
+  
 }

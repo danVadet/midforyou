@@ -72,7 +72,7 @@ export const TaxModal = (props: ITaxModalProps) => {
 
             const dates: Date[] = [];
 
-            for (let i = 0; i < days; i++) {
+            for (let i = 0; i < days +  1; i++) {
                 const date = new Date();
 
                 date.setDate(date.getDate() - i);
