@@ -484,8 +484,7 @@ export const CBMCalculator = () => {
 
 
                     
-
-                         {!loading ? <div> <img className={`${styles.imageContainer}`} src={selectedContainer.image ? `${selectedContainer.image}` : `./assets/containerPlaceholder.png`} alt="" /> </div> :
+                         {!loading ? <div> <img className={`${styles.imageContainer}`} src={selectedContainer.image ? `${process.env.REACT_APP_API_BASE_URL}/${selectedContainer.image}` : `./assets/containerPlaceholder.png`} alt="" /> </div> :
                             <div className={`${styles.imageLoader}`}>
                                 <img className={`${styles.imageContainer}`} src={`./assets/containerPlaceholder.png`} alt="" />
                                 <div className={`${styles.loader}`}>

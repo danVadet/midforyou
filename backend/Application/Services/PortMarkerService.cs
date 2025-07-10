@@ -25,13 +25,14 @@ public class PortMarkerService : IPortMarkerService
         PortState portState = await _portStateRepository.GetByIdAsync(createPortMarkerRequest.portStateId);
         createPortMarkerRequest.portState = portState;
 
-        var uploadImage = Path.Combine(_webHostEnviroment.WebRootPath, $"Images/PortMarkers", createPortMarkerRequest.pic.FileName);
+        var uploadImage = Path.Combine(_webHostEnviroment.WebRootPath, $"Images/PortMarkers/{createPortMarkerRequest.portState.label}", createPortMarkerRequest.pic.FileName);
         using (var stream = new FileStream(uploadImage, FileMode.Create))
         {
             await createPortMarkerRequest.pic.CopyToAsync(stream);
         }
 
-        createPortMarkerRequest.image = $"{_httpContextAccessor.HttpContext.Request.Scheme}://{_httpContextAccessor.HttpContext.Request.Host}/Images/PortMarkers/{createPortMarkerRequest.pic.FileName}";
+        // createPortMarkerRequest.image = $"{_httpContextAccessor.HttpContext.Request.Scheme}://{_httpContextAccessor.HttpContext.Request.Host}/Images/PortMarkers/{createPortMarkerRequest.pic.FileName}";
+        createPortMarkerRequest.image = $"Images/PortMarkers/{createPortMarkerRequest.portState.label}/{createPortMarkerRequest.pic.FileName}";
         
       var portMarker = _mapper.Map<PortMarker>(createPortMarkerRequest);
       await _portMarkerRepository.CreateAsync(portMarker);

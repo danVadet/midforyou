@@ -224,7 +224,7 @@ export const Map = () => {
                                 <InfoWindowF position={{ lat: portMarker.lat, lng: portMarker.lng }} onCloseClick={() => setSelectedPortMarker(portMarker)}>
 
                                     <>
-                                        <img src={portMarker.image} style={{ borderRadius: '5px', width: '380px', height: '220px' }} alt={portMarker.label} />
+                                        <img src={`${process.env.REACT_APP_API_BASE_URL}/${portMarker.image}`} style={{ borderRadius: '5px', width: '380px', height: '220px' }} alt={portMarker.label} />
                                         <p>{portMarker.label}</p>
                                         <p>
                                             <svg viewBox="0 0 24 24" fill="none" height="25" width="25" xmlns="http://www.w3.org/2000/svg"> <circle cx="12" cy="10" r="3" stroke="#00afef" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></circle> <path d="M19 9.75C19 15.375 12 21 12 21C12 21 5 15.375 5 9.75C5 6.02208 8.13401 3 12 3C15.866 3 19 6.02208 19 9.75Z" stroke="#00afef" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
@@ -262,7 +262,7 @@ export const Map = () => {
                                     <InfoWindowF position={{ lat: portMarker.lat, lng: portMarker.lng }} onCloseClick={() => setSelectedPortMarker(portMarker)}>
 
                                         <>
-                                            <img src={portMarker.image} style={{ borderRadius: '5px', width: '380px', height: '220px' }} alt={portMarker.label} />
+                                            <img src={`${process.env.REACT_APP_API_BASE_URL}/${portMarker.image}`} style={{ borderRadius: '5px', width: '380px', height: '220px' }} alt={portMarker.label} />
                                             <p>{portMarker.label}</p>
                                             <p>
                                                 <svg viewBox="0 0 24 24" fill="none" height="25" width="25" xmlns="http://www.w3.org/2000/svg"> <circle cx="12" cy="10" r="3" stroke="#00afef" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></circle> <path d="M19 9.75C19 15.375 12 21 12 21C12 21 5 15.375 5 9.75C5 6.02208 8.13401 3 12 3C15.866 3 19 6.02208 19 9.75Z" stroke="#00afef" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>

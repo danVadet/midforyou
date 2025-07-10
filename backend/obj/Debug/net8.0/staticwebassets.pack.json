@@ -29,10 +29,6 @@
       "PackagePath": "staticwebassets\\Images\\PortMarkers\\Acre\\Aeroporto de Rio Branco.jpg"
     },
     {
-      "Id": "D:\\PROJETOS\\MIDFORYOU\\midforyou\\backend\\wwwroot\\Images\\PortMarkers\\Aeroporto  de João Pessoa.jpg",
-      "PackagePath": "staticwebassets\\Images\\PortMarkers\\Aeroporto  de João Pessoa.jpg"
-    },
-    {
       "Id": "D:\\PROJETOS\\MIDFORYOU\\midforyou\\backend\\wwwroot\\Images\\PortMarkers\\Alagoas\\Aeroporto Internacional de Maceió.jpg",
       "PackagePath": "staticwebassets\\Images\\PortMarkers\\Alagoas\\Aeroporto Internacional de Maceió.jpg"
     },
@@ -437,10 +433,6 @@
       "PackagePath": "staticwebassets\\Images\\PortMarkers\\Paraná\\Aeroporto-de-Pato-Branco.jpg"
     },
     {
-      "Id": "D:\\PROJETOS\\MIDFORYOU\\midforyou\\backend\\wwwroot\\Images\\PortMarkers\\Paraná\\Porto Paranaguá.jpg",
-      "PackagePath": "staticwebassets\\Images\\PortMarkers\\Paraná\\Porto Paranaguá.jpg"
-    },
-    {
       "Id": "D:\\PROJETOS\\MIDFORYOU\\midforyou\\backend\\wwwroot\\Images\\PortMarkers\\Paraná\\Porto de Antonina.jpg",
       "PackagePath": "staticwebassets\\Images\\PortMarkers\\Paraná\\Porto de Antonina.jpg"
     },
@@ -621,14 +613,6 @@
       "PackagePath": "staticwebassets\\Images\\PortMarkers\\Piauí\\Porto de Luís Correia.jpg"
     },
     {
-      "Id": "D:\\PROJETOS\\MIDFORYOU\\midforyou\\backend\\wwwroot\\Images\\PortMarkers\\Porto de Cabedelo.jpg",
-      "PackagePath": "staticwebassets\\Images\\PortMarkers\\Porto de Cabedelo.jpg"
-    },
-    {
-      "Id": "D:\\PROJETOS\\MIDFORYOU\\midforyou\\backend\\wwwroot\\Images\\PortMarkers\\Porto de Santos.jpg",
-      "PackagePath": "staticwebassets\\Images\\PortMarkers\\Porto de Santos.jpg"
-    },
-    {
       "Id": "D:\\PROJETOS\\MIDFORYOU\\midforyou\\backend\\wwwroot\\Images\\PortMarkers\\Rio Grande do Norte\\Aeroporto Internacional de Natal.jpg",
       "PackagePath": "staticwebassets\\Images\\PortMarkers\\Rio Grande do Norte\\Aeroporto Internacional de Natal.jpg"
     },
@@ -709,8 +693,8 @@
       "PackagePath": "staticwebassets\\Images\\PortMarkers\\Rio Grande do Sul\\Aeroporto-de-Uruguaiana.jpg"
     },
     {
-      "Id": "D:\\PROJETOS\\MIDFORYOU\\midforyou\\backend\\wwwroot\\Images\\PortMarkers\\Rio Grande do Sul\\Porto Rio Grande.jpg",
-      "PackagePath": "staticwebassets\\Images\\PortMarkers\\Rio Grande do Sul\\Porto Rio Grande.jpg"
+      "Id": "D:\\PROJETOS\\MIDFORYOU\\midforyou\\backend\\wwwroot\\Images\\PortMarkers\\Rio Grande do Sul\\Captura de Tela (175).png",
+      "PackagePath": "staticwebassets\\Images\\PortMarkers\\Rio Grande do Sul\\Captura de Tela (175).png"
     },
     {
       "Id": "D:\\PROJETOS\\MIDFORYOU\\midforyou\\backend\\wwwroot\\Images\\PortMarkers\\Rio Grande do Sul\\Porto de Cachoeira do Sul.jpg",
@@ -967,6 +951,10 @@
     {
       "Id": "D:\\PROJETOS\\MIDFORYOU\\midforyou\\backend\\wwwroot\\database\\midforyou.db",
       "PackagePath": "staticwebassets\\database\\midforyou.db"
+    },
+    {
+      "Id": "D:\\PROJETOS\\MIDFORYOU\\midforyou\\backend\\wwwroot\\database\\midforyou.sqbpro",
+      "PackagePath": "staticwebassets\\database\\midforyou.sqbpro"
     },
     {
       "Id": "D:\\PROJETOS\\MIDFORYOU\\midforyou\\backend\\wwwroot\\favicon.ico",

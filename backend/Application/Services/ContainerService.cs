@@ -29,7 +29,8 @@ public class ContainerService : IContainerService
             await createContainerRequest.pic.CopyToAsync(stream);
         }
 
-        createContainerRequest.image = $"{_httpContextAccessor.HttpContext.Request.Scheme}://{_httpContextAccessor.HttpContext.Request.Host}/Images/Containers/{createContainerRequest.pic.FileName}";
+        // createContainerRequest.image = $"{_httpContextAccessor.HttpContext.Request.Scheme}://{_httpContextAccessor.HttpContext.Request.Host}/Images/Containers/{createContainerRequest.pic.FileName}";
+        createContainerRequest.image = $"Images/Containers/{createContainerRequest.pic.FileName}";
         createContainerRequest.capacityWeight = createContainerRequest.capacityWeight * 1000;
         createContainerRequest.products = products;
         var container = _mapper.Map<Container>(createContainerRequest);
