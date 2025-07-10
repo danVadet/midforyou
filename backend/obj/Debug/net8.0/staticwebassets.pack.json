@@ -693,10 +693,6 @@
       "PackagePath": "staticwebassets\\Images\\PortMarkers\\Rio Grande do Sul\\Aeroporto-de-Uruguaiana.jpg"
     },
     {
-      "Id": "D:\\PROJETOS\\MIDFORYOU\\midforyou\\backend\\wwwroot\\Images\\PortMarkers\\Rio Grande do Sul\\Captura de Tela (175).png",
-      "PackagePath": "staticwebassets\\Images\\PortMarkers\\Rio Grande do Sul\\Captura de Tela (175).png"
-    },
-    {
       "Id": "D:\\PROJETOS\\MIDFORYOU\\midforyou\\backend\\wwwroot\\Images\\PortMarkers\\Rio Grande do Sul\\Porto de Cachoeira do Sul.jpg",
       "PackagePath": "staticwebassets\\Images\\PortMarkers\\Rio Grande do Sul\\Porto de Cachoeira do Sul.jpg"
     },
@@ -951,10 +947,6 @@
     {
       "Id": "D:\\PROJETOS\\MIDFORYOU\\midforyou\\backend\\wwwroot\\database\\midforyou.db",
       "PackagePath": "staticwebassets\\database\\midforyou.db"
-    },
-    {
-      "Id": "D:\\PROJETOS\\MIDFORYOU\\midforyou\\backend\\wwwroot\\database\\midforyou.sqbpro",
-      "PackagePath": "staticwebassets\\database\\midforyou.sqbpro"
     },
     {
       "Id": "D:\\PROJETOS\\MIDFORYOU\\midforyou\\backend\\wwwroot\\favicon.ico",

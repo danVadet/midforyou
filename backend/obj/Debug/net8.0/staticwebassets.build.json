@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "AhccwSFt6/aWcGZ4YoSncw/1fwdSIFw18QVcAaHxiGM=",
+  "Hash": "ovnvwuRkMgTKpALzSQhsjW0qjddaJrNBM71IAfyxZac=",
   "Source": "backend",
   "BasePath": "_content/backend",
   "Mode": "Default",
@@ -91,25 +91,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\database\\midforyou.db"
-    },
-    {
-      "Identity": "D:\\PROJETOS\\MIDFORYOU\\midforyou\\backend\\wwwroot\\database\\midforyou.sqbpro",
-      "SourceId": "backend",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\PROJETOS\\MIDFORYOU\\midforyou\\backend\\wwwroot\\",
-      "BasePath": "_content/backend",
-      "RelativePath": "database/midforyou.sqbpro",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\database\\midforyou.sqbpro"
     },
     {
       "Identity": "D:\\PROJETOS\\MIDFORYOU\\midforyou\\backend\\wwwroot\\favicon.ico",
@@ -3663,25 +3644,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Images\\PortMarkers\\Rio Grande do Sul\\Aeroporto-de-Uruguaiana.jpg"
-    },
-    {
-      "Identity": "D:\\PROJETOS\\MIDFORYOU\\midforyou\\backend\\wwwroot\\Images\\PortMarkers\\Rio Grande do Sul\\Captura de Tela (175).png",
-      "SourceId": "backend",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\PROJETOS\\MIDFORYOU\\midforyou\\backend\\wwwroot\\",
-      "BasePath": "_content/backend",
-      "RelativePath": "Images/PortMarkers/Rio Grande do Sul/Captura de Tela (175).png",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\Images\\PortMarkers\\Rio Grande do Sul\\Captura de Tela (175).png"
     },
     {
       "Identity": "D:\\PROJETOS\\MIDFORYOU\\midforyou\\backend\\wwwroot\\Images\\PortMarkers\\Rio Grande do Sul\\Porto de Cachoeira do Sul.jpg",

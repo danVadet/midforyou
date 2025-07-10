@@ -10,7 +10,7 @@ using backend.Infrastructure;
 namespace backend.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250708165654_createInitial")]
+    [Migration("20250710190733_createInitial")]
     partial class createInitial
     {
         /// <inheritdoc />
