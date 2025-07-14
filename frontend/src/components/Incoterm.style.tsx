@@ -7,6 +7,13 @@ export const IncotermsWrapper = styled.div`
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    height: 78vh;
+
+     @media (max-width: 767px) {
+        height: 120vh;
+      }
+
+
   
     .gary {
         
@@ -108,9 +115,8 @@ export const IncotermsWrapper = styled.div`
     }
 
     .title {
-      text-align: left;
-      margin: 40px;
-      font-size: 48px;
+      text-align: center;
+      font-size: 36px;
 
 
         @media (max-width: 991px) {
@@ -126,6 +132,7 @@ export const IncotermsWrapper = styled.div`
     }
 
     .inconterms-informations {
+       
       display: flex;
       flex-direction: column;
       width: 100%;
@@ -161,7 +168,7 @@ export const IncotermsWrapper = styled.div`
         padding: 1rem;
         background-color: rgb(217, 217, 217);
         max-width: fit-content;
-        min-width: 300px;
+        min-width: 250px;
         height: 50px;
         cursor: pointer;
         margin: 8px;

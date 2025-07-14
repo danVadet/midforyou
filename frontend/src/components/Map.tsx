@@ -161,23 +161,23 @@ export const Map = () => {
     }, [selectedState])
 
     return (
-        <section ref={portsBrazilRef} id={`${(language === "pt" && multiLang.pt.navItem.brazilPorts.toLowerCase()) || (language === "en" && multiLang.en.navItem.brazilPorts.toLowerCase()) || (language === "es" && multiLang.es.navItem.brazilPorts.toLowerCase())}Section`}>
-            <h2>Portos do Brasil </h2>
+        <section ref={portsBrazilRef} className={`${styles.mapComponent}`} id={`${(language === "pt" && multiLang.pt.navItem.brazilPorts.toLowerCase()) || (language === "en" && multiLang.en.navItem.brazilPorts.toLowerCase()) || (language === "es" && multiLang.es.navItem.brazilPorts.toLowerCase())}Section`}>
+            <h1 className={`${styles.title}`}>Portos do Brasil </h1>
             {isLoaded && (
                 <GoogleMap
-                    mapContainerStyle={{ width: "100%", height: "850px", borderRadius: "10px" }}
+                    mapContainerStyle={{ width: "100%", height: "100%", borderRadius: "10px" }}
                     center={center}
                     zoom={zoom}               
                     >
                     <MapControl position="RIGHT_TOP">
                             <h2>{selectedState?.label ? selectedState?.label : "Brasil"} </h2>
-                            <div style={{ display: "flex", gap: "8px", alignItems: "center", justifyContent: "center" }}>
+                            <div className={`${styles.counterLabel}`}>
 
                                 <CounterAirPort targetNumber={countAirPorts} />
                                 <CounterWaterPort targetNumber={countWaterPorts} />
                             </div>
 
-                            <div style={{ display: "flex", gap: "5px", alignItems: "center", justifyContent: "center" }}>
+                            <div className={`${styles.selectContainer}`}>
                                 <select className={`${styles.selectState}`} onChange={(e) => onSelectChangeState(e)}>
 
                                     <option value="">Todos os estados do Brasil</option>

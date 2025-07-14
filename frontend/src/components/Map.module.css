@@ -1,14 +1,41 @@
 
+.mapComponent {
+  margin: 10rem 0;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  position: relative;
+  z-index: 1;
+  height: 80vh;
+  gap: 30px;
+}
+.mapComponent .title {
+  font-size: 36px;
+}
 .map_marker_label {
     background: rgb(255, 255, 255);
     border-radius: 500px;
     padding: 0 4px;
     margin-bottom: 20px;
   }
+  .counterLabel {
+     display: flex;
+     gap: 8px;
+     align-items: center;
+     justify-content: center;
+  }
+
+.selectContainer {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  justify-content: center;
+}
 
 .selectState, .selectPortMarker {
   font-size: 14px;
   height: 30px;
+  width: 100%;
   border: 1px solid #ccc;
   border-radius: 4px;
   outline: none;
@@ -23,8 +50,19 @@ p {
 
 @media (max-width: 767px){
 
-  .selectState, .selectPortMarker {
-  font-size: 12px;
+  .mapComponent {
+      padding: 1rem;
 }
-  
+
+
+.selectContainer {
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+
+}
+.selectState, .selectPortMarker {
+  font-size: 10px;
+}
+
 }

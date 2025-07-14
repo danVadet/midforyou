@@ -1,4 +1,3 @@
-import React, { ChangeEvent, FormEvent, useContext, useEffect, useState } from 'react';
 import styles from './Contact.module.css'
 import { IVisitor } from '../models/IVisitor';
 import axios from 'axios';
@@ -10,6 +9,7 @@ import { ICity } from '../models/ICity';
 import { IState } from '../models/IState';
 import { maskCNPJ } from '../utils/maskCNPJ';
 import { maskPhone } from '../utils/maskPhone'
+import { ChangeEvent, FormEvent, useContext, useEffect, useState } from 'react';
 
 
 interface IValues {
@@ -179,12 +179,12 @@ export const Contact = () => {
 
   return (
 
-    <section ref={contactRef} className={`${styles.contato}`} id={`${(language === "pt" && multiLang.pt.navItem.contact.toLowerCase()) || (language === "en" && multiLang.en.navItem.contact.toLowerCase()) || (language === "es" && multiLang.es.navItem.contact.toLowerCase())}Section`}>
+    <section ref={contactRef} className={`${styles.contact}`} id={`${(language === "pt" && multiLang.pt.navItem.contact.toLowerCase()) || (language === "en" && multiLang.en.navItem.contact.toLowerCase()) || (language === "es" && multiLang.es.navItem.contact.toLowerCase())}Section`}>
 
 
       {sentData ? <>{message && <Message type='sucess' message='Mensagem enviada com sucesso, e até em breve faremos contato.' />}</> : <form onSubmit={(e) => onSubmit(e)} className={`${styles.formContainer}`}>
 
-          <h1> Contato</h1>
+          <h1 className={`${styles.title}`}> Contato</h1>
 
 
         <div className={`${styles.formInline}`}>

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "ovnvwuRkMgTKpALzSQhsjW0qjddaJrNBM71IAfyxZac=",
+  "Hash": "AVs2sSlDXxrPr5zguCOV/etsfmVl1CS4m2Lmv7hu4LY=",
   "Source": "backend",
   "BasePath": "_content/backend",
   "Mode": "Default",
@@ -4252,6 +4252,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Images\\PortMarkers\\Santa Catarina\\Porto de São Francisco do Sul.jpg"
+    },
+    {
+      "Identity": "D:\\PROJETOS\\MIDFORYOU\\midforyou\\backend\\wwwroot\\Images\\PortMarkers\\Santa Catarina\\Porto do Rio Grande.jpg",
+      "SourceId": "backend",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\PROJETOS\\MIDFORYOU\\midforyou\\backend\\wwwroot\\",
+      "BasePath": "_content/backend",
+      "RelativePath": "Images/PortMarkers/Santa Catarina/Porto do Rio Grande.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Images\\PortMarkers\\Santa Catarina\\Porto do Rio Grande.jpg"
     },
     {
       "Identity": "D:\\PROJETOS\\MIDFORYOU\\midforyou\\backend\\wwwroot\\Images\\PortMarkers\\São Paulo\\Aeroporto de Campinas.jpg",

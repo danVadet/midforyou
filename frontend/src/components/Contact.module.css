@@ -1,9 +1,12 @@
 
 
 
-.contato {
-    background: url("../../public/assets/backgroundContact.jpg") no-repeat center top;  
-
+.contact {
+    background: url("../../public/assets/backgroundContact.jpg") no-repeat center top;
+    background-size: cover;
+}
+.contact .title {
+    font-size: 36px;
 }
 
 .formContainer {
@@ -110,6 +113,8 @@
 
 
 @media (max-width: 767px) {
+
+   
 
     .formContainer {
         display: flex;

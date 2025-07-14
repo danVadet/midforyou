@@ -8,7 +8,15 @@
     background: rgba(0, 0, 0, 0.5);
     z-index: 1000;
 }
-.modal .closeButton {
+.modal .closeButton  {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    padding: 12px;
+    border-radius: 50%;
+}
+
+.modal .closeButton  {
     position: absolute;
     top: -10px;
     right: -10px;
@@ -30,10 +38,12 @@
     border-radius: 20px;
 }
 .taxInfo {
+    margin: 8px;
+    padding: 12px;
     background: rgb(2, 103, 177);
     color: rgb(255, 255, 255);
-    padding: 12px;
-    margin: 8px;
+    border-radius: 5px;
+
 
 }
 .taxInfo_titles {
@@ -55,16 +65,21 @@
     padding: 8px;
 }
 .filterPeriod {
+    margin: 8px;
+    padding: 12px;
     display: flex;
     align-items: center;
     gap: 8px;
     background: rgb(0, 175, 239);
-    padding: 12px;
-    margin: 8px;
+    border-radius: 5px;
     color: rgb(255, 255, 255);
 }
 .filterPeriod button {
     padding: 8px;
+    background: rgb(2, 103, 177);
+    color: rgb(255, 255, 255);
+    border: 0;
+    border-radius: 5px;
 }
 button {
     background: rgb(2, 103, 177);
@@ -78,6 +93,40 @@ button {
 }
 .danger {
     background: rgb(213, 21, 11)
+
+}
+
+@media (max-width: 767px) {
+
+    .modalBody {
+    padding: 10px;
+    width: 95%;
+    border-radius: 20px;
+    
+    }
+
+    .modal .closeButton {
+    padding: 6px;
+
+    }
+    .taxInfo {
+    padding: 6px;
+   }
+   .filterPeriod {
+    padding: 6px;
+}
+
+    .taxInfo_titles {
+     gap: 10px;
+    }
+    .taxInfo_values {
+    gap: 10px;
+    }
+
+    .filterPeriod button {
+    padding: 2px;
+}
+
 
 }
 

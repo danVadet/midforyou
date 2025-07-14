@@ -304,19 +304,25 @@ export const CBMCalculator = () => {
             getSumTotalVolume();
             getSumTotalQuantity();
             getContainers();
-            getContainer(1);
         }
     }, [searchProduct, unsavedProduct]);
 
     return (
-        <section ref={cbmCalculatorRef} id={`${(language === "pt" && multiLang.pt.navItem.cbmCalculator.toLowerCase()) || (language === "en" && multiLang.en.navItem.cbmCalculator.toLowerCase()) || (language === "es" && multiLang.es.navItem.cbmCalculator.toLowerCase())}Section`}>
-                  <h1>Calculadora CBM</h1>
+        <section  ref={cbmCalculatorRef} id={`${(language === "pt" && multiLang.pt.navItem.cbmCalculator.toLowerCase()) || (language === "en" && multiLang.en.navItem.cbmCalculator.toLowerCase()) || (language === "es" && multiLang.es.navItem.cbmCalculator.toLowerCase())}Section`}>
 
-            <div className={`${styles.container}`}>
+
+            
+            <div className={`${styles.calculatorComponent}`}>
+
+                 <h1 className={`${styles.title}`}>Calculadora CBM</h1>
+                 
+
+
+
 
           
-
-                 <div>
+                  <div className={`${styles.container}`}>
+                     <div>
                         <form onSubmit={(e) => onSubmit(e)} className={`${styles.formContainer}`}>
 
                                                 <div className={`${styles.formGroup}`}>
@@ -329,14 +335,17 @@ export const CBMCalculator = () => {
 
                   
                    
+                      <div className={`${styles.formGroup}`}>
 
-                     <select onChange={(e) => onChangeSelectMeasureUnit(e)}>
-                        <option hidden>Selecionar a unidade de medida...</option>
+                         <select onChange={(e) => onChangeSelectMeasureUnit(e)}>
+                        <option hidden>Seleciona a unidade de medida...</option>
                         {measureUnits.map((measureUnit, index) => (
                             <option key={index} value={measureUnit.value}>{measureUnit.name}</option>
 
                         ))}
                     </select>
+
+                      </div>
 
                       <div className={`${styles.formGroup}`}>
                         
@@ -474,33 +483,23 @@ export const CBMCalculator = () => {
 
                   <div className={`${styles.containerInfo}`}>
 
-                    <div className={`${styles.selectedContainer}`}>
+                    <div className={`${styles.selectContainer}`}>
                         <select onChange={(e) => onChangeSelectContainer(e)}>
+                            <option hidden>Seleciona o tipo de container...</option>
                             {containers.map((container, index) => (
                                 <option key={index} value={container.id}>{container.name}</option>
 
                             ))}
                         </select>
 
-
-                    
-                         {!loading ? <div> <img className={`${styles.imageContainer}`} src={selectedContainer.image ? `${process.env.REACT_APP_API_BASE_URL}/${selectedContainer.image}` : `./assets/containerPlaceholder.png`} alt="" /> </div> :
+                          {!loading ? <div> <img className={`${styles.imageContainer}`} src={selectedContainer.image ? `${process.env.REACT_APP_API_BASE_URL}/${selectedContainer.image}` : `./assets/containerPlaceholder.png`} alt="" /> </div> :
                             <div className={`${styles.imageLoader}`}>
                                 <img className={`${styles.imageContainer}`} src={`./assets/containerPlaceholder.png`} alt="" />
                                 <div className={`${styles.loader}`}>
                                     <span className={`${styles.spinner}`}></span>
                                 </div>
                             </div>}
-                        
-
-
-                    </div>
-
-                    <div>
-
-
-
-                        {pctWeight <= 100 && pctVolume <= 100 ?
+                               {pctWeight <= 100 && pctVolume <= 100 ?
                             <>
 
                                 <div className={`${styles.containerCargoTotalWeight}`}>
@@ -533,9 +532,20 @@ export const CBMCalculator = () => {
                                     </div>
                                 </div>
                             </> : <Message type='error' message='Esse container não cabe' />}
+
+                    </div>
+
+                    <div>
+
+
+
+                     
                     </div>
 
                 </div>
+
+                  </div>
+                
             </div>
         </section>
     );
