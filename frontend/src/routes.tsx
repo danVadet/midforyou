@@ -22,11 +22,11 @@ export const RoutesProvider = () => {
                     <Route path="/" element={<Main navLangs={multiLang.pt.navLangs} services={multiLang.pt.services} incoterms={multiLang.pt.incoterms} incotermIcons={multiLang.pt.incotermIcons} />} />
                 </Routes>
 
-                {state?.previousLocation && (
+                {state && (
                     <Routes>
-                        <Route path="/en/:code" element={<TaxModal closeModal={() => { navigate(state.previousLocation || "/en")}} />}></Route>
-                        <Route path="/es/:code" element={<TaxModal closeModal={() => { navigate(state.previousLocation || "/es")}} />}></Route>
-                        <Route path="/:code"  element={<TaxModal closeModal={() => { navigate(state.previousLocation || "/")}} />}></Route>
+                        <Route path="/en/:code" element={<TaxModal closeModal={() => {(state ? navigate(-1) : navigate("/en") )}} />}></Route>
+                        <Route path="/es/:code" element={<TaxModal closeModal={() => {(state ? navigate(-1) : navigate("/es") )}} />}></Route>
+                        <Route path="/:code"  element={<TaxModal closeModal={() => {(state ? navigate(-1) : navigate("/"))}} />}></Route>
                     </Routes>
                 )}
 

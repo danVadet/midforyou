@@ -10,15 +10,15 @@ export const FormatCurrencyName = (props: IFormatCurrencySymbolProps) => {
 
     switch (key) {
         case 'USDBRL':
-          return 'Dólar';
+          return 'DÓLAR';
         case 'EURBRL':
-            return 'Euro';
+            return 'EURO';
         case 'CNYBRL':
-          return 'Yarn';
+          return 'YARN';
         case 'GBPBRL':
-          return 'Libra';
+          return 'LIBRA';
         case 'ARSBRL':
-          return 'Peso';
+          return 'PESO';
         default:
           return 'R$';
       };

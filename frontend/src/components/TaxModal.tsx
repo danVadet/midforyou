@@ -21,14 +21,13 @@ export const TaxModal = (props: ITaxModalProps) => {
     const [diasCotados, setDiasCotados] = useState<Date[]>([]);
     const [days, setDays] = useState(1);
     let { code } = useParams();
-    let [ currentTax, setCurrentTax ] = useState<ITax>(); 
+    let [currentTax, setCurrentTax] = useState<ITax>();
+
+    const today = new Date();
 
     useEffect(() => {
+        getData();
 
-
-        
-        getData();    
-    
     }, [days])
 
     const hoverCrossHair = {
@@ -59,10 +58,11 @@ export const TaxModal = (props: ITaxModalProps) => {
 
         const response = await axios.get(`https://economia.awesomeapi.com.br/json/last/${code}`);
         const data = response.data;
- 
+
         if (days === 7) {
             const response = await axios.get(`https://economia.awesomeapi.com.br/json/daily/${code}/${days}`);
             const data = response.data;
+
 
             const array: number[] = [];
 
@@ -72,11 +72,11 @@ export const TaxModal = (props: ITaxModalProps) => {
 
             const dates: Date[] = [];
 
-            for (let i = 0; i < days +  1; i++) {
-                const date = new Date();
+            for (let i = 0; i < days; i++) {
 
-                date.setDate(date.getDate() - i);
-                dates.push(date);
+                const oneWeekAgo = new Date();
+                oneWeekAgo.setDate(today.getDate() - i);
+                dates.push(oneWeekAgo);
             }
 
             setQuotation(array.reverse());
@@ -95,10 +95,10 @@ export const TaxModal = (props: ITaxModalProps) => {
             const dates: Date[] = [];
 
             for (let i = 0; i < days; i++) {
-                const date = new Date();
 
-                date.setDate(date.getDate() - i);
-                dates.push(date);
+                const oneMonthAgo = new Date();
+                oneMonthAgo.setDate(today.getDate() - i);
+                dates.push(oneMonthAgo);
 
             }
             setQuotation(array.reverse());
@@ -118,10 +118,9 @@ export const TaxModal = (props: ITaxModalProps) => {
             const dates: Date[] = [];
 
             for (let i = 0; i < days; i++) {
-                const date = new Date();
-
-                date.setDate(date.getDate() - i);
-                dates.push(date);
+                const threeMonthsAgo = new Date();
+                threeMonthsAgo.setDate(today.getDate() - i);
+                dates.push(threeMonthsAgo);
             }
             setQuotation(array.reverse());
             setDiasCotados(dates.reverse());
@@ -129,7 +128,7 @@ export const TaxModal = (props: ITaxModalProps) => {
         } else if (days === 180) {
             const response = await axios.get(`https://economia.awesomeapi.com.br/json/daily/${code}/${days}`);
             const data = response.data;
-           
+
             const array: number[] = [];
 
             Object.keys(data).map((key) => {
@@ -138,13 +137,9 @@ export const TaxModal = (props: ITaxModalProps) => {
             const dates: Date[] = [];
 
             for (let i = 0; i < days; i++) {
-
-                const date = new Date();
-
-                date.setDate(date.getDate() - i);
-                dates.push(date);
-
-
+                const sixMonthsAgo = new Date();
+                sixMonthsAgo.setDate(today.getDate() - i);
+                dates.push(sixMonthsAgo);
             }
             setQuotation(array.reverse());
             setDiasCotados(dates.reverse());
@@ -163,17 +158,15 @@ export const TaxModal = (props: ITaxModalProps) => {
             const dates: Date[] = [];
 
             for (let i = 0; i < days; i++) {
-                const date = new Date();
-                date.setDate(date.getDate() - i);
-
-
-                dates.push(date);
-
+                const oneYearAgo = new Date();
+                oneYearAgo.setDate(today.getDate() - i);
+                dates.push(oneYearAgo);
             }
             setQuotation(array.reverse());
             setDiasCotados(dates.reverse());
 
-        } else  {
+
+        } else {
             const date = new Date();
 
             let day = date.getDate();
@@ -187,9 +180,9 @@ export const TaxModal = (props: ITaxModalProps) => {
 
             Object.keys(data).map((key) => {
                 array.push(data[key].bid);
-        
+
             });
-            
+
             setQuotation(array.reverse());
 
             const dates: Date[] = [];
@@ -200,117 +193,116 @@ export const TaxModal = (props: ITaxModalProps) => {
             setDiasCotados(dates.reverse());
         }
 
-          Object.keys(data).map((key) => {
-                currentTax = { name: key as ITaxKeys, currencyCode: `${data[key].code}-BRL`, bid: data[key].bid, ask: data[key].ask, variation: data[key].pctChange, high: data[key].high, low: data[key].low, date: data[key].timestamp };
-            
-            });
-            setCurrentTax(currentTax);
+        Object.keys(data).map((key) => {
+            currentTax = { name: key as ITaxKeys, currencyCode: `${data[key].code}-BRL`, bid: data[key].bid, ask: data[key].ask, variation: data[key].pctChange, high: data[key].high, low: data[key].low, date: data[key].timestamp };
+
+        });
+        setCurrentTax(currentTax);
     }
 
     return (
         <div className={`${styles.modal}`}>
-                <div className={`${styles.modalBody}`}>
-                                <button className={`${styles.closeButton}`} onClick={() => props.closeModal()}>X</button>
+            <div className={`${styles.modalBody}`}>
+                <button className={`${styles.closeButton}`} onClick={() => props.closeModal()}>X</button>
 
 
-                    <div className={`${styles.taxInfo}`}>
-                        <p className={`${styles.taxInfo_title}`} >{ currentTax?.name && FormatCurrencyName({ key: currentTax?.name })}</p>
-                        <div className={`${styles.taxInfo_titles}`}>
-                            <p>COMPRA</p>
-                            <p>VENDA</p>
-                            <p>MÁXIMO</p>
-                            <p>MÍNIMO</p>
-                            <p>VARIAÇÃO</p>
-
-                        </div>
-                        <div className={`${styles.taxInfo_values}`}>
-                            <p>R${parseFloat(`${currentTax?.bid}`).toFixed(3)}</p>
-                            <p>R${parseFloat(`${currentTax?.ask}`).toFixed(3)}</p>
-                            <p>R${parseFloat(`${currentTax?.high}`).toFixed(3)}</p>
-                            <p>R${parseFloat(`${currentTax?.low}`).toFixed(3)}</p>
-                            {currentTax?.variation && currentTax?.variation >= 0 ? <p className={`${styles.variation} ${styles.success}`}> {parseFloat(`${currentTax?.variation}`).toFixed(2)}%</p> : <p className={`${styles.variation} ${styles.danger}`}> {parseFloat(`${currentTax?.variation}`).toFixed(2)}%</p>}
-                        </div>
-
+                <div className={`${styles.taxInfo}`}>
+                    <p className={`${styles.taxInfo_title}`} >{currentTax?.name && FormatCurrencyName({ key: currentTax?.name })}</p>
+                    <div className={`${styles.taxInfo_titles}`}>
+                        <p>COMPRA</p>
+                        <p>VENDA</p>
+                        <p>MÁXIMO</p>
+                        <p>MÍNIMO</p>
+                        <p>VARIAÇÃO</p>
 
                     </div>
-
-                    <div className={`${styles.filterPeriod}`}>
-                        <h5>FILTRAR PERÍODO</h5>
-                        <button onClick={() => setDays(1)} className={`${styles.selectPeriod}`}> 1 dia</button>
-                        <button onClick={() => setDays(7)} className={`${styles.selectPeriod}`}>  1 semana</button>
-                        <button onClick={() => setDays(30)} className={`${styles.selectPeriod}`}>  1 mês</button>
-                        <button onClick={() => setDays(90)} className={`${styles.selectPeriod}`}>  3 meses </button>
-                        <button onClick={() => setDays(180)} className={`${styles.selectPeriod}`}>6 meses</button>
-                        <button onClick={() => setDays(365)} className={`${styles.selectPeriod}`}>  1 ano </button>
+                    <div className={`${styles.taxInfo_values}`}>
+                        <p>R${parseFloat(`${currentTax?.bid}`).toFixed(3)}</p>
+                        <p>R${parseFloat(`${currentTax?.ask}`).toFixed(3)}</p>
+                        <p>R${parseFloat(`${currentTax?.high}`).toFixed(3)}</p>
+                        <p>R${parseFloat(`${currentTax?.low}`).toFixed(3)}</p>
+                        {currentTax?.variation && currentTax?.variation >= 0 ? <p className={`${styles.variation} ${styles.success}`}> {parseFloat(`${currentTax?.variation}`).toFixed(2)}%</p> : <p className={`${styles.variation} ${styles.danger}`}> {parseFloat(`${currentTax?.variation}`).toFixed(2)}%</p>}
                     </div>
-                     <div>
-                        <Line data={{
-                            labels: diasCotados.map(coin => {
-                                let time = coin.getHours() >= 12 ? `${coin.getHours()}:${(coin.getMinutes() < 10 ? '0' : '') + coin.getMinutes()}` : `${coin.getHours()}: ${(coin.getMinutes() < 10 ? '0' : '') + coin.getMinutes()}`;
-                                return days === 1 ? time : ` ${coin.getDate() } ${coin.getMonth()} ${coin.getFullYear()}`;
-                            }),
 
 
-                            datasets: [{
-                                data: quotation.map(coin => {
-                                    return coin;
-                                }),
-                                borderColor: 'rgb(0, 140, 196)',
-                                fill: true,
-                                backgroundColor: 'rgba(0, 140, 196, 0.3)',
-                                pointHoverBackgroundColor: 'rgb(0, 140, 196)',
-                                pointHoverBorderWidth: 3,
-                                pointRadius: 0
-                            }]
-                        }}
-
-                            plugins={[hoverCrossHair]}
-                            options={{
-                                interaction: {
-                                    intersect: false,
-                                },
-                            
-                                scales: {
-                                
-                                    x: {
-                                        grid: {
-                                            display: false,
-                                        },
-                                    }
-                                },
-                                plugins: {                                    
-                                    tooltip: {
-                                        backgroundColor: 'rgb(255,255,255)',
-                                        padding: 10,
-                                        bodyColor: '#000',
-                                        borderColor: 'rgb(0, 140, 196)',
-                                        borderWidth: 1,
-                                        displayColors: false,
-                                        titleColor: 'rgb(0, 140, 196)',
-                                        titleAlign: 'center',
-                                        titleFont: {
-                                            size: 12,
-                                        },
-    
-                                        
-
-                                        callbacks: {
-                                            title: (context) => {
-                                                return `R$  ${ parseFloat(`${quotation[context[0].dataIndex]}`).toFixed(3)}`;
-                                            },
-                                            label: (context) => {
-                                                return `${context.label}`;
-                                            },
-                                        },
-                                    },
-
-                                }
-                            }} />
-                    </div>
                 </div>
 
-        
+                <div className={`${styles.filterPeriod}`}>
+                    <h3>FILTRAR PERÍODO</h3>
+                    <button onClick={() => setDays(1)} className={`${days === 1 ? styles.selectedPeriod : styles.selectPeriod}`}> 1 dia</button>
+                    <button onClick={() => setDays(7)} className={`${days === 7 ? styles.selectedPeriod : styles.selectPeriod}`}>  1 semana</button>
+                    <button onClick={() => setDays(30)} className={`${days === 30 ? styles.selectedPeriod : styles.selectPeriod}`}>  1 mês</button>
+                    <button onClick={() => setDays(90)} className={`${days === 90 ? styles.selectedPeriod : styles.selectPeriod}`}>  3 meses </button>
+                    <button onClick={() => setDays(180)} className={`${days === 180 ? styles.selectedPeriod : styles.selectPeriod}`}>6 meses</button>
+                    <button onClick={() => setDays(365)} className={`${days === 365 ? styles.selectedPeriod : styles.selectPeriod}`}>  1 ano </button>
+                </div>
 
+
+                <div className={`${styles.graphicLine}`}>
+
+                    <Line data={{
+                        labels: diasCotados.map(coin => {
+                            let time = coin.getHours() >= 12 ? `${coin.getHours()}:${(coin.getMinutes() < 10 ? '0' : '') + coin.getMinutes()}` : `${coin.getHours()}: ${(coin.getMinutes() < 10 ? '0' : '') + coin.getMinutes()}`;
+                            return days === 1 ? time : ` ${coin.toLocaleDateString()}`;
+                        }),
+
+                        datasets: [{
+                            data: quotation.map(coin => {
+                                return coin;
+                            }),
+                            borderColor: 'rgb(0, 140, 196)',
+                            fill: true,
+                            backgroundColor: 'rgba(0, 140, 196, 0.3)',
+                            pointHoverBackgroundColor: 'rgb(0, 140, 196)',
+                            pointHoverBorderWidth: 3,
+                            pointRadius: 0
+                        }]
+                    }}
+
+                        plugins={[hoverCrossHair]}
+                        options={{
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            interaction: {
+                                intersect: false,
+                            },
+
+                            scales: {
+                                x: {
+                                    grid: {
+                                        display: false,
+                                    },
+                                }
+
+                            },
+                            plugins: {
+                                tooltip: {
+                                    backgroundColor: 'rgb(255,255,255)',
+                                    padding: 10,
+                                    bodyColor: '#000',
+                                    borderColor: 'rgb(0, 140, 196)',
+                                    borderWidth: 1,
+                                    displayColors: false,
+                                    titleColor: 'rgb(0, 140, 196)',
+                                    titleAlign: 'center',
+                                    titleFont: {
+                                        size: 12,
+                                    },
+
+                                    callbacks: {
+                                        title: (context) => {
+                                            return `R$  ${parseFloat(`${quotation[context[0].dataIndex]}`).toFixed(3)}`;
+                                        },
+                                        label: (context) => {
+                                            return context.label;
+                                        },
+                                    },
+                                },
+
+                            }
+                        }} />
+                </div>
+            </div>
         </div>
     );
 }
