@@ -12,6 +12,8 @@ export const WhatsappButton = () => {
           href={url}
       target="_blank"
       rel="noopener noreferrer"
+            title="Fale conosco no WhatsApp"
+
         
              className={`${styles.container}`}>
             <img src={`../assets/whatsapp.svg`} alt="" />
