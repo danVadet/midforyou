@@ -11,6 +11,7 @@ import { IIncoterm } from '../models/IIncoterm';
 import { IIncotermIcon } from '../models/IIncotermIcon';
 import { Home } from '../components/Home';
 import { INavLang } from '../models/INavLang';
+import { WhatsappButton } from '../components/WhatsappButton';
 
 
 export interface IMainProps {
@@ -31,10 +32,11 @@ export interface IMainProps {
       <About services={props.services} />
       <Incoterms incoterms={props.incoterms} incotermsIcons={props.incotermIcons} />
        <CBMCalculator />
-
       <Map />
       <Contact />
       <Footer />
+      <WhatsappButton/>
+
     </>
 
 
