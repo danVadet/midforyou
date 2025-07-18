@@ -19,6 +19,7 @@ interface IValues {
   companyName: string;
   companyCNPJ: string;
   ramoAtividade: string;
+  state: string;
   city: string;
   message: string;
 }
@@ -77,7 +78,7 @@ export const Contact = () => {
     setVisitor({ ...visitor, [target.name]: target.value })
   }
   const validate = (visitor: IVisitor) => {
-    const errors: { fullName?: string; phoneNumber?: string; email?: string; companyName?: string; companyCNPJ?: string; ramoAtividade?: string; city?: string; subject?: string; message?: string } = {};
+    const errors: { fullName?: string; phoneNumber?: string; email?: string; companyName?: string; companyCNPJ?: string; ramoAtividade?: string; state?: string; city?: string; subject?: string; message?: string } = {};
 
     if (!visitor.fullName) {
       errors.fullName = 'Nome obrigatório';
@@ -102,6 +103,10 @@ export const Contact = () => {
 
     if (!visitor.ramoAtividade) {
       errors.ramoAtividade = 'Ramo de atividade obrigatório';
+    }
+
+     if (!visitor.state) {
+      errors.state = 'Estado obrigatório';
     }
 
     if (!visitor.city) {
@@ -247,13 +252,15 @@ export const Contact = () => {
 
           <div className={styles.formGroup}>
 
-            <select name="state" id="state" onChange={(e) => onSelectChangeState(e)}>
+            <select name="state" id="state" value={visitor.state.id} onChange={(e) => onSelectChangeState(e)}>
               <option value="">Seleciona o estado...</option>
 
               {states.map((state, index) => (
                 <option key={index} value={state.sigla}>{state.nome}</option>
               ))}
             </select>
+            {visitor.state ? "" : errors.state && <p className={styles.formError}>{`${errors.state}`}</p>}
+
 
 
 
@@ -261,13 +268,15 @@ export const Contact = () => {
           </div>
 
           <div className={styles.formGroup}>
-            <select name="city" id="city" onChange={(e) => onSelectChangeCity(e)}>
+            <select name="city" id="city" value={visitor.city.id} onChange={(e) => onSelectChangeCity(e)}>
               <option value="">Seleciona a cidade...</option>
 
               {cities.map((city, index) => (
                 <option key={index} value={city.nome}>{city.nome}</option>
               ))}
             </select>
+              {visitor.city ? "" : errors.city && <p className={styles.formError}>{`${errors.city}`}</p>}
+
 
 
 
