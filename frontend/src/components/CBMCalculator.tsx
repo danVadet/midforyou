@@ -377,7 +377,6 @@ export const CBMCalculator = () => {
                     {product.quantity ? "" : errors.quantity && <p className={styles.formError}>{`${errors.quantity}`}</p>}
 
                     </div>
-                    
 
                     <button className={`${styles.buttonAdd}`}>Adicionar novo produto</button>
                 </form>

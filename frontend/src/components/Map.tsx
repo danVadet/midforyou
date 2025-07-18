@@ -163,8 +163,6 @@ export const Map = () => {
     return (
         <section ref={portsBrazilRef} className={`${styles.mapComponent}`} id={`${(language === "pt" && multiLang.pt.navItem.brazilPorts.toLowerCase()) || (language === "en" && multiLang.en.navItem.brazilPorts.toLowerCase()) || (language === "es" && multiLang.es.navItem.brazilPorts.toLowerCase())}Section`}>
             <h1 className={`${styles.title}`}>Portos do Brasil </h1>
-            
-            
             {isLoaded && (
                 <GoogleMap
                     mapContainerStyle={{ width: "100%", height: "100%", borderRadius: "10px" }}
