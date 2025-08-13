@@ -26,7 +26,7 @@ export const Navbar = (props: IHeaderProps) => {
        `${(language === "pt" && multiLang.pt.navItem.contact) || (language === "en" && multiLang.en.navItem.contact || (language === "es" && multiLang.es.navItem.contact))}`
   ];
 
-  const renderNavLink = (content: string) => {
+  const renderNavLink = (content: string, index: number ) => {
     const scrollToId = `${content.toLowerCase()}Section`;
 
     const handleClickNav = () => {
@@ -38,7 +38,7 @@ export const Navbar = (props: IHeaderProps) => {
     }
 
     return (
-      <li>
+      <li key={index}>
         <a onClick={handleClickNav} className={activeLinkId === content ? styles.activeClass : ""}>{content}</a>
       </li>
     );
@@ -52,7 +52,7 @@ export const Navbar = (props: IHeaderProps) => {
         </div>
 
         <ul className={mobileMenu ? '' : `${styles.hideMobileMenu}`}>
-          {navLinks.map(nav => renderNavLink(nav))}
+          {navLinks.map((nav, index) => renderNavLink(nav, index))}
           <LanguageSelector navLangs={props.navLangs}  />
         </ul>
       </nav>

@@ -13,8 +13,8 @@ public class Visitor
     public required string companyName { get; set; }
     public required string companyCNPJ { get; set;  }
     public required string ramoAtividade { get; set; }
-    public required State state { get; set; }
-    public required City city { get; set; }
+    public required string state { get; set; }
+    public required string city { get; set; }
     
     public required string message { get; set; }
 }

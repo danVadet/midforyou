@@ -14,7 +14,7 @@ export const Home = () => {
 
     return (
         <section ref={homeRef} id={`${(language === "pt" && multiLang.pt.navItem.home.toLowerCase()) || (language === "en" &&  multiLang.en.navItem.home.toLowerCase() ) || (language === "es" &&  multiLang.es.navItem.home.toLowerCase())}Section`} >
-            <Tax />
+            <Tax/>
             <Banner />
                    <div className={`${styles.aboutComponentContainer}`}>
                             <div className={`${styles.aboutTextContainer}`}>

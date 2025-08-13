@@ -1,10 +1,8 @@
-
 import axios from 'axios'
 import styles from './DeleteProductModal.module.css'
 import { IProduct } from '../models/IProduct'
 
 interface IDeleteProductModalProps {
-    message: string
     productCurrent?: IProduct
     selectedContainerId: number;
     closeModal(): void
@@ -32,13 +30,14 @@ export const DeleteProductModal = (props: IDeleteProductModalProps) => {
         props.getSumTotalVolume();
         props.getContainer(props.selectedContainerId);
         props.setShowDeleteMessage();
+
  
     }
     return (
         <>
             <div className={`${styles.modal}`}>
                 <div className={`${styles.modalContainer}`}>
-                    <h2>{props.message}</h2>
+                    <h2>Deseja excluir esse produto?</h2>
                     <div className={`${styles.modalButtonContainer}`}>
                         <button onClick={() => confirmDelete()}>Sim</button>
                         <button onClick={props.closeModal}>Não</button>

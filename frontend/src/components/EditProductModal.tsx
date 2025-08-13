@@ -2,22 +2,23 @@ import styles from './EditProductModal.module.css'
 import { ChangeEvent, FormEvent, useState } from "react";
 import { IProduct } from "../models/IProduct";
 import axios from 'axios';
-import { IMeasureUnit } from '../models/IMeasureUnit';
+import { MeasureUnit } from '../models/Enums/MeasureUnit';
+import { WeightUnit } from '../models/Enums/WeightUnit';
 
-interface IEditProductModalProps {
+export interface IEditProductModalProps {
     currentProduct?: IProduct
     selectedContainerId: number;
-    measureUnits: IMeasureUnit[];
-    selectedMeasureUnit: IMeasureUnit,
+    measureUnits: MeasureUnit[];
+    weightUnits: WeightUnit [];
     closeModal(): void
     getProducts(): void;
-    onChangeSelectMeasureUnit(e: ChangeEvent<HTMLSelectElement>): void;
     getSumTotalWeight(): void;
     getSumTotalVolume(): void;
     getSumTotalQuantity(): void;
     getContainer(id: number): void;
     setShowEditMessage(): void;
     getMeasureUnits(): void;
+    getWeightUnits(): void;
 
 }
 
@@ -33,14 +34,14 @@ export const EditProductModal = (props: IEditProductModalProps) => {
       quantity: props.currentProduct?.quantity || 0,
       weightTotal: props.currentProduct?.weightTotal || 0,
       volumeTotal: props.currentProduct?.volumeTotal || 0,
-      measureUnit: props.currentProduct?.measureUnit || "",
-      measureUnitId: 0,
-  })
-  const onChange = (e: FormEvent) => {
-      const target = e.target as HTMLInputElement;
-      setProduct({ ...product, [target.name]: target.value })
-  }
+      measureUnit: props.currentProduct?.measureUnit || MeasureUnit.m,
+      weightUnit: props.currentProduct?.weightUnit || WeightUnit.kg,
 
+  })
+  const onChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+        const {name, value} = e.target;
+        setProduct({ ...product, [name]: value})
+    }
   const updateProduct = async (e: FormEvent) => {
       e.preventDefault();
 
@@ -51,8 +52,8 @@ export const EditProductModal = (props: IEditProductModalProps) => {
           height: product.height,
           weight: product.weight,
           quantity: product.quantity,
-          measureUnit: props.selectedMeasureUnit.name,
-          measureUnitId: props.selectedMeasureUnit.value
+          measureUnit: product.measureUnit,
+          weightUnit: product.weightUnit
 
       });
       console.log(response.data)
@@ -60,6 +61,7 @@ export const EditProductModal = (props: IEditProductModalProps) => {
 
       props.closeModal();
       props.getMeasureUnits();
+      props.getWeightUnits();
       props.getProducts();
       props.getSumTotalQuantity();
       props.getSumTotalWeight();
@@ -74,26 +76,41 @@ export const EditProductModal = (props: IEditProductModalProps) => {
               <div className={`${styles.modalContainer}`}>
                   <form onSubmit={(e) => updateProduct(e)} className={`${styles.formContainer}`}>
                      <div>
-                        <select onChange={(e) => props.onChangeSelectMeasureUnit(e)}>
-                        <option hidden>{props.selectedMeasureUnit.name}</option>
-                        {props.measureUnits.map((measureUnit, index) => (
-                            <option key={index} value={measureUnit.value}>{measureUnit.name}</option>
-
-                        ))}
-                    </select>
+                     
                      </div>
                      <div>
                      <input type="text" name="name" value={product.name || ""} placeholder="Digite o nome..." onChange={(e) => onChange(e)} />
                      </div>
 
+                           <select name="measureUnit" value={product.measureUnit} onChange={(e) => onChange(e)}>
+                        {props.measureUnits.map((measureUnit, index) => (
+                            <option key={index} value={measureUnit}>{measureUnit}</option>
+
+                        ))}
+                    </select>
+
                       <div>
                       <input type="number" name="length" value={product.length || ""} placeholder="Digite o comprimento..." onChange={(e) => onChange(e)} />
+                                              {product.measureUnit}
+
+                       
                       </div>
                       <div>
-                      <input type="number" name="width" value={product.width || ""} placeholder="Digite a lagura..." onChange={(e) => onChange(e)} />
+                      <input type="number" name="width" value={product.width || "" } placeholder="Digite a lagura..." onChange={(e) => onChange(e)} />
+                        {product.measureUnit}
                       </div>
                       <div>
                         <input type="number" name="height" value={product.height || ""} placeholder="Digite a altura..." onChange={(e) => onChange(e)} />
+                        {product.measureUnit}
+                      </div>
+
+                      <div>
+                        <select name="weightUnit" value={product.weightUnit} onChange={(e) => onChange(e)}>
+                        {props.weightUnits.map((weightUnit, index) => (
+                            <option key={index} value={weightUnit}>{weightUnit}</option>
+
+                        ))}
+                    </select>
                       </div>
                       <div>
                       <input type="number" name="weight" value={product.weight || ""} placeholder="Digite o peso..." onChange={(e) => onChange(e)} />

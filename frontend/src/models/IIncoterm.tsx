@@ -1,7 +1,7 @@
 
 export interface IIncoterm {
     id: number;
-    icon: string;
+    imageUrl: string;
     name: string;
     acronym: string;
     costStage: number;

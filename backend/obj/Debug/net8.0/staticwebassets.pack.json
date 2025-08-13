@@ -9,12 +9,20 @@
       "PackagePath": "staticwebassets\\Images\\Containers\\container-20.jpg"
     },
     {
+      "Id": "D:\\PROJETOS\\MIDFORYOU\\midforyou\\backend\\wwwroot\\Images\\Containers\\container-20ft-reefer.jpg",
+      "PackagePath": "staticwebassets\\Images\\Containers\\container-20ft-reefer.jpg"
+    },
+    {
       "Id": "D:\\PROJETOS\\MIDFORYOU\\midforyou\\backend\\wwwroot\\Images\\Containers\\container-40-hc.jpg",
       "PackagePath": "staticwebassets\\Images\\Containers\\container-40-hc.jpg"
     },
     {
       "Id": "D:\\PROJETOS\\MIDFORYOU\\midforyou\\backend\\wwwroot\\Images\\Containers\\container-40.jpg",
       "PackagePath": "staticwebassets\\Images\\Containers\\container-40.jpg"
+    },
+    {
+      "Id": "D:\\PROJETOS\\MIDFORYOU\\midforyou\\backend\\wwwroot\\Images\\Containers\\container-40ft-reefer.jpg",
+      "PackagePath": "staticwebassets\\Images\\Containers\\container-40ft-reefer.jpg"
     },
     {
       "Id": "D:\\PROJETOS\\MIDFORYOU\\midforyou\\backend\\wwwroot\\Images\\PortMarkers\\Acre\\Aeroporto Internacional de Rio Branco.jpg",

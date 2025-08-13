@@ -1,3 +1,4 @@
+using System.ComponentModel;
 using backend.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -26,12 +27,22 @@ public class ContainerController : ControllerBase
         return Created("Container created successfully", createContainerRequest);
     }
 
+    [HttpGet("containers/{id}")]
+    public async Task<ActionResult> GETContainer(int id)
+    {
+        ContainerResponse container = await _containerService.GetByIdAsync(id);
+
+        return Ok(container);
+
+    }
+
     
     [HttpGet("containers/capacity/{id}")]
     public async Task<ActionResult<object>> capacityWeightContainer(int id)
     {
 
-        return Ok(await _containerService.verifityCapacityAsync(id));
+        var verifityCapacity = await _containerService.verifityCapacityAsync(id);
+        return Ok(verifityCapacity);
 
     }
 }

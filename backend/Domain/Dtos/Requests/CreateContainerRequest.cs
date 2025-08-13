@@ -9,9 +9,12 @@ public class CreateContainerRequest
 
     public required string name { get; set; }
 
-    public float capacityWeight { get; set; }
+    public float capacityWeightKg { get; set; }
 
-    public float capacityVolume { get; set; }
+    public float capacityWeightLb { get; set; }
+
+    public float capacityVolumeM3 { get; set; }
+    public float capacityVolumeFt3 { get; set; }
 
     public required List<Product> products { get; set; }
 

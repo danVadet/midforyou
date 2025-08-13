@@ -1,6 +1,5 @@
 using backend.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace backend.Controllers;
 
@@ -18,9 +17,8 @@ public class ProductController : ControllerBase
     [HttpGet("products")]
     public async Task<IActionResult> getAllProducts([FromQuery] string search)
     {
-
-        List <ProductResponse> products = await _productService.GetAllAsync();
         
+       List <ProductResponse> products = await _productService.GetAllAsync();
 
         if (!String.IsNullOrEmpty(search))
         {
@@ -30,21 +28,20 @@ public class ProductController : ControllerBase
         }
         return Ok(products);
     }
-
-     [HttpGet("measureUnits")]
-    public  List<DropdownListItem> getAllMeasureUnits()
+    [HttpGet("weightUnits")]
+    public IActionResult getAllWeightUnits()
     {
 
-        List<DropdownListItem> values = EnumHelper.ConvertEnumToDropDownSource<MeasureUnit>();
-        return values;
+     var weightUnits = Enum.GetNames(typeof(WeightUnit));
+     return Ok(weightUnits);
     }
 
-    [HttpGet("measureUnits/{id}")]
-    public DropdownListItem getMeasureUnitById(int id)
+    [HttpGet("measureUnits")]
+    public IActionResult getAllMeasureUnits()
     {
-        List<DropdownListItem> values = EnumHelper.ConvertEnumToDropDownSource<MeasureUnit>();
-        var enumValue = values.Find(v => v.value == id);
-        return enumValue;   
+
+     var measureUnits = Enum.GetNames(typeof(MeasureUnit));
+     return Ok(measureUnits);
     }
 
     [HttpGet("products/{id}")]
@@ -71,18 +68,22 @@ public class ProductController : ControllerBase
     public async Task<IActionResult> getTotalWeight()
     {
         List<ProductResponse> products = await _productService.GetAllAsync();
+
+        var sumWeightTotalLb = products.FindAll(p => p.weightUnit == WeightUnit.lb) .Sum(product => product.weightTotal);
+        var sumWeightTotalKg = products.FindAll(p => p.weightUnit == WeightUnit.kg || p.weightUnit == WeightUnit.g).Sum(product => product.weightTotal);
+      
+        return Ok(new { sumWeightTotalLb, sumWeightTotalKg });
         
-        var sumWeightTotal = products.Sum(product => product.weightTotal);
-        return Ok(sumWeightTotal);
     }
     [HttpGet("sumTotalVolume")]
     public async Task<ActionResult> getSumTotalVolume()
     {
         List<ProductResponse> products = await _productService.GetAllAsync();
-        List<ProductResponse> productsByMeasureUnit = products.FindAll(p => p.measureUnit == "m");
 
-        var sumVolumeTotal = productsByMeasureUnit.Sum(product => product.volumeTotal);
-        return Ok(sumVolumeTotal);
+        var sumVolumeTotalFt3 = products.FindAll(p => p.measureUnit == MeasureUnit.ft || p.measureUnit == MeasureUnit.yd || p.measureUnit == MeasureUnit.inch).Sum(product => product.volumeTotal);
+        var sumVolumeTotalM3 = products.FindAll(p => p.measureUnit == MeasureUnit.m).Sum(product => product.volumeTotal);
+      
+        return Ok(new { sumVolumeTotalFt3, sumVolumeTotalM3 });
        
     }
 

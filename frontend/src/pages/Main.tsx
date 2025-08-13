@@ -1,7 +1,7 @@
 import React from 'react';
 import  { CBMCalculator} from '../components/CBMCalculator';
 import  { Map } from '../components/Map';
-import  { Contact } from '../components/Contact';
+import  { Contact } from '../components/Contact/Contact';
 import  { About } from '../components/About';
 import { Navbar } from '../components/Navbar';
 import  { Footer } from '../components/Footer';
@@ -31,28 +31,11 @@ export interface IMainProps {
       <Home/>
       <About services={props.services} />
       <Incoterms incoterms={props.incoterms} incotermsIcons={props.incotermIcons} />
-       <CBMCalculator />
+      <CBMCalculator />
       <Map />
       <Contact />
       <Footer />
       <WhatsappButton/>
-
     </>
-
-
-    // O site fora do ar
-
-    /*
-    <>
-      <Navbar navLangs={props.navLangs} />
-      <Home/>
-      <Incoterms incoterms={props.incoterms} incotermsIcons={props.incotermIcons} />
-      <CBMCalculator />
-       <Map />
-
-      <Contact />
-      <Footer />
-    </>
-    */
   );
 }

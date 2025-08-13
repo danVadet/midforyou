@@ -33,7 +33,7 @@ public class VisitorController : ControllerBase
         mailBody.AppendFormat("<p> Nome da empresa: " + visitor.companyName + "<p>");
         mailBody.AppendFormat("<p> CNPJ da empresa: " + visitor.companyCNPJ + "<p>");
         mailBody.AppendFormat("<p> Ramo da atividade: " + visitor.ramoAtividade + "<p>");
-        mailBody.AppendFormat("<p> Local: " + visitor.city.nome + "( " +  visitor.state.sigla + " )" + "<p>");
+        mailBody.AppendFormat("<p> Local: " + visitor.city + "( " +  visitor.state + " )" + "<p>");
         mailBody.AppendFormat("<br/>");
         mailBody.AppendFormat("<p> Mensagem: " + visitor.message + "<p>");
         mailMessage.Body = mailBody.ToString();

@@ -1,4 +1,6 @@
 
+using backend.Domain;
+
 namespace backend.Models;
 
 public class UpdateProductRequest
@@ -22,8 +24,9 @@ public class UpdateProductRequest
     public float volumeTotal { get; set; }
 
     public float weightTotal { get; set; }
-    
-    public string measureUnit { get; set;  }
- 
-   public int measureUnitId { get; set; }
+
+    public MeasureUnit measureUnit { get; set; }
+
+    public WeightUnit weightUnit { get; set; }
+     
 }

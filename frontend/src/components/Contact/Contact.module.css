@@ -1,0 +1,235 @@
+.contact {
+    background: url("../../../public/assets/backgroundContact.jpg") center top no-repeat;
+    background-size: contain;
+}
+
+.contact .title {
+    font-size: 36px;
+}
+.contact  .text {
+    font-size: 24px;
+}
+
+.formContainer {
+    margin: 8%;
+    padding: 10px;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 2px 32px 0px;
+    border-radius: 5px;
+}
+
+.formContainer .formInline {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 16px;
+    margin-top: 5rem;
+}
+
+.formContainer .formGroup {
+    position: relative;
+    width: 100%;
+}
+
+
+
+.formContainer .formGroup input {
+    margin-bottom: 16px;
+    padding: 12px;
+    border-radius: 5px;
+    border: 1px solid rgb(204, 204, 204);
+    outline: 0;
+    width: 100%;
+    background: none;
+}
+
+
+.formContainer .formGroup label {
+    position: absolute;
+    top: 30%;
+    left: 8px;
+    transform: translateY(-30%);
+    padding: 0 2px;
+    transition: .3s ease;
+    pointer-events: none;
+    color: rgb(116, 116, 116);
+
+}
+
+.formContainer .formGroup input:focus~label {
+    top: -5px;
+    font-size: 13px;
+    transform: unset;
+    background: rgb(255, 255, 255);
+}
+
+
+.formContainer .formGroup input:focus~.fullNameLabel {
+    background: rgb(255, 255, 255);
+}
+
+.formContainer .formGroup input:focus~.phoneNumberLabel {
+    background: rgb(255, 255, 255);
+}
+
+.formContainer .formGroup input:focus~.emailLabel {
+    background: rgb(236, 236, 236);
+}
+
+.formContainer .formGroup input:focus~.companyNameLabel {
+    background: rgb(255, 255, 255);
+}
+
+.formContainer .formGroup input:focus~.companyCNPJLabel {
+    background: rgb(244, 244, 244);
+}
+
+.formContainer .formGroup input:focus~.ramoAtividadeLabel {
+    background: rgb(255, 255, 255);
+}
+
+.formContainer .formGroup select {
+    margin-bottom: 16px;
+    padding: 12px;
+    border-radius: 5px;
+    border: 1px solid rgb(204, 204, 204);
+    outline: 0;
+    width: 100%;
+    background: none;
+    color: rgb(116, 116, 116);
+}
+
+.formContainer .formGroup textarea {
+    margin-bottom: 16px;
+    padding: 30px;
+    height: auto;
+    border-radius: 5px;
+    border: 1px solid rgb(204, 204, 204);
+    width: 100%;
+    outline: 0;
+    resize: none;
+    background: none;
+}
+
+.formContainer .formGroup textarea:focus~.messageLabel {
+    background: rgb(244, 244, 244);
+
+}
+
+.formContainer .formGroup textarea:focus~label {
+    top: -5px;
+    font-size: 13px;
+    transform: unset;
+    background: white;
+}
+
+.formContainer .formGroup .invalid {
+    border: 1px solid rgb(213, 21, 11);
+    background: url("../../../public/assets/error.svg") no-repeat right;
+}
+.formContainer .formGroup label p {
+    display: inline-block;
+}
+
+.formContainer .formGroup label .input_required_indicator  {
+     color: rgb(255, 0, 0);
+   
+
+}
+
+.formError {
+    color: rgb(213, 21, 11);
+}
+.formContainer .formGroup .valid~label {
+    display: none;
+}
+
+
+.formContainer button {
+    margin: 20px;
+    padding: 10px;
+    width: 50%;
+    border: 0;
+    font-size: 18px;
+    border-radius: 5px;
+    background: rgb(0, 175, 239);
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+
+}
+
+.formContainer button:hover {
+    background: rgb(0, 103, 177);
+
+}
+
+.formContainer .formGroup .invalid~label {
+    top: -5px;
+    font-size: 13px;
+    transform: unset;
+    background: rgb(255, 255, 255);
+
+}
+
+.formContainer .formGroup .invalid~.fullNameLabel {
+    background: rgb(255, 255, 255);
+}
+
+.formContainer .formGroup .invalid~.phoneNumberLabel {
+    background: rgb(255, 255, 255);
+}
+
+.formContainer .formGroup .invalid~.emailLabel {
+    background: rgb(236, 236, 236);
+}
+
+.formContainer .formGroup .invalid~.companyNameLabel {
+    background: rgb(255, 255, 255);
+}
+
+.formContainer .formGroup .invalid~.companyCNPJLabel {
+    background: rgb(244, 244, 244);
+}
+
+.formContainer .formGroup .invalid~.ramoAtividadeLabel {
+    background: rgb(255, 255, 255);
+}
+
+.formContainer .formGroup .invalid~.messageLabel {
+    background: rgb(244, 244, 244);
+
+}
+
+@media (max-width: 767px) {
+
+    .contact {
+        background-size:auto;
+    }
+
+    .text {
+        font-size: 18px;
+    }
+
+    .formContainer {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .formContainer .formInline {
+        display: flex;
+        flex-direction: column;
+    }
+
+
+    .formContainer input {
+        width: 100%;
+    }
+
+    .formContainer textarea {
+        width: 100%;
+
+    }
+
+
+
+
+}

@@ -141,7 +141,7 @@
         "incoterms" : [
             {
                 "id" : 0,
-                "icon" : "../assets/incoterms/exw.svg",
+                "imageUrl" : "../assets/incoterms/acronyms/exw.svg",
                 "name": "Ex Works",
                 "acronym": "EXW",
                 "costStage": 0,
@@ -152,7 +152,7 @@
             },
             {
                 "id" : 1,
-                "icon" : "../assets/incoterms/exw.svg",
+                "imageUrl" : "../assets/incoterms/acronyms/fca.svg",
                 "name": "Free Carrier",
                 "acronym": "FCA",
                 "costStage": 1,
@@ -163,7 +163,7 @@
 
             {
                 "id" : 2,
-                "icon" : "../assets/incoterms/exw.svg",
+                "imageUrl" : "../assets/incoterms/acronyms/fas.svg",
                 "name": "Free Alongside Ship",
                 "acronym": "FAS",
                 "costStage": 2,
@@ -174,7 +174,7 @@
 
             {
                 "id" : 3,
-                "icon" : "../assets/incoterms/exw.svg",
+                "imageUrl" : "../assets/incoterms/acronyms/fob.svg",
                 "name": "Free On Board",
                 "acronym": "FOB",
                 "costStage": 2,
@@ -185,7 +185,7 @@
 
             {
                 "id": 4,
-                "icon" : "../assets/incoterms/exw.svg",
+                "imageUrl" : "../assets/incoterms/acronyms/cfr.svg",
                 "name": "Cost and Freight",
                 "acronym": "CFR",
                 "costStage": 4,
@@ -196,7 +196,7 @@
 
             {
                 "id": 5,
-                "icon" : "../assets/incoterms/exw.svg",
+                "imageUrl" : "../assets/incoterms/acronyms/cif.svg",
                 "name": "Cost, Insurance and Freight",
                 "acronym": "CIF",
                 "costStage": 4,
@@ -207,7 +207,7 @@
 
             {
                 "id": 6,
-                "icon" : "../assets/incoterms/exw.svg",
+                "imageUrl" : "../assets/incoterms/acronyms/cpt.svg",
                 "name": "Carriage Paid To",
                 "acronym": "CPT",
                 "costStage": 5,
@@ -218,7 +218,7 @@
 
             {
                 "id": 7,
-                "icon" : "../assets/incoterms/exw.svg",
+                "imageUrl" : "../assets/incoterms/acronyms/cip.svg",
                 "name": "Carriage and Insurance Paid To",
                 "acronym": "CIP",
                 "costStage": 5,
@@ -228,7 +228,7 @@
             },
             {
                 "id": 8,
-                "icon" : "../assets/incoterms/exw.svg",
+                "imageUrl" : "../assets/incoterms/acronyms/dap.svg",
                 "name": "Delivered at Place",
                 "acronym": "DAP",
                 "costStage": 7,
@@ -239,7 +239,7 @@
 
             {
                 "id": 9,
-                "icon" : "../assets/incoterms/exw.svg",
+                "imageUrl" : "../assets/incoterms/acronyms/dpu.svg",
                 "name": "Delivered at Place Unloaded",
                 "acronym": "DPU",
                 "costStage": 7,
@@ -250,7 +250,7 @@
 
             {
                 "id": 10,
-                "icon" : "../assets/incoterms/exw.svg",
+                "imageUrl" : "../assets/incoterms/acronyms/ddp.svg",
                 "name": "Delivered Duty Paid",
                 "acronym": "DDP",
                 "costStage": 7,
@@ -426,7 +426,7 @@
         "incoterms" : [
             {
                 "id" : 0,
-                "icon" : "../assets/incoterms/exw.svg",
+                "imageUrl" : "../assets/incoterms/acronyms/exw.svg",
                 "name": "Ex Works - Salida de la fábrica",
                 "acronym": "EXW",
                 "costStage": 0,
@@ -437,7 +437,7 @@
             },
             {
                 "id" : 1,
-                "icon" : "../assets/incoterms/exw.svg",
+                "imageUrl" : "../assets/incoterms/acronyms/fca.svg",
                 "name": "Free Carrier - Libre transportador",
                 "acronym": "FCA",
                 "costStage": 1,
@@ -448,7 +448,7 @@
 
             {
                 "id" : 2,
-                "icon" : "../assets/incoterms/exw.svg",
+                "imageUrl" : "../assets/incoterms/acronyms/fas.svg",
                 "name": "Free Alongside Ship - Libre al costado del barco",
                 "acronym": "FAS",
                 "costStage": 2,
@@ -459,7 +459,7 @@
 
             {
                 "id" : 3,
-                "icon" : "../assets/incoterms/exw.svg",
+                "imageUrl" : "../assets/incoterms/acronyms/fob.svg",
                 "name": "Free On Board - Libre a bordo",
                 "acronym": "FOB",
                 "costStage": 2,
@@ -470,7 +470,7 @@
 
             {
                 "id": 4,
-                "icon" : "../assets/incoterms/exw.svg",
+                "imageUrl" : "../assets/incoterms/acronyms/cfr.svg",
                 "name": "Cost and Freight - Costo y flete",
                 "acronym": "CFR",
                 "costStage": 4,
@@ -481,7 +481,7 @@
 
             {
                 "id": 5,
-                "icon" : "../assets/incoterms/exw.svg",
+                "imageUrl" : "../assets/incoterms/acronyms/cif.svg",
                 "name": "Cost, Insurance and Freight - Costo, seguro y flete",
                 "acronym": "CIF",
                 "costStage": 4,
@@ -492,7 +492,7 @@
 
             {
                 "id": 6,
-                "icon" : "../assets/incoterms/exw.svg",
+                "imageUrl" : "../assets/incoterms/acronyms/cpt.svg",
                 "name": "Carriage Paid To - Transporte pago hasta",
                 "acronym": "CPT",
                 "costStage": 5,
@@ -503,7 +503,7 @@
 
             {
                 "id": 7,
-                "icon" : "../assets/incoterms/exw.svg",
+                "imageUrl" : "../assets/incoterms/acronyms/cip.svg",
                 "name": "Carriage and Insurance Paid To - Transporte y seguro pagos hasta",
                 "acronym": "CIP",
                 "costStage": 5,
@@ -513,7 +513,7 @@
             },
             {
                 "id": 8,
-                "icon" : "../assets/incoterms/exw.svg",
+                "imageUrl" : "../assets/incoterms/acronyms/dap.svg",
                 "name": "Delivered at Place - Entregado en el lugar",
                 "acronym": "DAP",
                 "costStage": 7,
@@ -524,7 +524,7 @@
 
             {
                 "id": 9,
-                "icon" : "../assets/incoterms/exw.svg",
+                "imageUrl" : "../assets/incoterms/acronyms/dpu.svg",
                 "name": "Delivered at Place Unloaded - Entregado en el lugar descargado.",
                 "acronym": "DPU",
                 "costStage": 7,
@@ -535,7 +535,7 @@
 
             {
                 "id": 10,
-                "icon" : "../assets/incoterms/exw.svg",
+                "imageUrl" : "../assets/incoterms/acronyms/ddp.svg",
                 "name": "Delivered Duty Paid - Entregado con derechos pagados",
                 "acronym": "DDP",
                 "costStage": 7,
@@ -694,7 +694,7 @@
         "incoterms" : [
             {
                 "id" : 0,
-                "icon" : "../assets/incoterms/exw.svg",
+                "imageUrl" : "../assets/incoterms/acronyms/exw.svg",
                 "name": "Ex Works - Saída da fábrica",
                 "acronym": "EXW",
                 "costStage": 0,
@@ -705,7 +705,7 @@
             },
             {
                 "id" : 1,
-                "icon" : "../assets/incoterms/fca.svg",
+                "imageUrl" : "../assets/incoterms/acronyms/fca.svg",
                 "name": "Free Carrier - Livre no transportador",
                 "acronym": "FCA",
                 "costStage": 1,
@@ -716,7 +716,7 @@
 
             {
                 "id" : 2,
-                "icon" : "../assets/incoterms/fas.svg",
+                "imageUrl" : "../assets/incoterms/acronyms/fas.svg",
                 "name": "Free Alongside Ship - Livre ao lado do navio",
                 "acronym": "FAS",
                 "costStage": 2,
@@ -727,7 +727,7 @@
 
             {
                 "id" : 3,
-                "icon" : "../assets/incoterms/exw.svg",
+                "imageUrl" : "../assets/incoterms/acronyms/fob.svg",
                 "name": "Free On Board - Livre a bordo",
                 "acronym": "FOB",
                 "costStage": 2,
@@ -738,7 +738,7 @@
 
             {
                 "id": 4,
-                "icon" : "../assets/incoterms/exw.svg",
+                "imageUrl" : "../assets/incoterms/acronyms/cfr.svg",
                 "name": "Cost and Freight - Custo e frete",
                 "acronym": "CFR",
                 "costStage": 4,
@@ -749,7 +749,7 @@
 
             {
                 "id": 5,
-                "icon" : "../assets/incoterms/exw.svg",
+                "imageUrl" : "../assets/incoterms/acronyms/cif.svg",
                 "name": "Cost, Insurance and Freight - Custo, seguro e frete",
                 "acronym": "CIF",
                 "costStage": 4,
@@ -760,7 +760,7 @@
 
             {
                 "id": 6,
-                "icon" : "../assets/incoterms/exw.svg",
+                "imageUrl" : "../assets/incoterms/acronyms/cpt.svg",
                 "name": "Carriage Paid To - Transporte pago até",
                 "acronym": "CPT",
                 "costStage": 5,
@@ -771,7 +771,7 @@
 
             {
                 "id": 7,
-                "icon" : "../assets/incoterms/exw.svg",
+                "imageUrl" : "../assets/incoterms/acronyms/cip.svg",
                 "name": "Carriage and Insurance Paid To - Transporte e seguro pagos até",
                 "acronym": "CIP",
                 "costStage": 5,
@@ -781,7 +781,7 @@
             },
             {
                 "id": 8,
-                "icon" : "../assets/incoterms/exw.svg",
+                "imageUrl" : "../assets/incoterms/acronyms/dap.svg",
                 "name": "Delivered at Place - Entregue no local",
                 "acronym": "DAP",
                 "costStage": 7,
@@ -792,7 +792,7 @@
 
             {
                 "id": 9,
-                "icon" : "../assets/incoterms/exw.svg",
+                "imageUrl" : "../assets/incoterms/acronyms/dpu.svg",
                 "name": "Delivered at Place Unloaded - Entregue no local desembarcado",
                 "acronym": "DPU",
                 "costStage": 7,
@@ -803,7 +803,7 @@
 
             {
                 "id": 10,
-                "icon" : "../assets/incoterms/exw.svg",
+                "imageUrl" : "../assets/incoterms/acronyms/ddp.svg",
                 "name": "Delivered Duty Paid - Entregue com direitos pagos",
                 "acronym": "DDP",
                 "costStage": 7,

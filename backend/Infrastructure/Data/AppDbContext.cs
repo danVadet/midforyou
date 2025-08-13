@@ -24,19 +24,5 @@ public class AppDbContext : DbContext
 
     public DbSet<Visitor> Visitors { get; set; }
 
-    public DbSet<State> State { get; set; }
-
-    public DbSet<City> City { get; set; }
-
-     
-
-
-
-    
-                      
-
-
-
-
       
 }

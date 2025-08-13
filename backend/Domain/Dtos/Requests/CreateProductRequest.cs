@@ -1,3 +1,5 @@
+using backend.Domain;
+
 namespace backend.Models;
 
 public class CreateProductRequest
@@ -20,8 +22,11 @@ public class CreateProductRequest
 
     public float weightTotal { get; set; }
 
-    public string measureUnit { get; set; }
+    public MeasureUnit measureUnit { get; set; }
 
-    public int measureUnitId { get; set; }
+    public WeightUnit weightUnit { get; set; }
+    
+   
+
 
 }

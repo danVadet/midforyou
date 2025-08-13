@@ -9,8 +9,8 @@ export interface IVisitor  {
     companyName: string;
     companyCNPJ: string;
     ramoAtividade: string;
-    city: ICity;
-    state: IState;
+    city: string;
+    state: string;
     message: string;
 
 }

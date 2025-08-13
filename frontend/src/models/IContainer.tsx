@@ -5,7 +5,10 @@ export interface IContainer  {
     id: number;
     name: string;
     image: string;
-    capacityWeight: number;
-    capacityVolume: number;
+    capacityWeightKg: number;
+    capacityWeightLb: number;
+    capacityVolumeM3: number;
+    capacityVolumeFt3: number;
+
     products: IProduct []
 }

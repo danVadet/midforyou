@@ -1,3 +1,6 @@
+import { MeasureUnit } from "./Enums/MeasureUnit";
+import { WeightUnit } from "./Enums/WeightUnit";
+import { IContainer } from "./IContainer";
 
 export interface IProduct  {
     id: number;
@@ -10,7 +13,6 @@ export interface IProduct  {
     quantity: number;
     weightTotal: number;
     volumeTotal:  number;
-    measureUnit: string;
-    measureUnitId: number;
-  
+    measureUnit: MeasureUnit;
+    weightUnit: WeightUnit;
 }

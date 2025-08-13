@@ -31,14 +31,18 @@ public class ContainerService : IContainerService
 
         // createContainerRequest.image = $"{_httpContextAccessor.HttpContext.Request.Scheme}://{_httpContextAccessor.HttpContext.Request.Host}/Images/Containers/{createContainerRequest.pic.FileName}";
         createContainerRequest.image = $"Images/Containers/{createContainerRequest.pic.FileName}";
-        createContainerRequest.capacityWeight = createContainerRequest.capacityWeight * 1000;
+        // createContainerRequest.capacityWeightKg = createContainerRequest.capacityWeightKg * 1000;
+        createContainerRequest.capacityVolumeFt3 = MathF.Round(createContainerRequest.capacityVolumeM3 * 35.315f, 2);
+        createContainerRequest.capacityWeightLb = MathF.Round(createContainerRequest.capacityWeightKg * 2.20462f, 2);
         createContainerRequest.products = products;
+
         var container = _mapper.Map<Container>(createContainerRequest);
         await _containerRepository.CreateAsync(container);
     }
 
     public async Task<List<ContainerResponse>> GetAllAsync()
     {
+
         List<Container> containers = await _containerRepository.GetAllAsync();
         return _mapper.Map<List<ContainerResponse>>(containers);
     }
@@ -53,27 +57,29 @@ public class ContainerService : IContainerService
     {
         Container container = await _containerRepository.GetByIdAsync(id);
         List<Product> products = await _productRepository.GetAllAsync();
-
-        List<Product> productsByMeter = products.FindAll(p => p.measureUnit == "m");
-
+        
         var sumWeightTotal = products.Sum(product => product.weightTotal);
-        var sumVolumeTotal = productsByMeter.Sum(product => product.volumeTotal);
+        var sumWeightLbTotal = products.Sum(product => product.weightTotal);
+        var sumVolumeTotalM3 = products.FindAll(p => p.measureUnit == MeasureUnit.m).Sum(product => product.volumeTotal);
+        var sumVolumeTotalFt3 = products.FindAll(p => p.measureUnit == MeasureUnit.ft || p.measureUnit == MeasureUnit.yd || p.measureUnit == MeasureUnit.inch).Sum(product => product.volumeTotal);
 
-        var pctWeight = Convert.ToInt64(sumWeightTotal / container.capacityWeight * 100);
-        var pctVolume = Convert.ToInt64(sumVolumeTotal / container.capacityVolume * 100);
+        var pctWeightKg = Convert.ToInt64(sumWeightTotal / container.capacityWeightKg * 100);
+        var pctWeightLb = Convert.ToInt64(sumWeightLbTotal / container.capacityWeightLb * 100);
+        var pctVolumeM3 = Convert.ToInt64(sumVolumeTotalM3 / container.capacityVolumeM3 * 100);
+        var pctVolumeFt3 = Convert.ToInt64(sumVolumeTotalFt3 / container.capacityVolumeFt3 * 100);
 
         container.products = products;
 
 
-        if (sumWeightTotal <= container.capacityWeight && sumVolumeTotal <= container.capacityVolume)
+        if (sumWeightTotal <= container.capacityWeightKg && sumVolumeTotalM3 <= container.capacityVolumeM3 || sumWeightTotal <= container.capacityWeightLb && sumVolumeTotalFt3 <= container.capacityVolumeFt3  )
         {
 
-            return new { container, pctWeight, pctVolume};
+            return new { container, pctWeightKg, pctWeightLb, pctVolumeM3, pctVolumeFt3};
+        } 
 
-        }
         else
         {
-            return new { container };
+            return new { container, pctWeightKg, pctVolumeM3, pctVolumeFt3 };
         }
     }
 }

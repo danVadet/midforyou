@@ -3,6 +3,9 @@ public enum MeasureUnit
 {
     m,
     cm,
-    mm
+    mm,
+    yd,
+    inch,
+    ft
 
 }

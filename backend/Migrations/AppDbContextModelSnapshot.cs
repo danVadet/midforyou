@@ -16,31 +16,22 @@ namespace backend.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "9.0.4");
 
-            modelBuilder.Entity("City", b =>
-                {
-                    b.Property<int>("id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("nome")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("id");
-
-                    b.ToTable("City");
-                });
-
             modelBuilder.Entity("backend.Domain.Container", b =>
                 {
                     b.Property<int>("id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<float>("capacityVolume")
+                    b.Property<float>("capacityVolumeFt3")
                         .HasColumnType("REAL");
 
-                    b.Property<float>("capacityWeight")
+                    b.Property<float>("capacityVolumeM3")
+                        .HasColumnType("REAL");
+
+                    b.Property<float>("capacityWeightKg")
+                        .HasColumnType("REAL");
+
+                    b.Property<float>("capacityWeightLb")
                         .HasColumnType("REAL");
 
                     b.Property<string>("image")
@@ -133,11 +124,7 @@ namespace backend.Migrations
                     b.Property<float>("length")
                         .HasColumnType("REAL");
 
-                    b.Property<string>("measureUnit")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<int>("measureUnitId")
+                    b.Property<int>("measureUnit")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("name")
@@ -159,6 +146,9 @@ namespace backend.Migrations
                     b.Property<float>("weightTotal")
                         .HasColumnType("REAL");
 
+                    b.Property<int>("weightUnit")
+                        .HasColumnType("INTEGER");
+
                     b.Property<float>("width")
                         .HasColumnType("REAL");
 
@@ -169,33 +159,15 @@ namespace backend.Migrations
                     b.ToTable("Products");
                 });
 
-            modelBuilder.Entity("backend.Domain.State", b =>
-                {
-                    b.Property<int>("id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("nome")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("sigla")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("id");
-
-                    b.ToTable("State");
-                });
-
             modelBuilder.Entity("backend.Models.Visitor", b =>
                 {
                     b.Property<int>("id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("cityid")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("city")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("companyCNPJ")
                         .IsRequired()
@@ -225,14 +197,11 @@ namespace backend.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("stateid")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("state")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
 
                     b.HasKey("id");
-
-                    b.HasIndex("cityid");
-
-                    b.HasIndex("stateid");
 
                     b.ToTable("Visitors");
                 });
@@ -253,25 +222,6 @@ namespace backend.Migrations
                     b.HasOne("backend.Domain.Container", null)
                         .WithMany("products")
                         .HasForeignKey("Containerid");
-                });
-
-            modelBuilder.Entity("backend.Models.Visitor", b =>
-                {
-                    b.HasOne("City", "city")
-                        .WithMany()
-                        .HasForeignKey("cityid")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("backend.Domain.State", "state")
-                        .WithMany()
-                        .HasForeignKey("stateid")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("city");
-
-                    b.Navigation("state");
                 });
 
             modelBuilder.Entity("backend.Domain.Container", b =>

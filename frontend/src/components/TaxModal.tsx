@@ -167,13 +167,12 @@ export const TaxModal = (props: ITaxModalProps) => {
 
 
         } else {
-            const date = new Date();
 
-            let day = date.getDate();
-            let month = date.getMonth() + 1;
-            let year = date.getFullYear();
+            let day = today.getDate();
+            let month = today.getMonth() + 1;
+            let year = today.getFullYear();
 
-            const response = await axios.get(`http://economia.awesomeapi.com.br/${code}/${year}${month}${day}`);
+            const response = await axios.get(`http://economia.awesomeapi.com.br/json/${code}/${year}${month}${day}`);
             const data = response.data;
             const array: number[] = [];
 
@@ -186,10 +185,12 @@ export const TaxModal = (props: ITaxModalProps) => {
             setQuotation(array.reverse());
 
             const dates: Date[] = [];
-            Object.keys(data).map((key) => {
-                const timestamp = new Date(data[key].timestamp * 1000);
-                dates.push(timestamp);
-            });
+            for (let i = 0; i <= 8; i++) {
+                const date = new Date(today.getTime() - i * 60 * 60 * 1000);
+                dates.push(date);
+               
+            };
+                
             setDiasCotados(dates.reverse());
         }
 
@@ -242,7 +243,7 @@ export const TaxModal = (props: ITaxModalProps) => {
 
                     <Line data={{
                         labels: diasCotados.map(coin => {
-                            let time = coin.getHours() >= 12 ? `${coin.getHours()}:${(coin.getMinutes() < 10 ? '0' : '') + coin.getMinutes()}` : `${coin.getHours()}: ${(coin.getMinutes() < 10 ? '0' : '') + coin.getMinutes()}`;
+                            let time = `${coin.getHours()}:${(coin.getMinutes() < 10 ? '0' : '') + coin.getMinutes()}`
                             return days === 1 ? time : ` ${coin.toLocaleDateString()}`;
                         }),
 

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "AVs2sSlDXxrPr5zguCOV/etsfmVl1CS4m2Lmv7hu4LY=",
+  "Hash": "An7o7RjW+pNEjpaMDE0SCm6MQUkbXToL3yTxAfZ4sxQ=",
   "Source": "backend",
   "BasePath": "_content/backend",
   "Mode": "Default",
@@ -131,6 +131,25 @@
       "OriginalItemSpec": "wwwroot\\Images\\Containers\\container-20.jpg"
     },
     {
+      "Identity": "D:\\PROJETOS\\MIDFORYOU\\midforyou\\backend\\wwwroot\\Images\\Containers\\container-20ft-reefer.jpg",
+      "SourceId": "backend",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\PROJETOS\\MIDFORYOU\\midforyou\\backend\\wwwroot\\",
+      "BasePath": "_content/backend",
+      "RelativePath": "Images/Containers/container-20ft-reefer.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Images\\Containers\\container-20ft-reefer.jpg"
+    },
+    {
       "Identity": "D:\\PROJETOS\\MIDFORYOU\\midforyou\\backend\\wwwroot\\Images\\Containers\\container-40-hc.jpg",
       "SourceId": "backend",
       "SourceType": "Discovered",
@@ -167,6 +186,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Images\\Containers\\container-40.jpg"
+    },
+    {
+      "Identity": "D:\\PROJETOS\\MIDFORYOU\\midforyou\\backend\\wwwroot\\Images\\Containers\\container-40ft-reefer.jpg",
+      "SourceId": "backend",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\PROJETOS\\MIDFORYOU\\midforyou\\backend\\wwwroot\\",
+      "BasePath": "_content/backend",
+      "RelativePath": "Images/Containers/container-40ft-reefer.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Images\\Containers\\container-40ft-reefer.jpg"
     },
     {
       "Identity": "D:\\PROJETOS\\MIDFORYOU\\midforyou\\backend\\wwwroot\\Images\\PortMarkers\\Acre\\Aeroporto de Cruzeiro do Sul.jpg",

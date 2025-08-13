@@ -16,8 +16,8 @@ public class Product
 
     public float weight { get; set; }
 
-    public string measureUnit { get; set; }
-
+    public MeasureUnit measureUnit { get; set; }
+    public WeightUnit weightUnit { get; set; }
 
     public int quantity { get; set; }
     public float volume { get; set; }
@@ -25,10 +25,4 @@ public class Product
     public float volumeTotal { get; set; }
 
     public float weightTotal { get; set; }
-
-    public int measureUnitId { get; set; }
-    
-
-    
-
 }
