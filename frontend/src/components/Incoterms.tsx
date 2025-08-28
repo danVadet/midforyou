@@ -27,6 +27,8 @@ export const Incoterms = (props: IIncotermsProps) => {
 
   const ref = useRef<HTMLDivElement>(null);
   const refMobile = useRef<HTMLDivElement>(null);
+  const refPointer = useRef<HTMLDivElement>(null);
+
 
 
    const onClickOutside = (e: MouseEvent) => {
@@ -43,13 +45,24 @@ export const Incoterms = (props: IIncotermsProps) => {
     }
   }
 
+     const onClickOutsidePointer = (e: PointerEvent) => {
+
+    if (refPointer.current && !refPointer.current.contains(e.target as Node)) {
+        setIsOpenDropdown(false);
+    }
+  }
+
   useEffect(() => {
 
     document.addEventListener("mousedown", onClickOutside);
+    document.addEventListener("pointermove", onClickOutsidePointer);
+
     document.addEventListener("touchstart", onClickOutsideMobile);
 
     return () => {
       document.removeEventListener("mousedown", onClickOutside);
+      document.removeEventListener("pointermove", onClickOutsidePointer);
+
       document.removeEventListener("touchstart", onClickOutsideMobile);
     }
 

@@ -176,7 +176,7 @@ export const IncotermsWrapper = styled.div`
   justify-content: space-between;
   gap: 8px;
   border: 1px solid #ccc;
-  padding: 8px;
+  padding: 1px;
   cursor: pointer;
   background: white;
   color: rgb(0, 0, 0);
@@ -188,20 +188,19 @@ export const IncotermsWrapper = styled.div`
   left: 0;
   width: 100%;
   background: white;
-  border: 1px solid #ccc;
-  z-index: 10;
   max-height: 150px;
   overflow-y: auto;
+  z-index: 1000;
 }
+
 
 .dropdown-option {
   display: flex;
   align-items: center;
   gap: 8px;
-  padding: 8px;
+  padding: 1px;
   cursor: pointer;
-  border-bottom: 1px solid #d9d9d9
-
+  border: 1px solid #ccc;
 }
 
 .dropdown-option:hover {
@@ -333,25 +332,27 @@ export const IncotermsWrapper = styled.div`
 }
 
 .dropdown-options {
-   position: absolute;
+  position: absolute;
   top: 100%;
   left: 0;
   width: 100%;
   background: white;
-  border: 1px solid #ccc;
-  z-index: 10;
   max-height: 200px;
   overflow-y: auto;
+  z-index: 1000;
 }
 
 .dropdown-option {
   display: flex;
   align-items: center;
   gap: 8px;
-  padding: 8px;
+  padding: 1px;
   cursor: pointer;
   color: rgb(0, 0, 0);
-  border-bottom: 1px solid #d9d9d9
+  border: 1px solid #ccc;
+    z-index: 1000;
+
+  
 
 }
 

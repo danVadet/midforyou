@@ -43,7 +43,31 @@
 .selectState, .selectPortMarker:focus {
   border-color: #007bff;
 }
-p {
+
+.infoAddress {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.infoPort img {
+   border-radius: 5px;
+   width: 380px;
+   height: 220px;
+
+}
+.infoPort p {
+  font-size: 14px;
+}
+
+.infoAddress svg {
+  height: 25px;
+  width: 25px;
+}
+
+
+.infoAddress p {
   font-size: 14px;
 }
 
@@ -51,7 +75,7 @@ p {
 
   .mapComponent {
       padding: 1rem;
-}
+  }
 
 
 .selectContainer {
@@ -63,5 +87,27 @@ p {
 .selectState, .selectPortMarker {
   font-size: 10px;
 }
+.infoPort {
+  height: 120px;
+}
+.infoPort img {
+
+   width: 172px;
+   height: 102px;
+}
+
+.infoPort p {
+  font-size: 10px;
+}
+
+.infoAddress svg {
+  height: 20px;
+  width: 50px;
+}
+
+.infoAddress p {
+  font-size: 10px;
+}
+
 
 }

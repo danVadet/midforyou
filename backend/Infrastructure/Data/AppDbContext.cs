@@ -2,10 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using backend.Domain;
 using backend.Models;
 
-
 namespace backend.Infrastructure;
-
-
 
 public class AppDbContext : DbContext
 {

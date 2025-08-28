@@ -25,6 +25,9 @@ public class CreateProductRequest
     public MeasureUnit measureUnit { get; set; }
 
     public WeightUnit weightUnit { get; set; }
+
+    
+    public int containerId { get; set;}
     
    
 

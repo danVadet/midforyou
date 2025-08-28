@@ -1,8 +1,5 @@
-  export enum MeasureUnit {
-    m = "m",
-    cm = "cm",
-    mm = "mm",
-    yd = "yd",
-    inch = "inch",
-    ft = "ft"
+  export interface MeasureUnit {
+
+   value: string;
+   label: string;
 }

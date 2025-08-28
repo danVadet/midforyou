@@ -1,5 +1,5 @@
-  export enum WeightUnit {
-    kg = "kg",
-    g = "g",
-    lb = "lb"
+  export interface WeightUnit {
+
+   value: string;
+   label: string;
 }

@@ -31,9 +31,10 @@ public class ProductRepository : IProductRepository
         return products;
 
 
-        
-      
+
+
     }
+
     public async Task<List<Product>> GetAllBySearchAsync(string search)
     {
 
@@ -53,7 +54,7 @@ public class ProductRepository : IProductRepository
 
     public async Task<Product> UpdateAsync(Product product)
     {
-       
+
         _appDbContext.Update(product);
         await _appDbContext.SaveChangesAsync();
         return product;
@@ -64,11 +65,10 @@ public class ProductRepository : IProductRepository
     {
 
 
-       Product product = await _appDbContext.Products.FindAsync(id);
+        Product product = await _appDbContext.Products.FindAsync(id);
         _appDbContext.Products.Remove(product);
         await _appDbContext.SaveChangesAsync();
         return product;
-        
-    }
 
+    }
 }

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "An7o7RjW+pNEjpaMDE0SCm6MQUkbXToL3yTxAfZ4sxQ=",
+  "Hash": "TlXJpz5oyB3MZJ5bCwdL0F7gEltsIZZ6aUfgPfCdAis=",
   "Source": "backend",
   "BasePath": "_content/backend",
   "Mode": "Default",
@@ -205,6 +205,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Images\\Containers\\container-40ft-reefer.jpg"
+    },
+    {
+      "Identity": "D:\\PROJETOS\\MIDFORYOU\\midforyou\\backend\\wwwroot\\Images\\Containers\\container-40hc-reefer.jpg",
+      "SourceId": "backend",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\PROJETOS\\MIDFORYOU\\midforyou\\backend\\wwwroot\\",
+      "BasePath": "_content/backend",
+      "RelativePath": "Images/Containers/container-40hc-reefer.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Images\\Containers\\container-40hc-reefer.jpg"
     },
     {
       "Identity": "D:\\PROJETOS\\MIDFORYOU\\midforyou\\backend\\wwwroot\\Images\\PortMarkers\\Acre\\Aeroporto de Cruzeiro do Sul.jpg",
@@ -2599,6 +2618,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Images\\PortMarkers\\Paraíba\\Porto de Cabedelo.jpg"
+    },
+    {
+      "Identity": "D:\\PROJETOS\\MIDFORYOU\\midforyou\\backend\\wwwroot\\Images\\PortMarkers\\Paraíba\\Porto do Recife.jpg",
+      "SourceId": "backend",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\PROJETOS\\MIDFORYOU\\midforyou\\backend\\wwwroot\\",
+      "BasePath": "_content/backend",
+      "RelativePath": "Images/PortMarkers/Paraíba/Porto do Recife.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Images\\PortMarkers\\Paraíba\\Porto do Recife.jpg"
     },
     {
       "Identity": "D:\\PROJETOS\\MIDFORYOU\\midforyou\\backend\\wwwroot\\Images\\PortMarkers\\Paraná\\Aeroporto de Curitiba.jpg",

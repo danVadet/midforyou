@@ -5,17 +5,22 @@ using backend.Models;
 public class ProductService : IProductService
 {
     private readonly IProductRepository _productRepository;
+    private readonly IContainerRepository _containerRepository;
     private readonly IMapper _mapper;
 
-    public ProductService(IProductRepository productRepository, IMapper mapper)
+    public ProductService(IProductRepository productRepository, IContainerRepository containerRepository, IMapper mapper)
     {
         _productRepository = productRepository;
+        _containerRepository = containerRepository;
         _mapper = mapper;
     }
 
     public async Task CreateAsync(CreateProductRequest createProductRequest)
     {
 
+        Container container = await  _containerRepository.GetByIdAsync(createProductRequest.containerId);
+        createProductRequest.containerId = container.id;
+        
         var weightTotal = createProductRequest.weight * createProductRequest.quantity;
         createProductRequest.weightTotal = weightTotal;
 
@@ -74,9 +79,9 @@ public class ProductService : IProductService
         return _mapper.Map<ProductResponse>(productEntity);
     }
 
-    public async Task<ProductResponse> UpdateAsync(int id, UpdateProductRequest updateProductRequest)
+    public async Task<ProductResponse> UpdateAsync(UpdateProductRequest updateProductRequest)
     {
-        Product product = await _productRepository.GetByIdAsync(id);
+        Product product = await _productRepository.GetByIdAsync(updateProductRequest.id);
 
         if (product != null)
         {
@@ -86,6 +91,7 @@ public class ProductService : IProductService
             product.height = updateProductRequest.height;
             product.weight = updateProductRequest.weight;
             product.quantity = updateProductRequest.quantity;
+            product.containerId = updateProductRequest.containerId;
 
 
             var weightTotal = updateProductRequest.weight * updateProductRequest.quantity;
@@ -163,5 +169,5 @@ public class ProductService : IProductService
         var sumVolumeTotal = products.Sum(product => product.volumeTotal);
        
         return new { sumVolumeTotal };
-    }
+    }    
 }

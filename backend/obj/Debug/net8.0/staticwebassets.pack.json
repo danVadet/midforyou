@@ -25,6 +25,10 @@
       "PackagePath": "staticwebassets\\Images\\Containers\\container-40ft-reefer.jpg"
     },
     {
+      "Id": "D:\\PROJETOS\\MIDFORYOU\\midforyou\\backend\\wwwroot\\Images\\Containers\\container-40hc-reefer.jpg",
+      "PackagePath": "staticwebassets\\Images\\Containers\\container-40hc-reefer.jpg"
+    },
+    {
       "Id": "D:\\PROJETOS\\MIDFORYOU\\midforyou\\backend\\wwwroot\\Images\\PortMarkers\\Acre\\Aeroporto Internacional de Rio Branco.jpg",
       "PackagePath": "staticwebassets\\Images\\PortMarkers\\Acre\\Aeroporto Internacional de Rio Branco.jpg"
     },
@@ -463,6 +467,10 @@
     {
       "Id": "D:\\PROJETOS\\MIDFORYOU\\midforyou\\backend\\wwwroot\\Images\\PortMarkers\\Paraíba\\Porto de Cabedelo.jpg",
       "PackagePath": "staticwebassets\\Images\\PortMarkers\\Paraíba\\Porto de Cabedelo.jpg"
+    },
+    {
+      "Id": "D:\\PROJETOS\\MIDFORYOU\\midforyou\\backend\\wwwroot\\Images\\PortMarkers\\Paraíba\\Porto do Recife.jpg",
+      "PackagePath": "staticwebassets\\Images\\PortMarkers\\Paraíba\\Porto do Recife.jpg"
     },
     {
       "Id": "D:\\PROJETOS\\MIDFORYOU\\midforyou\\backend\\wwwroot\\Images\\PortMarkers\\Pará\\Aeroporto Internacional de Belém.jpg",

@@ -81,16 +81,17 @@ namespace backend.Migrations
                     volume = table.Column<float>(type: "REAL", nullable: false),
                     volumeTotal = table.Column<float>(type: "REAL", nullable: false),
                     weightTotal = table.Column<float>(type: "REAL", nullable: false),
-                    Containerid = table.Column<int>(type: "INTEGER", nullable: true)
+                    containerId = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Products", x => x.id);
                     table.ForeignKey(
-                        name: "FK_Products_Containers_Containerid",
-                        column: x => x.Containerid,
+                        name: "FK_Products_Containers_containerId",
+                        column: x => x.containerId,
                         principalTable: "Containers",
-                        principalColumn: "id");
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -125,9 +126,9 @@ namespace backend.Migrations
                 column: "portStateId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Products_Containerid",
+                name: "IX_Products_containerId",
                 table: "Products",
-                column: "Containerid");
+                column: "containerId");
         }
 
         /// <inheritdoc />

@@ -18,35 +18,73 @@
     flex-wrap: wrap;
     box-shadow: rgba(0, 0, 0, 0.12) 0px 2px 32px 0px;
     margin: 8px;
-    padding: 12px;
+    padding: 0.5em;
     border-radius: 5px;
+    gap: 20px;
+}
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+    
 }
 
-.formContainer select {
-    margin: 8px;
-    padding: 12px;
-    border-radius: 5px;
-    border: 1px solid rgb(204, 204, 204);
-    outline: 0;
-    font-size: 14px;
-    cursor: pointer;
+.formGroup select {
 
-
+  padding-left: 12px;
+  padding-right: 36px;
+  width: 100%;
+  height: 36px;
+  min-height: 36px;
+  border-radius: 5px;
+  border: 1px solid rgb(204, 204, 204);
+  outline: 0;
+  font-size: 14px;
+  cursor: pointer;
 }
 
-
-.formContainer .formGroup  input {
-    margin: 8px;
-    padding: 12px;
-    border-radius: 5px;
-    border: 1px solid rgb(204, 204, 204);
-    outline: 0;
-
-
+ .formGroup  input {
+  
+  padding-left: 12px;
+  padding-right: 36px;
+  border-radius: 5px;
+  border: 1px solid rgb(204, 204, 204);
+  width: 100%;
+  height: 36px;
+  min-height: 36px;
+  display: block;
+  outline: 0;   
 }
-.formContainer .formGroup  input::placeholder {
-    font-size: 14px;
 
+.formGroup .input_measurement_unit {
+  position: relative;
+  display: inline-block;
+}
+.formGroup .label_measurement_unit {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  color: rgb(85, 85, 85);
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+}
+
+.formGroup .input_weight_unit {
+  position: relative;
+  display: inline-block;
+}
+.formGroup .label_weight_unit {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: rgb(85, 85, 85);
+  font-size: 14px;
+  pointer-events: none;
 }
 
 .formContainer button {
@@ -63,12 +101,10 @@
 
 .formContainer button:hover {
     background: rgb(0, 103, 177);
-   
 }
 
 .formContainer .formGroup .invalid {
     border: 1px solid rgb(213, 21, 11);
-    background: url("../../public/assets/error.svg") no-repeat right;
 }
 .formContainer .formGroup .invalid ~ label {
     top: -5px;
@@ -90,12 +126,12 @@
   border-radius: 5px;
 }
 .search input {
-
   margin: 8px;
   padding: 12px;    
-  width: 40%;
+  width: 100%;
   border: 1px solid rgb(202, 202, 202);
   border-radius: 5px;
+  outline: 0;
 
 }
 
@@ -120,30 +156,6 @@
   border-radius: 5px;
   cursor: pointer;
 }
-.containers {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
-}
-
-.containers img {
-  width: 420px;
-    height: 320px;
-  border-radius: 5px;
-
-}
-.containers .buttonCalculator {
-  width: 50%;
-  margin: 8px;
-  padding: 12px;
-  border-radius: 5px;
-  cursor: pointer;
-  background:  rgb(0, 175, 239);
-  color: rgb(255, 255, 255);
-  font-size: 14px;
-  border: 0;
-}
 
 .products .buttonDelete  {
   background: rgb(226, 60, 60);
@@ -158,7 +170,6 @@
 }
 .products .buttonEdit:hover {
    background: rgb(0, 103, 177);
-
 }
 
 
@@ -166,7 +177,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 10px;
+    margin: 8px;
+    padding: 12px;
     gap: 2rem;
     box-shadow: rgba(0, 0, 0, 0.12) 0 0 10px;
 }
@@ -185,9 +197,19 @@
     border-radius: 5px;
 
   }
-  
 
- .containerInfo select {
+  .containerInfo .containerSelectUnit {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+  }
+  .containerInfo .containerSelectUnit label {
+    font-size: large;
+  }
+
+
+ .containerInfo .selectContainer {
     margin: 8px 0;
     padding: 12px;
     width: 100%;
@@ -198,23 +220,42 @@
     cursor: pointer;
 
 }
-.containerInfo select option {
+.containerInfo .selectContainer option {
     background:  rgb(255, 255, 255);
     color: rgb(0, 0, 0);
-
 }
-  
-  .imageContainer  {
-    width: 420px;
-    height: 320px;
+
+ .imageContainer  {
+    width: 480px;
+    height: 340px;
     border-radius: 5px;
   }
-  .containerCargoTotalWeight {
-    margin: 8px 0;
+
+.containerInfo .containerResult {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgb(234, 234, 234);
+  border-radius: 5px;
+}
+
+.containerInfo .containerResult .containerCargoTotal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 1.25em;
+
+}
+
+.containerCargoTotalWeight {
+    margin: 8px;
     padding: 12px;
     background:  rgb(0, 175, 239);
     color: rgb(234, 234, 234);
     border-radius: 5px;
+    font-size: 22px;
+    width: 100%;
   }
   
   .labelCargoTotalWeight {
@@ -224,11 +265,14 @@
 
   }
   .containerCargoTotalVolume {
-    margin: 8px 0;
+    margin: 8px;
     padding: 12px;
     background:  rgb(0, 175, 239);
     color: rgb(234, 234, 234);
     border-radius: 5px;
+    font-size: 22px;
+    width: 100%;
+
   }
   .labelCargoTotalWeight img {
     width: 60px;
@@ -238,6 +282,7 @@
     display: flex;
     align-items: center;
     gap: 8px;
+  
   }
   .labelCargoTotalVolume img {
     width: 60px;
@@ -292,9 +337,6 @@
 
 
 @media (max-width: 767px) {
-
-
-
   .search input { 
     width: 80%;
   }
@@ -313,8 +355,11 @@
 }
 
 .product_item {
-  flex-direction:column;
-  font-size: 15px;
+  flex-direction: column;
+}
+
+.products button {
+  padding: 6px;
 }
 
 
@@ -324,11 +369,14 @@
   }
 
   .imageContainer {
-
+    margin: 0.5em;
     width: 260px;
     height: 180px;
   }
 
+   .containerInfo .containerResult {
+    flex-direction: column;
+}
   .containerCargoTotalVolume {
     font-size: 12px;
   }
@@ -341,8 +389,5 @@
     text-align: right;
     font-size: 12px;
   }
-  
-
-
-   
+     
 }

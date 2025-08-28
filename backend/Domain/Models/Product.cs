@@ -25,4 +25,8 @@ public class Product
     public float volumeTotal { get; set; }
 
     public float weightTotal { get; set; }
+
+    public required Container container { get; set; }
+    
+    public int containerId { get; set;}
 }

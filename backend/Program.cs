@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using System.Text.Json;
 using backend.Infrastructure;
 using System.Text.Json.Serialization;
 using backend.Domain;
@@ -14,7 +15,6 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddHttpContextAccessor();
 
 
-
 builder.Services.AddDbContext<AppDbContext>(options =>
 {
     options.UseSqlite(builder.Configuration.GetConnectionString("DbConnection"));
@@ -25,8 +25,8 @@ builder.Services.AddControllers().AddJsonOptions(options =>
 {
     // serialize enums as strings in api responses (e.g. Role)
     options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
-
-
+    options.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.IgnoreCycles;
+    options.JsonSerializerOptions.WriteIndented = true;
 });
 
 
@@ -50,9 +50,6 @@ builder.Services.AddCors(
     .AllowAnyMethod()
     .AllowAnyHeader())
 );
-
-
-
 
 
 var app = builder.Build();

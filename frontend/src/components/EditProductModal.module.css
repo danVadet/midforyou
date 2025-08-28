@@ -18,33 +18,117 @@
     left: 50%;
     transform: translate(-50%, -50%);
     background: rgb(255, 255, 255);
-    padding: 50px;
-    border-radius: 20px;
-
-}
-.modalButtonContainer button {
-    background:  rgb(5, 155, 255);
-    color: rgb(255, 255, 255);
-    border: 0;
-    padding: 10px;
+    padding: 12px;
     border-radius: 5px;
+}
+.modalClose {
+  position: absolute;
+  top: -15px;
+  right: -15px;
+  width: 32px;
+  height: 32px;
+  font-size: 30px;
+  border: none;
+  cursor: pointer;
+  line-height: 32px;
+  background: rgb(0, 175, 239);
+  border-radius: 50%;
+  color: rgb(255, 255, 255);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
 }
 
 .formContainer {
     box-shadow: rgba(0, 0, 0, 0.12) 0px 2px 32px 0px;
     margin: 8px;
     padding: 12px;
+}
+
+.formContainer .formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 1;
+}
+
+.formContainer .formGroup .input_measurement_unit {
+  position: relative;
+  display: inline-block;
+}
+.formContainer .formGroup .label_measurement_unit {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: rgb(85, 85, 85);
+  font-size: 14px;
+  pointer-events: none;
+}
+
+.formContainer .formGroup  .input_weight_unit {
+  position: relative;
+  display: inline-block;
+}
+.formContainer .formGroup .label_weight_unit {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: rgb(85, 85, 85);
+  font-size: 14px;
+  pointer-events: none;
+}
+
+.formContainer .formGroup input {
+     padding-left: 12px;
+  padding-right: 36px;
+  border-radius: 5px;
+  border: 1px solid rgb(204, 204, 204);
+  width: 100%;
+  height: 36px;
+  min-height: 36px;
+  display: block;
+  outline: 0;   
 
 }
-.formContainer input {
+.formContainer .formGroup select {
+  width: 100%;
+  padding: 8px;
+  margin-top: 4px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+.modalActions {
     margin: 8px;
-    padding: 10px;
-    border-radius: 5px;
-    outline: none;
-    border: 1px solid rgb(204, 204, 204)
-
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+.modalActions button {
+  background: rgb(0, 175, 239);
+  color: rgb(255, 255, 255);
+  border: 0;
+  padding: 8px 16px;
+  border-radius: 5px;
 }
 
-.formContainer button {
-    margin: 10px;
+@media (max-width: 767px) {
+
+  .formContainer .formGroup select {
+  padding: 0;
+}
+.formContainer .formGroup input {
+ 
+  height: 22px;
+  min-height: 0;
+}
+  
+.formContainer .formGroup {
+  gap: 0;
+}
+.modalActions button {
+ 
+  padding: 4px 8px;
+}
+
+  
 }

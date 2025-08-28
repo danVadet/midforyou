@@ -36,11 +36,13 @@ export const DeleteProductModal = (props: IDeleteProductModalProps) => {
     return (
         <>
             <div className={`${styles.modal}`}>
-                <div className={`${styles.modalContainer}`}>
-                    <h2>Deseja excluir esse produto?</h2>
-                    <div className={`${styles.modalButtonContainer}`}>
-                        <button onClick={() => confirmDelete()}>Sim</button>
-                        <button onClick={props.closeModal}>Não</button>
+                <div className={`${styles.modalContent}`}>
+                    <span onClick={props.closeModal} className={`${styles.modalClose}`}>&times;</span>
+                    <h1>Confirmar exclusão</h1>
+                    <h3>Tem certeza que deseja excluir este produto?</h3>
+                    <div className={`${styles.modalActions}`}>
+                        <button className={`${styles.buttonDelete}`} onClick={() => confirmDelete()}>Excluir</button>
+                        <button className={`${styles.buttonCancel}`} onClick={props.closeModal}>Cancelar</button>
                     </div>
 
                 </div>

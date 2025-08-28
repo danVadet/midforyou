@@ -11,14 +11,13 @@ public class ProductController : ControllerBase
     public ProductController(IProductService productService)
     {
         _productService = productService;
-
     }
 
     [HttpGet("products")]
     public async Task<IActionResult> getAllProducts([FromQuery] string search)
     {
-        
-       List <ProductResponse> products = await _productService.GetAllAsync();
+
+        List<ProductResponse> products = await _productService.GetAllAsync();
 
         if (!String.IsNullOrEmpty(search))
         {
@@ -28,20 +27,122 @@ public class ProductController : ControllerBase
         }
         return Ok(products);
     }
-    [HttpGet("weightUnits")]
-    public IActionResult getAllWeightUnits()
+    [HttpGet("measureUnits/{weightUnit}")]
+    public IActionResult getAllMeasureUnits([FromQuery] string lang, WeightUnit weightUnit)
     {
+          List<object> measureUnits;
+        List<object> weightUnits;
+        if (lang == "en")
+        {
 
-     var weightUnits = Enum.GetNames(typeof(WeightUnit));
-     return Ok(weightUnits);
-    }
+            if (weightUnit == WeightUnit.lb)
+            {
 
-    [HttpGet("measureUnits")]
-    public IActionResult getAllMeasureUnits()
-    {
+                measureUnits = new List<object>
+                {
+                new { value = MeasureUnit.ft, label = "feet" },
+                new { value = MeasureUnit.inch, label = "inch" },
+                new { value = MeasureUnit.yd, label = "yard" }
+                };
 
-     var measureUnits = Enum.GetNames(typeof(MeasureUnit));
-     return Ok(measureUnits);
+                weightUnits = new List<object>
+                {
+                new { value = WeightUnit.lb, label = "pound" },
+                };
+            }
+            else
+            {
+
+                measureUnits = new List<object>
+                {
+                new { value = MeasureUnit.m, label = "meter" },
+                new { value = MeasureUnit.cm, label = "centimeter" },
+                new { value = MeasureUnit.mm, label = "millimeter" },
+                };
+
+                weightUnits = new List<object>
+                {
+                new { value = WeightUnit.kg, label = "kilogram" },
+                new { value = WeightUnit.g, label = "gram" },
+                };
+            }
+
+            return Ok(new { measureUnits, weightUnits });
+        }
+
+        else if (lang == "es")
+        {
+
+            if (weightUnit == WeightUnit.lb)
+            {
+
+                measureUnits = new List<object>
+                {
+                new { value = MeasureUnit.ft, label = "pie" },
+                new { value = MeasureUnit.inch, label = "pulgada" },
+                new { value = MeasureUnit.yd, label = "patio" }
+                };
+
+                weightUnits = new List<object>
+                {
+                new { value = WeightUnit.lb, label = "libra" },
+                };
+            }
+            else
+            {
+
+                measureUnits = new List<object>
+                {
+                new { value = MeasureUnit.m, label = "metro" },
+                new { value = MeasureUnit.cm, label = "centímetro" },
+                new { value = MeasureUnit.mm, label = "milímetro" },
+                };
+                weightUnits = new List<object>
+                {
+                new { value = WeightUnit.kg, label = "kilogramo" },
+                new { value = WeightUnit.g, label = "gramo" },
+                };
+            }
+
+            return Ok(new { measureUnits, weightUnits });
+        }
+
+        else
+        {
+            if (weightUnit == WeightUnit.lb)
+            {
+
+                measureUnits = new List<object>
+                {
+                new { value = MeasureUnit.ft, label = "pé" },
+                new { value = MeasureUnit.inch, label = "polegada" },
+                new { value = MeasureUnit.yd, label = "jarda" }
+                };
+
+                weightUnits = new List<object>
+                {
+                new { value = WeightUnit.lb, label = "libra" },
+                };
+            }
+            else
+            {
+
+                measureUnits = new List<object>
+                {
+                new { value = MeasureUnit.m, label = "metro" },
+                new { value = MeasureUnit.cm, label = "centímetro" },
+                new { value = MeasureUnit.mm, label = "milímetro" },
+                };
+
+                weightUnits = new List<object>
+                {
+                new { value = WeightUnit.kg, label = "quilograma" },
+                new { value = WeightUnit.g, label = "grama" },
+                };
+            }
+            return Ok(new { measureUnits, weightUnits });
+
+        }
     }
 
     [HttpGet("products/{id}")]
@@ -50,18 +151,19 @@ public class ProductController : ControllerBase
         ProductResponse product = await _productService.GetByIdAsync(id);
         return Ok(product);
     }
-     [HttpDelete("products")]
+    [HttpDelete("products")]
     public async Task<IActionResult> deleteAllProducts()
     {
 
-        List <ProductResponse> products = await _productService.GetAllAsync();
+        List<ProductResponse> products = await _productService.GetAllAsync();
 
-        foreach (var Item in products) 
-    {
-        await _productService.DeleteAsync(Item.id);
-    }
-    return Ok("All products are deleted");
- //
+        foreach (var Item in products)
+        {
+            await _productService.DeleteAsync(Item.id);
+
+        }
+        return Ok("All products are deleted");
+        //
     }
 
     [HttpGet("sumTotalWeight")]
@@ -69,11 +171,11 @@ public class ProductController : ControllerBase
     {
         List<ProductResponse> products = await _productService.GetAllAsync();
 
-        var sumWeightTotalLb = products.FindAll(p => p.weightUnit == WeightUnit.lb) .Sum(product => product.weightTotal);
+        var sumWeightTotalLb = products.FindAll(p => p.weightUnit == WeightUnit.lb).Sum(product => product.weightTotal);
         var sumWeightTotalKg = products.FindAll(p => p.weightUnit == WeightUnit.kg || p.weightUnit == WeightUnit.g).Sum(product => product.weightTotal);
-      
+
         return Ok(new { sumWeightTotalLb, sumWeightTotalKg });
-        
+
     }
     [HttpGet("sumTotalVolume")]
     public async Task<ActionResult> getSumTotalVolume()
@@ -82,9 +184,9 @@ public class ProductController : ControllerBase
 
         var sumVolumeTotalFt3 = products.FindAll(p => p.measureUnit == MeasureUnit.ft || p.measureUnit == MeasureUnit.yd || p.measureUnit == MeasureUnit.inch).Sum(product => product.volumeTotal);
         var sumVolumeTotalM3 = products.FindAll(p => p.measureUnit == MeasureUnit.m).Sum(product => product.volumeTotal);
-      
+
         return Ok(new { sumVolumeTotalFt3, sumVolumeTotalM3 });
-       
+
     }
 
     [HttpGet("sumTotalQuantity")]
@@ -111,7 +213,8 @@ public class ProductController : ControllerBase
     public async Task<IActionResult> updateProduct(int id, [FromBody] UpdateProductRequest updateProductRequest)
     {
 
-        await _productService.UpdateAsync(id, updateProductRequest);
+        updateProductRequest.id = id;
+        await _productService.UpdateAsync(updateProductRequest);
         return Ok("Product updated successfully");
     }
 

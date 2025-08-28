@@ -10,7 +10,7 @@ using backend.Infrastructure;
 namespace backend.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250812190749_createInitial")]
+    [Migration("20250821145351_createInitial")]
     partial class createInitial
     {
         /// <inheritdoc />
@@ -118,7 +118,7 @@ namespace backend.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int?>("Containerid")
+                    b.Property<int>("containerId")
                         .HasColumnType("INTEGER");
 
                     b.Property<float>("height")
@@ -157,7 +157,7 @@ namespace backend.Migrations
 
                     b.HasKey("id");
 
-                    b.HasIndex("Containerid");
+                    b.HasIndex("containerId");
 
                     b.ToTable("Products");
                 });
@@ -222,9 +222,13 @@ namespace backend.Migrations
 
             modelBuilder.Entity("backend.Domain.Product", b =>
                 {
-                    b.HasOne("backend.Domain.Container", null)
+                    b.HasOne("backend.Domain.Container", "container")
                         .WithMany("products")
-                        .HasForeignKey("Containerid");
+                        .HasForeignKey("containerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("container");
                 });
 
             modelBuilder.Entity("backend.Domain.Container", b =>

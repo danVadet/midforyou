@@ -13,6 +13,8 @@ export interface IProduct  {
     quantity: number;
     weightTotal: number;
     volumeTotal:  number;
-    measureUnit: MeasureUnit;
-    weightUnit: WeightUnit;
+    measureUnit: string;
+    weightUnit:  string;
+    container: IContainer;
+    containerId: number;
 }
